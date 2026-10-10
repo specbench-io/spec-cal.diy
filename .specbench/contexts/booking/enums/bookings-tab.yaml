@@ -1,0 +1,30 @@
+spec-format: 1
+kind: enum
+id: 01a125a0-8b30-7f16-9c4a-ac53ed58d816
+revision: 7
+name: Bookings Tab
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+summary: The tabs of the bookings list.
+description: 
+cases:
+- id: 01a125a0-8b30-750f-9260-ee0c8f9e98cc
+  name: Upcoming
+  description: 
+  archived: false
+- id: 01a125a0-8b30-7886-a2a4-1919addd9d90
+  name: Unconfirmed
+  description: 
+  archived: false
+- id: 01a125a0-8b30-7abd-af57-0e372758d21f
+  name: Recurring
+  description: 
+  archived: false
+- id: 01a125a0-8b30-7901-a18b-bdf694529d88
+  name: Past
+  description: 
+  archived: false
+- id: 01a125a0-8b30-7af5-824c-22c3392a485d
+  name: Cancelled
+  description: Canceled - shows cancelled and rejected Bookings.
+  archived: false
+archived: false

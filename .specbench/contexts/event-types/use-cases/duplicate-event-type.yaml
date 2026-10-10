@@ -1,0 +1,65 @@
+spec-format: 1
+kind: use-case
+id: 01a1259f-6630-74c8-b102-6617e25bf529
+revision: 10
+name: Duplicate Event Type
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+description: viewer.eventTypesHeavy.duplicate (Duplicate event type dialog, slug prefilled as slug-copy).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a1259f-6630-7077-b683-94c21d24056a
+  name: Event Type Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a1259f-6630-7ee0-a974-47b230aa26d6
+  name: Slug
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a1259f-6630-7730-8493-a06d0cf27c10
+  name: Title
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+steps:
+- id: 01a1259f-6630-7958-8d0e-1bc730f28c9f
+  text: 'If the original does not exist, refuse: {{outcome:Not Found}}'
+  indent: 0
+- id: 01a1259f-6630-74f6-aaa7-c9f1981900d0
+  text: Copy every setting, location, limit, booking question and the Cal Video settings and destination calendar; leave out webhooks and the Schedule
+  indent: 0
+- id: 01a1259f-6630-7781-a7ae-4af442529fcf
+  text: Give each Private Link a new link with the same expiry and limit, starting at zero uses
+  indent: 0
+- id: 01a1259f-6630-775a-b734-b00356034927
+  text: 'Save the copy: {{outcome:Event Type Duplicated}}'
+  indent: 0
+- id: 01a1259f-6630-77a2-908a-119b6f037dcd
+  text: 'If {{input:Slug}} is taken, refuse: {{outcome:Slug Conflict}}'
+  indent: 1
+outcomes:
+- id: 01a1259f-6630-789d-929f-1a96bdee4e37
+  name: Event Type Duplicated
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a1259f-6630-7560-a798-01007c76bdf5
+  name: Not Found
+  success: false
+  code: 404
+  message: 
+  returns: 
+- id: 01a1259f-6630-7d18-97e0-375c42876e7a
+  name: Slug Conflict
+  success: false
+  code: 409
+  message: An event type with this URL already exists. Please try a different URL.
+  returns: 
+archived: false

@@ -1,0 +1,71 @@
+spec-format: 1
+kind: aggregate
+id: 01a125a4-cea0-7396-85e4-d42c88beb5c4
+revision: 12
+name: Task
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+summary: A background job stored in the database and run by the task cron (the tasker).
+description: 
+properties:
+- id: 01a125a4-cea0-7de4-9fce-1c386ba4f626
+  name: Type
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a4-cea0-78be-ad5e-4847c8badcbb
+  name: Payload
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a4-cea0-7cfe-9cc9-2d6455c2d1d7
+  name: Scheduled At
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a125a4-cea0-7952-aadb-537c21a3f527
+  name: Succeeded At
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Date
+  archived: false
+- id: 01a125a4-cea0-7596-a80d-a548651a6d6b
+  name: Attempts
+  type:
+    kind: Primitive
+    primitive: Number
+  archived: false
+- id: 01a125a4-cea0-789a-9e73-40049570f1d1
+  name: Max Attempts
+  type:
+    kind: Primitive
+    primitive: Number
+  archived: false
+- id: 01a125a4-cea0-7235-aed4-8a8ddf8c9682
+  name: Last Error
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a4-cea0-768b-907f-3a65461aa8b4
+  name: Reference Uid
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+invariants:
+- id: 01a125a4-cea0-74f2-b6d2-07fc6b765445
+  text: One Task per reference uid and type.
+  archived: false
+- id: 01a125a4-cea0-7257-bfa7-7f2f5dfa2966
+  text: A Task is retried until it succeeds or reaches its maximum attempts (3 by default).
+  archived: false
+domain-events: []
+entities: []
+methods: []
+archived: false

@@ -1,0 +1,13 @@
+spec-format: 1
+kind: scheduled-job
+id: 01a125a3-6427-7436-889c-e54a686999bc
+revision: 3
+name: Calendar Subscriptions Cleanup
+bounded-context-id: 01a0f44a-2a06-7125-8fe2-659328d04ce1
+description: 
+schedule: every day at 03:00 (/api/cron/calendar-subscriptions-cleanup)
+steps:
+- id: 01a125a3-6427-7d2b-8c47-91dc0fda9917
+  text: Delete Calendar Cache Events that have ended
+  indent: 0
+archived: false

@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a125a4-cf33-78fa-bb4d-8d6ff4d76cdc
+revision: 3
+name: Platform Webhook
+definition: A Webhook the Admin sets up that receives events for every user.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+archived: false

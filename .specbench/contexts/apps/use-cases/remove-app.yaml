@@ -1,0 +1,56 @@
+spec-format: 1
+kind: use-case
+id: 01a125a4-4166-7405-8960-ce816436b43f
+revision: 8
+name: Remove App
+bounded-context-id: 01a0f44a-2a22-7488-ae05-7c57eda180ac
+description: viewer.credentials.delete, which runs handleDeleteCredential (Remove app).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a4-4166-71a7-8f2e-49818fd0248e
+  name: Credential Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+steps:
+- id: 01a125a4-4166-7c2d-be74-e49821995138
+  text: "If the Credential is not the Organizer's, refuse: {{outcome:Credential Not Found}}"
+  indent: 0
+- id: 01a125a4-4166-7b78-83ad-a9b60e608c23
+  text: For a video app, switch every Event Type using it to Cal Video
+  indent: 0
+- id: 01a125a4-4166-74c4-aa4e-7fbe1d92834f
+  text: For a calendar app, remove Event Type Destination Calendars that used it
+  indent: 0
+- id: 01a125a4-4166-789b-9bf4-0e0c544c6af7
+  text: For a payment app, hide every one of the Organizer's Event Types, and cancel unpaid upcoming Bookings paid through it with the reason Payment method removed, emailing the Attendees
+  indent: 0
+- id: 01a125e5-b74b-75aa-b569-6a353198eeba
+  text: For a CRM app or an app that adds options to Event Types, remove its settings from the Organizer's Event Types and hide every one of them, whether or not they used the app
+  indent: 0
+- id: 01a125a4-4166-7b02-b2be-64e9edebbda8
+  text: If it was the Default Conferencing App, clear that
+  indent: 0
+- id: 01a125a4-4166-7b01-9b92-700f1210c960
+  text: For a calendar app, remove its Selected Calendars
+  indent: 0
+- id: 01a125a4-4166-75be-a475-c562b4ffc887
+  text: 'Delete the Credential: {{outcome:App Removed}}'
+  indent: 0
+outcomes:
+- id: 01a125a4-4166-7d53-b5e4-87c16ca2baf7
+  name: App Removed
+  success: true
+  code: 
+  message: App removed successfully
+  returns: 
+- id: 01a125a4-4166-7090-8aa4-776710f926fe
+  name: Credential Not Found
+  success: false
+  code: 
+  message: Credential not found
+  returns: 
+archived: false

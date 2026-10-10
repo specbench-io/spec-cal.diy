@@ -1,0 +1,77 @@
+spec-format: 1
+kind: use-case
+id: 01a125a7-3a33-7a79-a633-8b4cf3315dbe
+revision: 11
+name: Sign Up
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+description: /signup and POST /api/auth/signup (self-hosted handler). The cal.com handler, with the Watchlist check and account review, only runs on cal.com domains.
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a7-3a33-7f93-b6d8-2c75706cc2c4
+  name: Username
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a7-3a33-7ae8-aa8d-3c5cca2cc7c7
+  name: Email
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a7-3a33-71a7-80f3-62f56509c49c
+  name: Password
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a7-3a33-74f3-bab8-0a6ff627fcbe
+  text: 'If signup is switched off for the instance, refuse: {{outcome:Signup Disabled}}'
+  indent: 0
+- id: 01a125a7-3a33-7040-a685-49296aa01d63
+  text: Allow at most 10 attempts a minute from one address, and check the Turnstile challenge
+  indent: 0
+- id: 01a125a7-3a33-7a87-8f5e-e29579895a02
+  text: 'Turn {{input:Username}} into a slug; if nothing is left, refuse: {{outcome:Invalid Username}}'
+  indent: 0
+- id: 01a125a7-3a33-72d7-9d81-075f838f04c7
+  text: 'If the username is taken, or the email belongs to a verified or completed account, refuse: {{outcome:Already Taken}}'
+  indent: 0
+- id: 01a125a7-3a33-7171-930b-525cb085ba21
+  text: Create the user with the hashed password, signing in with email and password
+  indent: 0
+- id: 01a125a7-3a33-78d5-8f09-7f20aad79cfc
+  text: Create their Default Schedule, Working hours Monday to Friday 9 to 5
+  indent: 0
+- id: 01a125a7-3a33-7eaa-aab6-04edd5512d96
+  text: 'Send an email verification link if email verification is on: {{outcome:Account Created}}'
+  indent: 0
+outcomes:
+- id: 01a125a7-3a33-7e79-b062-b0a6e746965f
+  name: Account Created
+  success: true
+  code: 201
+  message: 
+  returns: 
+- id: 01a125a7-3a33-7d7a-9e54-ed14d606088e
+  name: Signup Disabled
+  success: false
+  code: 403
+  message: Signup is disabled
+  returns: 
+- id: 01a125a7-3a33-7ec5-9e9b-9df770be1bd3
+  name: Invalid Username
+  success: false
+  code: 422
+  message: 
+  returns: 
+- id: 01a125a7-3a33-7571-a74e-afa47ef76bfe
+  name: Already Taken
+  success: false
+  code: 409
+  message: Username or email is already taken
+  returns: 
+archived: false

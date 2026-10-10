@@ -1,0 +1,66 @@
+spec-format: 1
+kind: use-case
+id: 01a1259f-65c7-7ffd-b717-42c6488d858b
+revision: 10
+name: Create Event Type
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+description: viewer.eventTypesHeavy.create (New on /event-types, Add a new event type dialog).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a1259f-65c7-7e6d-803d-e3fa4d48ca59
+  name: Title
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a1259f-65c7-7f38-81a6-11eb3b8caf7a
+  name: Slug
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a1259f-65c7-7ac4-a374-490900d90e2a
+  name: Description
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259f-65c7-7dfe-a062-14edeb474b8e
+  name: Length
+  type:
+    kind: Primitive
+    primitive: Number
+  archived: false
+steps:
+- id: 01a1259f-65c7-7a92-8f49-0255c58a6420
+  text: If no locations are given, use the Organizer's default conferencing app, else Cal Video when it is set up, else none
+  indent: 0
+- id: 01a1259f-65c7-7344-bfa8-620f3a1ad33f
+  text: Make the Organizer the owner of the new Event Type
+  indent: 0
+- id: 01a1259f-65c7-7ef3-a2e8-a2b7de80c057
+  text: If Cal Video is a location and Cal Video settings were given, save them
+  indent: 0
+- id: 01a1259f-65c7-7998-b659-734cabd8dd8b
+  text: 'Save the Event Type: {{outcome:Event Type Created}}'
+  indent: 0
+- id: 01a1259f-65c7-792a-bb46-3f1dea3d1e8e
+  text: 'If the Organizer already has an Event Type with {{input:Slug}}, refuse: {{outcome:Slug Already Exists}}'
+  indent: 1
+outcomes:
+- id: 01a1259f-65c7-703d-84f5-439e7fd74023
+  name: Event Type Created
+  success: true
+  code: 
+  message: '{{eventTypeTitle}} event type created successfully'
+  returns: 
+- id: 01a1259f-65c7-7819-ac96-e42427c124a5
+  name: Slug Already Exists
+  success: false
+  code: 400
+  message: An event type with this URL already exists.
+  returns: 
+archived: false

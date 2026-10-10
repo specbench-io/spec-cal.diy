@@ -1,0 +1,24 @@
+spec-format: 1
+kind: value-object
+id: 01a1259b-eafc-77de-bd76-831eab0551f6
+revision: 4
+name: Date Range
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+summary: A stretch of time between a start and an end.
+description: 
+properties:
+- id: 01a1259b-eafc-7236-8218-52e50c2236cb
+  name: Start
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a1259b-eafc-741b-818c-db6d3432111b
+  name: End
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+invariants: []
+methods: []
+archived: false

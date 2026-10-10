@@ -1,0 +1,59 @@
+spec-format: 1
+kind: aggregate
+id: 01a1259b-eab1-7c1a-b8e0-c25c8a723983
+revision: 10
+name: Selected Slot
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+summary: A short hold on a Slot by one Booker while they fill in the booking form.
+description: 
+properties:
+- id: 01a1259b-eab1-7f42-8dc0-9317238c58c4
+  name: Event Type Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a1259b-eab1-7af3-b8ff-dda1817e0aaf
+  name: User Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a1259b-eab1-754b-af81-684b4172260f
+  name: Slot Utc Start Date
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a1259b-eab1-76b8-abee-d10175996943
+  name: Slot Utc End Date
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a1259b-eab1-7409-9fd2-0e5cc9718989
+  name: Uid
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a1259b-eab1-7160-8124-f046b11d88cb
+  name: Release At
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a1259b-eab1-73fc-b442-7afdbfd73029
+  name: Is Seat
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+invariants:
+- id: 01a1259b-eab1-7e9b-952d-5d939b29476a
+  text: One hold per user, slot start, slot end and Booker uid.
+  archived: false
+domain-events: []
+entities: []
+methods: []
+archived: false

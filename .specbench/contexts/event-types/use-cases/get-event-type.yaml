@@ -1,0 +1,38 @@
+spec-format: 1
+kind: use-case
+id: 01a1259f-670f-77bc-b42f-9b1e8a0a9381
+revision: 7
+name: Get Event Type
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+description: viewer.eventTypes.get (the edit page).
+use-case-kind: Query
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a1259f-670f-7ba2-bd53-d7b5a1e688ce
+  name: Event Type Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+steps:
+- id: 01a1259f-670f-70b1-82eb-05bb1aca8beb
+  text: 'If the Organizer cannot see it, refuse: {{outcome:Not Found}}'
+  indent: 0
+- id: 01a1259f-670f-7c0d-9fa2-8c197c72ab61
+  text: 'Return the Event Type with its Booking Questions (system questions included), location options and destination calendar; the Schedule falls back to the Default Schedule: {{outcome:Found}}'
+  indent: 0
+outcomes:
+- id: 01a1259f-670f-7082-9d77-b0f841790402
+  name: Found
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a1259f-670f-7718-80b8-6d54fcff3db7
+  name: Not Found
+  success: false
+  code: 404
+  message: 
+  returns: 
+archived: false

@@ -1,0 +1,11 @@
+spec-format: 1
+kind: term
+id: 01a1259e-ce2b-7236-a2a3-3131ebc2056e
+revision: 4
+name: Private Link
+definition: A secret link to book an Event Type, even a hidden one, that stops working after a date or a number of uses.
+aka:
+- hashed link
+avoid: []
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+archived: false

@@ -1,0 +1,39 @@
+spec-format: 1
+kind: aggregate
+id: 01a1259b-ea55-7627-978e-36b58f0fbb4f
+revision: 6
+name: User Holiday Settings
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+summary: The country whose public holidays block an Organizer's availability, and the holidays they switched off.
+description: 
+properties:
+- id: 01a1259b-ea55-7b67-8971-0a97a4ec57a3
+  name: User Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a1259b-ea55-7b79-aad9-98be824abb02
+  name: Country Code
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259b-ea55-7515-b6b8-f144d08ad871
+  name: Disabled Ids
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Primitive
+      primitive: Text
+  archived: false
+invariants:
+- id: 01a1259b-ea55-7a09-860e-95c3bda06a98
+  text: One settings record per user.
+  archived: false
+domain-events: []
+entities: []
+methods: []
+archived: false

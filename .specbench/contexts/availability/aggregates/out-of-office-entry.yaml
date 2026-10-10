@@ -1,0 +1,74 @@
+spec-format: 1
+kind: aggregate
+id: 01a1259b-ea18-7aa0-a469-f8fb593ca0c9
+revision: 13
+name: Out Of Office Entry
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+summary: A span of days when an Organizer is away, optionally redirecting Bookers to someone else.
+description: 
+properties:
+- id: 01a1259b-ea18-709d-8017-0188038583da
+  name: Uuid
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a1259b-ea18-73b9-92c1-4ea9371e6583
+  name: Start
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a1259b-ea18-76de-b855-d71b174cb391
+  name: End
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a1259b-ea18-7b05-82d7-0a21cd15218e
+  name: Notes
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259b-ea18-79f6-a949-61860cb6b639
+  name: Show Note Publicly
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a1259b-ea18-7bf9-b0cc-b05a14ffb5fd
+  name: User Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a1259b-ea18-75e5-ae5b-2a26e17a04aa
+  name: To User Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a1259b-ea18-7ed6-9846-66f864fa7a24
+  name: Reason Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+invariants:
+- id: 01a1259b-ea18-7694-aec5-d4da6ba4fbb3
+  text: Start is never after End.
+  archived: false
+- id: 01a1259b-ea18-799c-9dd1-7df11f023ccd
+  text: A user cannot have two entries with exactly the same start and end.
+  archived: false
+- id: 01a1259b-ea18-7f0d-aea2-0197b5fe04c7
+  text: An entry cannot redirect to the same user it belongs to.
+  archived: false
+domain-events: []
+entities: []
+methods: []
+archived: false

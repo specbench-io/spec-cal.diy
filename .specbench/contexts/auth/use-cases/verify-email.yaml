@@ -1,0 +1,53 @@
+spec-format: 1
+kind: use-case
+id: 01a125a7-3a66-7720-bec0-c59e2e636e58
+revision: 8
+name: Verify Email
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+description: GET /api/auth/verify-email (the link in the verification email).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a7-3a66-7a8a-9a80-5b913a2068ca
+  name: Token
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a7-3a66-7a90-9005-073de4c3f5a9
+  text: 'If there is no token or it has expired, refuse: {{outcome:Invalid Token}}'
+  indent: 0
+- id: 01a125a7-3a66-7b69-a3b3-38c7f3239d78
+  text: 'For a secondary email, mark it verified and go to the profile settings: {{outcome:Verified}}'
+  indent: 0
+- id: 01a125a7-3a66-7f17-a0a8-e7d002b48126
+  text: 'For a pending change of email, if another user has the new address, refuse: {{outcome:Email Taken}}'
+  indent: 0
+- id: 01a125a7-3a66-77ad-8ac7-0dec41c5f0ec
+  text: 'Otherwise switch to the new address: {{outcome:Verified}}'
+  indent: 1
+- id: 01a125a7-3a66-7887-9758-1a6827aaedae
+  text: 'Otherwise mark the email verified and continue to onboarding or Event Types: {{outcome:Verified}}'
+  indent: 0
+outcomes:
+- id: 01a125a7-3a66-7c17-86cc-d27c16696108
+  name: Verified
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a125a7-3a66-7f26-907a-f0171a07e48f
+  name: Invalid Token
+  success: false
+  code: 401
+  message: 
+  returns: 
+- id: 01a125a7-3a66-71f7-be45-eb1196ec6b31
+  name: Email Taken
+  success: false
+  code: 401
+  message: A User already exists with this email
+  returns: 
+archived: false

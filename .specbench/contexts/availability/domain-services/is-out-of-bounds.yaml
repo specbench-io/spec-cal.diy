@@ -1,0 +1,90 @@
+spec-format: 1
+kind: domain-service
+id: 01a12591-f11c-72e5-9b77-751450ec6256
+revision: 6
+name: Is Out Of Bounds
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: 
+methods:
+- id: 01a12591-f11c-7f8c-b696-bbeb5edf02e8
+  name: Is Out Of Bounds
+  description: Whether a time can be booked at all under the Event Type's Minimum notice and Limit future bookings settings. Slot generation uses it too.
+  inputs:
+  - id: 01a12591-f11c-7261-91de-400dee071849
+    name: Time
+    type:
+      kind: Primitive
+      primitive: Date
+  - id: 01a12591-f11c-7a31-824d-2ce89686e215
+    name: Minimum Booking Notice
+    type:
+      kind: Primitive
+      primitive: Number
+  - id: 01a12591-f11c-7d34-826c-db076faab1b7
+    name: Period Days
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Number
+  - id: 01a12591-f11c-7818-bfc3-2fa9df86d1ed
+    name: Period Count Calendar Days
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Bool
+  - id: 01a12591-f11c-7416-b741-afb62e696e59
+    name: Period Start Date
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Date
+  - id: 01a12591-f11c-78f4-862f-542035c6e9b6
+    name: Period End Date
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Date
+  - id: 01a12591-f11c-766d-8160-1dfb796f333f
+    name: Booker Utc Offset
+    type:
+      kind: Primitive
+      primitive: Number
+  - id: 01a12591-f11c-7af6-9748-f46d91a7cfbf
+    name: Event Utc Offset
+    type:
+      kind: Primitive
+      primitive: Number
+  steps:
+  - id: 01a12591-f11c-74bb-9150-20ac61a53039
+    text: 'If {{input:Time}} is in the past, refuse: {{outcome:Booking In Past}}'
+    indent: 0
+  - id: 01a12591-f11c-7297-b33f-9febfd545a79
+    text: 'If {{input:Time}} is sooner than {{input:Minimum Booking Notice}} minutes from now, it is out of bounds: {{outcome:Booking Time Out Of Bounds}}'
+    indent: 0
+  - id: 01a12591-f11c-7a77-b1e1-44e0f50510af
+    text: "With a rolling period, it is out of bounds if {{input:Time}} is after the end of the day {{input:Period Days}} days from now in the Booker's time zone ({{input:Booker Utc Offset}}), counting calendar days when {{input:Period Count Calendar Days}} is on and business days otherwise: {{outcome:Booking Time Out Of Bounds}}"
+    indent: 0
+  - id: 01a12591-f11c-717a-acee-93ab86103807
+    text: "With a date range, it is out of bounds if {{input:Time}} is before the start of {{input:Period Start Date}} or after the end of {{input:Period End Date}} in the event's time zone ({{input:Event Utc Offset}}): {{outcome:Booking Time Out Of Bounds}}"
+    indent: 0
+  - id: 01a12591-f11c-7622-88c0-efd6f627bf69
+    text: 'Otherwise it is in bounds. A rolling window is never checked here: {{outcome:In Bounds}}'
+    indent: 0
+  outcomes:
+  - id: 01a12591-f11c-7d2c-98aa-65c3c90bee6d
+    name: In Bounds
+    success: true
+    message: 
+    returns: 
+  - id: 01a12591-f11c-781d-ad79-e670fe61205b
+    name: Booking In Past
+    success: false
+    message: Attempting to book a meeting in the past.
+    returns: 
+  - id: 01a12591-f11c-7159-baf4-e60954508812
+    name: Booking Time Out Of Bounds
+    success: false
+    message: The event type cannot be booked at this time. Could you try another time slot?
+    returns: 
+  archived: false
+archived: false

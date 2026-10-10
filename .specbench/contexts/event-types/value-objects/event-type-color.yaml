@@ -1,0 +1,24 @@
+spec-format: 1
+kind: value-object
+id: 01a1259e-ce0c-7e47-ab23-d86dd0d5e118
+revision: 4
+name: Event Type Color
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+summary: The colour tag for an Event Type in light and dark themes.
+description: 
+properties:
+- id: 01a1259e-ce0c-74c4-9a62-90e636993f05
+  name: Light Event Type Color
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a1259e-ce0c-7f76-a3de-837f223c77ef
+  name: Dark Event Type Color
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+invariants: []
+methods: []
+archived: false

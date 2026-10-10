@@ -1,0 +1,29 @@
+spec-format: 1
+kind: use-case
+id: 01a125a2-3052-73c0-b874-584c7c48d36d
+revision: 6
+name: Mark Host As No Show
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: publicViewer.markHostAsNoShow - runs when the booking page is opened with noShow=true. Needs no login and fires no webhook.
+use-case-kind: Command
+roles:
+- 01a0f444-a88b-7305-b695-d9ce82d7f6cc
+inputs:
+- id: 01a125a2-3052-7113-809b-3947afbe9ff0
+  name: Booking Uid
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a2-3052-7e18-96cf-0149ce37e80d
+  text: "Mark the Booking's host as a no-show: {{outcome:Host Marked}}"
+  indent: 0
+outcomes:
+- id: 01a125a2-3052-783e-8726-bd16578d124d
+  name: Host Marked
+  success: true
+  code: 
+  message: Your host didn't show up
+  returns: 
+archived: false

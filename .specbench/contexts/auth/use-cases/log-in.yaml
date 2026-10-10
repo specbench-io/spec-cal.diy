@@ -1,0 +1,76 @@
+spec-format: 1
+kind: use-case
+id: 01a125a7-3a96-7a95-afba-73d11f6ad442
+revision: 11
+name: Log In
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+description: /auth/login with email and password (NextAuth credentials). Sessions are JWTs.
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+- 01a0f442-adc6-7410-af52-ea288a8ae9d1
+inputs:
+- id: 01a125a7-3a96-7313-b078-fc40903d9245
+  name: Email
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a7-3a96-7b79-9790-877047d9bc73
+  name: Password
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a7-3a96-7b41-9a5a-85fbd8aba906
+  name: Two Factor Code
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a7-3a96-7e31-a4b8-923d84158a7e
+  text: If no user exists yet, send the visitor to instance setup
+  indent: 0
+- id: 01a125a7-3a96-7c01-83e6-95c81558d8ab
+  text: 'If no unlocked user has {{input:Email}}, or the password is wrong, refuse: {{outcome:Incorrect Email Password}}'
+  indent: 0
+- id: 01a125a7-3a96-773e-8354-96999c93da0f
+  text: 'If two-factor is on and no code was given, ask for it: {{outcome:Second Factor Required}}'
+  indent: 0
+- id: 01a125a7-3a96-7857-aed1-272c2ec76b06
+  text: 'If the code or backup code is wrong, refuse: {{outcome:Incorrect Two Factor Code}}'
+  indent: 0
+- id: 01a125a7-3a96-798d-a17a-bb583db9c4e9
+  text: An Admin without a strong password and two-factor is signed in as an inactive admin and shown a warning
+  indent: 0
+- id: 01a125a7-3a96-7672-913b-1563044c53e8
+  text: "Start a session, lasting the user's session timeout if set: {{outcome:Logged In}}"
+  indent: 0
+outcomes:
+- id: 01a125a7-3a96-792e-a047-9547c73bf802
+  name: Logged In
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a125a7-3a96-7ef4-ae5b-957fe5f71cfc
+  name: Incorrect Email Password
+  success: false
+  code: 
+  message: Email or password is incorrect.
+  returns: 
+- id: 01a125a7-3a96-7c89-bad9-1c5accd7f02e
+  name: Second Factor Required
+  success: false
+  code: 
+  message: 
+  returns: 
+- id: 01a125a7-3a96-73cd-abdb-b6327e96c745
+  name: Incorrect Two Factor Code
+  success: false
+  code: 
+  message: 
+  returns: 
+archived: false

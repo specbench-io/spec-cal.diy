@@ -1,0 +1,548 @@
+spec-format: 1
+kind: aggregate
+id: 01a12591-8be1-7b7e-adf2-45a5e68d13d4
+revision: 81
+name: Event Type
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+summary: A kind of meeting an Organizer offers for booking, with its own length, locations and booking rules.
+description: 'Every in-scope column of the EventType model. Team, organization, round-robin and managed-event columns are left out. The code keeps Event Type flat; only its JSON columns and the PeriodData type group settings, and those are Value Objects here. UI labels: Length is Duration; Minimum Booking Notice is Minimum notice; Period Type and Period are Limit future bookings; Booking Limits is Limit booking frequency; Duration Limits is Limit total booking duration; Max Active Bookings Per Booker is Limit number of upcoming bookings per booker; Max Active Booking Per Booker Offer Reschedule is Offer to reschedule the last booking to the new time slot; Slot Interval is Time-slot intervals; Seats Per Time Slot is Offer seats; Hidden is Hide from profile; Booking Fields is Booking questions.'
+properties:
+- id: 01a12591-8be1-72b3-88d9-3bf4ab52ced0
+  name: Length
+  type:
+    kind: Primitive
+    primitive: Number
+  archived: false
+- id: 01a12591-8be1-7c27-92be-2eea8754ba90
+  name: Multiple Durations
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Primitive
+      primitive: Number
+  archived: true
+- id: 01a12591-8be1-7c54-be0b-bcd995b9d35b
+  name: Minimum Booking Notice
+  type:
+    kind: Primitive
+    primitive: Number
+  archived: false
+- id: 01a12591-8be1-7926-b11f-949adeac9a7e
+  name: Period Days
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Number
+  archived: true
+- id: 01a12591-8be1-7a9b-b00f-ff844912787a
+  name: Period Count Calendar Days
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: true
+- id: 01a12591-8be1-7ec6-8b9e-1e4db9978278
+  name: Period Start Date
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Date
+  archived: true
+- id: 01a12591-8be1-71cd-9628-56428a0c9e36
+  name: Period End Date
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Date
+  archived: true
+- id: 01a12591-8be1-76c0-a365-8abddc21d270
+  name: Max Active Bookings Per Booker
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Number
+  archived: false
+- id: 01a12591-8be1-7dd3-9cdb-8369dd3e8b60
+  name: Max Active Booking Per Booker Offer Reschedule
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-7007-9784-4f3745863c72
+  name: Title
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a1259e-72d9-720a-bb9b-6cd4948bbf4e
+  name: Slug
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a1259e-72d9-7f30-81c9-e2f178249ea9
+  name: Description
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259e-72d9-7ad0-8e89-b722cb7dc6bb
+  name: Hidden
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-7511-95d3-d1d371eaebbd
+  name: Position
+  type:
+    kind: Primitive
+    primitive: Number
+  archived: false
+- id: 01a1259e-72d9-79ec-a206-ac7745a01b3e
+  name: User Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a1259e-72d9-7b20-9654-8434ade44f73
+  name: Schedule Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a1259e-72d9-7d95-8e26-4dc56449893b
+  name: Before Event Buffer
+  type:
+    kind: Primitive
+    primitive: Number
+  archived: false
+- id: 01a1259e-72d9-77b0-9924-faf55469220e
+  name: After Event Buffer
+  type:
+    kind: Primitive
+    primitive: Number
+  archived: false
+- id: 01a1259e-72d9-72e8-b7d4-bb494c9ebded
+  name: Slot Interval
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Number
+  archived: false
+- id: 01a1259e-72d9-7771-9d7a-6fa5cd3e629e
+  name: Only Show First Available Slot
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-76a4-8508-1f66d681d6c3
+  name: Offset Start
+  type:
+    kind: Primitive
+    primitive: Number
+  archived: false
+- id: 01a1259e-72d9-755e-a366-4834ea21bc13
+  name: Requires Confirmation
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-7f3e-b549-7602e27e4d1e
+  name: Requires Confirmation Will Block Slot
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-71f1-b0ff-d4892d6dadd6
+  name: Requires Confirmation For Free Email
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-75e0-8592-7a115582888b
+  name: Requires Booker Email Verification
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-7a88-a937-54cb14d68491
+  name: Disable Guests
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-70e3-b6e3-ead554fa186a
+  name: Disable Cancelling
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-7869-b244-cbb7f9997a28
+  name: Disable Rescheduling
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-7b44-9a6c-5552ccc33a34
+  name: Minimum Reschedule Notice
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Number
+  archived: false
+- id: 01a1259e-72d9-79e6-b3b3-c4b663014286
+  name: Allow Rescheduling Past Bookings
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-75cc-89b0-3c575267fd26
+  name: Allow Rescheduling Cancelled Bookings
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-715e-b4c6-1942b705ee53
+  name: Seats Per Time Slot
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Number
+  archived: false
+- id: 01a1259e-72d9-7170-8810-ce58abdef923
+  name: Seats Show Attendees
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-76ae-926e-acb911b128a7
+  name: Seats Show Availability Count
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-7a81-b6e5-b59964af208c
+  name: Event Name
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259e-72d9-7d73-935c-b7ba54159a4f
+  name: Success Redirect Url
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259e-72d9-758c-93d7-57d0c609f8f4
+  name: Forward Params Success Redirect
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-7cd1-a376-0da8277e7b4f
+  name: Hide Calendar Notes
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-75e1-8645-7db416caecf4
+  name: Hide Calendar Event Details
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-7ce1-bcbe-a79d6d2ee208
+  name: Hide Organizer Email
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-7cdd-bb48-e61996ece880
+  name: Lock Time Zone Toggle On Booking Page
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-7a87-9ec6-33db2b33848e
+  name: Locked Time Zone
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259e-72d9-7b76-a49b-fcf82693d9a6
+  name: Custom Reply To Email
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259e-72d9-7c7a-8cfc-f55314ff1daf
+  name: Show Optimized Slots
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-7195-a674-473bc04863b4
+  name: Interface Language
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259e-72d9-7b5f-936e-cc49910f1720
+  name: Can Send Cal Video Transcription Emails
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-7789-8e48-634f3e1b5a9a
+  name: Use Event Type Destination Calendar Email
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a1259e-72d9-75b3-975e-16314a7227df
+  name: Secondary Email Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a125b2-32e2-7134-9036-af960463675e
+  name: Period Type
+  type:
+    kind: Ref
+    ref:
+      entity-type: Enum
+      entity-id: 01a12591-8b9b-7f4f-a12a-36e52baf922b
+    ref-name: Period Type
+  archived: false
+- id: 01a125b2-32e2-704c-96d3-f024417666f2
+  name: Period
+  type:
+    kind: Ref
+    ref:
+      entity-type: ValueObject
+      entity-id: 01a125af-f00c-7e3a-a9fc-7cb584dcab7c
+    ref-name: Period Data
+  archived: false
+- id: 01a125b2-32e2-7f44-b06c-8648c15bce34
+  name: Metadata
+  type:
+    kind: Ref
+    nullable: true
+    ref:
+      entity-type: ValueObject
+      entity-id: 01a125af-f033-7461-9a30-84566603c772
+    ref-name: Event Type Metadata
+  archived: false
+- id: 01a125b2-32e2-715a-9d29-eca9d9668f7a
+  name: Locations
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Ref
+      ref:
+        entity-type: ValueObject
+        entity-id: 01a1259e-cdac-72be-aa61-db1398b61fa5
+      ref-name: Location
+  archived: false
+- id: 01a125b2-32e2-7762-bf7b-5a3c825b268d
+  name: Booking Fields
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Ref
+      ref:
+        entity-type: ValueObject
+        entity-id: 01a1259e-cdcd-7b0c-aa89-86f1709684c9
+      ref-name: Booking Question
+  archived: false
+- id: 01a125b2-32e2-70af-80aa-e39b9c2847ff
+  name: Booking Limits
+  type:
+    kind: Ref
+    nullable: true
+    ref:
+      entity-type: ValueObject
+      entity-id: 01a12591-8bc0-7138-b639-a4a7353f8bff
+    ref-name: Interval Limit
+  archived: false
+- id: 01a125b2-32e2-7b7d-b901-d5e26754e5c7
+  name: Duration Limits
+  type:
+    kind: Ref
+    nullable: true
+    ref:
+      entity-type: ValueObject
+      entity-id: 01a12591-8bc0-7138-b639-a4a7353f8bff
+    ref-name: Interval Limit
+  archived: false
+- id: 01a125b2-32e2-7b1b-ad9d-39ae8c600099
+  name: Recurring Event
+  type:
+    kind: Ref
+    nullable: true
+    ref:
+      entity-type: ValueObject
+      entity-id: 01a1259e-cdec-7e2e-8cc5-3d5db630e326
+    ref-name: Recurring Event
+  archived: false
+- id: 01a125b2-32e2-7925-b744-eb389be808e6
+  name: Requires Cancellation Reason
+  type:
+    kind: Ref
+    nullable: true
+    ref:
+      entity-type: Enum
+      entity-id: 01a1259e-cd47-742d-a384-7e7125c322f8
+    ref-name: Cancellation Reason Requirement
+  archived: false
+- id: 01a125b2-32e2-7129-a928-a2d4c160bade
+  name: Event Type Color
+  type:
+    kind: Ref
+    nullable: true
+    ref:
+      entity-type: ValueObject
+      entity-id: 01a1259e-ce0c-7e47-ab23-d86dd0d5e118
+    ref-name: Event Type Color
+  archived: false
+invariants:
+- id: 01a1259e-72d9-7951-b5e6-bb6a7de7101f
+  text: The slug is unique per owner.
+  archived: false
+- id: 01a1259e-72d9-73a9-abfe-bad82e179792
+  text: The title is never empty and the length is at least one minute (at most 1440).
+  archived: false
+- id: 01a1259e-72d9-717c-9ac3-9d71c0d8d4f5
+  text: Seats and a recurring rule cannot both be on.
+  archived: false
+- id: 01a1259e-72d9-7ac3-a495-f615d844a128
+  text: A per-booker limit on upcoming bookings and a recurring rule cannot both be on, and the limit is at least 1.
+  archived: false
+- id: 01a1259e-72d9-704b-a531-d51f47aa8850
+  text: Booking limits and duration limits go up from day to week to month to year.
+  archived: false
+- id: 01a1259e-72d9-7ff7-91d1-ef3b6fe8da3d
+  text: Offset start is zero or more.
+  archived: false
+- id: 01a1259e-72d9-771d-b925-a9127fada449
+  text: Booking question names are unique, and email or phone is always shown and required.
+  archived: false
+domain-events: []
+entities:
+- id: 01a1259e-72d9-7e2a-b828-d078675a8252
+  name: Private Link
+  summary: A secret booking link (/d/link/slug) that expires on a date or after a number of uses (HashedLink).
+  properties:
+  - id: 01a1259e-72d9-7e53-a31a-19066afa6575
+    name: Link
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a1259e-72d9-7b84-b865-ba721e6b5cbc
+    name: Expires At
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Date
+  - id: 01a1259e-72d9-759c-aa75-6b4606818372
+    name: Max Usage Count
+    type:
+      kind: Primitive
+      primitive: Number
+  - id: 01a1259e-72d9-72c3-bd85-e8c015b5da86
+    name: Usage Count
+    type:
+      kind: Primitive
+      primitive: Number
+  invariants:
+  - Every link is unique.
+  archived: false
+- id: 01a1259e-72d9-7983-b035-c8791cbc44a6
+  name: Cal Video Settings
+  summary: Recording, transcription and guest options when the location is Cal Video.
+  properties:
+  - id: 01a1259e-72d9-750a-98e8-3ec359a38f55
+    name: Disable Recording For Organizer
+    type:
+      kind: Primitive
+      primitive: Bool
+  - id: 01a1259e-72d9-7b21-9a85-2b158e55f295
+    name: Disable Recording For Guests
+    type:
+      kind: Primitive
+      primitive: Bool
+  - id: 01a1259e-72d9-7735-95b8-5ef59d3cf9a5
+    name: Enable Automatic Transcription
+    type:
+      kind: Primitive
+      primitive: Bool
+  - id: 01a1259e-72d9-7dca-8366-865035639aae
+    name: Enable Automatic Recording For Organizer
+    type:
+      kind: Primitive
+      primitive: Bool
+  - id: 01a1259e-72d9-7b51-b8c3-1219b41e0979
+    name: Disable Transcription For Guests
+    type:
+      kind: Primitive
+      primitive: Bool
+  - id: 01a1259e-72d9-7e1e-a99f-debcc06eb8ae
+    name: Disable Transcription For Organizer
+    type:
+      kind: Primitive
+      primitive: Bool
+  - id: 01a1259e-72d9-799c-b4a3-db207c2a9d96
+    name: Require Email For Guests
+    type:
+      kind: Primitive
+      primitive: Bool
+  - id: 01a1259e-72d9-7957-8031-b34a70b20f7b
+    name: Redirect Url On Exit
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Text
+  invariants: []
+  archived: false
+- id: 01a1259e-72d9-766d-8f98-c8b39ec6328f
+  name: Custom Input
+  summary: A legacy booking question, turned into a Booking Question on the fly when the Event Type has none.
+  properties:
+  - id: 01a1259e-72d9-7fb1-9222-e6fc22e5c891
+    name: Label
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a1259e-72d9-7676-a3d6-4b756bfed57c
+    name: Required
+    type:
+      kind: Primitive
+      primitive: Bool
+  - id: 01a1259e-72da-795d-8f01-5fe73de7b988
+    name: Placeholder
+    type:
+      kind: Primitive
+      primitive: Text
+  invariants: []
+  archived: false
+methods: []
+archived: false

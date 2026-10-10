@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a125a4-cf2e-79c3-86c4-f22f140ac637
+revision: 3
+name: Tasker
+definition: The background job queue, stored in the database and run every minute.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+archived: false

@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a0f445-523c-7d5d-ba37-8c8021e3065c
+revision: 6
+name: Date Override
+definition: A one-off change to a Schedule's availability for a specific date.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+archived: false

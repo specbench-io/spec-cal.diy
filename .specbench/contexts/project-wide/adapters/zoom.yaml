@@ -1,0 +1,17 @@
+spec-format: 1
+kind: adapter
+id: 01a125c0-c95d-7599-a018-2df23cc628ae
+revision: 3
+name: Zoom
+interface: Apps/Video Api Adapter
+description: 
+target:
+  infrastructure: Zoom API (packages/app-store/zoomvideo)
+methods:
+- implements: Create Meeting
+  steps:
+  - id: 01a125c0-c95d-73db-8656-154d2999badf
+    text: Create a Zoom meeting for the event and return its join link and password
+    indent: 0
+  note: 
+archived: false

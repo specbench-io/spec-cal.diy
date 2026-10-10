@@ -1,0 +1,257 @@
+spec-format: 1
+kind: feature
+id: 01a125e3-2008-72e9-b8a2-1cba1ac12582
+revision: 65
+title: Running a self-hosted instance
+intent: As an Admin, I want to set up and look after my own Cal.diy instance, so that I control who can use it and how it behaves.
+description: 'Use Cases: Set Up Instance, Add New User, List Users, Lock User Account, Toggle Feature Flag, Create Api Key, Revoke Api Key.'
+scenarios:
+- id: 01a125e3-2008-7185-bf63-8a34b557c299
+  title: First-run setup creates the Admin
+  steps:
+  - id: 01a125e3-2008-7a0d-8a5b-23ce586fe6d0
+    keyword: Given
+    text: a fresh instance with no users
+    archived: false
+  - id: 01a125e3-2008-75b1-a794-f5dd22db4ac6
+    keyword: When
+    text: the person setting it up opens the setup page
+    archived: false
+  - id: 01a125e3-2008-7bdc-89d9-ab7d82ec23e5
+    keyword: Then
+    text: they are asked to create the "Administrator user"
+    archived: false
+  - id: 01a125e3-2008-731d-8f87-60c3dd639f03
+    keyword: And
+    text: the password must meet the hint "Minimum 15 characters long" as well as mixed case and a number
+    archived: false
+  - id: 01a125e3-2008-72fd-a76a-8594425f44cc
+    keyword: When
+    text: they enter a username, full name, email address and a strong enough password
+    archived: false
+  - id: 01a125e3-2008-7bcd-81e8-54f4914ee1a9
+    keyword: Then
+    text: an Admin is created with a verified email address
+    archived: false
+  - id: 01a125e3-2008-722f-ac07-b3ef81a0c8c3
+    keyword: And
+    text: they are signed in
+    archived: false
+  - id: 01a125e3-2008-7fd9-ab15-d431e8a16b5d
+    keyword: When
+    text: anyone tries to run setup again
+    archived: false
+  - id: 01a125e3-2008-7d4b-98a0-26341eba631a
+    keyword: Then
+    text: setup is refused with "No setup needed."
+    archived: false
+  archived: false
+- id: 01a125e3-2008-714b-9c24-9a9c095f9cdf
+  title: An Admin without strong security is treated as inactive
+  steps:
+  - id: 01a125e3-2008-72af-ae12-172767bfb939
+    keyword: Given
+    text: an Admin whose password is at least 15 characters long
+    archived: false
+  - id: 01a125e3-2008-7746-95bd-58f5fdb1cbfb
+    keyword: And
+    text: who has not turned on Two-Factor Authentication
+    archived: false
+  - id: 01a125e3-2008-77f8-a011-f94e1c063851
+    keyword: When
+    text: the Admin logs in
+    archived: false
+  - id: 01a125e3-2008-7f9c-91a1-ebd6f38a34b6
+    keyword: Then
+    text: a banner says "You are admin but you do not have 2FA enabled yet"
+    archived: false
+  - id: 01a125e3-2008-7f7e-b35b-30ed8d198d21
+    keyword: And
+    text: the banner links to "Enable two-factor authentication"
+    archived: false
+  - id: 01a125e3-2008-7ee0-9e5b-6537290423a0
+    keyword: When
+    text: the Admin opens the admin settings pages
+    archived: false
+  - id: 01a125e3-2008-790e-b2b0-b91b2804ede9
+    keyword: Then
+    text: they are sent to their profile settings instead
+    archived: false
+  - id: 01a125e3-2008-7ff3-acce-61704a99bdc4
+    keyword: And
+    text: a User who is not an Admin is sent to their profile settings in the same way
+    archived: false
+  archived: false
+- id: 01a125e3-2008-791c-ad5a-ec27c0b8af80
+  title: Adding and finding Users
+  steps:
+  - id: 01a125e3-2008-732f-a1b0-2a23423febf6
+    keyword: Given
+    text: an Admin is on the Users list
+    archived: false
+  - id: 01a125e3-2008-7464-a69b-75c82f09850d
+    keyword: When
+    text: the Admin adds a new User with a name, email and username
+    archived: false
+  - id: 01a125e3-2008-73d6-b3f4-6fecd6d50516
+    keyword: Then
+    text: they see "User added successfully."
+    archived: false
+  - id: 01a125e3-2008-7a69-8409-fce0b61d87fb
+    keyword: And
+    text: the new User has no password until a reset is sent
+    archived: false
+  - id: 01a125e3-2008-7659-b583-ea19eff9d513
+    keyword: When
+    text: the Admin searches the Users list by part of a username or email
+    archived: false
+  - id: 01a125e3-2008-794d-a126-04d569a1c310
+    keyword: Then
+    text: matching Users are shown, locked or not
+    archived: false
+  - id: 01a125e3-2008-7609-b46e-cef3bb565d8e
+    keyword: And
+    text: the list shows how many of all Users are being shown
+    archived: false
+  archived: false
+- id: 01a125e3-2008-791c-ad21-a6e20e923e40
+  title: Locking a User account
+  steps:
+  - id: 01a125e3-2008-729e-8616-bc0b72211279
+    keyword: Given
+    text: an Admin is on the Users list
+    archived: false
+  - id: 01a125e3-2008-78b4-8f4d-4551d6e23fdc
+    keyword: When
+    text: the Admin chooses "Lock user account" for a User
+    archived: false
+  - id: 01a125e3-2008-725f-8fb1-46cebf01c6ae
+    keyword: Then
+    text: they see "User has been locked."
+    archived: false
+  - id: 01a125e3-2008-7e1e-87a8-c4b43a6a4e33
+    keyword: And
+    text: the User is shown with a "Locked" badge
+    archived: false
+  - id: 01a125e3-2008-76e8-a0e9-72f7dae962e2
+    keyword: And
+    text: the User can no longer log in
+    archived: false
+  - id: 01a125e3-2008-73ad-ab17-d4c2c61515b1
+    keyword: When
+    text: the Admin chooses "Unlock user account" for that User
+    archived: false
+  - id: 01a125e3-2008-72da-8b57-094e4d90010e
+    keyword: Then
+    text: they see "User has been unlocked."
+    archived: false
+  - id: 01a125e3-2008-7594-827a-11c7c7527cc3
+    keyword: And
+    text: the User is taken off the blocklist if they were on it
+    archived: false
+  - id: 01a125e3-2008-7dfb-941e-fde4f70f3fb1
+    keyword: And
+    text: when email verification is turned on, the User is sent a fresh verification link
+    archived: false
+  archived: false
+- id: 01a125e3-2008-7bb7-bbd1-3dcaf92b9baa
+  title: Turning a feature flag on closes sign up
+  steps:
+  - id: 01a125e3-2008-7764-8f34-f0dae2246abb
+    keyword: Given
+    text: an Admin is on the Feature flags page
+    archived: false
+  - id: 01a125e3-2008-7991-9268-3def14fa7517
+    keyword: Then
+    text: flags are grouped by type and listed by name with their description
+    archived: false
+  - id: 01a125e3-2008-7cbd-828d-ba1564d6f458
+    keyword: When
+    text: the Admin turns on the "disable-signup" flag
+    archived: false
+  - id: 01a125e3-2008-7b53-ae0e-2de00b4ed267
+    keyword: Then
+    text: they see "Flags successfully updated"
+    archived: false
+  - id: 01a125e3-2008-7d05-aacf-cd7ad035e2e2
+    keyword: When
+    text: a visitor opens the sign up page
+    archived: false
+  - id: 01a125e3-2008-78a2-968d-e0b9ee8bf2ca
+    keyword: Then
+    text: 'they are sent to an error page that says "An error occurred when logging you in. Head back to the login screen and try again. Error code: Signup is disabled in this instance"'
+    archived: false
+  archived: false
+- id: 01a125e3-2008-709b-aea8-cef676b959c7
+  title: Creating an API Key
+  steps:
+  - id: 01a125e3-2009-742d-bc56-cbb06ad5b1de
+    keyword: Given
+    text: a User is on their API keys settings
+    archived: false
+  - id: 01a125e3-2009-7210-95cd-a0de0f001161
+    keyword: When
+    text: they choose "Create an API key"
+    archived: false
+  - id: 01a125e3-2009-71ed-aca4-40e5fb32a6ab
+    keyword: Then
+    text: the expiry defaults to 30 days, with 7 days, 3 months and 1 year also offered
+    archived: false
+  - id: 01a125e3-2009-7998-8f9b-40d6732b5284
+    keyword: And
+    text: they can choose "Never expires" instead
+    archived: false
+  - id: 01a125e3-2009-7631-9d27-b64c69067624
+    keyword: When
+    text: they create the key
+    archived: false
+  - id: 01a125e3-2009-7c46-810c-7d7583d24861
+    keyword: Then
+    text: they see "API key created successfully"
+    archived: false
+  - id: 01a125e3-2009-7efa-b788-a9848d0fa7d8
+    keyword: And
+    text: the key is shown once, starting with "cal_"
+    archived: false
+  - id: 01a125e3-2009-70da-b3e8-33ff4a65caa1
+    keyword: And
+    text: they are told "You will not be able to view it again once you close this modal."
+    archived: false
+  archived: false
+- id: 01a125e3-2008-7bbe-be22-72fc817e18ca
+  title: Revoking and expiring an API Key
+  steps:
+  - id: 01a125e3-2009-7598-9223-e7416462e97b
+    keyword: Given
+    text: a User has an API Key
+    archived: false
+  - id: 01a125e3-2009-76d3-b894-b20e7f700371
+    keyword: When
+    text: they delete it and confirm with "Revoke this API key"
+    archived: false
+  - id: 01a125e3-2009-7e7f-9f70-d72a97e83ba9
+    keyword: Then
+    text: they see "API key deleted"
+    archived: false
+  - id: 01a125e3-2009-7595-a2c6-ee1dace30d26
+    keyword: And
+    text: any application using that key immediately loses access
+    archived: false
+  - id: 01a125e3-2009-792b-b8a5-e80c48bacef4
+    keyword: Given
+    text: a User has an API Key whose expiry date has passed
+    archived: false
+  - id: 01a125e3-2009-7f66-bff3-593c7f514774
+    keyword: Then
+    text: the key is shown with an "Expired" badge
+    archived: false
+  - id: 01a125e3-2009-78ce-bdb2-cae3a9079f89
+    keyword: And
+    text: requests made with it are refused with "ApiAuthStrategy - api key - Your api key is expired"
+    archived: false
+  - id: 01a125e3-2009-7162-be95-ec1a5bbbb658
+    keyword: And
+    text: a key still works for the whole of the day it expires on
+    archived: false
+  archived: false
+archived: false

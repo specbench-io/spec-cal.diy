@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a0f445-5234-75c3-b60e-a718c7807c84
+revision: 4
+name: Availability
+definition: 'When an Organizer can be booked: the availability set in a Schedule, and the free time worked out from it after Bookings, calendar busy times and time off.'
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+archived: false

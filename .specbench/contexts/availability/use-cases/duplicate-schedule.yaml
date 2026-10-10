@@ -1,0 +1,38 @@
+spec-format: 1
+kind: use-case
+id: 01a1259d-7d22-7b8c-90d4-b5a919f1c4c6
+revision: 7
+name: Duplicate Schedule
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: viewer.availability.schedule.duplicate.
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a1259d-7d22-7354-b6df-24c955763c84
+  name: Schedule Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+steps:
+- id: 01a1259d-7d22-792d-92b8-c1af37d5a98c
+  text: 'Create "(name) (Copy)" with the same time zone and a copy of every weekly rule and Date Override, past ones included: {{outcome:Schedule Duplicated}}'
+  indent: 0
+- id: 01a1259d-7d22-71ee-8a30-005ac874752b
+  text: 'Any failure, even not owning the Schedule, is reported as an internal error: {{outcome:Failed}}'
+  indent: 0
+outcomes:
+- id: 01a1259d-7d22-7c86-8036-b6ab5739921a
+  name: Schedule Duplicated
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a1259d-7d22-7507-a051-b76aee515536
+  name: Failed
+  success: false
+  code: 500
+  message: 
+  returns: 
+archived: false

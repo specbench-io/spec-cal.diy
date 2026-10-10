@@ -1,0 +1,62 @@
+spec-format: 1
+kind: use-case
+id: 01a125a2-2eb5-7525-a553-c5b047592b7f
+revision: 9
+name: Create Recurring Booking
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: POST /api/book/recurring-event, which runs RecurringBookingService.createBooking. No bot detection on this route.
+use-case-kind: Command
+roles:
+- 01a0f442-adc1-7f74-9a7a-6b7f3cc9be7d
+inputs:
+- id: 01a125a2-2eb5-703a-8beb-c7ca7ee907cd
+  name: Event Type Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a125a2-2eb5-7c35-8723-2bcd132f3312
+  name: Slots
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Primitive
+      primitive: Date
+  archived: false
+- id: 01a125a2-2eb5-7ae1-92b3-bf3e5d1659a1
+  name: Recurring Event Id
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a2-2eb5-7e2c-bb94-7aee551fdb81
+  text: For each of the {{input:Slots}} in order, run Create Booking with the shared {{input:Recurring Event Id}}
+  indent: 0
+- id: 01a125a2-2eb5-795f-baf8-717ef626e254
+  text: Check availability only for the first slot, and send emails only for the first slot
+  indent: 0
+- id: 01a125a2-2eb5-7f6c-a933-aa1bf5ba7382
+  text: Reuse the calendar's recurring event id from the first slot that gets one
+  indent: 0
+- id: 01a125a2-2eb5-79a7-a542-41baf43dcc32
+  text: 'If any slot fails, stop there; the Bookings already made are kept: {{outcome:Failed Part Way}}'
+  indent: 0
+- id: 01a125a2-2eb5-785d-9cc6-dafef933108e
+  text: 'Return all the Bookings: {{outcome:Series Booked}}'
+  indent: 0
+outcomes:
+- id: 01a125a2-2eb5-74d5-bad1-1a5703421847
+  name: Series Booked
+  success: true
+  code: 
+  message: The recurring events are scheduled
+  returns: 
+- id: 01a125a2-2eb5-72fa-8f2f-426167350427
+  name: Failed Part Way
+  success: false
+  code: 
+  message: 
+  returns: 
+archived: false

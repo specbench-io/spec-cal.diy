@@ -1,0 +1,26 @@
+spec-format: 1
+kind: enum
+id: 01a125a6-321c-7db8-a013-bc69e51387aa
+revision: 6
+name: Identity Provider
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+summary: How an account signs in.
+description: 
+cases:
+- id: 01a125a6-321c-7e03-8976-1ecd8e149bec
+  name: Cal
+  description: Email and password.
+  archived: false
+- id: 01a125a6-321c-7b56-97d7-cd705514855f
+  name: Google
+  description: 
+  archived: false
+- id: 01a125a6-321c-71e9-a3b0-cc227788c152
+  name: Saml
+  description: Leftover - SSO was removed.
+  archived: false
+- id: 01a125a6-321c-791e-bb5c-67037305ad6f
+  name: Azure Ad
+  description: 
+  archived: false
+archived: false

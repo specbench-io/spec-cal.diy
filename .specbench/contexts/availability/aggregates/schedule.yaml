@@ -1,0 +1,67 @@
+spec-format: 1
+kind: aggregate
+id: 01a1259b-e9e5-70eb-904e-cef20afa1df5
+revision: 9
+name: Schedule
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+summary: A named set of weekly hours and Date Overrides in one time zone.
+description: Deleting a Schedule leaves its Availability rows behind (the link is set to empty) and Event Types that used it fall back to the default schedule.
+properties:
+- id: 01a1259b-e9e6-7c36-b8e4-3f0e4b72f111
+  name: Name
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a1259b-e9e6-7b04-8c52-1242c54f03c2
+  name: Time Zone
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259b-e9e6-77b9-b9ee-a726c18347dd
+  name: User Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+invariants:
+- id: 01a1259b-e9e6-725c-b2fb-d6794d5bcebc
+  text: The name is never empty once trimmed.
+  archived: false
+domain-events: []
+entities:
+- id: 01a1259b-e9e7-769e-8139-504dbefe235e
+  name: Availability
+  summary: One weekly rule (days plus start and end time) or one Date Override (a date plus start and end time). A zero-length override means unavailable all day.
+  properties:
+  - id: 01a1259b-e9ed-7dcc-b8ee-bdbba445f709
+    name: Days
+    type:
+      kind: Collection
+      shape: List
+      element:
+        kind: Primitive
+        primitive: Number
+  - id: 01a1259b-e9ed-736a-a5c8-fa0ea5887cfb
+    name: Start Time
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a1259b-e9ed-70df-a3fd-8a1fd6a6e348
+    name: End Time
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a1259b-e9ed-79b5-8927-196aa16f734e
+    name: Date
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Date
+  invariants:
+  - Weekly rules have days and no date; Date Overrides have a date.
+  archived: false
+methods: []
+archived: false

@@ -1,0 +1,185 @@
+spec-format: 1
+kind: feature
+id: 01a125e1-479d-7d63-abd0-2dd61215bd2d
+revision: 47
+title: Video conferencing
+intent: As an Organizer, I want every Booking to come with a working video meeting from the conferencing app I prefer, so that Attendees can join without extra back-and-forth.
+description: 'Use Cases: Set Default Conferencing App, Edit Location, Join Cal Video As Guest.'
+scenarios:
+- id: 01a125e1-479d-77dd-9faf-efb55180200a
+  title: Cal Video is the default until the Organizer picks another app
+  steps:
+  - id: 01a125e1-479d-7fba-b5dd-49a85a1e5bfc
+    keyword: Given
+    text: an Organizer who has never chosen a default conferencing app
+    archived: false
+  - id: 01a125e1-479d-7098-8f30-fcef1fdeeda6
+    keyword: When
+    text: the Organizer opens the "Conferencing" apps page
+    archived: false
+  - id: 01a125e1-479d-77ce-9213-97847def6407
+    keyword: Then
+    text: Cal Video is marked "Default"
+    archived: false
+  - id: 01a125e1-479d-7199-b639-9bba5b21c11e
+    keyword: And
+    text: Cal Video has no "Set as default" option
+    archived: false
+  archived: false
+- id: 01a125e1-479d-7fc8-95fd-0e31f5a04f49
+  title: Setting a default conferencing app offers to update existing Event Types
+  steps:
+  - id: 01a125e1-479d-7401-a017-34786a0b79d8
+    keyword: Given
+    text: an Organizer with Zoom installed
+    archived: false
+  - id: 01a125e1-479d-7f65-880b-76ad45aec413
+    keyword: When
+    text: the Organizer chooses "Set as default" on Zoom
+    archived: false
+  - id: 01a125e1-479d-7642-b89d-c1fd7381458a
+    keyword: Then
+    text: the Organizer sees "Default app updated successfully"
+    archived: false
+  - id: 01a125e1-479d-7350-8a64-6b2e376ea91d
+    keyword: And
+    text: the Organizer is offered "Bulk update existing event types" to pick which Event Types should use it
+    archived: false
+  - id: 01a125e1-479d-734f-b4c8-a66181bbd817
+    keyword: And
+    text: each Event Type the Organizer selects and updates ends up with Zoom as its only location
+    archived: false
+  - id: 01a125e1-479d-7e9b-b959-a58bc7601ced
+    keyword: And
+    text: for an app that uses a fixed meeting link, the Organizer must enter a link that matches the app's link format before it can become the default
+    archived: false
+  archived: false
+- id: 01a125e1-479d-7722-ae0c-3b0190d44ecb
+  title: A Booking without a location uses the Organizer's default conferencing app
+  steps:
+  - id: 01a125e1-479d-74fb-bdc9-1a099c93818c
+    keyword: Given
+    text: an Organizer whose default conferencing app is Zoom
+    archived: false
+  - id: 01a125e1-479d-75cd-90c8-f0bc572ba9e9
+    keyword: And
+    text: an Event Type with no location set
+    archived: false
+  - id: 01a125e1-479d-779d-923e-85c016255e77
+    keyword: When
+    text: a Booker books that Event Type
+    archived: false
+  - id: 01a125e1-479d-7d53-9a69-160f99c96a78
+    keyword: Then
+    text: the Booking gets a Zoom meeting
+    archived: false
+  - id: 01a125e1-479d-7872-a78f-c0ea62df564a
+    keyword: And
+    text: when the Organizer has no default conferencing app, the Booking gets a Cal Video meeting
+    archived: false
+  archived: false
+- id: 01a125e1-479d-7ab7-9b62-6fd2bf571c4f
+  title: Google Meet falls back to Cal Video without a Google Destination Calendar
+  steps:
+  - id: 01a125e1-479d-7da7-85a9-f05ea0d4cfa6
+    keyword: Given
+    text: an Organizer whose default conferencing app is Google Meet
+    archived: false
+  - id: 01a125e1-479d-7a64-837c-531e5961f0d4
+    keyword: And
+    text: whose Destination Calendar is an Outlook calendar
+    archived: false
+  - id: 01a125e1-479d-7cf4-b0fb-826951d2213c
+    keyword: When
+    text: a Booker books an Event Type with no location set
+    archived: false
+  - id: 01a125e1-479d-7721-aeb9-32f9af725385
+    keyword: Then
+    text: the Booking gets a Cal Video meeting instead of a Google Meet link
+    archived: false
+  archived: false
+- id: 01a125e1-479d-70ad-8489-4f798f07039b
+  title: The MS Teams link comes from the Outlook event
+  steps:
+  - id: 01a125e1-479d-744e-96b9-8625f56f67e3
+    keyword: Given
+    text: an Organizer whose Event Type location is MS Teams
+    archived: false
+  - id: 01a125e1-479d-73de-8c61-eb902ad969de
+    keyword: And
+    text: whose Destination Calendar is an Outlook calendar
+    archived: false
+  - id: 01a125e1-479d-7cfe-bfaa-625df3aa02c9
+    keyword: When
+    text: a Booker books that Event Type
+    archived: false
+  - id: 01a125e1-479d-70a0-b073-3916de2f7985
+    keyword: Then
+    text: no separate MS Teams meeting is created
+    archived: false
+  - id: 01a125e1-479d-712a-883d-5e8fc2b40108
+    keyword: And
+    text: the MS Teams link created with the Outlook calendar event is the Booking's meeting link
+    archived: false
+  archived: false
+- id: 01a125e1-479d-7104-a86b-9b4d461bfcfa
+  title: Removing a video app swaps its locations for Cal Video
+  steps:
+  - id: 01a125e1-479d-703f-ac8a-7a6fac4c13fe
+    keyword: Given
+    text: an Organizer whose default conferencing app is Zoom
+    archived: false
+  - id: 01a125e1-479d-72aa-a510-69a166685b29
+    keyword: And
+    text: Event Types "Intro call" with location Zoom and "Deep dive" with locations Zoom and Cal Video
+    archived: false
+  - id: 01a125e1-479d-78f0-98c5-1f83f4df1749
+    keyword: When
+    text: the Organizer removes the Zoom app
+    archived: false
+  - id: 01a125e1-479d-7f66-8634-1e8564262e18
+    keyword: Then
+    text: '"Intro call" has Cal Video as its location'
+    archived: false
+  - id: 01a125e1-479d-7398-9427-9c65cd7bdb5e
+    keyword: And
+    text: '"Deep dive" keeps only Cal Video, without a second Cal Video being added'
+    archived: false
+  - id: 01a125e1-479d-7ae2-893a-79dd7758ad8f
+    keyword: And
+    text: the Organizer no longer has a default conferencing app, so Cal Video is shown as "Default"
+    archived: false
+  archived: false
+- id: 01a125e1-479d-75a6-8c0a-dde44f7be884
+  title: Guests joining Cal Video must use an invited email when the Event Type asks for one
+  steps:
+  - id: 01a125e1-479d-7cef-91c8-6251fed929d2
+    keyword: Given
+    text: a Booking with a Cal Video meeting whose Event Type requires guests to give their email
+    archived: false
+  - id: 01a125e1-479d-7e2b-b852-27e1ceb8d9cd
+    keyword: And
+    text: the meeting link is opened by someone who is not signed in
+    archived: false
+  - id: 01a125e1-479d-702e-adbf-62a17f67916a
+    keyword: When
+    text: the guest enters their name and an email that is not on the Booking and chooses "Join call as guest"
+    archived: false
+  - id: 01a125e1-479d-7e83-b4d7-56641c25c018
+    keyword: Then
+    text: the guest sees "We don't recognize this email address for this meeting. Double-check you're using the same email that received the invitation."
+    archived: false
+  - id: 01a125e1-479d-7ca4-94b4-4704df16d7bd
+    keyword: And
+    text: when the guest enters the Organizer's email, they see "Hosts must login to cal.diy and then join this meeting"
+    archived: false
+  - id: 01a125e1-479d-7246-96f8-3310e25c02cf
+    keyword: And
+    text: when the guest enters an Attendee's email, they join the call
+    archived: false
+  - id: 01a125e1-479d-72c1-8347-be9e81006609
+    keyword: And
+    text: when the meeting link is opened more than 14 days after the Booking ended, the visitor sees "This meeting is in the past."
+    archived: false
+  archived: false
+archived: false

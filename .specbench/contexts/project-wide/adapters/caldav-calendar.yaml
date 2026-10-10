@@ -1,0 +1,17 @@
+spec-format: 1
+kind: adapter
+id: 01a125c0-c298-752a-afda-6ed6f34a172d
+revision: 3
+name: CalDav Calendar
+interface: Calendars/Calendar
+description: 
+target:
+  infrastructure: Any CalDAV server (packages/app-store/caldavcalendar)
+methods:
+- implements: Create Event
+  steps:
+  - id: 01a125c0-c298-774e-a0c4-d2ca0cdbc745
+    text: Write the event as an iCalendar file to the chosen calendar on the server
+    indent: 0
+  note: 
+archived: false

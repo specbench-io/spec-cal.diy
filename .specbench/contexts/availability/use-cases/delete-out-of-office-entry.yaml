@@ -1,0 +1,29 @@
+spec-format: 1
+kind: use-case
+id: 01a1259d-7dac-7c13-be5a-e7f6cdac88fa
+revision: 6
+name: Delete Out Of Office Entry
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: viewer.ooo.outOfOfficeEntryDelete.
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a1259d-7dac-7b6b-b6cb-3859973034b5
+  name: Out Of Office Uid
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+steps:
+- id: 01a1259d-7dac-7783-8a21-68c76938b5dd
+  text: "Delete the Organizer's entry {{input:Out Of Office Uid}} and email any redirect target that the redirect is cancelled: {{outcome:Entry Deleted}}"
+  indent: 0
+outcomes:
+- id: 01a1259d-7dac-787e-a097-f650f6e29b14
+  name: Entry Deleted
+  success: true
+  code: 
+  message: 
+  returns: 
+archived: false

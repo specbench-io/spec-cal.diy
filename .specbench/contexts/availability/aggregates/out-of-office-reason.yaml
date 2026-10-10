@@ -1,0 +1,42 @@
+spec-format: 1
+kind: aggregate
+id: 01a1259b-ea37-7e8c-a3c8-dfdb01667657
+revision: 7
+name: Out Of Office Reason
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+summary: An emoji-labelled reason for being away (Unspecified, Vacation, Travel, Sick leave, Public holiday).
+description: 
+properties:
+- id: 01a1259b-ea37-7170-8242-66fd11796dda
+  name: Emoji
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a1259b-ea37-7377-a1da-23672cf1b63d
+  name: Reason
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a1259b-ea37-70e4-91ea-59f6eb6d4209
+  name: Enabled
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a1259b-ea37-7f64-82c3-6f7d90794018
+  name: User Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+invariants:
+- id: 01a1259b-ea37-703f-ad2d-378f704de335
+  text: Reasons are unique. System reasons have no user and are translated.
+  archived: false
+domain-events: []
+entities: []
+methods: []
+archived: false

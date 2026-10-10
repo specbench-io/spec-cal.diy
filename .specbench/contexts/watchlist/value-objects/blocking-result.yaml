@@ -1,0 +1,41 @@
+spec-format: 1
+kind: value-object
+id: 01a12570-86e7-7e59-bd70-b4fac36d3a24
+revision: 6
+name: Blocking Result
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+summary: Whether an email is blocked, and why.
+description: Worked out fresh on every check and never saved. Callers only ever read Is Blocked. The code carries a copy of the matched entry rather than a reference to it.
+properties:
+- id: 01a12570-86e7-78fd-8f13-7040a38b5b53
+  name: Is Blocked
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a12570-86e7-7cdf-aa7e-69e9754aca2c
+  name: Reason
+  type:
+    kind: Ref
+    nullable: true
+    ref:
+      entity-type: Enum
+      entity-id: 01a10ff1-0fa3-784b-bfc0-3a444eec4ab9
+    ref-name: Watchlist Type
+  archived: false
+- id: 01a12570-86e7-77fd-ae73-9102a4fe20ea
+  name: Watchlist Entry
+  type:
+    kind: Ref
+    nullable: true
+    ref:
+      entity-type: Aggregate
+      entity-id: 01a10ff1-1010-7d2d-9de2-ada8e6a07a95
+    ref-name: Watchlist Entry
+  archived: false
+invariants:
+- id: 01a12570-86e8-7b61-8845-19353a7994e9
+  text: A Reason and a Watchlist Entry are given only when the email is blocked.
+  archived: false
+methods: []
+archived: false

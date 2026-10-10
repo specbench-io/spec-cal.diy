@@ -1,0 +1,22 @@
+spec-format: 1
+kind: enum
+id: 01a12569-8a6a-7c93-9576-532a3e6e94ff
+revision: 5
+name: Watchlist Source
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+summary: How a Watchlist Entry came to be added.
+description: 
+cases:
+- id: 01a12569-8a6a-784c-b261-bfba07eaaf3f
+  name: Manual
+  description: 
+  archived: false
+- id: 01a12569-8a6a-76d2-89f4-0ef04c9a12d5
+  name: Free Domain Policy
+  description: 
+  archived: false
+- id: 01a12569-8a6a-7a7d-84fc-dca800a4a55b
+  name: Signup
+  description: 
+  archived: false
+archived: false

@@ -1,0 +1,22 @@
+spec-format: 1
+kind: enum
+id: 01a12596-15fc-76ed-8192-87a971735cd6
+revision: 5
+name: Booking Report Status
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+summary: Where a Booking Report stands with the Organizer's own blocklist.
+description: 
+cases:
+- id: 01a12596-15fc-7280-839d-5c9dec168911
+  name: Pending
+  description: Awaiting review.
+  archived: false
+- id: 01a12596-15fc-7a1c-883f-b3015304d147
+  name: Dismissed
+  description: The reviewer chose not to block.
+  archived: false
+- id: 01a12596-15fc-7b86-af5e-d753e15a8082
+  name: Blocked
+  description: Added to a watchlist.
+  archived: false
+archived: false

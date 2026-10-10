@@ -1,0 +1,18 @@
+spec-format: 1
+kind: enum
+id: 01a125a3-d6b7-70de-adba-78be15365ef3
+revision: 4
+name: Payment Option
+bounded-context-id: 01a0f44a-2a22-7488-ae05-7c57eda180ac
+summary: When the Booker is charged.
+description: 
+cases:
+- id: 01a125a3-d6b7-78ef-bcac-c8900e5a0e69
+  name: On Booking
+  description: Charge when booking.
+  archived: false
+- id: 01a125a3-d6b7-7ecc-81eb-bff5e00e61b5
+  name: Hold
+  description: Save the card and charge a no-show fee later (Card held).
+  archived: false
+archived: false

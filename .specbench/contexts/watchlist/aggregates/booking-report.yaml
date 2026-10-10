@@ -1,0 +1,109 @@
+spec-format: 1
+kind: aggregate
+id: 01a12596-163b-7ff8-8940-8edee1acea0d
+revision: 16
+name: Booking Report
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+summary: An Organizer's report that a Booking was suspicious (Report booking).
+description: Organization Id is always empty in cal.diy.
+properties:
+- id: 01a12596-163b-7bae-8ce7-45ea077e17ea
+  name: Booking Uid
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a12596-163b-758c-bc9a-850716a02823
+  name: Booker Email
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a12596-163b-7231-b73b-b8d2e7e573ea
+  name: Reported By Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a12596-163b-7900-b0ca-2db6cd380994
+  name: Organization Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a12596-163b-7680-beba-027b872f7785
+  name: Description
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a12596-163b-71d7-87ce-ff04b4e3d1e5
+  name: Cancelled
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a12596-163b-77d0-a001-25f5128f3272
+  name: Watchlist Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a12596-163b-76f4-9020-ff5b07949680
+  name: Global Watchlist Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a12596-163b-7898-8480-1656265a65bd
+  name: Created At
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a12596-163b-71e7-99e5-08e63e12ba76
+  name: Updated At
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a125b2-339e-75b8-ae94-4682cce0e207
+  name: Reason
+  type:
+    kind: Ref
+    ref:
+      entity-type: Enum
+      entity-id: 01a12596-15d7-7e73-b57c-0bcdb40ccfd7
+    ref-name: Booking Report Reason
+  archived: false
+- id: 01a125b2-339e-75df-aca0-b49b8e00ca82
+  name: Status
+  type:
+    kind: Ref
+    ref:
+      entity-type: Enum
+      entity-id: 01a12596-15fc-76ed-8192-87a971735cd6
+    ref-name: Booking Report Status
+  archived: false
+- id: 01a125b2-339e-771e-b270-c41462808aea
+  name: System Status
+  type:
+    kind: Ref
+    ref:
+      entity-type: Enum
+      entity-id: 01a12596-161b-74fc-bbe1-b8af8c40f833
+    ref-name: System Report Status
+  archived: false
+invariants:
+- id: 01a12596-163b-7f10-a650-f12999ba277f
+  text: A Booking can be reported only once.
+  archived: false
+domain-events: []
+entities: []
+methods: []
+archived: false

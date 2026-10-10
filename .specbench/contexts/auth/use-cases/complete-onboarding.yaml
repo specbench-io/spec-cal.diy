@@ -1,0 +1,26 @@
+spec-format: 1
+kind: use-case
+id: 01a125a7-3c2e-795e-aa0b-cc964cc4e36d
+revision: 5
+name: Complete Onboarding
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+description: The getting-started wizard (Finish setup and get started).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs: []
+steps:
+- id: 01a125a7-3c2f-7585-aa1a-8184f86452c2
+  text: Walk through name and time zone, connecting a calendar, connecting video, setting availability and the profile
+  indent: 0
+- id: 01a125a7-3c2f-7868-9705-58ae0e5c5580
+  text: 'Mark onboarding complete, and if the Organizer has no Event Types create three: 15 min, 30 min and a hidden secret one: {{outcome:Onboarded}}'
+  indent: 0
+outcomes:
+- id: 01a125a7-3c2e-7405-8304-1d7d010ae778
+  name: Onboarded
+  success: true
+  code: 
+  message: 
+  returns: 
+archived: false

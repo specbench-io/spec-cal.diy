@@ -1,0 +1,23 @@
+spec-format: 1
+kind: event-handler
+id: 01a125f7-6d15-74d1-8387-16f550f96f6b
+revision: 4
+name: Deliver Recording Transcription Generated Webhooks
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: triggerTranscriptionGeneratedWebhook (apps/web/lib/daily-webhook/triggerWebhooks.ts:73-117), run when Cal Video's transcription job finishes. Fires for any finished job, ignoring the Event Type's send-transcription setting.
+trigger:
+  integration-event: Apps/Recording Transcription Generated
+steps:
+- id: 01a125f7-6d15-7da9-9532-7837ad5b2fb7
+  text: Find the Booking for the recording's room
+  indent: 0
+- id: 01a125f7-6d15-7812-84ca-e0283227ce77
+  text: Get links to the transcript and a private download link for the recording
+  indent: 0
+- id: 01a125f7-6d15-7e72-8ca9-49fc10412379
+  text: Find the active Webhooks listening for Transcription generated that belong to the Organizer or the Event Type, or are platform-wide
+  indent: 0
+- id: 01a125f7-6d15-7b42-a2ce-c3d8aaf6c480
+  text: POST the Booking details with both links to each Subscriber URL, signed with the Secret
+  indent: 0
+archived: false

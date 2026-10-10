@@ -1,0 +1,233 @@
+spec-format: 1
+kind: feature
+id: 01a125e3-202a-702a-bc82-23b83d4014dd
+revision: 59
+title: Sending webhooks
+intent: As an Organizer, I want my other tools to be told when bookings and out of office entries change, so that they stay in sync without me copying anything by hand.
+description: 'Use Cases: Create Webhook, Edit Webhook, Ping Webhook, Delete Webhook, Deliver Booking Created Webhooks, Deliver Booking Cancelled Webhooks, Deliver Booking Requested Webhooks, Deliver Out Of Office Created Webhooks, Send Scheduled Webhook Triggers.'
+scenarios:
+- id: 01a125e3-202a-7e2e-8813-ca48592f382a
+  title: Creating a Webhook
+  steps:
+  - id: 01a125e3-202a-7569-9bce-aee4983edc5e
+    keyword: Given
+    text: an Organizer is creating a Webhook
+    archived: false
+  - id: 01a125e3-202a-7064-9e24-1427642b5252
+    keyword: When
+    text: they enter a Subscriber URL, choose Event Triggers and click "Create webhook"
+    archived: false
+  - id: 01a125e3-202a-771e-ab98-ef83ea2d02eb
+    keyword: Then
+    text: they see "Webhook created successfully!"
+    archived: false
+  - id: 01a125e3-202a-71fd-95f6-eba5f88fdb91
+    keyword: When
+    text: they create another Webhook with the same Subscriber URL
+    archived: false
+  - id: 01a125e3-202a-7d53-8ae5-7ce119b05759
+    keyword: Then
+    text: they see "Webhook subscriber url is already defined"
+    archived: false
+  - id: 01a125e3-202a-7468-bac0-a82ca3565483
+    keyword: And
+    text: no second Webhook is created
+    archived: false
+  - id: 01a125e3-202a-78a3-b703-d3c39165e93d
+    keyword: When
+    text: they create a Webhook whose Subscriber URL points at a cloud metadata address such as "http://169.254.169.254"
+    archived: false
+  - id: 01a125e3-202a-71aa-b87f-9daa2dd26a31
+    keyword: Then
+    text: 'they see "Webhook URL is not allowed: Blocked hostname"'
+    archived: false
+  archived: false
+- id: 01a125e3-202a-7864-a782-52e7614ba870
+  title: Ping test before saving
+  steps:
+  - id: 01a125e3-202a-76cf-8c2b-53af43979d81
+    keyword: Given
+    text: an Organizer has entered a Subscriber URL on the Webhook form
+    archived: false
+  - id: 01a125e3-202a-760b-a5c8-3a8a75e1c3e9
+    keyword: When
+    text: they click "Ping test"
+    archived: false
+  - id: 01a125e3-202a-7699-abe3-bf9ed62b75dd
+    keyword: Then
+    text: a test event called "Test trigger event" is sent to the Subscriber URL
+    archived: false
+  - id: 01a125e3-202a-79ce-bf90-a9a17e5f8b57
+    keyword: And
+    text: the "Webhook response" panel shows the status code the Subscriber URL returned
+    archived: false
+  - id: 01a125e3-202a-7bba-9afc-3ada8b26ee4e
+    keyword: When
+    text: the Subscriber URL answers with an error
+    archived: false
+  - id: 01a125e3-202a-7e81-a489-de4b841b365f
+    keyword: Then
+    text: the panel shows a "Failed" badge
+    archived: false
+  archived: false
+- id: 01a125e3-202a-7f92-a7a8-f7978243a04e
+  title: Every delivery is signed with the Secret
+  steps:
+  - id: 01a125e3-202a-7795-a8b3-4226e6e12d92
+    keyword: Given
+    text: an Organizer has a Webhook with a Secret
+    archived: false
+  - id: 01a125e3-202a-7f86-9cec-f58aabdf51b6
+    keyword: When
+    text: a Booker makes a booking that does not need confirmation
+    archived: false
+  - id: 01a125e3-202a-72e4-bcc5-6a0521fb06f1
+    keyword: Then
+    text: the Subscriber URL receives a "Booking created" event
+    archived: false
+  - id: 01a125e3-202a-7c6c-80b1-c95e768dec43
+    keyword: And
+    text: the delivery carries a signature made from the message body and the Secret
+    archived: false
+  - id: 01a125e3-202a-76c3-b429-3b102bab6086
+    keyword: And
+    text: the delivery says which webhook version it uses
+    archived: false
+  - id: 01a125e3-202a-7662-ab77-a630bbffd374
+    keyword: Given
+    text: a Webhook with no Secret
+    archived: false
+  - id: 01a125e3-202a-7b30-a662-ca197b127389
+    keyword: Then
+    text: the signature on its deliveries reads "no-secret-provided"
+    archived: false
+  archived: false
+- id: 01a125e3-202a-723c-a5e3-6a40585d5168
+  title: Booking requested instead of booking created
+  steps:
+  - id: 01a125e3-202a-7303-b496-880a1da3ff32
+    keyword: Given
+    text: an Organizer has a Webhook subscribed to "Booking created" and "Booking requested"
+    archived: false
+  - id: 01a125e3-202a-7751-a8ec-9276eba04d33
+    keyword: And
+    text: their event type requires confirmation
+    archived: false
+  - id: 01a125e3-202a-7e9e-aaa0-92bf76e59188
+    keyword: When
+    text: a Booker books it
+    archived: false
+  - id: 01a125e3-202a-74ad-9a8e-3ca5a4f55b85
+    keyword: Then
+    text: the Subscriber URL receives a "Booking requested" event
+    archived: false
+  - id: 01a125e3-202a-7f26-9591-afe0f93634c5
+    keyword: And
+    text: no "Booking created" event is sent
+    archived: false
+  - id: 01a125e3-202a-7acd-b99c-a5b2109e4c45
+    keyword: When
+    text: the Booker later cancels the booking
+    archived: false
+  - id: 01a125e3-202a-72a0-8215-aec12d9f5b1d
+    keyword: Then
+    text: Webhooks subscribed to "Booking canceled" receive the booking with status "CANCELLED" and who cancelled it
+    archived: false
+  archived: false
+- id: 01a125e3-202a-7a8b-8fc4-a47b5eb31820
+  title: Custom payload template
+  steps:
+  - id: 01a125e3-202a-7d0f-85e6-7b8a7eb8d598
+    keyword: Given
+    text: an Organizer chooses a "Custom" Payload template that uses variables such as the booking title
+    archived: false
+  - id: 01a125e3-202a-77ab-aba7-4ca6ec096651
+    keyword: When
+    text: the Webhook is triggered
+    archived: false
+  - id: 01a125e3-202a-7e69-af9f-d9e93db2af74
+    keyword: Then
+    text: the template is filled in with the booking details instead of sending the default body
+    archived: false
+  - id: 01a125e3-202a-7cf4-a4a2-23574a390a41
+    keyword: And
+    text: a template that is valid JSON is sent as JSON
+    archived: false
+  - id: 01a125e3-202a-768e-94f6-5bdaca47e4d5
+    keyword: And
+    text: a template that is not JSON is sent as a web form
+    archived: false
+  archived: false
+- id: 01a125e3-202a-7eb9-99b1-e24c8f268217
+  title: Meeting started and Meeting ended are sent by a scheduled job
+  steps:
+  - id: 01a125e3-202a-72de-86ac-96e1797dab8c
+    keyword: Given
+    text: an Organizer has an active Webhook subscribed to "Meeting started" and "Meeting ended"
+    archived: false
+  - id: 01a125e3-202a-70a7-9465-69731f8d5a13
+    keyword: When
+    text: a booking is confirmed
+    archived: false
+  - id: 01a125e3-202a-70e4-9c6a-0d3cbc62d163
+    keyword: Then
+    text: one delivery is scheduled for the meeting's start time and one for its end time
+    archived: false
+  - id: 01a125e3-202a-79d9-915d-1f623b464604
+    keyword: And
+    text: when the Webhook is created later, deliveries are scheduled for upcoming confirmed bookings
+    archived: false
+  - id: 01a125e3-202a-7adb-bf31-5e1c26427f2e
+    keyword: When
+    text: the scheduled job runs after those times
+    archived: false
+  - id: 01a125e3-202a-70cd-bba0-5cfea8885d16
+    keyword: Then
+    text: each delivery is sent once and then removed, whether or not the Subscriber URL accepted it
+    archived: false
+  - id: 01a125e3-202a-7b8c-99e4-2f878a564624
+    keyword: And
+    text: a delivery that is more than a day overdue is thrown away without being sent
+    archived: false
+  - id: 01a125e3-202a-7a3c-882b-7afa4f84bdb7
+    keyword: When
+    text: the Organizer turns the Webhook off or deletes it
+    archived: false
+  - id: 01a125e3-202a-7084-b9e8-57e9e6c1c3e2
+    keyword: Then
+    text: its pending Meeting started and Meeting ended deliveries are cancelled
+    archived: false
+  archived: false
+- id: 01a125e3-202a-788d-9fc6-9fdf85c62d72
+  title: Out of office entries trigger webhooks, and failures are not retried
+  steps:
+  - id: 01a125e3-202a-7296-ba65-6fcd88b8a9b8
+    keyword: Given
+    text: an Organizer has a Webhook subscribed to "Out of office created"
+    archived: false
+  - id: 01a125e3-202a-7c6c-8e64-0b686c8ac48a
+    keyword: When
+    text: they create an out of office entry
+    archived: false
+  - id: 01a125e3-202a-7a50-8354-f0b8c72f33ff
+    keyword: Then
+    text: the Subscriber URL receives the entry with its start, end, reason, notes and who bookings are redirected to
+    archived: false
+  - id: 01a125e3-202a-7b69-8990-39f82b90530c
+    keyword: When
+    text: they edit that out of office entry
+    archived: false
+  - id: 01a125e3-202a-7425-a9ef-1541fc24330a
+    keyword: Then
+    text: the Subscriber URL receives another "Out of office created" event
+    archived: false
+  - id: 01a125e3-202a-78c9-9b3b-b820746e6717
+    keyword: When
+    text: the Subscriber URL is down while the instance sends webhooks directly, without a background task runner
+    archived: false
+  - id: 01a125e3-202a-75d1-8671-33f207858e84
+    keyword: Then
+    text: the failure is only logged and the delivery is not tried again
+    archived: false
+  archived: false
+archived: false

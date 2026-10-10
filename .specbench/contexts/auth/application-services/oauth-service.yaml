@@ -1,0 +1,96 @@
+spec-format: 1
+kind: application-service
+id: 01a125a7-39ff-7fd0-8a31-d14d96e92390
+revision: 11
+name: OAuth Service
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+description: OAuthService.ts (DI container getOAuthService). Tokens are signed JWTs that are never stored, so they cannot be revoked.
+implements: []
+methods:
+- id: 01a125a7-39ff-7d50-b26a-659c2185533b
+  name: Generate Authorization Code
+  description: 
+  implements: 
+  inputs:
+  - id: 01a125a7-39ff-7f91-aeb6-41b43b399455
+    name: Client Id
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a125a7-39ff-7602-9058-82a686dce225
+    name: Redirect Uri
+    type:
+      kind: Primitive
+      primitive: Text
+  steps:
+  - id: 01a125a7-39ff-7191-bae5-9a8045beac91
+    text: 'If the client was rejected, refuse: {{outcome:Client Rejected}}'
+    indent: 0
+  - id: 01a125a7-39ff-7c51-81a2-763914684fe9
+    text: A pending client can only be used by its owner
+    indent: 0
+  - id: 01a125a7-39ff-7a78-9c81-f9704789f3a4
+    text: "If {{input:Redirect Uri}} is not exactly the client's, refuse: {{outcome:Redirect Mismatch}}"
+    indent: 0
+  - id: 01a125a7-39ff-79e3-aff9-0ec8623d5804
+    text: A public client must send a PKCE challenge
+    indent: 0
+  - id: 01a125a7-39ff-71c4-897c-2da363799529
+    text: 'Store an Access Code valid for 10 minutes and send the user back with it: {{outcome:Code Issued}}'
+    indent: 0
+  outcomes:
+  - id: 01a125a7-39ff-7fbd-9192-22a98688cff7
+    name: Code Issued
+    success: true
+    message: 
+    returns: 
+  - id: 01a125a7-39ff-73f7-b2a4-26e84c9b72aa
+    name: Client Rejected
+    success: false
+    message: 
+    returns: 
+  - id: 01a125a7-39ff-793d-bd88-988ccd937d81
+    name: Redirect Mismatch
+    success: false
+    message: 
+    returns: 
+  archived: false
+- id: 01a125a7-39ff-748d-a2e4-10efe096a846
+  name: Exchange Code For Tokens
+  description: 
+  implements: 
+  inputs:
+  - id: 01a125a7-39ff-7d70-a4ba-16adc1500ebf
+    name: Code
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a125a7-39ff-75b5-ba80-ad8124f2e0ab
+    name: Client Secret
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Text
+  steps:
+  - id: 01a125a7-39ff-7b59-98f3-87fe1a4a134b
+    text: 'A confidential client must send its secret; an expired or used code is deleted and refused: {{outcome:Invalid Grant}}'
+    indent: 0
+  - id: 01a125a7-39ff-7943-8d60-7df6cdf0bc5e
+    text: Check the PKCE verifier for public clients
+    indent: 0
+  - id: 01a125a7-39ff-7622-9675-cff9bb957441
+    text: 'Issue a 30-minute access token and a 30-day refresh token: {{outcome:Tokens Issued}}'
+    indent: 0
+  outcomes:
+  - id: 01a125a7-39ff-78ca-a81a-9972eea1f2db
+    name: Tokens Issued
+    success: true
+    message: 
+    returns: 
+  - id: 01a125a7-39ff-7b34-b7dc-ea211ce57b47
+    name: Invalid Grant
+    success: false
+    message: 
+    returns: 
+  archived: false
+archived: false

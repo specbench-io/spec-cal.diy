@@ -1,0 +1,42 @@
+spec-format: 1
+kind: integration-event
+id: 01a125a0-ea14-7016-a9b9-660683f16d54
+revision: 3
+name: Booking Requested
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: A Booking was made that waits for the Organizer to confirm it (webhook BOOKING_REQUESTED, queued through the tasker).
+fields:
+- id: 01a125a0-ea15-7cf4-9656-1507baa19240
+  name: Booking Uid
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a125a0-ea15-703d-9109-ec6be4aaa341
+  name: Start Time
+  description: 
+  type:
+    kind: Primitive
+    primitive: Date
+- id: 01a125a0-ea15-7d86-ad18-a2d041e8d751
+  name: End Time
+  description: 
+  type:
+    kind: Primitive
+    primitive: Date
+- id: 01a125a0-ea15-7f3d-a60c-47d6175ef86c
+  name: Organizer Email
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a125a0-ea15-77b6-a972-4d001d365d8b
+  name: Attendee Emails
+  description: 
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Primitive
+      primitive: Text
+archived: false

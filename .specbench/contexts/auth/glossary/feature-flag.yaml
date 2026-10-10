@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a125a7-3d76-773b-a0d1-e170b6f5fe25
+revision: 3
+name: Feature Flag
+definition: An instance-wide switch the Admin turns on or off, such as email verification or disabling signup.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+archived: false

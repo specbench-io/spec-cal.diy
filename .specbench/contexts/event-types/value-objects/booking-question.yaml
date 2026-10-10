@@ -1,0 +1,71 @@
+spec-format: 1
+kind: value-object
+id: 01a1259e-cdcd-7b0c-aa89-86f1709684c9
+revision: 10
+name: Booking Question
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+summary: One question on the booking form. Name, email, location, title, notes, guests and reschedule reason are always added by the system.
+description: 
+properties:
+- id: 01a1259e-cdcd-7b2b-bcd6-8221bf30c30c
+  name: Name
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a1259e-cdcd-70a2-854e-b7d3797de3ab
+  name: Label
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259e-cdcd-71e6-93b7-e7e4941e645c
+  name: Placeholder
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259e-cdcd-7862-9fe3-f860c316a3b4
+  name: Required
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+- id: 01a1259e-cdcd-7bae-ae49-f97588f0d9b1
+  name: Hidden
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+- id: 01a1259e-cdcd-7d62-b46c-961c95abccef
+  name: Editable
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259e-cdcd-71e2-842f-94252d9e81be
+  name: Options
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Primitive
+      primitive: Text
+  archived: false
+- id: 01a125b2-3312-718d-96db-c62f0a658c57
+  name: Type
+  type:
+    kind: Ref
+    ref:
+      entity-type: Enum
+      entity-id: 01a1259e-cd8c-7ad6-8b53-d74db6eed46e
+    ref-name: Booking Field Type
+  archived: false
+invariants: []
+methods: []
+archived: false

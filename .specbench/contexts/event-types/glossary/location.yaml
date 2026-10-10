@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a1259e-ce54-767c-bbe9-2e7de398e5fb
+revision: 3
+name: Location
+definition: Where a meeting happens - Cal Video, another conferencing app, a link, in person or by phone.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+archived: false

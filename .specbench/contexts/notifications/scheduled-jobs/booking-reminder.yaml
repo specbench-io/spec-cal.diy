@@ -1,0 +1,19 @@
+spec-format: 1
+kind: scheduled-job
+id: 01a125a5-6dcc-75a8-b903-8fee3f69a85b
+revision: 3
+name: Booking Reminder
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: 
+schedule: every 15 minutes (/api/cron/bookingReminder, run by a GitHub workflow)
+steps:
+- id: 01a125a5-6dcc-77d7-bb67-6c59513f72c7
+  text: For 48 hours, 24 hours and 3 hours, find Unconfirmed Bookings created at least that long ago that have not ended, and are unpaid-free or paid
+  indent: 0
+- id: 01a125a5-6dcc-7333-96c2-3e987089c790
+  text: Skip those already reminded at that interval
+  indent: 0
+- id: 01a125a5-6dcc-7643-a7bb-9dc734033f59
+  text: Email the Organizer a reminder to confirm, and record a Reminder Mail
+  indent: 0
+archived: false

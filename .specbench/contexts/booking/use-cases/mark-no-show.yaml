@@ -1,0 +1,50 @@
+spec-format: 1
+kind: use-case
+id: 01a125a2-3026-7536-a915-78d262f7f7c4
+revision: 9
+name: Mark No Show
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: viewer.loggedInViewerRouter.markNoShow (Mark as no-show).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a2-3026-7405-bfb5-8c1bbf293ef1
+  name: Booking Uid
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a2-3026-7795-9f3a-d7eac01957d1
+  name: Attendees
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Primitive
+      primitive: Text
+  archived: false
+steps:
+- id: 01a125a2-3026-72cd-8cc7-f3dec8e9cf37
+  text: 'If the Organizer cannot access the Booking or the meeting has not started yet, refuse: {{outcome:Not Allowed}}'
+  indent: 0
+- id: 01a125a2-3027-7ca9-904c-da10b1b855e2
+  text: Mark or unmark each of the {{input:Attendees}} as a no-show
+  indent: 0
+- id: 01a125a2-3027-7a45-b0d5-f4e5ab682468
+  text: 'Publish {{integration-event:Booking/Booking No Show Updated}}, and pass it to connected CRM apps: {{outcome:No Show Updated}}'
+  indent: 0
+outcomes:
+- id: 01a125a2-3026-7b2a-8154-3e48bc915262
+  name: No Show Updated
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a125a2-3026-7cfa-8636-973dfdd15133
+  name: Not Allowed
+  success: false
+  code: 403
+  message: Cannot mark no-show before the meeting has started.
+  returns: 
+archived: false

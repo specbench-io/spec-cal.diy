@@ -1,0 +1,61 @@
+spec-format: 1
+kind: application-service
+id: 01a1259f-6596-73a0-b8dc-b7008be8fef0
+revision: 8
+name: Hashed Link Service
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+description: HashedLinkService.ts - manages an Event Type's Private Links.
+implements: []
+methods:
+- id: 01a1259f-6596-72e5-b779-958a74d7f983
+  name: Handle Multiple Private Links
+  description: 
+  implements: 
+  inputs:
+  - id: 01a1259f-6596-7da8-ac6e-fb5b6f5a04d7
+    name: Event Type Id
+    type:
+      kind: Primitive
+      primitive: Id
+  steps:
+  - id: 01a1259f-6596-7960-a991-7985678fe247
+    text: Delete the Event Type's Private Links that are missing from the list sent - if no list is sent, every link is deleted
+    indent: 0
+  - id: 01a1259f-6596-7384-9c39-18af3457cc81
+    text: Create the new links and update the rest. A time-based link keeps its old usage limit
+    indent: 0
+  - id: 01a1259f-6596-7e63-92db-d7c2d256289e
+    text: 'Done: {{outcome:Synced}}'
+    indent: 0
+  outcomes:
+  - id: 01a1259f-6596-762d-9b6e-d716bb28cbd1
+    name: Synced
+    success: true
+    message: 
+    returns: 
+  archived: false
+- id: 01a1259f-6596-7cf4-8bee-fa68a0007bed
+  name: Validate And Increment Usage
+  description: 
+  implements: 
+  inputs:
+  - id: 01a1259f-6596-7930-8e0e-39e80f42f3ac
+    name: Link
+    type:
+      kind: Primitive
+      primitive: Text
+  steps:
+  - id: 01a1259f-6596-71a1-866b-066bf1e51e7e
+    text: 'Skip links that expire by date: {{outcome:Counted}}'
+    indent: 0
+  - id: 01a1259f-6596-7389-a9eb-d8772ba9ac52
+    text: "Add one to the link's usage, but only while it is under its limit: {{outcome:Counted}}"
+    indent: 0
+  outcomes:
+  - id: 01a1259f-6596-7090-881f-4e120a097fbb
+    name: Counted
+    success: true
+    message: 
+    returns: 
+  archived: false
+archived: false

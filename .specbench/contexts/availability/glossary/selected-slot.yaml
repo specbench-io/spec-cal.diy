@@ -1,0 +1,11 @@
+spec-format: 1
+kind: term
+id: 01a1259c-42ac-732b-93ef-3d3195efc35b
+revision: 4
+name: Selected Slot
+definition: A Slot held for a few minutes (five by default) while one Booker fills in the booking form, so others don't take it.
+aka:
+- reserved slot
+avoid: []
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+archived: false

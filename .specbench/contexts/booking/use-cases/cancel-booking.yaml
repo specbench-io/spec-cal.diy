@@ -1,0 +1,135 @@
+spec-format: 1
+kind: use-case
+id: 01a125a2-2f45-7c27-a662-7b22f229c2d8
+revision: 18
+name: Cancel Booking
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: POST /api/cancel, which runs handleCancelBooking (Cancel event on the booking page or bookings list). Attendees can cancel from the booking link without an account.
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+- 01a0f444-a88b-7305-b695-d9ce82d7f6cc
+inputs:
+- id: 01a125a2-2f45-76fd-bdd5-e68af012adc6
+  name: Uid
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a2-2f45-73bc-a054-1f4cb976b7f9
+  name: Cancellation Reason
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a2-2f45-7f0f-b33b-2994b17eb89a
+  name: Cancelled By
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a2-2f45-7abe-af28-f563e817d3b6
+  name: Seat Reference Uid
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a2-2f45-7740-a941-54c0cac05df2
+  name: All Remaining Bookings
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+steps:
+- id: 01a125a2-2f45-76cc-8195-f1eebeeb2af9
+  text: 'If the Booking does not exist, refuse: {{outcome:Booking Not Found}}'
+  indent: 0
+- id: 01a125a2-2f45-70c6-aa27-396568495a8d
+  text: 'If it is already cancelled, refuse: {{outcome:Already Cancelled}}'
+  indent: 0
+- id: 01a125a2-2f45-7ed9-a022-7d753caa6c6f
+  text: 'If the Event Type does not allow cancelling, refuse: {{outcome:Cancelling Disabled}}'
+  indent: 0
+- id: 01a125a2-2f45-7a95-99c9-313be9f618d7
+  text: 'If the Event Type requires a reason from this person (the host is recognised by the email sent) and none is given, refuse: {{outcome:Reason Required}}'
+  indent: 0
+- id: 01a125a2-2f45-7b99-86a1-295104e7b960
+  text: 'If the Booking has already ended, refuse: {{outcome:Already Ended}}'
+  indent: 0
+- id: 01a125a2-2f45-7ae9-9cae-e1a8288bde35
+  text: 'For a seated Booking with no {{input:Seat Reference Uid}}, only the host may cancel: {{outcome:Not A Host}}'
+  indent: 0
+- id: 01a125a2-2f45-7442-a4ed-f1f2caacd47a
+  text: 'If {{input:Seat Reference Uid}} is given and others remain, remove just that seat and Attendee, update the calendar, email them and tell subscribers: {{outcome:Seat Removed}}'
+  indent: 0
+- id: 01a125a2-2f45-77e6-8624-fac5c6f5d93e
+  text: Publish {{integration-event:Booking/Booking Cancelled}} - before the Booking is saved
+  indent: 0
+- id: 01a125a2-2f45-7c36-a620-ec144339688b
+  text: For a series with {{input:All Remaining Bookings}}, mark every future Booking Cancelled; otherwise mark this one Cancelled with the reason and who cancelled it
+  indent: 0
+- id: 01a125a2-2f45-7185-bf4c-bfe5691ab7d6
+  text: Refund a paid Booking, or charge the no-show fee for a held card
+  indent: 0
+- id: 01a125a2-2f45-76ff-8e89-3d86a8689074
+  text: Delete the calendar events and video meeting with {{method:Calendars/Event Manager.Cancel Event}}, and mark the Booking References deleted
+  indent: 0
+- id: 01a125a2-2f45-7cf6-9639-484864629638
+  text: Remove the stored meeting triggers and no-show checks
+  indent: 0
+- id: 01a125a2-2f45-786c-b8b0-19cdca5c9e41
+  text: 'Send the cancelled emails: {{outcome:Cancelled}}'
+  indent: 0
+outcomes:
+- id: 01a125a2-2f45-72b2-acd8-a655b391b44c
+  name: Cancelled
+  success: true
+  code: 
+  message: Booking successfully cancelled.
+  returns: 
+- id: 01a125a2-2f45-78a7-a05e-95eefa37a726
+  name: Seat Removed
+  success: true
+  code: 
+  message: Attendee successfully removed.
+  returns: 
+- id: 01a125a2-2f45-7bb5-9d84-f530f54afeeb
+  name: Booking Not Found
+  success: false
+  code: 404
+  message: Booking not found.
+  returns: 
+- id: 01a125a2-2f45-772d-b610-0a8ec09bfe2d
+  name: Already Cancelled
+  success: false
+  code: 400
+  message: This booking has already been cancelled.
+  returns: 
+- id: 01a125a2-2f45-794f-b7d0-fcd107fd7515
+  name: Cancelling Disabled
+  success: false
+  code: 400
+  message: This event type does not allow cancellations
+  returns: 
+- id: 01a125a2-2f45-738a-a8ad-8ea7472bdfc2
+  name: Reason Required
+  success: false
+  code: 400
+  message: Cancellation reason is required
+  returns: 
+- id: 01a125a2-2f45-7ece-947f-069e49aeea52
+  name: Already Ended
+  success: false
+  code: 400
+  message: Cannot cancel a booking that has already ended
+  returns: 
+- id: 01a125a2-2f45-7a1c-9fdd-8ba13cf5ca75
+  name: Not A Host
+  success: false
+  code: 401
+  message: User not a host of this event
+  returns: 
+archived: false

@@ -1,0 +1,60 @@
+spec-format: 1
+kind: value-object
+id: 01a1259b-eb39-7517-a2ff-5728ff8cdc04
+revision: 9
+name: Slot
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+summary: A bookable start time. On Out of Office or holiday days it is kept but marked away.
+description: 
+properties:
+- id: 01a1259b-eb39-7cce-a3d5-9879c1055674
+  name: Time
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a1259b-eb39-7823-854f-5ba2403e9e92
+  name: Away
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+- id: 01a1259b-eb39-7868-ba0c-eb74969a6c2e
+  name: Reason
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259b-eb39-7de9-9522-3ab081d10e95
+  name: Emoji
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259b-eb39-7011-b946-932b1ddb99b6
+  name: Notes
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259b-eb39-7b62-9443-a84777f0c2ce
+  name: Attendees
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Number
+  archived: false
+- id: 01a1259b-eb39-70c3-b7df-b20d1f6a3a0f
+  name: Booking Uid
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+invariants: []
+methods: []
+archived: false

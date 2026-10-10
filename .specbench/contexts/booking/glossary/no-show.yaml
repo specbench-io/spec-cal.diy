@@ -1,0 +1,11 @@
+spec-format: 1
+kind: term
+id: 01a125a0-8baf-705b-97d8-3688334c18f1
+revision: 4
+name: No Show
+definition: An Attendee or the Organizer who didn't join the meeting. Marked by hand, or automatically for Cal Video.
+aka:
+- no-show
+avoid: []
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+archived: false

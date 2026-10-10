@@ -1,0 +1,90 @@
+spec-format: 1
+kind: application-service
+id: 01a1259c-c21a-7daa-8f16-283a9ce0e2fd
+revision: 7
+name: Available Slots Service
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: slots/util.ts (DI container getAvailableSlotsService). The core query behind the booking page.
+implements: []
+methods:
+- id: 01a1259c-c21a-7889-b399-d93b510e0fb7
+  name: Get Available Slots
+  description: 
+  implements: 
+  inputs:
+  - id: 01a1259c-c21a-78e7-8710-38c73c144e70
+    name: Event Type Id
+    type:
+      kind: Primitive
+      primitive: Id
+  - id: 01a1259c-c21a-733c-869f-1859d40722cf
+    name: Start Time
+    type:
+      kind: Primitive
+      primitive: Date
+  - id: 01a1259c-c21a-7447-8e8b-ab869c65ea33
+    name: End Time
+    type:
+      kind: Primitive
+      primitive: Date
+  - id: 01a1259c-c21a-7a3d-8bb7-f9a3645a0b05
+    name: Time Zone
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a1259c-c21a-77f5-aeee-463013b097f4
+    name: Duration
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Number
+  - id: 01a1259c-c21a-73d4-94c8-1c687752af8e
+    name: Reschedule Uid
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Text
+  steps:
+  - id: 01a1259c-c21a-74a7-9ce2-ff8c9721aa45
+    text: Answer from the short-lived cache (2 seconds by default) when the same question was just asked
+    indent: 0
+  - id: 01a1259c-c21a-78bd-9ab3-b612d1040beb
+    text: 'Load the Event Type; if it does not exist, refuse: {{outcome:Event Type Not Found}}'
+    indent: 0
+  - id: 01a1259c-c21a-70b0-9fba-15574d5c9e2f
+    text: Start no earlier than now plus the Minimum notice (at least one minute)
+    indent: 0
+  - id: 01a1259c-c21a-7a62-9461-4ee1cd11bca5
+    text: Drop Organizers whose email is blocked by the Global Watchlist; if none are left, return no Slots
+    indent: 0
+  - id: 01a1259c-c21a-7009-9dfb-d966b657258f
+    text: Load the Organizer's Bookings and Out Of Office entries for the period, and turn reached booking and duration limits into whole busy days, weeks, months or years
+    indent: 0
+  - id: 01a1259c-c21a-76b9-851a-96b7d9e14bd6
+    text: Get each Organizer's availability with {{method:Availability/User Availability Service.Get User Availability}}
+    indent: 0
+  - id: 01a1259c-c21a-729e-b01e-8ce5e3dd505c
+    text: Cut the open time into Slots with {{method:Availability/Get Slots.Get Slots}}
+    indent: 0
+  - id: 01a1259c-c21a-7fc2-8c7a-6daad2c05637
+    text: Remove Slots held by other Bookers (Selected Slots), and delete expired holds for this Event Type
+    indent: 0
+  - id: 01a1259c-c21a-7600-a112-ef916997c578
+    text: Group the Slots by date in the Booker's {{input:Time Zone}}, keeping only the first Slot of each day when the Event Type asks for that
+    indent: 0
+  - id: 01a1259c-c21a-7578-a864-b0c69b8c4ad9
+    text: 'Drop Slots outside Limit future bookings, in the past or inside the Minimum notice: {{outcome:Slots Found}}'
+    indent: 0
+  outcomes:
+  - id: 01a1259c-c21a-7e12-bc95-dc91193f0aef
+    name: Slots Found
+    success: true
+    message: 
+    returns: 
+  - id: 01a1259c-c21a-7720-9e27-e00f3b33bae8
+    name: Event Type Not Found
+    success: false
+    message: 
+    returns: 
+  archived: false
+archived: false

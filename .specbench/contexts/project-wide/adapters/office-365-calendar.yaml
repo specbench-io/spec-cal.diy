@@ -1,0 +1,23 @@
+spec-format: 1
+kind: adapter
+id: 01a125c0-bc8b-713e-81db-880e433f5845
+revision: 4
+name: Office 365 Calendar
+interface: Calendars/Calendar
+description: 
+target:
+  infrastructure: Microsoft Graph (packages/app-store/office365calendar/lib/CalendarService.ts)
+methods:
+- implements: Create Event
+  steps:
+  - id: 01a125c0-bc8c-77ac-8397-4eeb5ede8f35
+    text: Create the event through Microsoft Graph in {{input:External Calendar Id}}; an MS Teams location takes its meeting link from this event
+    indent: 0
+  note: 
+- implements: Get Availability
+  steps:
+  - id: 01a125c0-bc8c-73c4-94dd-936ae146c074
+    text: Read the Selected Calendars' busy times between {{input:Date From}} and {{input:Date To}}
+    indent: 0
+  note: 
+archived: false

@@ -1,0 +1,21 @@
+spec-format: 1
+kind: integration-event
+id: 01a125a0-ead3-797f-8e6a-5b1c9a25068d
+revision: 3
+name: Meeting Started
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: A confirmed Booking's start time arrived (webhook MEETING_STARTED, stored ahead and sent by a cron). The payload is the raw Booking row.
+fields:
+- id: 01a125a0-ead3-703a-9a35-89fa4bcf91a7
+  name: Booking Uid
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a125a0-ead3-7b1b-a0b6-20bef2438418
+  name: Start Time
+  description: 
+  type:
+    kind: Primitive
+    primitive: Date
+archived: false

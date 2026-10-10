@@ -1,0 +1,30 @@
+spec-format: 1
+kind: use-case
+id: 01a125a4-4241-7e2a-863d-4874d9d4c18b
+revision: 6
+name: List Installed Apps
+bounded-context-id: 01a0f44a-2a22-7488-ae05-7c57eda180ac
+description: viewer.apps.integrations (/apps/installed/category).
+use-case-kind: Query
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a4-4241-7f57-a620-537dd132b1ff
+  name: Category
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a4-4241-7345-8b12-365a54b281e9
+  text: 'Return the enabled apps in {{input:Category}} with whether each is installed, its Credentials, which are invalid, and whether a payment app is set up: {{outcome:Listed}}'
+  indent: 0
+outcomes:
+- id: 01a125a4-4241-7c73-a3ea-01069d652f16
+  name: Listed
+  success: true
+  code: 
+  message: 
+  returns: 
+archived: false

@@ -1,0 +1,52 @@
+spec-format: 1
+kind: use-case
+id: 01a1259d-7cc7-73c4-b68e-3f414b8aeec9
+revision: 10
+name: Update Schedule
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: viewer.availability.schedule.update. Covers weekly hours, name, time zone, Date Overrides and Set as default.
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a1259d-7cc7-7f82-8c64-fb06c0bf847d
+  name: Schedule Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a1259d-7cc7-7dbb-9333-b988c295482e
+  name: Name
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259d-7cc7-7356-9dfe-f5da7653eeb3
+  name: Is Default
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+steps:
+- id: 01a1259d-7cc7-75c0-a711-45d7097f7bb7
+  text: 'Save the changes with {{method:Availability/Schedule Service.Update}}: {{outcome:Schedule Updated}}'
+  indent: 0
+- id: 01a1259d-7cc7-7580-88ed-52c881e1067f
+  text: 'If {{method-outcome:Availability/Schedule Service.Update.Unauthorized}}, refuse: {{outcome:Unauthorized}}'
+  indent: 1
+outcomes:
+- id: 01a1259d-7cc7-76bb-b073-b002c3213952
+  name: Schedule Updated
+  success: true
+  code: 
+  message: '{{scheduleName}} schedule updated successfully'
+  returns: 
+- id: 01a1259d-7cc7-72a5-bce6-0abc05ceaba3
+  name: Unauthorized
+  success: false
+  code: 401
+  message: 
+  returns: 
+archived: false

@@ -1,0 +1,26 @@
+spec-format: 1
+kind: event-handler
+id: 01a125f7-6d45-765b-bb0f-4cf2ba5fd2b2
+revision: 4
+name: Check Cal Video Host No Show
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: triggerHostNoShowWebhook Task (packages/features/tasker/tasks/triggerNoShow/triggerHostNoShow.ts). Queued directly - one Task per Webhook with the host no-show trigger - when a Cal Video Booking is created confirmed or later confirmed, and back-filled when such a Webhook is added. Runs from the Task queue at the start time plus the Webhook's wait; 3 attempts about a minute apart. Cancelled when the Booking is cancelled or rescheduled.
+trigger:
+  integration-event: Booking/Booking Created
+steps:
+- id: 01a125f7-6d45-7d1f-bb37-b3f8a3a50ddf
+  text: When the wait after the start has passed, load the Booking; do nothing unless it is still Accepted
+  indent: 0
+- id: 01a125f7-6d45-7194-a660-b1f5b23231d3
+  text: If the Booking has no Cal Video room, fail so the Task is retried
+  indent: 0
+- id: 01a125f7-6d45-79e1-99b0-7f041ffb22fa
+  text: Ask Cal Video who joined, and treat every host who did not join while logged in as absent - join times are not checked
+  indent: 0
+- id: 01a125f7-6d45-7cac-8baa-a9d6b0a4f28a
+  text: Mark the Organizer as a no-show host on the Booking, and any absent host who is also an Attendee as a no-show Attendee
+  indent: 0
+- id: 01a125f7-6d45-7dab-924f-b0a43ec23351
+  text: Send one "host didn't join" Webhook per absent host
+  indent: 0
+archived: false

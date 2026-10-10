@@ -1,0 +1,319 @@
+spec-format: 1
+kind: use-case
+id: 01a0f460-33e9-753d-a43a-10c64e5534c4
+revision: 42
+name: Create Booking
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: "POST /api/book/event, which runs RegularBookingService.createBooking. Also used for rescheduling: the booking page sends the original Booking's uid. Before it runs, the web route checks bots, rate limits and Turnstile."
+use-case-kind: Command
+roles:
+- 01a0f442-adc1-7f74-9a7a-6b7f3cc9be7d
+inputs:
+- id: 01a125a1-6b37-7733-a9a3-4ff057c67ed0
+  name: Event Type Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a125a1-6b37-7799-aaa5-633884f0f8e6
+  name: Start
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a125a1-6b37-79ea-bdbc-59bc5c016122
+  name: End
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a125a1-6b37-704c-8b7d-78383f63cee3
+  name: Time Zone
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a1-6b37-7d06-9dcf-9de51fdcef59
+  name: Booker Email
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a1-6b37-76c2-b72b-e0a723ca8c99
+  name: Booker Name
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a1-6b37-70a0-8710-ef8b8571e6aa
+  name: Reschedule Uid
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a1-6b38-7541-9e25-3f66edab4114
+  name: Verification Code
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a1-6b38-778e-89e6-1068d1e24846
+  text: "If someone other than the Organizer is rescheduling within the Event Type's minimum reschedule notice, refuse: {{outcome:Reschedule Not Allowed}}"
+  indent: 0
+- id: 01a125a1-6b38-73c5-be7c-1ba7f509b68f
+  text: "If {{input:Booker Email}} is on the instance's blocked guest list, refuse: {{outcome:Booker Email Blocked}}"
+  indent: 0
+- id: 01a12561-480d-74da-b740-1b21293ed40e
+  text: Start the spam check on the Booker's email straight away, using {{method:Watchlist/Spam Check Service.Start Check}}, so it runs while the other checks happen
+  indent: 0
+- id: 01a125a1-6b38-7ee7-8d42-8e2255f440fe
+  text: If this is not a reschedule, check the Booker's upcoming Bookings with {{method:Booking/Check Active Bookings Limit For Booker.Check Active Bookings Limit For Booker}}
+  indent: 0
+- id: 01a125a1-6b38-77a4-b316-d10d00089246
+  text: 'If {{method-outcome:Booking/Check Active Bookings Limit For Booker.Check Active Bookings Limit For Booker.Booker Limit Exceeded}}, refuse: {{outcome:Booker Limit Exceeded}}'
+  indent: 1
+- id: 01a125a1-6b38-74a1-8156-900c003cce78
+  text: 'If the Event Type requires booker email verification and this is not a reschedule, and no {{input:Verification Code}} was sent, refuse: {{outcome:Email Verification Required}}'
+  indent: 0
+- id: 01a125a1-6b38-78e9-bc5f-e66bdeed3e40
+  text: 'If the code is wrong, refuse: {{outcome:Invalid Verification Code}}'
+  indent: 1
+- id: 01a125a1-6b38-7773-b4e1-68365ceeda07
+  text: 'If the Event Type does not exist, refuse: {{outcome:Event Type Not Found}}'
+  indent: 0
+- id: 01a125a1-6b38-70fe-8659-22aee625f4d9
+  text: 'If the Event Type has both seats and a recurring rule, refuse: {{outcome:Seats With Recurring}}'
+  indent: 0
+- id: 01a125a1-6b38-72dc-bd0a-53195bac9aed
+  text: 'If {{input:Reschedule Uid}} is given, find the original Booking; if there is none, refuse: {{outcome:Original Booking Not Found}}'
+  indent: 0
+- id: 01a125a1-6b38-795e-85f4-0d2206d7f74d
+  text: 'If the original was cancelled without being rescheduled, refuse: {{outcome:Cancelled Booking Cannot Be Rescheduled}}'
+  indent: 1
+- id: 01a125a1-6b38-7c4c-b85b-28e5c27b1dc6
+  text: Decide whether the Booking needs confirming. It is confirmed straight away when the Event Type is free and needs no confirmation, or when the Organizer is rescheduling. The free-email rule replaces Requires Confirmation, and a notice threshold turns it off for Bookings far enough ahead
+  indent: 0
+- id: 01a125a1-6b38-73e4-a0f7-6fa9350155dc
+  text: 'If it needs confirming and the Booker already has an unconfirmed Booking for this Event Type at this time, return that one instead: {{outcome:Already Booked}}'
+  indent: 0
+- id: 01a125a1-6b38-7f60-a109-166b08829487
+  text: 'Check the time with {{method:Availability/Is Out Of Bounds.Is Out Of Bounds}}; if {{method-outcome:Availability/Is Out Of Bounds.Is Out Of Bounds.Booking In Past}}, refuse: {{outcome:Booking In Past}}'
+  indent: 0
+- id: 01a125a1-6b38-72b4-ae13-57ebab750594
+  text: 'If {{method-outcome:Availability/Is Out Of Bounds.Is Out Of Bounds.Booking Time Out Of Bounds}} - inside the Minimum Notice or outside Limit future bookings - refuse: {{outcome:Booking Time Out Of Bounds}}'
+  indent: 1
+- id: 01a125a1-6b38-774f-86cd-001e18c8c85a
+  text: "If the length from {{input:Start}} to {{input:End}} is not the Event Type's length or one of its multiple durations, refuse: {{outcome:Invalid Event Length}}"
+  indent: 0
+- id: 01a125a1-6b38-791c-b827-df28f867767b
+  text: Unless the limits check is skipped, check booking frequency and total duration with {{method:Booking/Check Booking And Duration Limits Service.Check Booking And Duration Limits}}
+  indent: 0
+- id: 01a125a1-6b38-7b61-8675-6529286dfdff
+  text: 'If {{method-outcome:Booking/Check Booking And Duration Limits Service.Check Booking And Duration Limits.Booking Limit Reached}}, refuse: {{outcome:Booking Limit Reached}}'
+  indent: 1
+- id: 01a125a1-6b38-7978-be1e-022dcab3dc48
+  text: 'If {{method-outcome:Booking/Check Booking And Duration Limits Service.Check Booking And Duration Limits.Duration Limit Reached}}, refuse: {{outcome:Duration Limit Reached}}'
+  indent: 1
+- id: 01a125a1-6b38-77d3-b393-ebf6446b64ab
+  text: If a seated Booking already exists at this time, skip the availability check
+  indent: 0
+- id: 01a125a1-6b38-7ff9-b731-9ab034ab4c0a
+  text: 'Otherwise check the Organizer is still free with {{method:Availability/User Availability Service.Get User Availability}}; for a recurring series only the first date is checked. If they are not free, refuse: {{outcome:No Available Users}}'
+  indent: 0
+- id: 01a125a1-6b38-79dd-b038-e1b4925ca364
+  text: Choose the location - the one picked, else the Event Type's first location, else the Organizer's default conferencing app, else Cal Video
+  indent: 0
+- id: 01a125a1-6b38-7cb5-ac3f-c218ad61d921
+  text: Leave out Guests on the blocked guest list and Guests whose own accounts require booker email verification
+  indent: 0
+- id: 01a10d66-4dd6-7418-a2ee-0e99de0625c8
+  text: Before saving the Booking, wait for the spam check to finish, using {{method:Watchlist/Spam Check Service.Wait For Check}}
+  indent: 0
+- id: 01a10d66-4dd7-7876-ad6b-4ddf2678d16b
+  text: 'If {{method-outcome:Watchlist/Spam Check Service.Wait For Check.Blocked}}, show the Booker a Decoy Booking and save nothing: {{outcome:Decoy Booking}}'
+  indent: 1
+- id: 01a125a1-6b38-7856-b7fb-1e0fe8f3a553
+  text: 'For a seated Event Type with a Booking at this time, add the Booker to it instead. If they already have a seat, refuse: {{outcome:Already Signed Up}}'
+  indent: 0
+- id: 01a125a1-6b38-7ac5-947d-026e3e2beb41
+  text: 'If every seat is taken, refuse: {{outcome:Booking Seats Full}}'
+  indent: 1
+- id: 01a125a1-6b38-7b72-8e0d-4fcee3553856
+  text: Save the Booking with its Attendees - Accepted when confirmed straight away, otherwise Pending. When rescheduling, mark the original Cancelled and Rescheduled in the same transaction
+  indent: 0
+- id: 01a125a1-6b38-7104-9052-6fbabdf8cf51
+  text: 'If an accepted Booking already exists for this Organizer at the same time, refuse: {{outcome:Booking Conflict}}'
+  indent: 1
+- id: 01a125a1-6b38-7b7c-bef6-7b3f60513b22
+  text: If rescheduling, move the calendar events and video meeting with {{method:Calendars/Event Manager.Reschedule}} and send rescheduled emails with {{method:Notifications/Booking Email Sms Handler.Send Rescheduled}}
+  indent: 0
+- id: 01a125a1-6b38-7515-a0aa-3e19c7e686f3
+  text: If confirmed straight away, create the calendar events and video meeting with {{method:Calendars/Event Manager.Create}} and send the scheduled emails with {{method:Notifications/Booking Email Sms Handler.Send Confirmed}}
+  indent: 0
+- id: 01a125a1-6b38-71df-b369-225571fd1038
+  text: If it needs confirming and no payment is due, send the request emails with {{method:Notifications/Booking Email Sms Handler.Send Requested}}
+  indent: 0
+- id: 01a125a1-6b38-7f1c-8a95-3cdca74bdd96
+  text: Count the use of the Private Link the Booker came through with {{method:Event Types/Hashed Link Service.Validate And Increment Usage}}
+  indent: 0
+- id: 01a125a1-6b38-7567-a421-2bd7e6c2eb4d
+  text: 'If the Event Type has a price and the original was not already paid, start the payment. If there is no payment app set up, refuse: {{outcome:Missing Payment Credentials}}'
+  indent: 0
+- id: 01a125a1-6b38-74cb-a9c7-ca7a16b640d3
+  text: 'Publish {{integration-event:Booking/Booking Payment Initiated}} and stop here: {{outcome:Awaiting Payment}}'
+  indent: 1
+- id: 01a125a1-6b38-7a26-ac06-fc904c9e4037
+  text: 'If confirmed straight away, store the meeting started and ended triggers, publish {{integration-event:Booking/Booking Created}} - or {{integration-event:Booking/Booking Rescheduled}} for a reschedule - and schedule the Cal Video no-show checks: {{outcome:Booked}}'
+  indent: 0
+- id: 01a125a1-6b38-76ff-a0e2-ea0c4c453c74
+  text: 'Otherwise queue {{integration-event:Booking/Booking Requested}}: {{outcome:Awaiting Confirmation}}'
+  indent: 0
+outcomes:
+- id: 01a0f460-33e9-7e39-b772-40e86d66c439
+  name: Booked
+  success: true
+  code: 
+  message: The Booking is accepted straight away.
+  returns: 
+- id: 01a0f460-33e9-707a-bf9c-80ddbd2a36b5
+  name: Awaiting Confirmation
+  success: true
+  code: 
+  message: The Booking is pending until the Organizer confirms it.
+  returns: 
+- id: 01a0f460-33e9-7bfd-954b-eb8dba7eed81
+  name: Awaiting Payment
+  success: true
+  code: 
+  message: The Booking is pending until the Booker pays.
+  returns: 
+- id: 01a0f460-33e9-75ab-9af4-8a512f067b92
+  name: Already Booked
+  success: true
+  code: 
+  message: The Booker already has an unconfirmed Booking at this time; that Booking is returned instead of a new one.
+  returns: 
+- id: 01a10d66-4dd1-7f1d-a754-2777600a50d7
+  name: Decoy Booking
+  success: true
+  code: 
+  message: The Booker sees what looks like a confirmed Booking, but nothing is saved.
+  returns: 
+- id: 01a125a1-6b38-7949-9ba2-67263e12fbe6
+  name: Reschedule Not Allowed
+  success: false
+  code: 403
+  message: Rescheduling is not allowed within the minimum notice period before the event
+  returns: 
+- id: 01a125a1-6b38-74f5-aba8-4a9acee1a627
+  name: Booker Email Blocked
+  success: false
+  code: 403
+  message: 
+  returns: 
+- id: 01a125a1-6b38-7a56-8771-a2c303da3b1d
+  name: Booker Limit Exceeded
+  success: false
+  code: 
+  message: You've reached the limit of upcoming bookings for this event type
+  returns: 
+- id: 01a125a1-6b38-7cab-95b8-3296f140d3c2
+  name: Email Verification Required
+  success: false
+  code: 400
+  message: email_verification_required
+  returns: 
+- id: 01a125a1-6b38-7208-9c52-d40346b51930
+  name: Invalid Verification Code
+  success: false
+  code: 400
+  message: 
+  returns: 
+- id: 01a125a1-6b38-7648-8b47-f1bbfc173d30
+  name: Event Type Not Found
+  success: false
+  code: 404
+  message: event_type_not_found
+  returns: 
+- id: 01a125a1-6b38-7891-8ff6-3e42082a78f6
+  name: Seats With Recurring
+  success: false
+  code: 400
+  message: Recurring event doesn't support seats feature
+  returns: 
+- id: 01a125a1-6b38-7fa2-ba92-b4cc05e274ac
+  name: Original Booking Not Found
+  success: false
+  code: 404
+  message: Could not find original booking
+  returns: 
+- id: 01a125a1-6b38-7c41-ba7e-126ef9023d59
+  name: Cancelled Booking Cannot Be Rescheduled
+  success: false
+  code: 400
+  message: cancelled_bookings_cannot_be_rescheduled
+  returns: 
+- id: 01a125a1-6b38-715a-a1ce-73791a6d95f4
+  name: Booking In Past
+  success: false
+  code: 400
+  message: Attempting to book a meeting in the past.
+  returns: 
+- id: 01a125a1-6b38-7c60-886c-47cd2d4dd2ee
+  name: Booking Time Out Of Bounds
+  success: false
+  code: 400
+  message: The event type cannot be booked at this time. Could you try another time slot?
+  returns: 
+- id: 01a125a1-6b38-7809-8c03-60cd1ac80fce
+  name: Invalid Event Length
+  success: false
+  code: 400
+  message: Invalid event length
+  returns: 
+- id: 01a125a1-6b38-75d6-8e99-12083936f9bc
+  name: Booking Limit Reached
+  success: false
+  code: 401
+  message: Booking Limit for this event type has been reached
+  returns: 
+- id: 01a125a1-6b38-7410-a37d-854f9fbf4067
+  name: Duration Limit Reached
+  success: false
+  code: 401
+  message: Duration Limit for this event type has been reached
+  returns: 
+- id: 01a125a1-6b38-7ab6-aaab-b47e876a97d5
+  name: No Available Users
+  success: false
+  code: 
+  message: no_available_users_found_error
+  returns: 
+- id: 01a125a1-6b38-7e49-84ee-f2a4cacb3cd1
+  name: Already Signed Up
+  success: false
+  code: 409
+  message: already_signed_up_for_this_booking_error
+  returns: 
+- id: 01a125a1-6b38-77ba-ac66-0614ab7d809c
+  name: Booking Seats Full
+  success: false
+  code: 409
+  message: booking_seats_full_error
+  returns: 
+- id: 01a125a1-6b38-79b8-ba3e-aaa77c168b6e
+  name: Booking Conflict
+  success: false
+  code: 409
+  message: booking_conflict_error
+  returns: 
+- id: 01a125a1-6b38-7247-a202-418eb7d39688
+  name: Missing Payment Credentials
+  success: false
+  code: 400
+  message: Missing payment credentials
+  returns: 
+archived: false

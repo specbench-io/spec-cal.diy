@@ -1,0 +1,22 @@
+spec-format: 1
+kind: enum
+id: 01a125a6-328b-706f-af18-1c2dec241364
+revision: 5
+name: OAuth Client Status
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+summary: Where an OAuth Client stands with the Admin's review.
+description: 
+cases:
+- id: 01a125a6-328b-768f-b259-b02650fda733
+  name: Pending
+  description: 
+  archived: false
+- id: 01a125a6-328b-74a3-9435-005e7c6adb4e
+  name: Approved
+  description: 
+  archived: false
+- id: 01a125a6-328b-7329-91b0-2be70b8b26b1
+  name: Rejected
+  description: 
+  archived: false
+archived: false

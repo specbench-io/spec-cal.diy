@@ -1,0 +1,11 @@
+spec-format: 1
+kind: term
+id: 01a125a2-d625-71e9-8301-844eac2bb423
+revision: 4
+name: Destination Calendar
+definition: The calendar new Bookings are added to.
+aka:
+- Add events to
+avoid: []
+bounded-context-id: 01a0f44a-2a06-7125-8fe2-659328d04ce1
+archived: false

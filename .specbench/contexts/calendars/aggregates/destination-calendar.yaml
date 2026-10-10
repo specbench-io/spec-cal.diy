@@ -1,0 +1,67 @@
+spec-format: 1
+kind: aggregate
+id: 01a125a2-d556-7238-a464-0fc50072f355
+revision: 11
+name: Destination Calendar
+bounded-context-id: 01a0f44a-2a06-7125-8fe2-659328d04ce1
+summary: The calendar new Bookings are added to (Add events to), for the Organizer or for one Event Type.
+description: 
+properties:
+- id: 01a125a2-d556-71a9-9179-3fe888b16fbb
+  name: Integration
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a2-d556-7753-be12-bf42fcb08ecf
+  name: External Id
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a2-d556-77b8-93bf-9672402e4195
+  name: Primary Email
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a2-d556-71e1-8754-a44cbb6fe2d4
+  name: User Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a125a2-d556-7260-8d97-db4f60afa894
+  name: Event Type Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a125a2-d556-7a9c-8c66-3716069a3d7c
+  name: Credential Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a125a2-d556-7f33-9f33-33014a6225e4
+  name: Custom Calendar Reminder
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Number
+  archived: false
+invariants:
+- id: 01a125a2-d556-7324-9d72-9245d0567cbd
+  text: At most one per user and at most one per Event Type.
+  archived: false
+- id: 01a125a2-d556-73ac-91fa-a6cf7787c814
+  text: The reminder is empty (use default reminders), 0, 10, 30 or 60 minutes.
+  archived: false
+domain-events: []
+entities: []
+methods: []
+archived: false

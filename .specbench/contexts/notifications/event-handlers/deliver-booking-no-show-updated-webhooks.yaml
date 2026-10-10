@@ -1,0 +1,23 @@
+spec-format: 1
+kind: event-handler
+id: 01a125f7-6cb4-7f45-958f-83a97b71c5aa
+revision: 4
+name: Deliver Booking No Show Updated Webhooks
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: handleMarkNoShow (packages/features/handleMarkNoShow.ts:192-273) through the legacy WebhookService, when the Organizer marks Attendees. Marking the host as a no-show sends nothing.
+trigger:
+  integration-event: Booking/Booking No Show Updated
+steps:
+- id: 01a125f7-6cb4-721b-8d96-7249a49a0144
+  text: Find the active Webhooks listening for No-show updated that belong to the Event Type's owner (not the Booking's Organizer), the Event Type, the platform OAuth client, or are platform-wide
+  indent: 0
+- id: 01a125f7-6cb4-7f26-ac5f-9ae584d7006b
+  text: POST a short payload - a message translated into the acting User's language, the Booking uid and id, and each Attendee with their new no-show flag - signed with the Secret
+  indent: 0
+- id: 01a125f7-6cb4-7136-90e9-7cbed58f855f
+  text: It is sent even when no Attendee was actually changed
+  indent: 1
+- id: 01a125f7-6cb4-71a4-a6b7-107c4511525d
+  text: Then pass the no-show list on to installed apps such as a CRM
+  indent: 0
+archived: false

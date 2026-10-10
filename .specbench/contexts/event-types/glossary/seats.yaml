@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a1259e-ce38-7751-84c5-984f8369bdef
+revision: 3
+name: Seats
+definition: Several Bookers sharing one time slot of an Event Type, up to the number of seats.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+archived: false

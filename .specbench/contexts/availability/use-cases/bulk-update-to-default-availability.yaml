@@ -1,0 +1,41 @@
+spec-format: 1
+kind: use-case
+id: 01a1259d-7d4f-7af6-a879-a163b399dc22
+revision: 7
+name: Bulk Update To Default Availability
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: viewer.availability.schedule.bulkUpdateToDefaultAvailability (offered after Set as default).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a1259d-7d4f-7213-ada3-fcc32a98a244
+  name: Event Type Ids
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Primitive
+      primitive: Id
+  archived: false
+steps:
+- id: 01a1259d-7d4f-71db-8538-1348c888de49
+  text: 'If no Default Schedule is set, refuse: {{outcome:Default Schedule Not Set}}'
+  indent: 0
+- id: 01a1259d-7d4f-7809-8959-3ed6b72ade01
+  text: "Point the Organizer's chosen Event Types at the Default Schedule: {{outcome:Updated}}"
+  indent: 0
+outcomes:
+- id: 01a1259d-7d4f-71b4-a1a6-85294fbc9ec1
+  name: Updated
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a1259d-7d4f-711f-87ac-482cb0bf0dc0
+  name: Default Schedule Not Set
+  success: false
+  code: 400
+  message: Default schedule not set
+  returns: 
+archived: false

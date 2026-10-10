@@ -1,0 +1,40 @@
+spec-format: 1
+kind: integration-event
+id: 01a125a0-ea35-7049-974a-ca8207571d82
+revision: 3
+name: Booking Rescheduled
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: A Booking moved to a new time (webhook BOOKING_RESCHEDULED).
+fields:
+- id: 01a125a0-ea35-7a8a-8840-22a33732154c
+  name: Booking Uid
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a125a0-ea35-72f6-9891-b60f8ca4eaca
+  name: Reschedule Uid
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a125a0-ea35-738f-9e4a-f84cd0902da9
+  name: Start Time
+  description: 
+  type:
+    kind: Primitive
+    primitive: Date
+- id: 01a125a0-ea35-7fca-aaf7-a6068bef7ce6
+  name: End Time
+  description: 
+  type:
+    kind: Primitive
+    primitive: Date
+- id: 01a125a0-ea35-7f8c-a560-37ccc88ca2c7
+  name: Rescheduled By
+  description: 
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+archived: false

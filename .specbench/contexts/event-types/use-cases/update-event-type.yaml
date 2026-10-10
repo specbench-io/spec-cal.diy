@@ -1,0 +1,116 @@
+spec-format: 1
+kind: use-case
+id: 01a1259f-9648-72c1-aff5-223cf8bc34e8
+revision: 15
+name: Update Event Type
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+description: viewer.eventTypesHeavy.update (Save on the Event Type edit page). Only changed fields are sent, plus the Private Links.
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a1259f-9648-75a6-b4a0-7aa5f8ff200e
+  name: Event Type Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+steps:
+- id: 01a1259f-9648-7298-87ca-cc5c929f130f
+  text: 'If the Event Type does not exist, refuse: {{outcome:Not Found}}'
+  indent: 0
+- id: 01a1259f-9648-7033-a486-806a65498595
+  text: "If it is not the Organizer's, refuse: {{outcome:Forbidden}}"
+  indent: 0
+- id: 01a1259f-9648-70e6-b2d7-b5a2b637ae57
+  text: 'If seats and a recurring rule would both be on, refuse: {{outcome:Seats And Recurring}}'
+  indent: 0
+- id: 01a1259f-9648-7c5a-9912-88b48fe34a93
+  text: 'If the Booking Questions repeat a name or hide both email and phone, refuse: {{outcome:Invalid Booking Questions}}'
+  indent: 0
+- id: 01a1259f-9648-7432-b277-ec8f0db04177
+  text: Hide the guests question when guests are disabled
+  indent: 0
+- id: 01a1259f-9648-7b3e-a826-ac39a6066b46
+  text: 'If booking or duration limits are not in ascending order, refuse: {{outcome:Limits Not Ascending}}'
+  indent: 0
+- id: 01a1259f-9648-7f1d-b359-3cb6762c283d
+  text: 'If the per-booker limit is below 1 or a recurring rule is on as well, refuse: {{outcome:Invalid Booker Limit}}'
+  indent: 0
+- id: 01a1259f-9648-797d-9048-906814cb0a40
+  text: 'If the offset start is below zero, refuse: {{outcome:Invalid Offset}}'
+  indent: 0
+- id: 01a1259f-9648-7b61-851c-82f597ac4e8c
+  text: Use the chosen Schedule only if it is the Organizer's; quietly ignore one that is not
+  indent: 0
+- id: 01a1259f-9648-75a9-a009-030de56e954a
+  text: Save the destination calendar through Calendars
+  indent: 0
+- id: 01a1259f-9648-7f0c-b271-0c24ede623b2
+  text: Sync the Private Links with {{method:Event Types/Hashed Link Service.Handle Multiple Private Links}}
+  indent: 0
+- id: 01a1259f-9648-7ed8-a4f0-f72ba4f35bcf
+  text: Save or remove the Cal Video settings depending on whether Cal Video is still a location
+  indent: 0
+- id: 01a1259f-9648-7023-9304-ec6519bb7a8e
+  text: 'Save the Event Type and refresh its public booking page: {{outcome:Event Type Updated}}'
+  indent: 0
+- id: 01a1259f-9648-75bd-927a-31e97c436027
+  text: 'If the new slug is taken, refuse: {{outcome:Slug Already Exists}}'
+  indent: 1
+outcomes:
+- id: 01a1259f-9648-759f-ae04-ca65b7a86a5e
+  name: Event Type Updated
+  success: true
+  code: 
+  message: '{{eventTypeTitle}} event type updated successfully'
+  returns: 
+- id: 01a1259f-9648-7815-9431-edc7858eb870
+  name: Not Found
+  success: false
+  code: 404
+  message: 
+  returns: 
+- id: 01a1259f-9648-7d82-adf0-01f3560a836e
+  name: Forbidden
+  success: false
+  code: 403
+  message: 
+  returns: 
+- id: 01a1259f-9648-7e47-b712-82533dfa1489
+  name: Seats And Recurring
+  success: false
+  code: 400
+  message: Recurring Events and Offer Seats cannot be active at the same time.
+  returns: 
+- id: 01a1259f-9648-75c4-a58f-3b0a0ebd9eef
+  name: Invalid Booking Questions
+  success: false
+  code: 400
+  message: 
+  returns: 
+- id: 01a1259f-9648-727f-8b8b-cc35f70edffe
+  name: Limits Not Ascending
+  success: false
+  code: 400
+  message: Booking limits must be in ascending order.
+  returns: 
+- id: 01a1259f-9648-707e-a555-6521fc18099a
+  name: Invalid Booker Limit
+  success: false
+  code: 400
+  message: Booker booking limit must be greater than 0.
+  returns: 
+- id: 01a1259f-9648-70b0-8331-a75dea22dd2a
+  name: Invalid Offset
+  success: false
+  code: 400
+  message: Offset start time must be zero or greater.
+  returns: 
+- id: 01a1259f-9648-74e4-a0da-69d7cf27613a
+  name: Slug Already Exists
+  success: false
+  code: 400
+  message: An event type with this URL already exists.
+  returns: 
+archived: false

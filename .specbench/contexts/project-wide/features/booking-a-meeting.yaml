@@ -1,0 +1,133 @@
+spec-format: 1
+kind: feature
+id: 01a125a8-66d4-7b9a-8f38-6ee17f5acd1f
+revision: 34
+title: Booking a meeting
+intent: As a Booker, I want to pick a free time on an Organizer's booking page and book it, so that we can meet without back-and-forth.
+description: 'Use Cases: Get Schedule, Reserve Slot, Create Booking, Confirm Booking, Reject Booking.'
+scenarios:
+- id: c3de07be-9404-471b-8507-07d184ac19a8
+  title: Booking a free slot on an Event Type that needs no confirmation
+  steps:
+  - id: 054cba1c-a2ad-4a63-a5b1-a970a7228a1e
+    keyword: Given
+    text: an Organizer has a free Event Type with Working hours on Monday 9:00 to 17:00
+    archived: false
+  - id: 5341952f-7d43-4601-8672-a5a3f6f366a8
+    keyword: When
+    text: a Booker picks the 10:00 Slot on Monday and books it
+    archived: false
+  - id: 2cf2dec8-52b5-431d-9ba9-6b5e77227c87
+    keyword: Then
+    text: the Booking is Accepted
+    archived: false
+  - id: f4963661-150c-45cb-b4ef-bf88570d99ee
+    keyword: And
+    text: a calendar event and Cal Video meeting are created and both receive the scheduled email
+    archived: false
+  archived: false
+- id: 1a90af35-fb53-4a41-8cd9-b72536ccbb46
+  title: A Slot is held while the Booker fills in the form
+  steps:
+  - id: a658dc12-edb8-4e39-b7b4-bcc3e3a60e0a
+    keyword: Given
+    text: a Booker has opened the booking form for the 10:00 Slot
+    archived: false
+  - id: 9d67b68b-96e7-461a-b3ca-262cea084ce2
+    keyword: When
+    text: a second Booker looks at the same day
+    archived: false
+  - id: 4315581b-d90f-4696-9275-b3bf268324ad
+    keyword: Then
+    text: the 10:00 Slot is not offered to the second Booker for the next five minutes
+    archived: false
+  archived: false
+- id: 4c1b609a-ac6d-404a-a1c2-488eb09d41e6
+  title: Bookings inside the Minimum Notice are refused
+  steps:
+  - id: c992c263-26d8-46cd-8b32-62c1f6c0d583
+    keyword: Given
+    text: an Event Type has a Minimum Notice of 2 hours
+    archived: false
+  - id: 4dc93512-e2a4-4d67-befb-165a6a0e31b3
+    keyword: When
+    text: a Booker tries to book a Slot starting in 1 hour
+    archived: false
+  - id: 4792e7a9-4dfd-45ac-b830-5133bd5f3704
+    keyword: Then
+    text: they are told "The event type cannot be booked at this time. Could you try another time slot?"
+    archived: false
+  archived: false
+- id: 217ca573-8f15-49e0-93d4-64264be34b04
+  title: Requires Confirmation leaves the Booking Unconfirmed
+  steps:
+  - id: 7c5a3529-e1df-4965-9f35-482c4edaa79e
+    keyword: Given
+    text: an Event Type has Requires Confirmation switched on
+    archived: false
+  - id: ecdefedb-4edb-407c-bc77-67d28ffb48d9
+    keyword: When
+    text: a Booker books it
+    archived: false
+  - id: 55a2a7a7-9196-4cc5-8655-d3fcc5998d0f
+    keyword: Then
+    text: the Booking is Pending and appears on the Organizer's Unconfirmed tab
+    archived: false
+  - id: baea0f82-e6cb-46ad-b941-76bebea3f915
+    keyword: And
+    text: the Organizer is emailed to approve it
+    archived: false
+  archived: false
+- id: 4129c61a-d26c-41d3-8a43-75819c883350
+  title: The Organizer confirms an Unconfirmed Booking
+  steps:
+  - id: 3ace9807-8d37-40aa-b004-137c7204ddd0
+    keyword: Given
+    text: a Pending Booking
+    archived: false
+  - id: 6f4c924b-88cd-4d50-9892-93a5bea0dac1
+    keyword: When
+    text: the Organizer confirms it
+    archived: false
+  - id: 4b9cf422-02fa-429a-b85f-22b00444ea42
+    keyword: Then
+    text: it becomes Accepted and the calendar event is created
+    archived: false
+  archived: false
+- id: 6fad90a5-94db-4912-af5b-8d6ed355a2f1
+  title: Booking frequency limits close the day
+  steps:
+  - id: 96788ec8-b327-4392-840d-b1c7f73e98d1
+    keyword: Given
+    text: an Event Type allows 1 booking per day
+    archived: false
+  - id: 8e459599-27eb-4f72-bdb3-b75ee24a4e1b
+    keyword: And
+    text: it already has an accepted Booking on Monday
+    archived: false
+  - id: 3b18d3cf-a38f-46bd-9efa-2dad6ce7235b
+    keyword: When
+    text: a Booker tries to book another time on Monday
+    archived: false
+  - id: 89dce81d-3f5c-4cd3-a580-d9db474c4ab2
+    keyword: Then
+    text: they are told "Booking Limit for this event type has been reached"
+    archived: false
+  archived: false
+- id: 54025af1-274c-48d0-922d-41dbd1aa4fdf
+  title: Two Bookers cannot take the same time
+  steps:
+  - id: 74720946-a20f-48d3-9c47-0573af13a723
+    keyword: Given
+    text: a Booker has just booked Monday at 10:00
+    archived: false
+  - id: 798de11e-f911-43f0-b654-359c2d52f6fb
+    keyword: When
+    text: a second Booker submits a booking for Monday at 10:00
+    archived: false
+  - id: 9e07ba68-6cd3-438b-9b06-3d3cf03c91e3
+    keyword: Then
+    text: the second booking is refused as a conflict
+    archived: false
+  archived: false
+archived: false

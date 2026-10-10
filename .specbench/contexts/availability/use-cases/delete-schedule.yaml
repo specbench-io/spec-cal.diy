@@ -1,0 +1,50 @@
+spec-format: 1
+kind: use-case
+id: 01a1259d-7cf5-756d-80f4-9c008f850be5
+revision: 8
+name: Delete Schedule
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: viewer.availability.schedule.delete.
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a1259d-7cf5-796e-b01e-9b6f88d500f3
+  name: Schedule Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+steps:
+- id: 01a1259d-7cf5-7d7d-9d4d-f7a19caa8a1e
+  text: "If the Schedule is not the Organizer's, refuse: {{outcome:Unauthorized}}"
+  indent: 0
+- id: 01a1259d-7cf5-7d22-a3d0-26a99ec645c4
+  text: 'If it is the Default Schedule and it is the only one, refuse: {{outcome:Last Schedule}}'
+  indent: 0
+- id: 01a1259d-7cf5-7890-bb7f-2ef5c5c9d356
+  text: If it is the Default Schedule, make another of the Organizer's Schedules the default
+  indent: 0
+- id: 01a1259d-7cf5-75e4-bf0d-b6b9e7e098a0
+  text: 'Delete the Schedule; Event Types that used it fall back to the default: {{outcome:Schedule Deleted}}'
+  indent: 0
+outcomes:
+- id: 01a1259d-7cf5-7d83-a78d-727df60419a6
+  name: Schedule Deleted
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a1259d-7cf5-7c04-8ab1-eae2d7b71fb9
+  name: Unauthorized
+  success: false
+  code: 401
+  message: 
+  returns: 
+- id: 01a1259d-7cf5-7913-85ab-039af9f99f6a
+  name: Last Schedule
+  success: false
+  code: 400
+  message: You are required to have at least one schedule
+  returns: 
+archived: false

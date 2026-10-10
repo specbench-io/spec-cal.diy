@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a0f445-5230-755f-8e07-4fd38f5c9db0
+revision: 3
+name: Slot
+definition: A start time offered to the Booker, calculated from a Schedule minus busy times.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+archived: false

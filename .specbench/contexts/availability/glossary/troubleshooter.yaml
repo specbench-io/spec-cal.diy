@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a1259c-42b6-70a3-8fe4-ba67b8a056ba
+revision: 3
+name: Troubleshooter
+definition: A view that lays busy times over an Organizer's availability so they can see why a Slot is missing.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+archived: false

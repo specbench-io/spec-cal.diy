@@ -1,0 +1,20 @@
+spec-format: 1
+kind: event-handler
+id: 01a125a5-6ba3-7c8a-b40b-eae8a53ca78c
+revision: 5
+name: Deliver Booking Created Webhooks
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: handleWebhookTrigger. In the code Booking calls this directly and waits for it, rather than publishing an event.
+trigger:
+  integration-event: Booking/Booking Created
+steps:
+- id: 01a125c4-bd9b-7c1f-b7fc-0be3ed0ffa7d
+  text: Find the active Webhooks listening for Booking Created that belong to the Organizer ({{field:Organizer Email}}), the Event Type ({{field:Event Type Id}}), or the platform
+  indent: 0
+- id: 01a125c4-bd9b-73ed-922e-4d7dd663b008
+  text: For each, POST the Webhook Payload for {{field:Booking Uid}} signed with its secret, using its payload template if it has one - or, when TASKER_ENABLE_WEBHOOKS is on, queue a sendWebhook Task instead
+  indent: 0
+- id: 01a125a5-6ba5-753a-9a37-1004686b726f
+  text: Errors are logged and never stop the Booking. There is no retry
+  indent: 0
+archived: false

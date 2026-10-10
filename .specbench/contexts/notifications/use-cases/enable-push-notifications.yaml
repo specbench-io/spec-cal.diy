@@ -1,0 +1,38 @@
+spec-format: 1
+kind: use-case
+id: 01a125a5-6d55-7a5d-bfda-3ed4b7d5e354
+revision: 7
+name: Enable Push Notifications
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: Settings, My account, Push notifications.
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a5-6d55-73bb-af9b-bcd716df5f53
+  name: Subscription
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a5-6d55-7d66-8411-ed67495698e9
+  text: 'If {{input:Subscription}} is not a valid browser push subscription, refuse: {{outcome:Invalid Subscription}}'
+  indent: 0
+- id: 01a125a5-6d55-78dd-b34b-ef945736aac4
+  text: 'Save it (replacing any existing one) and send a test notification: {{outcome:Enabled}}'
+  indent: 0
+outcomes:
+- id: 01a125a5-6d55-75bc-be36-9e7ebc346e3f
+  name: Enabled
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a125a5-6d55-7107-a0e1-76353f134e3b
+  name: Invalid Subscription
+  success: false
+  code: 400
+  message: 
+  returns: 
+archived: false

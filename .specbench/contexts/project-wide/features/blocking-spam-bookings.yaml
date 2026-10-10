@@ -1,0 +1,133 @@
+spec-format: 1
+kind: feature
+id: 01a12597-f919-7a75-80c7-08575fe5b221
+revision: 34
+title: Blocking spam bookings
+intent: As an Organizer, I want bookings from blocked emails and domains turned away quietly, so that spammers can't fill my calendar or learn they were blocked.
+description: "Covers the Global Watchlist check in Create Booking, reporting a Booking, and the Admin's review of reports. Use Cases: Create Booking, Report Booking, Add To Watchlist, Dismiss Report."
+scenarios:
+- id: 1c20637a-e4eb-48cb-bf1a-1c60df29ecb6
+  title: A blocked email gets a Decoy Booking
+  steps:
+  - id: 379993b6-32d7-4823-904b-d3080fd027b8
+    keyword: Given
+    text: '"spam@example.com" is in the Global Watchlist with the Block action'
+    archived: false
+  - id: 30a2db15-1577-4f7a-885e-e421bf646718
+    keyword: When
+    text: a Booker books an Event Type with the email "spam@example.com"
+    archived: false
+  - id: 96d80172-a223-45b4-b59b-532696a9c0ff
+    keyword: Then
+    text: the Booker sees what looks like a confirmed Booking
+    archived: false
+  - id: e36b2e5f-5853-4489-b96a-000c26bb7f62
+    keyword: And
+    text: no Booking is saved and the Organizer is not told
+    archived: false
+  archived: false
+- id: f8af2166-8b24-44b7-bba7-aa2e6ddc4554
+  title: A blocked wildcard domain covers its subdomains
+  steps:
+  - id: 36b118b9-b589-460b-bb99-581b2a910cfb
+    keyword: Given
+    text: '"*.example.com" is a Domain entry in the Global Watchlist'
+    archived: false
+  - id: 5862bb6e-9a2d-4cb7-8d5b-7d001053ed8f
+    keyword: When
+    text: a Booker books with the email "someone@mail.example.com"
+    archived: false
+  - id: 04123bbe-234a-49fa-b46d-11771d5faac2
+    keyword: Then
+    text: the Booker is shown a Decoy Booking
+    archived: false
+  archived: false
+- id: 988c79ab-42b1-41b5-9984-9cb6a0ebf125
+  title: A plain domain entry only matches that exact domain
+  steps:
+  - id: 8eacf60e-c945-4bbc-83ad-beb5125c31b3
+    keyword: Given
+    text: '"example.com" is a Domain entry in the Global Watchlist'
+    archived: false
+  - id: cd360428-873b-40be-a6a7-b923f04daeda
+    keyword: When
+    text: a Booker books with the email "someone@mail.example.com"
+    archived: false
+  - id: ddd7d594-c5bd-4b1f-b64d-9cdc8f762813
+    keyword: Then
+    text: the booking goes ahead as normal
+    archived: false
+  archived: false
+- id: f1652d50-cdba-4a77-9249-906ef5ef3f6d
+  title: The spam check fails open
+  steps:
+  - id: edd0cbaf-4742-466c-8827-51c8e0a2f3d5
+    keyword: Given
+    text: the Global Watchlist cannot be read
+    archived: false
+  - id: d273a405-8878-42c2-986c-c5fc8b4def5e
+    keyword: When
+    text: a Booker books an Event Type
+    archived: false
+  - id: 2c85183b-c7ba-4eb9-99e5-e187285dc681
+    keyword: Then
+    text: the email is treated as not blocked and the booking goes ahead
+    archived: false
+  archived: false
+- id: d6c41dd4-cfd5-4f85-85c7-999140684e55
+  title: Reporting an upcoming Booking cancels it
+  steps:
+  - id: e54dfe56-6cc3-499f-abfb-e7c6a7b01067
+    keyword: Given
+    text: an Organizer has an upcoming accepted Booking
+    archived: false
+  - id: dd690887-e745-4fb4-aad1-c0f206829208
+    keyword: When
+    text: the Organizer reports the Booking as "Spam or unwanted booking"
+    archived: false
+  - id: 2b951032-28f2-4371-8e14-9a473d25c867
+    keyword: Then
+    text: a Booking Report is saved for the booker's email
+    archived: false
+  - id: a9ef0960-6f07-4e84-aff3-3d26bc2e9c8c
+    keyword: And
+    text: the Booking is cancelled
+    archived: false
+  archived: false
+- id: a7d4e444-3fb6-4000-b154-6dfe15a6f74a
+  title: A Booking can only be reported once
+  steps:
+  - id: c1aac826-1ec4-4f95-a5ec-044c7c04e3e4
+    keyword: Given
+    text: a Booking has already been reported
+    archived: false
+  - id: 289a96cd-a37f-4268-9e96-c77d5b2a4ab6
+    keyword: When
+    text: the Organizer reports it again
+    archived: false
+  - id: 3e6a9707-0cb3-4a80-a64d-7287e73558ed
+    keyword: Then
+    text: they are told "This booking has already been reported"
+    archived: false
+  archived: false
+- id: 0e641a93-e9c9-4724-98ab-e9738d0ff651
+  title: The Admin blocks a reported email for everyone
+  steps:
+  - id: ac477b20-baf6-4b59-994c-55b33b3d72e9
+    keyword: Given
+    text: there are Booking Reports from "spam@example.com" awaiting the Admin's review
+    archived: false
+  - id: b6ba1709-606b-4090-893b-85378969caaa
+    keyword: When
+    text: the Admin adds the email to the Global Watchlist
+    archived: false
+  - id: 7e30e428-7ed4-4432-b060-7086233a2c9d
+    keyword: Then
+    text: '"spam@example.com" is blocked for every Organizer'
+    archived: false
+  - id: 37445b4b-f857-4290-9e0c-de5ffc7f795e
+    keyword: And
+    text: those reports are marked Blocked
+    archived: false
+  archived: false
+archived: false

@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a1259e-ce43-76fc-984f-eda7055ffe5a
+revision: 3
+name: Recurring Event
+definition: An Event Type the Booker books as a series of meetings.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+archived: false

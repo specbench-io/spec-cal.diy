@@ -1,0 +1,22 @@
+spec-format: 1
+kind: enum
+id: 01a12596-161b-74fc-bbe1-b8af8c40f833
+revision: 5
+name: System Report Status
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+summary: Where a Booking Report stands with the Admin's Global Watchlist review.
+description: 
+cases:
+- id: 01a12596-161b-7f5c-9b43-652fd4938120
+  name: Pending
+  description: Not yet reviewed by the Admin.
+  archived: false
+- id: 01a12596-161b-78cf-81a4-b5a47938c743
+  name: Blocked
+  description: Added to the Global Watchlist.
+  archived: false
+- id: 01a12596-161b-70f1-94ef-a5f58bfa9d16
+  name: Dismissed
+  description: The Admin dismissed it and won't see it again.
+  archived: false
+archived: false

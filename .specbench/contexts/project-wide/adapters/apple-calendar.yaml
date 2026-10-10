@@ -1,0 +1,17 @@
+spec-format: 1
+kind: adapter
+id: 01a125c0-bf39-72d0-a6c5-5c659847cd7d
+revision: 3
+name: Apple Calendar
+interface: Calendars/Calendar
+description: 
+target:
+  infrastructure: iCloud CalDAV with an app-specific password (packages/app-store/applecalendar)
+methods:
+- implements: Create Event
+  steps:
+  - id: 01a125c0-bf39-76bf-9a1b-f7e910417545
+    text: Write the event as an iCalendar file to the chosen calendar over CalDAV
+    indent: 0
+  note: 
+archived: false

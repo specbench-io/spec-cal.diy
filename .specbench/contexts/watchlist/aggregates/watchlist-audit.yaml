@@ -1,0 +1,47 @@
+spec-format: 1
+kind: aggregate
+id: 01a12596-165c-7bf8-a8b2-cc999636e82a
+revision: 7
+name: Watchlist Audit
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+summary: One recorded change to a Watchlist Entry, kept after the entry is deleted.
+description: 
+properties:
+- id: 01a12596-165c-7ca4-9df3-d6f8156111d2
+  name: Value
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a12596-165c-7493-a7f1-887764a6a716
+  name: Description
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a12596-165c-7a9b-aec6-859243af0de0
+  name: Changed At
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a12596-165c-703b-a204-cc268ff0e681
+  name: Changed By User Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a12596-165c-73e8-9aee-62b66530add2
+  name: Watchlist Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+invariants: []
+domain-events: []
+entities: []
+methods: []
+archived: false

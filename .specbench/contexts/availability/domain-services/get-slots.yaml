@@ -1,0 +1,72 @@
+spec-format: 1
+kind: domain-service
+id: 01a1259c-c1a2-7fc7-9af4-59120f85022e
+revision: 6
+name: Get Slots
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: 
+methods:
+- id: 01a1259c-c1a2-783e-92e4-a20f84b96599
+  name: Get Slots
+  description: Cuts open ranges into bookable start times (slots.ts).
+  inputs:
+  - id: 01a1259c-c1a2-71e3-8dba-a510f52e2d82
+    name: Frequency
+    type:
+      kind: Primitive
+      primitive: Number
+  - id: 01a1259c-c1a2-7d72-be3b-2134e8d66983
+    name: Event Length
+    type:
+      kind: Primitive
+      primitive: Number
+  - id: 01a1259c-c1a2-701b-acf5-fb6772cb9302
+    name: Minimum Booking Notice
+    type:
+      kind: Primitive
+      primitive: Number
+  - id: 01a1259c-c1a2-71f9-9b70-d3b5f3992e81
+    name: Offset Start
+    type:
+      kind: Primitive
+      primitive: Number
+  - id: 01a1269f-58e7-70a5-b658-3304afe64b4d
+    name: Date Ranges
+    type:
+      kind: Collection
+      shape: List
+      element:
+        kind: Ref
+        ref:
+          entity-type: ValueObject
+          entity-id: 01a1259b-eafc-77de-bd76-831eab0551f6
+        ref-name: Date Range
+  steps:
+  - id: 01a1259c-c1a2-77b8-b87a-11c5453f5d51
+    text: Step through each of the {{input:Date Ranges}} every {{input:Frequency}} minutes (the slot interval, else the duration, else the length), starting no earlier than now plus {{input:Minimum Booking Notice}}
+    indent: 0
+  - id: 01a1259c-c1a2-71e0-86c7-9347ee7004e0
+    text: Line starts up on the largest of 60, 30, 20, 15, 10 or 5 minutes that divides the frequency, in the Booker's time zone, then add {{input:Offset Start}}
+    indent: 0
+  - id: 01a1259c-c1a2-79f3-b963-70247466a701
+    text: Keep a start only if the whole {{input:Event Length}} fits before the range ends
+    indent: 0
+  - id: 01a1259c-c1a2-7993-ad0a-39904d54b368
+    text: 'On Out Of Office or Holiday days keep the Slot but mark it away, with the reason, emoji and any public note: {{outcome:Slots}}'
+    indent: 0
+  outcomes:
+  - id: 01a1259c-c1a2-7c41-a825-ee41a28ce20d
+    name: Slots
+    success: true
+    message: 
+    returns:
+      kind: Collection
+      shape: List
+      element:
+        kind: Ref
+        ref:
+          entity-type: ValueObject
+          entity-id: 01a1259b-eb39-7517-a2ff-5728ff8cdc04
+        ref-name: Slot
+  archived: false
+archived: false

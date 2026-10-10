@@ -1,0 +1,23 @@
+spec-format: 1
+kind: use-case
+id: 01a1259d-7edd-7b19-a910-755ae2608ffc
+revision: 5
+name: List Schedules
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: viewer.availability.list (/availability). Quietly sets the Default Schedule if none is set.
+use-case-kind: Query
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs: []
+steps:
+- id: 01a1259d-7edd-7fb3-85a3-9ea479871be9
+  text: "Return the Organizer's Schedules in creation order, marking the default: {{outcome:Listed}}"
+  indent: 0
+outcomes:
+- id: 01a1259d-7edd-742b-a90f-1bd62b31b6d3
+  name: Listed
+  success: true
+  code: 
+  message: 
+  returns: 
+archived: false

@@ -1,0 +1,215 @@
+spec-format: 1
+kind: aggregate
+id: 01a125a6-32f0-79da-8acf-987c19d50041
+revision: 33
+name: User
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+summary: An account on the instance - an Organizer, or an Admin.
+description: 'Organization, SMS and platform columns are left out. A database extension hides locked users from almost every lookup unless the query asks about locked explicitly. UI labels: Name is Full name; Bio is About; Allow Dynamic Booking is Dynamic group links; Requires Booker Email Verification is Prevent impersonation on bookings.'
+properties:
+- id: 01a125a6-32f0-7009-9025-a67a7669ef57
+  name: Uuid
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a6-32f0-7f8f-b43e-d160b20976f5
+  name: Username
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a6-32f0-7ddd-bc65-e2085f507a9b
+  name: Name
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a6-32f0-72cd-b340-d73ddad5d39c
+  name: Email
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a6-32f0-7659-84a4-686cc209808a
+  name: Email Verified
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Date
+  archived: false
+- id: 01a125a6-32f0-7819-b865-1d4ba638c6b1
+  name: Bio
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a6-32f0-7f06-a7e4-f2105c6c24a3
+  name: Avatar Url
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a6-32f0-7a2d-a94c-b740afdae33d
+  name: Time Zone
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a6-32f0-7b71-b92a-11709bca8c9f
+  name: Week Start
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a6-32f0-7d3c-8014-221deae51794
+  name: Locale
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a6-32f0-79e0-b2a1-e2325dbf5ff1
+  name: Time Format
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Number
+  archived: false
+- id: 01a125a6-32f0-7e8c-a997-4be3e6629f6b
+  name: Theme
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a6-32f0-76e6-a704-67df93a413fe
+  name: Brand Color
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a6-32f0-7a3b-9808-098029420128
+  name: Default Schedule Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a125a6-32f0-7c5c-92c9-f83e4b0df0c7
+  name: Completed Onboarding
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a125a6-32f0-7bd7-a9f9-597cc21deab7
+  name: Two Factor Enabled
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a125a6-32f0-7336-bd7b-b74ad80201e3
+  name: Identity Provider Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a6-32f0-70d1-9282-2f5bcb46a905
+  name: Allow Dynamic Booking
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+- id: 01a125a6-32f0-7e34-8e50-0b28ee2c44e3
+  name: Allow SEO Indexing
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+- id: 01a125a6-32f0-7ae0-9b47-3f205cdb887c
+  name: Requires Booker Email Verification
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+- id: 01a125a6-32f0-7f08-9ccd-6ee584a06c35
+  name: Hide Branding
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a125a6-32f0-74fa-b668-c7a806c11964
+  name: Locked
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a125a6-32f0-7b89-8ad9-7066a7b025f5
+  name: Last Active At
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Date
+  archived: false
+- id: 01a125a6-32f0-7120-b9ba-4a680b0f578e
+  name: Created Date
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a12661-34ba-7261-900e-205ce9ac3808
+  name: Identity Provider
+  type:
+    kind: Ref
+    ref:
+      entity-type: Enum
+      entity-id: 01a125a6-321c-7db8-a013-bc69e51387aa
+    ref-name: Identity Provider
+  archived: false
+- id: 01a12661-34ba-7cf3-a89c-886e91325e22
+  name: Role
+  type:
+    kind: Ref
+    ref:
+      entity-type: Enum
+      entity-id: 01a125a6-3244-74a4-bc8b-c7ca46ed8a73
+    ref-name: User Permission Role
+  archived: false
+invariants:
+- id: 01a125a6-32f0-75a6-981b-3d5f9943a29f
+  text: Email is unique, and username is unique.
+  archived: false
+- id: 01a125a6-32f0-7041-8ad7-1e475a4840c9
+  text: The password hash is kept apart from the user record (bcrypt, cost 12).
+  archived: false
+domain-events: []
+entities:
+- id: 01a125a6-32f0-7bb6-8cf2-694f78b894ec
+  name: Secondary Email
+  summary: An extra address on the account, verified by email.
+  properties:
+  - id: 01a125a6-32f0-70c3-ba63-7c029076bd37
+    name: Email
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a125a6-32f0-7c9f-a9b5-35d74f55356d
+    name: Email Verified
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Date
+  invariants:
+  - The address is unique across all users.
+  archived: false
+methods: []
+archived: false

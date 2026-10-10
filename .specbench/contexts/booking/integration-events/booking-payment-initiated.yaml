@@ -1,0 +1,27 @@
+spec-format: 1
+kind: integration-event
+id: 01a125a0-ea94-71c4-a89d-37eebb71b17d
+revision: 3
+name: Booking Payment Initiated
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: Payment was started for a Booking of a paid Event Type (webhook BOOKING_PAYMENT_INITIATED). The status sent says ACCEPTED even though the Booking is Pending.
+fields:
+- id: 01a125a0-ea94-7ae4-bd02-00e3c00c187a
+  name: Booking Uid
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a125a0-ea94-7712-aa1f-212032ae467c
+  name: Payment Id
+  description: 
+  type:
+    kind: Primitive
+    primitive: Id
+- id: 01a125a0-ea94-7293-ac21-df5c5b862858
+  name: Status
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+archived: false

@@ -1,0 +1,15 @@
+spec-format: 1
+kind: actor
+id: 01a0f444-a88b-7305-b695-d9ce82d7f6cc
+revision: 5
+name: Attendee
+summary: A person taking part in a Booking, who can cancel or reschedule it from the booking link without an account.
+description: The Booker becomes an Attendee once the Booking exists. Guests are Attendees too.
+responsibilities:
+- Cancels or reschedules a Booking from the booking link
+- Adds Guests
+- Joins the meeting
+needs:
+- Change plans without contacting the Organizer
+pain-points: []
+archived: false

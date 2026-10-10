@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a125a7-3d71-779d-bd03-7aec30eed97d
+revision: 3
+name: OAuth Client
+definition: A third-party app that may act for users who allow it, once the Admin approves it.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+archived: false

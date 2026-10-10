@@ -1,0 +1,19 @@
+spec-format: 1
+kind: scheduled-job
+id: 01a125a5-6d7d-7442-91df-c42fdbb175d1
+revision: 3
+name: Process Task Queue
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: 
+schedule: every minute (/api/tasks/cron)
+steps:
+- id: 01a125a5-6d7d-752a-a451-4b881574e0f9
+  text: Take up to 1000 Tasks that are due, not yet succeeded and under their maximum attempts
+  indent: 0
+- id: 01a125a5-6d7d-7d0e-8c6b-1e41a00f2eb0
+  text: Run each - send a webhook, check for Cal Video no-shows, or send the awaiting payment email
+  indent: 0
+- id: 01a125a5-6d7d-75f1-a053-c127296297b9
+  text: Mark successes; on failure record the error and try again on a later run
+  indent: 0
+archived: false

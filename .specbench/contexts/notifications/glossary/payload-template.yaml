@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a125a4-cf23-784d-8412-01ff793a3ba5
+revision: 3
+name: Payload Template
+definition: A custom message body for a Webhook, filled in with the event's details, used instead of the default.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+archived: false

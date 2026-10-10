@@ -1,0 +1,22 @@
+spec-format: 1
+kind: enum
+id: 01a125a2-d597-77bf-8a50-31478407fe75
+revision: 5
+name: Calendar Cache Event Status
+bounded-context-id: 01a0f44a-2a06-7125-8fe2-659328d04ce1
+summary: The provider's status for a cached event.
+description: 
+cases:
+- id: 01a125a2-d597-796f-8973-d0948b26972c
+  name: Confirmed
+  description: 
+  archived: false
+- id: 01a125a2-d597-7d6c-b9c7-db3cccab0bc2
+  name: Tentative
+  description: 
+  archived: false
+- id: 01a125a2-d597-7fe9-a6a1-1cf322081904
+  name: Cancelled
+  description: 
+  archived: false
+archived: false

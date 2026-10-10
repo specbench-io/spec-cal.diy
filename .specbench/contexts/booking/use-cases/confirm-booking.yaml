@@ -1,0 +1,81 @@
+spec-format: 1
+kind: use-case
+id: 01a125a2-2ee8-7130-ac5c-da575bf990f6
+revision: 12
+name: Confirm Booking
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: viewer.bookings.confirm with confirmed set (Confirm and Confirm all on the Unconfirmed tab).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a2-2ee8-767f-a192-d85d406515e5
+  name: Booking Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a125a2-2ee8-7d52-9a0c-6cb6b43074a7
+  name: Recurring Event Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a2-2ee8-79d3-82f8-6a73261bdd94
+  text: 'If the Booking has no organizer, refuse: {{outcome:No Organizer}}'
+  indent: 0
+- id: 01a125a2-2ee8-7a1d-aeba-89f197f7ddd2
+  text: 'If the Organizer has no access to it, refuse: {{outcome:Not Authorized}}'
+  indent: 0
+- id: 01a125a2-2ee8-77a7-b815-af051567c0f2
+  text: 'If it is already accepted, refuse: {{outcome:Already Confirmed}}. Rejected and cancelled Bookings are not stopped'
+  indent: 0
+- id: 01a125a2-2ee8-7ca7-8502-33d4e69caa09
+  text: 'If it has payments and is not paid, just mark it Accepted - no calendar events, emails or webhooks: {{outcome:Confirmed}}'
+  indent: 0
+- id: 01a125a2-2ee8-7142-b1b2-65aadba7c3a1
+  text: 'If {{input:Recurring Event Id}} does not belong to the Booking, refuse: {{outcome:Wrong Series}}'
+  indent: 0
+- id: 01a125a2-2ee8-766f-9648-a2daa4bd212d
+  text: Create the calendar events and video meeting with {{method:Calendars/Event Manager.Create}} and send the scheduled emails with {{method:Notifications/Booking Email Sms Handler.Send Confirmed}}
+  indent: 0
+- id: 01a125a2-2ee8-723e-8cf1-d916c65f6ba7
+  text: Mark the Booking (or every pending Booking in the series, all with the same references) Accepted
+  indent: 0
+- id: 01a125a2-2ee8-7245-961b-4316d4a1e1ca
+  text: 'Store the meeting started and ended triggers, schedule the Cal Video no-show checks and publish {{integration-event:Booking/Booking Created}}: {{outcome:Confirmed}}'
+  indent: 0
+outcomes:
+- id: 01a125a2-2ee8-700b-9579-bf0411926a0a
+  name: Confirmed
+  success: true
+  code: 
+  message: Booking confirmation succeeded
+  returns: 
+- id: 01a125a2-2ee8-7578-84c8-aeae48cba20c
+  name: No Organizer
+  success: false
+  code: 400
+  message: Booking must have an organizer
+  returns: 
+- id: 01a125a2-2ee8-7a42-9a32-3d89008a73cd
+  name: Not Authorized
+  success: false
+  code: 401
+  message: User is not authorized to confirm this booking
+  returns: 
+- id: 01a125a2-2ee8-7471-b153-5561f1021bf4
+  name: Already Confirmed
+  success: false
+  code: 400
+  message: Booking already confirmed
+  returns: 
+- id: 01a125a2-2ee8-75fc-a37a-ce3420ef414e
+  name: Wrong Series
+  success: false
+  code: 401
+  message: Recurring event id doesn't belong to the booking
+  returns: 
+archived: false

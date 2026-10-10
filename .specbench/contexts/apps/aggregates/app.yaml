@@ -1,0 +1,44 @@
+spec-format: 1
+kind: aggregate
+id: 01a125a3-d636-7bec-b1d3-61e2d38ee12d
+revision: 7
+name: App
+bounded-context-id: 01a0f44a-2a22-7488-ae05-7c57eda180ac
+summary: An App Store entry the Admin can enable, identified by its slug.
+description: 
+properties:
+- id: 01a125a3-d636-7f2c-9470-a92c132a48be
+  name: Slug
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a3-d636-7c59-a2f8-2484e2a3ab30
+  name: Dir Name
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a3-d636-7b73-a544-1e867d3a5229
+  name: Enabled
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a12661-3598-7d81-8253-2acb418d4061
+  name: Categories
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Primitive
+      primitive: Text
+  archived: false
+invariants:
+- id: 01a125a3-d636-7ab4-b1ec-caa651aac82d
+  text: Only enabled apps, or apps marked global, are listed.
+  archived: false
+domain-events: []
+entities: []
+methods: []
+archived: false

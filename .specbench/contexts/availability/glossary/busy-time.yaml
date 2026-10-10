@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a1259c-42b1-70fc-8310-51043f1fc774
+revision: 3
+name: Busy Time
+definition: Time an Organizer cannot be booked because of a Booking and its buffers, an event in a connected calendar, or a reached booking limit.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+archived: false

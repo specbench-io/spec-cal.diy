@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a0f445-5223-7862-97fb-ffc0156233d8
+revision: 3
+name: Booking
+definition: An agreed meeting between an Organizer and one or more Attendees at a set time for one Event Type.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+archived: false

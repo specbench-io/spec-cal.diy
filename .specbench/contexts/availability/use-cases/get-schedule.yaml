@@ -1,0 +1,65 @@
+spec-format: 1
+kind: use-case
+id: 01a1259d-7e86-7a3e-908f-1e78d82e7d17
+revision: 12
+name: Get Schedule
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: viewer.slots.getSchedule - the Slots shown on the booking page.
+use-case-kind: Query
+roles:
+- 01a0f442-adc1-7f74-9a7a-6b7f3cc9be7d
+inputs:
+- id: 01a1259d-7e86-7937-a2c3-ca8f38098032
+  name: Event Type Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a1259d-7e86-768a-9b82-96f04b9b0a46
+  name: Start Time
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a1259d-7e86-7f7c-8e16-9f618b3e2be0
+  name: End Time
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a1259d-7e86-70cf-a7d9-ebe87eca9462
+  name: Time Zone
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+steps:
+- id: 01a1259d-7e87-7dff-82d1-515a53bcd2b3
+  text: 'If {{input:End Time}} is not after {{input:Start Time}}, refuse: {{outcome:Invalid Range}}'
+  indent: 0
+- id: 01a1259d-7e87-71ea-9fe8-56275c65828c
+  text: 'Work out the Slots with {{method:Availability/Available Slots Service.Get Available Slots}}: {{outcome:Slots}}'
+  indent: 0
+- id: 01a1259d-7e87-7126-811a-ccd63d5979b2
+  text: 'If {{method-outcome:Availability/Available Slots Service.Get Available Slots.Event Type Not Found}}: {{outcome:Event Type Not Found}}'
+  indent: 1
+outcomes:
+- id: 01a1259d-7e87-739c-9716-d8ed77af0687
+  name: Slots
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a1259d-7e87-7994-8df7-bcf9d307e56e
+  name: Invalid Range
+  success: false
+  code: 400
+  message: endTime must be after startTime
+  returns: 
+- id: 01a1259d-7e87-7664-b52b-2841d48079e7
+  name: Event Type Not Found
+  success: false
+  code: 404
+  message: 
+  returns: 
+archived: false

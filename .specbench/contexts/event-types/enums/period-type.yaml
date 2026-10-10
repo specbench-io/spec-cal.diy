@@ -1,0 +1,26 @@
+spec-format: 1
+kind: enum
+id: 01a12591-8b9b-7f4f-a12a-36e52baf922b
+revision: 6
+name: Period Type
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+summary: How far into the future an Event Type can be booked (Limit future bookings).
+description: 
+cases:
+- id: 01a12591-8b9b-7f67-b96d-3246b0cc4c10
+  name: Unlimited
+  description: Indefinitely into the future.
+  archived: false
+- id: 01a12591-8b9b-73de-b8eb-8d829653a972
+  name: Rolling
+  description: A number of business or calendar days into the future.
+  archived: false
+- id: 01a12591-8b9b-785d-a51d-cfb79551a343
+  name: Rolling Window
+  description: Always a number of days available, moving forward each day.
+  archived: false
+- id: 01a12591-8b9b-776c-8228-516fa6d01667
+  name: Range
+  description: Within a date range.
+  archived: false
+archived: false

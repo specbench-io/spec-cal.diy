@@ -1,0 +1,66 @@
+spec-format: 1
+kind: aggregate
+id: 01a125a6-33b2-7062-9318-658779052759
+revision: 9
+name: Feature Flag
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+summary: An instance-wide switch the Admin turns on or off (Feature).
+description: 
+properties:
+- id: 01a125a6-33b2-70b2-9da3-002669fa087b
+  name: Slug
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a6-33b2-7593-ab1e-1f3422b9a83e
+  name: Enabled
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a125a6-33b2-778a-929f-63bba0c64bb0
+  name: Description
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a6-33b2-73fb-ad22-613c2f83776d
+  name: Updated By
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a12661-3509-713b-80a0-d08584511eb7
+  name: Type
+  type:
+    kind: Ref
+    nullable: true
+    ref:
+      entity-type: Enum
+      entity-id: 01a125a6-3268-7aed-b6da-d6a7e5a42c85
+    ref-name: Feature Type
+  archived: false
+invariants: []
+domain-events: []
+entities:
+- id: 01a125a6-33b2-7b04-b483-de6bba1bbd56
+  name: User Feature
+  summary: A per-user override - on, off, or no row to follow the instance setting.
+  properties:
+  - id: 01a125a6-33b2-7fb2-a1f0-14ae00f32840
+    name: User Id
+    type:
+      kind: Primitive
+      primitive: Id
+  - id: 01a125a6-33b2-7ad1-9885-0507e3c56f93
+    name: Enabled
+    type:
+      kind: Primitive
+      primitive: Bool
+  invariants: []
+  archived: false
+methods: []
+archived: false

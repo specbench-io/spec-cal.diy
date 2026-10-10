@@ -1,0 +1,11 @@
+spec-format: 1
+kind: term
+id: 01a1259c-429a-71bf-ab1e-d6f38602fc61
+revision: 4
+name: Out Of Office
+definition: Days when an Organizer is away. Their Slots on those days are still shown but marked away, with the reason and, if they choose, a public note.
+aka:
+- OOO
+avoid: []
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+archived: false

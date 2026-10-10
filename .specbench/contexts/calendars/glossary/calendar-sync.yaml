@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a125a2-d636-7e7a-9419-9e3ca50ad5d5
+revision: 3
+name: Calendar Sync
+definition: Mirroring cancels and moves made in the Organizer's own calendar back onto their Bookings. Switched on by a feature flag.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-2a06-7125-8fe2-659328d04ce1
+archived: false

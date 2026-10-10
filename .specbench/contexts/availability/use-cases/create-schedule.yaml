@@ -1,0 +1,51 @@
+spec-format: 1
+kind: use-case
+id: 01a1259d-7c92-70e5-8919-11b75b1d8f76
+revision: 8
+name: Create Schedule
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: viewer.availability.schedule.create (New button on /availability).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a1259d-7c92-7f77-8610-bb05fcb48231
+  name: Name
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a1259d-7c92-7bdb-ac06-9406f6d272e1
+  name: Event Type Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+steps:
+- id: 01a1259d-7c92-7db4-9495-cc754373339c
+  text: "If {{input:Event Type Id}} is given and the Event Type is not the Organizer's, refuse: {{outcome:Unauthorized}}"
+  indent: 0
+- id: 01a1259d-7c92-7934-a1d5-ccf8c2fabd6c
+  text: Create the Schedule called {{input:Name}} in the Organizer's time zone, with the hours sent or Monday to Friday 9 to 5
+  indent: 0
+- id: 01a1259d-7c92-728a-8ff8-6397f99a0645
+  text: Use it for the Event Type if one was given
+  indent: 0
+- id: 01a1259d-7c92-7eeb-97fb-5659589440bd
+  text: 'If the Organizer has no Default Schedule yet, make this the default: {{outcome:Schedule Created}}'
+  indent: 0
+outcomes:
+- id: 01a1259d-7c92-73f3-ad22-691122f936a7
+  name: Schedule Created
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a1259d-7c92-79b9-8c0d-49dbf647166a
+  name: Unauthorized
+  success: false
+  code: 401
+  message: You are not able to create this schedule
+  returns: 
+archived: false

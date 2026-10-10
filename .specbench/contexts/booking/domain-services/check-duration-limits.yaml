@@ -1,0 +1,51 @@
+spec-format: 1
+kind: domain-service
+id: 01a12591-f16d-7dc9-9cf2-e9b73398cfd9
+revision: 5
+name: Check Duration Limits
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: 
+methods:
+- id: 01a12591-f16d-71a7-a73a-2c73adc62626
+  name: Check Duration Limits
+  description: Limit total booking duration.
+  inputs:
+  - id: 01a12591-f16d-70d9-8891-ef829675b131
+    name: Event Start Date
+    type:
+      kind: Primitive
+      primitive: Date
+  - id: 01a12591-f16d-73a8-826c-6945d05d0363
+    name: Event Id
+    type:
+      kind: Primitive
+      primitive: Id
+  - id: 01a12591-f16d-7b37-a9d8-76803a36ea3d
+    name: Reschedule Uid
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Text
+  steps:
+  - id: 01a12591-f16d-7e9c-924b-1d2fa7d35ff0
+    text: For each period with a limit (day, week, month, year), add up the minutes of the accepted Bookings of {{input:Event Id}} in the same period as {{input:Event Start Date}}, in UTC, leaving out the Booking being rescheduled ({{input:Reschedule Uid}})
+    indent: 0
+  - id: 01a12591-f16d-70f7-8de0-fe92b31db12f
+    text: 'If any total has reached its limit, refuse: {{outcome:Duration Limit Reached}}'
+    indent: 0
+  - id: 01a12591-f16d-73c2-a6f4-7d159510470f
+    text: 'Otherwise: {{outcome:Within Limits}}'
+    indent: 0
+  outcomes:
+  - id: 01a12591-f16d-755b-940d-929178643677
+    name: Within Limits
+    success: true
+    message: 
+    returns: 
+  - id: 01a12591-f16d-7911-8f63-5e99d632f484
+    name: Duration Limit Reached
+    success: false
+    message: Duration Limit for this event type has been reached
+    returns: 
+  archived: false
+archived: false

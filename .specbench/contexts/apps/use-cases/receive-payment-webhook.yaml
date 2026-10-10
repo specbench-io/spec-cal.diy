@@ -1,0 +1,46 @@
+spec-format: 1
+kind: use-case
+id: 01a125a4-41e6-769e-84ce-b8cf18c519d0
+revision: 6
+name: Receive Payment Webhook
+bounded-context-id: 01a0f44a-2a22-7488-ae05-7c57eda180ac
+description: The payment apps' webhooks (PayPal, Alby, BTCPay, HitPay), which run handlePaymentSuccess. Stripe's returns 404 in cal.diy.
+use-case-kind: Command
+roles: []
+inputs:
+- id: 01a125a4-41e6-7fd4-8532-5bce0056f5d1
+  name: External Id
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a4-41e6-7774-b9d5-4f9aebe85957
+  text: Find the Payment and check the provider's signature with the Organizer's Credential
+  indent: 0
+- id: 01a125a4-41e6-70ce-a6bc-8f382117881b
+  text: Cancel the reminder to finish paying
+  indent: 0
+- id: 01a125a4-41e6-7a44-b31a-3b83e81b50e6
+  text: If the Booking was already accepted, create its calendar events and video meeting
+  indent: 0
+- id: 01a125a4-41e6-775d-9143-3d035a856e2b
+  text: Mark the Payment successful and the Booking paid - and accepted, unless it needs confirming
+  indent: 0
+- id: 01a125a4-41e6-763b-a463-6ca6c0307376
+  text: Publish {{integration-event:Apps/Booking Paid}}
+  indent: 0
+- id: 01a125a4-41e6-78ed-af12-79fe345a22d2
+  text: If it needed no confirmation, confirm it; otherwise send the request emails and tell subscribers it was requested
+  indent: 0
+- id: 01a125a4-41e7-792e-8ede-d36296b893a6
+  text: 'Report success by throwing an HTTP 200 error: {{outcome:Paid}}'
+  indent: 0
+outcomes:
+- id: 01a125a4-41e6-7e2c-89b5-5ecb26f74715
+  name: Paid
+  success: true
+  code: 
+  message: Booking was paid and confirmed.
+  returns: 
+archived: false

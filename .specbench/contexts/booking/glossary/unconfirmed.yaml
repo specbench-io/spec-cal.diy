@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a125a0-8ba0-76d3-85b0-5e31391ec572
+revision: 3
+name: Unconfirmed
+definition: A Booking waiting for the Organizer to confirm it (Pending).
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+archived: false

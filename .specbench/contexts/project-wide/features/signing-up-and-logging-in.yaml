@@ -1,0 +1,245 @@
+spec-format: 1
+kind: feature
+id: 01a125e3-1fe3-7605-986b-399a906f0bb6
+revision: 63
+title: Signing up and logging in
+intent: As a User, I want to create an account and sign in to it securely, so that only I can manage my bookings and availability.
+description: 'Use Cases: Sign Up, Verify Email, Log In, Log In With Google, Forgot Password, Send Password Reset, Reset Password, Enable Two Factor, Lock User Account, Complete Onboarding.'
+scenarios:
+- id: 01a125e3-1fe4-7e82-bcd9-ddca4c2bc964
+  title: Sign up is refused for a weak password or a taken username
+  steps:
+  - id: 01a125e3-1fe4-747e-aeca-541ef219449d
+    keyword: Given
+    text: a User with the username "alex" already exists
+    archived: false
+  - id: 01a125e3-1fe4-7962-8c7b-eddf58853673
+    keyword: And
+    text: a visitor is on the sign up page
+    archived: false
+  - id: 01a125e3-1fe4-7970-9af6-2a7b7f3d2722
+    keyword: When
+    text: they enter the password "abcdefg"
+    archived: false
+  - id: 01a125e3-1fe4-7983-a83b-d5990f876581
+    keyword: Then
+    text: the password hints "Mix of uppercase & lowercase letters" and "Contain at least 1 number" stay unmet
+    archived: false
+  - id: 01a125e3-1fe4-7741-a1fd-c9350451dc25
+    keyword: When
+    text: they change the password to "Abcdef1"
+    archived: false
+  - id: 01a125e3-1fe4-77d4-8157-eae485905227
+    keyword: Then
+    text: all three hints are met, including "Minimum 7 characters long"
+    archived: false
+  - id: 01a125e3-1fe4-78da-a708-3e63a2b52b8f
+    keyword: When
+    text: they sign up with the username "alex", a new email address and that password
+    archived: false
+  - id: 01a125e3-1fe4-7368-8108-1e3604d6ced1
+    keyword: Then
+    text: the sign up page shows "Username or email is already taken"
+    archived: false
+  - id: 01a125e3-1fe4-70ae-9cee-75a6be992438
+    keyword: And
+    text: no new account is created
+    archived: false
+  archived: false
+- id: 01a125e3-1fe4-7564-806a-87598c1f79f7
+  title: Verifying the email address leads into onboarding
+  steps:
+  - id: 01a125e3-1fe4-733b-931b-a464a0b71d07
+    keyword: Given
+    text: email verification is turned on for the instance
+    archived: false
+  - id: 01a125e3-1fe4-7461-948c-0d9daaf68aa9
+    keyword: When
+    text: a visitor signs up
+    archived: false
+  - id: 01a125e3-1fe4-7ef1-9ed7-6006a241a8f3
+    keyword: Then
+    text: they are sent an email with a verification link that works for one day
+    archived: false
+  - id: 01a125e3-1fe4-7ac3-ad41-2be6ea933412
+    keyword: When
+    text: the User opens the verification link
+    archived: false
+  - id: 01a125e3-1fe4-7b41-8cd9-347c0de76ed7
+    keyword: Then
+    text: their email address is marked as verified
+    archived: false
+  - id: 01a125e3-1fe4-753e-9d49-a56915c7ecaf
+    keyword: And
+    text: they are taken to the first onboarding step, "Welcome to Cal.diy!"
+    archived: false
+  - id: 01a125e3-1fe4-7390-83ec-64ccff82ca1a
+    keyword: When
+    text: the User opens a verification link that is more than a day old
+    archived: false
+  - id: 01a125e3-1fe4-75f6-bc4e-30e6ef6e17d2
+    keyword: Then
+    text: they see the message "Token expired"
+    archived: false
+  archived: false
+- id: 01a125e3-1fe4-702e-967c-3345ef317a21
+  title: A wrong password never reveals whether the email is registered
+  steps:
+  - id: 01a125e3-1fe4-78d4-af42-d9947923217e
+    keyword: Given
+    text: a User has an account with a password
+    archived: false
+  - id: 01a125e3-1fe4-7752-a64d-354660102ab5
+    keyword: When
+    text: they log in with their email and a wrong password
+    archived: false
+  - id: 01a125e3-1fe4-725b-8d6c-8fea455af6d4
+    keyword: Then
+    text: they see "Email or password is incorrect."
+    archived: false
+  - id: 01a125e3-1fe4-74d7-b0f7-a2f6bd306509
+    keyword: When
+    text: someone logs in with an email that has no account
+    archived: false
+  - id: 01a125e3-1fe4-77c5-af94-147a6f2453aa
+    keyword: Then
+    text: they see the same message "Email or password is incorrect."
+    archived: false
+  archived: false
+- id: 01a125e3-1fe4-7c26-8ee4-136d17bf2cc8
+  title: Two-factor code is required when Two-Factor Authentication is on
+  steps:
+  - id: 01a125e3-1fe4-7b22-aaa9-2a7072428edc
+    keyword: Given
+    text: a User has turned on Two-Factor Authentication
+    archived: false
+  - id: 01a125e3-1fe4-7f59-b6b9-0a4fadf53498
+    keyword: When
+    text: they log in with the correct email and password
+    archived: false
+  - id: 01a125e3-1fe4-7794-8d24-542df531dbe0
+    keyword: Then
+    text: the login form asks for their "Two-factor code"
+    archived: false
+  - id: 01a125e3-1fe4-73c0-b1c0-d0aa066185a7
+    keyword: When
+    text: they enter a wrong code
+    archived: false
+  - id: 01a125e3-1fe4-7bc1-96a5-60f1a82d53a2
+    keyword: Then
+    text: they see "Two-factor code is incorrect. Please try again."
+    archived: false
+  - id: 01a125e3-1fe4-76eb-88f0-0e96d3405e0d
+    keyword: When
+    text: they enter the current code from their authenticator app
+    archived: false
+  - id: 01a125e3-1fe4-7962-829d-2d11e89e952b
+    keyword: Then
+    text: they are logged in
+    archived: false
+  archived: false
+- id: 01a125e3-1fe4-7773-a2f1-5574d03bee4e
+  title: A locked account cannot log in
+  steps:
+  - id: 01a125e3-1fe4-7145-b750-3047fbf7a6d0
+    keyword: Given
+    text: an Admin has locked a User's account
+    archived: false
+  - id: 01a125e3-1fe4-7311-9f27-d1f0a34bc26c
+    keyword: When
+    text: the User logs in with the correct email and password
+    archived: false
+  - id: 01a125e3-1fe4-7ee4-a20d-15d521300f44
+    keyword: Then
+    text: they see "Email or password is incorrect.", the same as for a wrong password
+    archived: false
+  - id: 01a125e3-1fe4-71fe-a799-b446f53cd863
+    keyword: And
+    text: they are not logged in
+    archived: false
+  - id: 01a125e3-1fe4-74d4-ba1e-361af90fd468
+    keyword: When
+    text: the Admin unlocks the account
+    archived: false
+  - id: 01a125e3-1fe4-7146-80a8-e7a2d2a73007
+    keyword: Then
+    text: the User can log in again
+    archived: false
+  archived: false
+- id: 01a125e3-1fe4-71c5-9cf4-45b1863c4b72
+  title: Password reset links expire
+  steps:
+  - id: 01a125e3-1fe4-7a83-81b1-d4deb6176133
+    keyword: Given
+    text: a User has requested a password reset
+    archived: false
+  - id: 01a125e3-1fe4-7f12-acd2-73a1d7834f9e
+    keyword: Then
+    text: they see "Reset link sent"
+    archived: false
+  - id: 01a125e3-1fe4-7ac1-88c1-336d4c9f58ca
+    keyword: And
+    text: they are emailed a reset link that works for 6 hours
+    archived: false
+  - id: 01a125e3-1fe4-77f8-a188-e09141300135
+    keyword: When
+    text: the User requests another password reset
+    archived: false
+  - id: 01a125e3-1fe4-77c5-b887-8c6edc863603
+    keyword: Then
+    text: the earlier reset link stops working
+    archived: false
+  - id: 01a125e3-1fe4-7ecb-a951-86d3d0af47b0
+    keyword: When
+    text: the User opens an expired reset link
+    archived: false
+  - id: 01a125e3-1fe4-7606-a37d-a913b2d4d1db
+    keyword: Then
+    text: they see "That request is expired."
+    archived: false
+  - id: 01a125e3-1fe4-7729-9f9f-a32110c540b9
+    keyword: When
+    text: the User sets a new password with a valid reset link
+    archived: false
+  - id: 01a125e3-1fe4-7402-ae10-68686071437a
+    keyword: Then
+    text: they see "Password updated!"
+    archived: false
+  - id: 01a125e3-1fe4-720d-9502-a79302c4d862
+    keyword: And
+    text: their email address is marked as verified
+    archived: false
+  - id: 01a125e3-1fe4-7a2c-892d-61af9c34983e
+    keyword: And
+    text: the same link cannot be used again
+    archived: false
+  archived: false
+- id: 01a125e3-1fe4-7ff0-b8c6-f5d2c2bda14c
+  title: Finishing onboarding creates starter event types
+  steps:
+  - id: 01a125e3-1fe4-7841-86cd-cac5eb698ea3
+    keyword: Given
+    text: a User is going through onboarding
+    archived: false
+  - id: 01a125e3-1fe4-77c7-bb36-cfdbbbcb591c
+    keyword: Then
+    text: 'they move through five steps: their settings, connecting a calendar, connecting a video app, setting their availability, and their profile'
+    archived: false
+  - id: 01a125e3-1fe4-7f4d-ad79-3aef1043ecfe
+    keyword: And
+    text: they can skip connecting a calendar with "I'll connect my calendar later"
+    archived: false
+  - id: 01a125e3-1fe4-7293-8477-b371ae01f8ef
+    keyword: When
+    text: the User clicks "Finish setup and get started" and has no event types yet
+    archived: false
+  - id: 01a125e3-1fe4-7e15-9e5b-8488747f6e2c
+    keyword: Then
+    text: 'three event types are created for them: "15 min meeting", "30 min meeting" and a hidden "Secret meeting"'
+    archived: false
+  - id: 01a125e3-1fe4-7dc4-9275-0afec9e893b6
+    keyword: And
+    text: their onboarding is marked as complete
+    archived: false
+  archived: false
+archived: false

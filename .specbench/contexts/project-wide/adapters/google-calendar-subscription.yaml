@@ -1,0 +1,29 @@
+spec-format: 1
+kind: adapter
+id: 01a125c0-cf8a-7b51-8148-a9294b4ef3db
+revision: 5
+name: Google Calendar Subscription
+interface: Calendars/Calendar Subscription Port
+description: 
+target:
+  infrastructure: Google Calendar push channels (packages/features/calendar-subscription/adapters/GoogleCalendarSubscription.adapter.ts)
+methods:
+- implements: Validate
+  steps:
+  - id: 01a125c0-cf8a-702f-b275-fbf1ce9a02bd
+    text: Accept the push only if its channel token matches GOOGLE_WEBHOOK_TOKEN
+    indent: 0
+  note: 
+- implements: Subscribe
+  steps:
+  - id: 01a125c0-cf8a-7a1e-b6a4-6bd8d0c39cd5
+    text: Watch the calendar of {{input:Selected Calendar Id}} for 30 days, pushing to /api/webhooks/calendar-subscription/google_calendar
+    indent: 0
+  note: 
+- implements: Fetch Events
+  steps:
+  - id: 01a125c0-cf8a-7bdf-afc9-f2479a01cf28
+    text: Fetch changes with the stored sync token, or from today to three months ahead
+    indent: 0
+  note: 
+archived: false

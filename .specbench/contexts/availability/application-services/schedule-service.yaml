@@ -1,0 +1,63 @@
+spec-format: 1
+kind: application-service
+id: 01a1259c-c241-739f-bbee-32bd77e16797
+revision: 6
+name: Schedule Service
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: ScheduleService.ts.
+implements: []
+methods:
+- id: 01a1259c-c241-7ab5-96b1-37bff394ae0e
+  name: Update
+  description: 
+  implements: 
+  inputs:
+  - id: 01a1259c-c241-7b30-baf4-662a1eec5e14
+    name: Schedule Id
+    type:
+      kind: Primitive
+      primitive: Id
+  - id: 01a1259c-c241-728d-9470-bd1988aa5c4e
+    name: Name
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Text
+  - id: 01a1259c-c241-73c3-a06d-0ed20c3db383
+    name: Time Zone
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Text
+  - id: 01a1259c-c241-7916-b9b4-74554820e98a
+    name: Is Default
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Bool
+  steps:
+  - id: 01a1259c-c241-792a-94dd-f465af9a11e0
+    text: 'If the Schedule does not exist or does not belong to the Organizer, refuse: {{outcome:Unauthorized}}'
+    indent: 0
+  - id: 01a1259c-c241-7afc-8481-75cdbcf22e1d
+    text: If {{input:Is Default}} is set, make it the Organizer's Default Schedule
+    indent: 0
+  - id: 01a1259c-c241-7542-ad6e-66c6b5af0b4b
+    text: 'If no {{input:Name}} is given, stop here without touching the hours: {{outcome:Updated}}'
+    indent: 0
+  - id: 01a1259c-c241-7d1a-94eb-f00484c7dd1c
+    text: 'Otherwise delete all its Availability and recreate it from the weekly hours and Date Overrides sent, so past Date Overrides disappear: {{outcome:Updated}}'
+    indent: 0
+  outcomes:
+  - id: 01a1259c-c241-7766-a847-326f3e50361f
+    name: Updated
+    success: true
+    message: 
+    returns: 
+  - id: 01a1259c-c241-7dc4-be3b-79ac6ae002aa
+    name: Unauthorized
+    success: false
+    message: 
+    returns: 
+  archived: false
+archived: false

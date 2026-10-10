@@ -1,0 +1,30 @@
+spec-format: 1
+kind: use-case
+id: 01a1259d-7f09-7299-9bfa-a31779a009fb
+revision: 6
+name: List Out Of Office Entries
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: viewer.ooo.outOfOfficeEntriesList.
+use-case-kind: Query
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a1259d-7f09-7d24-9e78-6c8c00846913
+  name: Search Term
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+steps:
+- id: 01a1259d-7f09-7f0b-b43a-a991508493bf
+  text: "Return a page of the Organizer's entries that have not ended, searching notes, reason and redirect target: {{outcome:Listed}}"
+  indent: 0
+outcomes:
+- id: 01a1259d-7f09-71ee-95ae-4e9ba56c595b
+  name: Listed
+  success: true
+  code: 
+  message: 
+  returns: 
+archived: false

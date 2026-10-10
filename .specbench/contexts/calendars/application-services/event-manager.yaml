@@ -1,0 +1,163 @@
+spec-format: 1
+kind: application-service
+id: 01a125a3-62af-753a-9e32-645f9f0b21ab
+revision: 21
+name: Event Manager
+bounded-context-id: 01a0f44a-2a06-7125-8fe2-659328d04ce1
+description: EventManager.ts (in packages/features/bookings, created fresh for each Booking). Works out the Organizer's calendar and video apps from their Credentials.
+implements: []
+methods:
+- id: 01a125a3-62af-76c8-89bb-23ff77150552
+  name: Create
+  description: 
+  implements: 
+  inputs:
+  - id: 01a125a3-62af-78ce-b103-78997787810e
+    name: Booking Uid
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a125a3-62af-780f-9672-c3c54cf9b49a
+    name: Location
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Text
+  steps:
+  - id: 01a125a3-62af-70cc-b767-550748e2071a
+    text: If there is no location and Cal Video is set up, use Cal Video
+    indent: 0
+  - id: 01a125a3-62af-75d0-87d1-ce24fe49e78e
+    text: If the location is Google Meet but the Destination Calendar is not Google, use Cal Video instead
+    indent: 0
+  - id: 01a125a3-62af-7e11-9bd7-b9db46cb027c
+    text: For a video app location, create the meeting in that app with {{method:Apps/Video Api Adapter.Create Meeting}}. If it fails, email the Organizer that the app is broken and fall back to a Cal Video room
+    indent: 0
+  - id: 01a125a3-62af-733b-b487-53b0b8f13cbd
+    text: Create the calendar event with {{method:Calendars/Calendar.Create Event}} in the first Destination Calendar that works, else in the first connected calendar. Hide notes or Attendees if the Event Type asks for it
+    indent: 0
+  - id: 01a125a3-62af-7497-87b3-9bef5d85ab15
+    text: A calendar failure is logged and the Booking carries on
+    indent: 0
+  - id: 01a125a3-62af-7c84-b31e-1b88d6d450fc
+    text: 'Return a Booking Reference for every event and meeting made: {{outcome:Created}}'
+    indent: 0
+  outcomes:
+  - id: 01a125a3-62af-7275-9ee6-499caee54ac0
+    name: Created
+    success: true
+    message: 
+    returns: 
+  archived: false
+- id: 01a125a3-62af-718b-b38a-6ba729bbc5b5
+  name: Reschedule
+  description: 
+  implements: 
+  inputs:
+  - id: 01a125a3-62af-7c35-b580-b86620e950f7
+    name: Booking Uid
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a125a3-62af-7eb4-872e-f50dc8866ff3
+    name: Original Booking Uid
+    type:
+      kind: Primitive
+      primitive: Text
+  steps:
+  - id: 01a125a3-62af-76a6-8fcd-f1a398c55c6e
+    text: 'If the new Booking needs confirming, delete the old events and meetings and create nothing: {{outcome:Rescheduled}}'
+    indent: 0
+  - id: 01a125a3-62af-7286-a5c2-e0905ca35829
+    text: If the location changed, a reschedule was requested or the Cal Video room has expired (14 days after the end), make a new meeting and update the calendar events
+    indent: 0
+  - id: 01a125a3-62af-7c6e-8eb4-c0c753eb9ca3
+    text: Otherwise update the existing meeting ({{method:Apps/Video Api Adapter.Update Meeting}}) and calendar events ({{method:Calendars/Calendar.Update Event}}) in place
+    indent: 0
+  - id: 01a125a3-62af-740b-97bf-fe95c2b10471
+    text: 'Move the payments to the new Booking: {{outcome:Rescheduled}}'
+    indent: 0
+  outcomes:
+  - id: 01a125a3-62af-7b55-ba98-b1d45f744277
+    name: Rescheduled
+    success: true
+    message: 
+    returns: 
+  archived: false
+- id: 01a125a3-62af-7185-a07b-2fdc8267ea8f
+  name: Cancel Event
+  description: 
+  implements: 
+  inputs:
+  - id: 01a125a3-62af-71c2-8894-36b24a82af8f
+    name: Booking Uid
+    type:
+      kind: Primitive
+      primitive: Text
+  steps:
+  - id: 01a125a3-62af-72d0-a4ba-7b9b682cca4e
+    text: 'Delete every calendar event ({{method:Calendars/Calendar.Delete Event}}) and video meeting ({{method:Apps/Video Api Adapter.Delete Meeting}}) in the Booking References; failures only give warnings: {{outcome:Deleted}}'
+    indent: 0
+  outcomes:
+  - id: 01a125a3-62af-71c9-8d93-6a3cebb59b56
+    name: Deleted
+    success: true
+    message: 
+    returns: 
+  archived: false
+- id: 01a125a3-62af-70db-b668-6dd45f6e1e27
+  name: Update Location
+  description: 
+  implements: 
+  inputs:
+  - id: 01a125a3-62af-7aa3-886a-87c11d0867c3
+    name: Booking Uid
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a125a3-62af-7293-8a57-7ea5a3c26097
+    name: Location
+    type:
+      kind: Primitive
+      primitive: Text
+  steps:
+  - id: 01a125a3-62af-763b-8d81-8451e93ee514
+    text: "Create a meeting in the new location's app and update the calendar events: {{outcome:Updated}}"
+    indent: 0
+  - id: 01a125a3-62af-7434-acb3-9f90ad374c8f
+    text: 'If every app fails: {{outcome:Update Failed}}'
+    indent: 0
+  outcomes:
+  - id: 01a125a3-62af-7a46-b180-e94b43d62051
+    name: Updated
+    success: true
+    message: 
+    returns: 
+  - id: 01a125a3-62af-70bd-ab76-e06a2e142c18
+    name: Update Failed
+    success: false
+    message: 
+    returns: 
+  archived: false
+- id: 01a125a3-62af-7ce2-86e8-f163a1cc6ed4
+  name: Update Calendar Attendees
+  description: 
+  implements: 
+  inputs:
+  - id: 01a125a3-62af-7df4-93c6-2c504b29f408
+    name: Booking Uid
+    type:
+      kind: Primitive
+      primitive: Text
+  steps:
+  - id: 01a125a3-62af-75fc-aaa0-2c6f738acaef
+    text: "Update the calendar events with the Booking's current Attendees: {{outcome:Updated}}"
+    indent: 0
+  outcomes:
+  - id: 01a125a3-62af-7840-9771-1eb66a926d68
+    name: Updated
+    success: true
+    message: 
+    returns: 
+  archived: false
+archived: false

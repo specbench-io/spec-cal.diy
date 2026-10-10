@@ -1,0 +1,18 @@
+spec-format: 1
+kind: enum
+id: 01a125a6-32ad-73c3-8603-95fb76983ab8
+revision: 4
+name: OAuth Client Type
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+summary: Whether an OAuth Client can keep a secret.
+description: 
+cases:
+- id: 01a125a6-32ad-79cb-bbe5-9575d2a60d7a
+  name: Confidential
+  description: 
+  archived: false
+- id: 01a125a6-32ad-7146-a0f9-444c10388e2f
+  name: Public
+  description: Must use PKCE.
+  archived: false
+archived: false

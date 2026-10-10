@@ -1,0 +1,46 @@
+spec-format: 1
+kind: aggregate
+id: 01a1259b-ea93-70e0-8758-f4192f14865c
+revision: 7
+name: Travel Schedule
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+summary: A dated change of time zone that applies to the Organizer's default Schedule while they travel.
+description: 
+properties:
+- id: 01a1259b-ea93-7faf-affb-31bc72fd8eb6
+  name: User Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a1259b-ea93-7c46-8060-3c5639ddc2c2
+  name: Time Zone
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a1259b-ea93-7822-a3aa-92ef51047eaa
+  name: Start Date
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a1259b-ea93-7562-b435-2608078e0a46
+  name: End Date
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Date
+  archived: false
+- id: 01a1259b-ea93-7e47-a13b-9a8ac4cbd0be
+  name: Prev Time Zone
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+invariants: []
+domain-events: []
+entities: []
+methods: []
+archived: false

@@ -1,0 +1,30 @@
+spec-format: 1
+kind: use-case
+id: 01a1259f-66e1-7d25-ab1a-0fd260b95045
+revision: 6
+name: List Event Types
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+description: viewer.eventTypes.getEventTypesFromGroup (the /event-types list).
+use-case-kind: Query
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a1259f-66e1-7887-857b-1d3b2867cc86
+  name: Search Query
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+steps:
+- id: 01a1259f-66e1-7796-b2ea-acd7c055b31d
+  text: "Return a page of the Organizer's Event Types matching {{input:Search Query}} by title, highest position first, with their Private Links: {{outcome:Listed}}"
+  indent: 0
+outcomes:
+- id: 01a1259f-66e1-74fa-9482-a76e2e1b8305
+  name: Listed
+  success: true
+  code: 
+  message: 
+  returns: 
+archived: false

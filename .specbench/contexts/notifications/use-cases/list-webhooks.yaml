@@ -1,0 +1,24 @@
+spec-format: 1
+kind: use-case
+id: 01a125a5-6d24-7175-8e31-759e8f219f59
+revision: 5
+name: List Webhooks
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: viewer.webhook.getByViewer.
+use-case-kind: Query
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+- 01a0f442-adc6-7410-af52-ea288a8ae9d1
+inputs: []
+steps:
+- id: 01a125a5-6d24-7b84-a6d1-b02eb8d9ed72
+  text: "Return the Organizer's Webhooks (not Zapier or Make ones), plus a Platform group for Admins: {{outcome:Listed}}"
+  indent: 0
+outcomes:
+- id: 01a125a5-6d24-79ca-b644-631d72fc1ae4
+  name: Listed
+  success: true
+  code: 
+  message: 
+  returns: 
+archived: false

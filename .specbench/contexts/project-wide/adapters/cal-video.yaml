@@ -1,0 +1,29 @@
+spec-format: 1
+kind: adapter
+id: 01a125c0-c771-7ef0-b96d-3c9fb7bda74d
+revision: 5
+name: Cal Video
+interface: Apps/Video Api Adapter
+description: 
+target:
+  infrastructure: Daily.co (packages/app-store/dailyvideo/lib/VideoApiAdapter.ts)
+methods:
+- implements: Create Meeting
+  steps:
+  - id: 01a125c0-c771-704e-814b-424187a536f8
+    text: Create a public Daily room for the Booking that expires 14 days after the end, with an owner token, and return its link
+    indent: 0
+  note: 
+- implements: Update Meeting
+  steps:
+  - id: 01a125c0-c771-7156-bbc6-d7424a1b30c6
+    text: Update the Daily room for {{input:Booking Reference Uid}}
+    indent: 0
+  note: 
+- implements: Delete Meeting
+  steps:
+  - id: 01a125c0-c771-799e-b653-4b45d22a9081
+    text: Delete the Daily room {{input:Uid}}
+    indent: 0
+  note: 
+archived: false

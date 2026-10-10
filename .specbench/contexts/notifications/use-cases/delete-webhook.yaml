@@ -1,0 +1,29 @@
+spec-format: 1
+kind: use-case
+id: 01a125a5-6ccb-7688-a597-7d92bf682296
+revision: 6
+name: Delete Webhook
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: viewer.webhook.delete.
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a5-6ccb-7891-a2f9-535f9448a5c0
+  name: Webhook Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+steps:
+- id: 01a125a5-6ccb-7aa9-8c0d-fca5ff2d11f1
+  text: "Delete the Organizer's Webhook and cancel its no-show checks; a missing Webhook is quietly ignored: {{outcome:Webhook Removed}}"
+  indent: 0
+outcomes:
+- id: 01a125a5-6ccb-7396-a7d5-49bdb757c747
+  name: Webhook Removed
+  success: true
+  code: 
+  message: Webhook removed successfully
+  returns: 
+archived: false

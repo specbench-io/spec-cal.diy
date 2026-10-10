@@ -1,0 +1,46 @@
+spec-format: 1
+kind: use-case
+id: 01a125a3-63d2-7418-b87c-7c549a83512a
+revision: 8
+name: Receive Calendar Webhook
+bounded-context-id: 01a0f44a-2a06-7125-8fe2-659328d04ce1
+description: POST /api/webhooks/calendar-subscription/provider - a provider telling cal.diy a calendar changed.
+use-case-kind: Command
+roles: []
+inputs:
+- id: 01a125a3-63d2-72ee-89eb-ea2204cc486d
+  name: Provider
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a3-63d2-7c87-bc70-a017786cfb07
+  text: 'If {{input:Provider}} is not supported, refuse: {{outcome:Unsupported Provider}}'
+  indent: 0
+- id: 01a125a3-63d2-77b2-970c-83b6b865fff5
+  text: 'If neither the cache nor sync flag is on, do nothing: {{outcome:Nothing Enabled}}'
+  indent: 0
+- id: 01a125a3-63d2-710b-ad23-2f91e93c3b27
+  text: 'Process the change with {{method:Calendars/Calendar Subscription Service.Process Webhook}}: {{outcome:Processed}}'
+  indent: 0
+outcomes:
+- id: 01a125a3-63d2-704c-8dd8-a4af2ab1b5d1
+  name: Processed
+  success: true
+  code: 
+  message: Webhook processed
+  returns: 
+- id: 01a125a3-63d2-72e9-abad-8b77041c1ab9
+  name: Nothing Enabled
+  success: true
+  code: 
+  message: No cache or sync enabled
+  returns: 
+- id: 01a125a3-63d2-774b-85fc-2cef6a740e05
+  name: Unsupported Provider
+  success: false
+  code: 400
+  message: 
+  returns: 
+archived: false

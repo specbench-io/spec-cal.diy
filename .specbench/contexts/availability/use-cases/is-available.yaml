@@ -1,0 +1,38 @@
+spec-format: 1
+kind: use-case
+id: 01a1259d-7eb3-7abf-9a9e-1677d6ce1b32
+revision: 7
+name: Is Available
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: viewer.slots.isAvailable - a quick check of chosen Slots.
+use-case-kind: Query
+roles:
+- 01a0f442-adc1-7f74-9a7a-6b7f3cc9be7d
+inputs:
+- id: 01a1259d-7eb3-7e2a-98cd-1c8b8f80836d
+  name: Event Type Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+steps:
+- id: 01a1259d-7eb3-794e-befe-049a992b0d72
+  text: 'If the Event Type does not exist, refuse: {{outcome:Event Type Not Found}}'
+  indent: 0
+- id: 01a1259d-7eb3-7f94-8e5e-424343558aa1
+  text: 'For each Slot answer Available, Slot In Past or Min Book Notice Violation. A Slot held by another Booker is reported as available: {{outcome:Checked}}'
+  indent: 0
+outcomes:
+- id: 01a1259d-7eb3-74f3-bd31-f802c9d6caf8
+  name: Checked
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a1259d-7eb3-7d0d-b502-a7994d9acaf7
+  name: Event Type Not Found
+  success: false
+  code: 404
+  message: 
+  returns: 
+archived: false

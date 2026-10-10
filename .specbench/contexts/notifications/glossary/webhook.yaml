@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a125a4-cf1e-7c8e-a0bd-13946f3952af
+revision: 3
+name: Webhook
+definition: An address that receives a signed message when chosen events happen.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+archived: false

@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a0f445-521c-7301-8022-7469152f8dcb
+revision: 3
+name: Event Type
+definition: A kind of meeting an Organizer offers for booking, with its own length, location and booking rules.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+archived: false

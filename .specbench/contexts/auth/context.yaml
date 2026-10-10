@@ -1,0 +1,12 @@
+spec-format: 1
+kind: bounded-context
+id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+revision: 6
+name: Auth
+summary: Accounts, login and API access, and the Admin's running of the instance - users, feature flags and setup.
+description: 
+icon: key
+colour: slate
+implements:
+- 01a0f447-0641-7595-abb3-c69ff9b13751
+archived: false

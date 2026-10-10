@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a0f445-5227-785b-89a8-0d2be06fe64f
+revision: 4
+name: Guest
+definition: An Attendee the Booker added, or added later with Add guests, who didn't book.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+archived: false

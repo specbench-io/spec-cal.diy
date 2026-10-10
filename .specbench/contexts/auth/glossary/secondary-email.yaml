@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a125a7-3d66-7859-b7f9-55cc19532175
+revision: 3
+name: Secondary Email
+definition: An extra verified address on an account, which can become the main one.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+archived: false

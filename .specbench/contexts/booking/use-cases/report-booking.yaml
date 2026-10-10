@@ -1,0 +1,96 @@
+spec-format: 1
+kind: use-case
+id: 01a12597-29c2-70a8-9599-4dc48e35749b
+revision: 13
+name: Report Booking
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: viewer.bookings.reportBooking (ReportBookingDialog on the bookings list).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a12597-29c2-73e5-b2cd-a2c881765197
+  name: Booking Uid
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a12597-29c2-7960-bbb7-41bb530bc06a
+  name: Reason
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a12597-29c2-780c-b4cf-be0bd424a6e0
+  name: Description
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+steps:
+- id: 01a12597-29c2-76e0-8216-c8dc0b3d0bf1
+  text: 'If the Organizer has no access to the Booking, refuse: {{outcome:Forbidden}}'
+  indent: 0
+- id: 01a12597-29c2-70d5-be02-b36371f443db
+  text: 'If the Booking does not exist, refuse: {{outcome:Booking Not Found}}'
+  indent: 0
+- id: 01a12597-29c2-7d69-92cc-887d9253bf7f
+  text: 'If it has already been reported, refuse: {{outcome:Already Reported}}'
+  indent: 0
+- id: 01a12597-29c2-71aa-8cc6-36acc4441815
+  text: 'Take the booker email from its first Attendee; if there is none, refuse: {{outcome:No Attendees}}'
+  indent: 0
+- id: 01a12597-29c2-74bb-8dae-9d59b0372739
+  text: If the Booking is recurring, report every remaining occurrence from this one onwards
+  indent: 0
+- id: 01a12597-29c2-7f4f-8144-bd45472f7dd3
+  text: If the Booking is still upcoming (accepted, pending or awaiting host), cancel it for the Organizer, skipping the cancellation reason. A failed cancellation is logged and reporting carries on
+  indent: 0
+- id: 01a12597-29c2-7f11-afea-1f3c89949acf
+  text: Save a Booking Report with {{input:Reason}} and {{input:Description}} for each reported Booking, noting whether it was cancelled. A report that fails to save is skipped
+  indent: 0
+- id: 01a12597-29c2-7f36-844a-80bf186f7189
+  text: 'If at least one report was saved: {{outcome:Booking Reported}}'
+  indent: 0
+- id: 01a12597-29c2-7805-9728-249eb075ce5b
+  text: 'Otherwise: {{outcome:No Reports Created}}'
+  indent: 0
+outcomes:
+- id: 01a12597-29c2-7855-a01c-14669f1f3533
+  name: Booking Reported
+  success: true
+  code: 
+  message: Booking reported successfully (and cancelled successfully, or but cancellation failed)
+  returns: 
+- id: 01a12597-29c2-7f01-b0e1-bc7a3c5b63e6
+  name: No Reports Created
+  success: false
+  code: 
+  message: No reports created
+  returns: 
+- id: 01a12597-29c2-75c4-9445-06b910c7371d
+  name: Forbidden
+  success: false
+  code: 403
+  message: You don't have access to this booking
+  returns: 
+- id: 01a12597-29c2-7044-8319-51e166abec88
+  name: Booking Not Found
+  success: false
+  code: 404
+  message: Booking not found
+  returns: 
+- id: 01a12597-29c2-7a0c-92ab-6226a10e5e05
+  name: Already Reported
+  success: false
+  code: 400
+  message: This booking has already been reported
+  returns: 
+- id: 01a12597-29c2-74b9-a702-7667d2403977
+  name: No Attendees
+  success: false
+  code: 400
+  message: Booking has no attendees
+  returns: 
+archived: false

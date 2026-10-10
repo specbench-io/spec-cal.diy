@@ -1,0 +1,95 @@
+spec-format: 1
+kind: interface
+id: 01a125a3-d6f7-73f6-b499-f2b7b1300015
+revision: 14
+name: Payment Service
+bounded-context-id: 01a0f44a-2a22-7488-ae05-7c57eda180ac
+description: What every payment app must do (packages/types/PaymentService.d.ts). Apps are found by folder name (stripepayment) though payments store the slug (stripe).
+methods:
+- id: 01a125a3-d6f7-72f9-b908-3e9a2006c6de
+  name: Create
+  description: 
+  inputs:
+  - id: 01a125a3-d6f7-7623-afab-9f0fa226a29f
+    name: Amount
+    type:
+      kind: Primitive
+      primitive: Number
+  - id: 01a125a3-d6f7-7b2c-8b9b-f78aa1e74275
+    name: Currency
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a125a3-d6f7-77ac-abaa-160355e9c54a
+    name: Booking Id
+    type:
+      kind: Primitive
+      primitive: Id
+  - id: 01a125a3-d6f7-7584-8b95-9b04e6dd22c5
+    name: Booker Email
+    type:
+      kind: Primitive
+      primitive: Text
+  returns: 
+  archived: false
+- id: 01a125a3-d6f7-77db-b612-c97272b8d35a
+  name: Collect Card
+  description: 
+  inputs:
+  - id: 01a125a3-d6f7-7ea1-a580-35f82089844e
+    name: Booking Id
+    type:
+      kind: Primitive
+      primitive: Id
+  - id: 01a125a3-d6f7-7021-a799-f4d59bf0d029
+    name: Booker Email
+    type:
+      kind: Primitive
+      primitive: Text
+  returns: 
+  archived: false
+- id: 01a125a3-d6f7-7c5c-9b72-1d0bf9a59418
+  name: Charge Card
+  description: 
+  inputs:
+  - id: 01a125a3-d6f7-7599-b844-e658e9ebc64d
+    name: Payment Id
+    type:
+      kind: Primitive
+      primitive: Id
+  returns: 
+  archived: false
+- id: 01a125a3-d6f7-7441-af81-412a592fe26b
+  name: Refund
+  description: 
+  inputs:
+  - id: 01a125a3-d6f7-7f38-a7ec-29c0eccee37a
+    name: Payment Id
+    type:
+      kind: Primitive
+      primitive: Id
+  returns: 
+  archived: false
+- id: 01a125a3-d6f7-7eb1-af7a-23c708a72c4e
+  name: After Payment
+  description: 
+  inputs:
+  - id: 01a125a3-d6f8-7289-a099-404fda354ed6
+    name: Booking Id
+    type:
+      kind: Primitive
+      primitive: Id
+  returns: 
+  archived: false
+- id: 01a125a3-d6f7-7bdb-8ec0-22135f0f728e
+  name: Delete Payment
+  description: 
+  inputs:
+  - id: 01a125a3-d6f8-7aee-a5b4-f65f32db7d4e
+    name: Payment Id
+    type:
+      kind: Primitive
+      primitive: Id
+  returns: 
+  archived: false
+archived: false

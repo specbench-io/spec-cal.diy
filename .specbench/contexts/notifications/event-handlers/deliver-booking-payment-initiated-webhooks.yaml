@@ -1,0 +1,23 @@
+spec-format: 1
+kind: event-handler
+id: 01a125f7-6c85-7c70-ab4b-d1d2849aee8e
+revision: 4
+name: Deliver Booking Payment Initiated Webhooks
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: handleWebhookTrigger, called directly by Create Booking on the payment path (RegularBookingService.ts:2290-2329), before the Booking's location and references are saved.
+trigger:
+  integration-event: Booking/Booking Payment Initiated
+steps:
+- id: 01a125f7-6c85-78cc-9db6-97cc0b9a0520
+  text: Find the active Webhooks listening for Booking payment initiated that belong to the Organizer, the Event Type, the platform OAuth client, or are platform-wide
+  indent: 0
+- id: 01a125f7-6c85-795f-b2a2-c2962e50b6ab
+  text: POST the Booking payload plus the Payment id to each Subscriber URL, signed with the Secret - or queue a send Task when TASKER_ENABLE_WEBHOOKS is on
+  indent: 0
+- id: 01a125f7-6c85-7030-a50e-d2a96e938e0e
+  text: The payload says status Accepted although the Booking is saved as Pending
+  indent: 1
+- id: 01a125f7-6c85-74a6-aa99-110c293ae62f
+  text: Not sent when rescheduling a Booking that was already paid. Errors are logged and never stop the booking
+  indent: 0
+archived: false

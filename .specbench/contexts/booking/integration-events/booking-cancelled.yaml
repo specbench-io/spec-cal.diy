@@ -1,0 +1,35 @@
+spec-format: 1
+kind: integration-event
+id: 01a125a0-ea56-7ecb-900a-a3df0938fb48
+revision: 3
+name: Booking Cancelled
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: A Booking or seat was cancelled, or the Organizer asked for a reschedule (webhook BOOKING_CANCELLED, sent before the Booking is saved).
+fields:
+- id: 01a125a0-ea56-7316-9537-561f5833cd4f
+  name: Booking Uid
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a125a0-ea56-7f77-9226-5194ef9b2c77
+  name: Cancellation Reason
+  description: 
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+- id: 01a125a0-ea56-7764-91fd-7734043ce54c
+  name: Cancelled By
+  description: 
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+- id: 01a125a0-ea56-7127-a468-e64522960c91
+  name: Request Reschedule
+  description: 
+  type:
+    kind: Primitive
+    primitive: Bool
+archived: false

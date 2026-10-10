@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a125a0-8bb9-778a-a624-b0038b40414a
+revision: 3
+name: Recurring Booking
+definition: A series of Bookings made together for a Recurring Event, sharing one recurring event id.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+archived: false

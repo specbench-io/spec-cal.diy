@@ -1,0 +1,30 @@
+spec-format: 1
+kind: enum
+id: 01a125a6-3268-7aed-b6da-d6a7e5a42c85
+revision: 7
+name: Feature Type
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+summary: What kind of Feature Flag it is.
+description: 
+cases:
+- id: 01a125a6-3268-7082-9bb3-af66a1e86752
+  name: Release
+  description: 
+  archived: false
+- id: 01a125a6-3268-7178-8210-1481262e608c
+  name: Experiment
+  description: 
+  archived: false
+- id: 01a125a6-3268-7c2c-8d7a-d8149cf73427
+  name: Operational
+  description: 
+  archived: false
+- id: 01a125a6-3268-7a78-afab-1ab4ce949aa3
+  name: Kill Switch
+  description: 
+  archived: false
+- id: 01a125a6-3268-78ed-bbfc-714125b4d710
+  name: Permission
+  description: 
+  archived: false
+archived: false

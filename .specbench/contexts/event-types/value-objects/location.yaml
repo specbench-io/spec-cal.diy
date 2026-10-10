@@ -1,0 +1,60 @@
+spec-format: 1
+kind: value-object
+id: 01a1259e-cdac-72be-aa61-db1398b61fa5
+revision: 9
+name: Location
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+summary: Where a meeting happens - Cal Video, another conferencing app, a link, in person, a phone number, or somewhere else.
+description: 
+properties:
+- id: 01a1259e-cdac-7ed0-9064-e44e99018edf
+  name: Type
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a1259e-cdac-70e5-ba72-e0d5c3fa07ad
+  name: Address
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259e-cdac-7d74-9eb8-76b5fe44b648
+  name: Link
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259e-cdac-7574-bf09-6311ea011bf4
+  name: Display Location Publicly
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+- id: 01a1259e-cdac-7662-86d7-b643404ef0b6
+  name: Host Phone Number
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259e-cdac-71b7-86ce-f6f9e9f72eac
+  name: Credential Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a1259e-cdac-74c7-b3f1-d1bee0e342b0
+  name: Custom Label
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+invariants: []
+methods: []
+archived: false

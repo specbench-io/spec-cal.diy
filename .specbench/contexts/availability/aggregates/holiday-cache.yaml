@@ -1,0 +1,53 @@
+spec-format: 1
+kind: aggregate
+id: 01a1259b-ea74-7684-adf3-a12833c4c246
+revision: 9
+name: Holiday Cache
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+summary: Public holidays fetched from Google Calendar per country and year, refreshed when older than 7 days.
+description: 
+properties:
+- id: 01a1259b-ea74-7aef-8ea6-cb65b2d7ba48
+  name: Country Code
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a1259b-ea74-726b-ac88-64a4c9a7611d
+  name: Calendar Id
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a1259b-ea74-710e-bbaf-9accf848be31
+  name: Event Id
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a1259b-ea74-7a11-869c-72fcbadeb5ba
+  name: Name
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a1259b-ea74-7b2f-a272-2d6707f0ffc4
+  name: Date
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a1259b-ea74-7494-92d3-f26b8382114e
+  name: Year
+  type:
+    kind: Primitive
+    primitive: Number
+  archived: false
+invariants:
+- id: 01a1259b-ea74-7af0-a57c-f80230b2dcb8
+  text: One row per country and holiday event.
+  archived: false
+domain-events: []
+entities: []
+methods: []
+archived: false

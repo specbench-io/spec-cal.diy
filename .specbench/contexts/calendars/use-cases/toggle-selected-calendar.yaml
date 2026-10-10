@@ -1,0 +1,69 @@
+spec-format: 1
+kind: use-case
+id: 01a125a3-630c-7b9e-8fcd-aac83f4768f0
+revision: 11
+name: Toggle Selected Calendar
+bounded-context-id: 01a0f44a-2a06-7125-8fe2-659328d04ce1
+description: POST or DELETE /api/availability/calendar (the Check for conflicts switches).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a3-630c-72e6-b672-fc5f5ef965b6
+  name: Integration
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a3-630c-73ca-a8b0-37c5b2933ab7
+  name: External Id
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a3-630c-7a87-b278-b94f5aac3925
+  name: Event Type Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a125a3-630c-756d-a842-1c7623e9dfa4
+  name: Checked
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+steps:
+- id: 01a125a3-630c-7e5c-811d-cd5d2815b939
+  text: 'If the Organizer is not logged in, refuse: {{outcome:Not Authenticated}}'
+  indent: 0
+- id: 01a125a3-630c-730c-88a1-8b2574ee53a0
+  text: If {{input:Checked}}, add the calendar as a Selected Calendar (for {{input:Event Type Id}} if given)
+  indent: 0
+- id: 01a125a3-630c-7d62-a069-c98334e3e682
+  text: 'Otherwise remove it; if it cannot be found, refuse: {{outcome:Not Found}}'
+  indent: 0
+- id: 01a125a3-630c-7e7e-b938-18b935386399
+  text: 'Done: {{outcome:Saved}}'
+  indent: 0
+outcomes:
+- id: 01a125a3-630c-70c3-b6c6-411a60fbbd88
+  name: Saved
+  success: true
+  code: 
+  message: Calendar Selection Saved
+  returns: 
+- id: 01a125a3-630c-7e6c-827e-dd5af32dd0c9
+  name: Not Authenticated
+  success: false
+  code: 401
+  message: 
+  returns: 
+- id: 01a125a3-630c-782e-a7e0-57083368a106
+  name: Not Found
+  success: false
+  code: 
+  message: 
+  returns: 
+archived: false

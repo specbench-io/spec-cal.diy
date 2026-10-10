@@ -1,0 +1,38 @@
+spec-format: 1
+kind: use-case
+id: 01a12596-ff3c-7e9b-8dab-f3629938b67c
+revision: 8
+name: Delete Watchlist Entry
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+description: 'Admin API: viewer.admin.watchlist.delete.'
+use-case-kind: Command
+roles:
+- 01a0f442-adc6-7410-af52-ea288a8ae9d1
+inputs:
+- id: 01a12596-ff3d-7c04-84b8-525311b106ce
+  name: Entry Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+steps:
+- id: 01a12596-ff3d-78b6-947d-db1c6804c8eb
+  text: 'Remove the entry from the Global Watchlist, using {{method:Watchlist/Admin Watchlist Operations Service.Delete Watchlist Entry}}: {{outcome:Entry Deleted}}'
+  indent: 0
+- id: 01a12596-ff3d-7ecb-86e2-5d23d9e233b4
+  text: 'If it does not exist or is not a Global Watchlist entry, refuse: {{outcome:Not Allowed}}'
+  indent: 1
+outcomes:
+- id: 01a12596-ff3d-7a52-b550-cc34dccb4dc7
+  name: Entry Deleted
+  success: true
+  code: 
+  message: System blocklist entry deleted successfully
+  returns: 
+- id: 01a12596-ff3d-7031-be9e-029a47f86a40
+  name: Not Allowed
+  success: false
+  code: 
+  message: 
+  returns: 
+archived: false

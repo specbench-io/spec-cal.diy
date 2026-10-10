@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a125a0-8baa-7281-9584-3530d9b398b5
+revision: 3
+name: Request Reschedule
+definition: The Organizer cancels a Booking and asks the Booker to pick a new time.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+archived: false

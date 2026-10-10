@@ -1,0 +1,105 @@
+spec-format: 1
+kind: feature
+id: 01a125a8-66f9-7ebe-afca-0b65d6f5daf1
+revision: 27
+title: Managing availability
+intent: As an Organizer, I want to say when I can be booked and when I'm away, so that Bookers only see times that really suit me.
+description: 'Use Cases: Create Schedule, Update Schedule, Create Or Update Out Of Office Entry, Update Holiday Settings, Toggle Selected Calendar.'
+scenarios:
+- id: 96f182a4-944d-4388-aa27-22a82e90288e
+  title: The first Schedule becomes the Default Schedule
+  steps:
+  - id: 8bc9631b-f40b-41ae-a189-ed59dfaea355
+    keyword: Given
+    text: an Organizer has no Schedules
+    archived: false
+  - id: b7bcad6b-11fa-4518-9bde-870aef5c6c52
+    keyword: When
+    text: they create a Schedule called "Working hours"
+    archived: false
+  - id: 1398e5fa-0472-4a5f-ae55-9f751cf7bf90
+    keyword: Then
+    text: it is their Default Schedule with Monday to Friday 9:00 to 17:00
+    archived: false
+  archived: false
+- id: f0c6609c-50d2-487a-86ba-213f43b4bf89
+  title: A Date Override replaces a day's hours
+  steps:
+  - id: 8ccd7106-9f56-454f-8da3-a0aa85029772
+    keyword: Given
+    text: a Schedule with Working hours on Friday 9:00 to 17:00
+    archived: false
+  - id: 32d56aad-8387-4e38-afdd-baed53d99c75
+    keyword: When
+    text: the Organizer adds a Date Override for next Friday from 13:00 to 15:00
+    archived: false
+  - id: 88fe9093-4c13-462c-9bb3-49a167896046
+    keyword: Then
+    text: only Slots between 13:00 and 15:00 are offered next Friday
+    archived: false
+  archived: false
+- id: d166011a-6362-4155-a917-aea8bde6b01b
+  title: Marking a day unavailable
+  steps:
+  - id: c6dcf9d0-537c-477d-b807-5f23feef2023
+    keyword: When
+    text: the Organizer marks next Friday as unavailable all day
+    archived: false
+  - id: f239be20-6d3c-44ee-9840-c46bbfca4898
+    keyword: Then
+    text: no Slots are offered next Friday
+    archived: false
+  archived: false
+- id: 14ffe4d0-a1f7-42ce-a4ec-e70f9e6074d3
+  title: Out Of Office days are shown as away
+  steps:
+  - id: b075f6d6-ae2d-47c6-be95-934c4eb40e39
+    keyword: Given
+    text: the Organizer is Out Of Office next week for Vacation
+    archived: false
+  - id: 00509187-ec44-43c5-a980-d4aebc5aae09
+    keyword: When
+    text: a Booker opens their booking page
+    archived: false
+  - id: 031f6993-fce5-45e9-ab75-334e501279ee
+    keyword: Then
+    text: next week's Slots are shown as away with the vacation reason
+    archived: false
+  archived: false
+- id: 00c6612a-e156-46fb-a202-18b2328772e1
+  title: Busy events in a connected calendar block Slots
+  steps:
+  - id: 8966c770-d221-4188-854c-9e41af6d130b
+    keyword: Given
+    text: the Organizer checks their Google Calendar for conflicts
+    archived: false
+  - id: ff87f3f7-8228-46e3-9a16-dbf6ce4cc0aa
+    keyword: And
+    text: it has an event on Monday from 10:00 to 11:00
+    archived: false
+  - id: 991695dd-ef0e-4ed4-b2e9-b56d32489d6b
+    keyword: When
+    text: a Booker opens the booking page
+    archived: false
+  - id: 4e4b898b-6596-4ba4-b9ff-d01185eb9ad7
+    keyword: Then
+    text: no Slot overlapping 10:00 to 11:00 on Monday is offered
+    archived: false
+  archived: false
+- id: 784bcb79-b403-4290-a195-ac1a05bc2237
+  title: The last Schedule cannot be deleted
+  steps:
+  - id: 62b2eb72-9fa3-49a7-9cde-ba75f6539160
+    keyword: Given
+    text: an Organizer has only one Schedule
+    archived: false
+  - id: 32202534-ccb5-4229-8614-1d09b51687c9
+    keyword: When
+    text: they try to delete it
+    archived: false
+  - id: 0908c6dc-0f9c-4e26-af5a-1274a878b35c
+    keyword: Then
+    text: they are told "You are required to have at least one schedule"
+    archived: false
+  archived: false
+archived: false

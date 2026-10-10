@@ -1,0 +1,55 @@
+spec-format: 1
+kind: aggregate
+id: 01a125a6-3392-7037-be61-97838d1d9fb5
+revision: 8
+name: Access Code
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+summary: An OAuth authorisation code, valid for 10 minutes and used once.
+description: 
+properties:
+- id: 01a125a6-3392-7837-bfaa-8486c379850c
+  name: Code
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a6-3392-7db3-96f3-db32078c6d94
+  name: Client Id
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a6-3392-709f-874e-a72c9953d276
+  name: Expires At
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a125a6-3392-7742-acf5-626124b7ec67
+  name: User Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a125a6-3392-7428-859d-4f59a8ddb578
+  name: Code Challenge
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a12661-35bb-704b-b39f-f81952618135
+  name: Scopes
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Primitive
+      primitive: Text
+  archived: false
+invariants: []
+domain-events: []
+entities: []
+methods: []
+archived: false

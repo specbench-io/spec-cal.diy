@@ -1,0 +1,90 @@
+spec-format: 1
+kind: application-service
+id: 01a1259c-c1f1-7799-95ec-ac2365c44b97
+revision: 9
+name: User Availability Service
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: getUserAvailability.ts (DI container getUserAvailabilityService). Also used by Create Booking to check the Organizer is still free.
+implements: []
+methods:
+- id: 01a1259c-c1f2-74ea-9e0e-59c827db6ac3
+  name: Get User Availability
+  description: 
+  implements: 
+  inputs:
+  - id: 01a1259c-c1f2-7481-b36a-5b90bc614a9a
+    name: User Id
+    type:
+      kind: Primitive
+      primitive: Id
+  - id: 01a1259c-c1f2-7b20-ae43-0e362ae609f8
+    name: Event Type Id
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Id
+  - id: 01a1259c-c1f2-73c1-98b1-e88fde6453ab
+    name: Date From
+    type:
+      kind: Primitive
+      primitive: Date
+  - id: 01a1259c-c1f2-72ee-af4e-ec1ce9ed4770
+    name: Date To
+    type:
+      kind: Primitive
+      primitive: Date
+  - id: 01a1269f-585c-7f0e-b0a8-0857bde715ba
+    name: Mode
+    type:
+      kind: Ref
+      nullable: true
+      ref:
+        entity-type: Enum
+        entity-id: 01a125a2-d5b8-71c0-a5c9-194a6ec21f85
+      ref-name: Calendar Fetch Mode
+  steps:
+  - id: 01a1259c-c1f2-709a-beeb-413b1a5f9fbf
+    text: Choose the Schedule - the Event Type's, else the Organizer's Default Schedule (or their first Schedule), else Monday to Friday 9 to 5 - and its time zone
+    indent: 0
+  - id: 01a1259c-c1f2-7b67-b843-10aa96be3f9b
+    text: 'If the Schedule has no availability at all, refuse: {{outcome:Availability Not Found In Schedule}}'
+    indent: 0
+  - id: 01a1259c-c1f2-730f-b5de-7f891ffc4d21
+    text: Work out the Out Of Office and Holiday days that fall on working weekdays; Out Of Office wins when both fall on the same date
+    indent: 0
+  - id: 01a1259c-c1f2-78b1-a03c-e33376c26b70
+    text: Apply Travel Schedules only when the chosen Schedule is the Default Schedule
+    indent: 0
+  - id: 01a1259c-c1f2-7fc0-bf6e-589e93b6e5cf
+    text: Build the open ranges with {{method:Availability/Build Date Ranges.Build Date Ranges}}
+    indent: 0
+  - id: 01a1259c-c1f2-766a-9066-b0c720b726da
+    text: 'If nothing is open: {{outcome:Available}}'
+    indent: 0
+  - id: 01a1259c-c1f2-7e69-b743-086ce166f9e5
+    text: Fetch the busy times with {{method:Availability/Busy Times Service.Get Busy Times}}, passing on the {{input:Mode}} (none when not given), and add the busy times from reached booking and duration limits
+    indent: 0
+  - id: 01a1259c-c1f2-7606-afba-7524875e932a
+    text: If fetching busy times fails, return no availability for this Organizer
+    indent: 0
+  - id: 01a1259c-c1f2-7149-b67c-07b8aa1f38b2
+    text: 'Remove the busy times from the open ranges: {{outcome:Available}}'
+    indent: 0
+  outcomes:
+  - id: 01a1259c-c1f2-7c1d-9fd1-bf840f0ef3c3
+    name: Available
+    success: true
+    message: 
+    returns:
+      kind: Ref
+      ref:
+        entity-type: ValueObject
+        entity-id: 01a1269e-13d6-75f8-88ce-7ee0e2a0ee4c
+      ref-name: User Availability
+  - id: 01a1259c-c1f2-7770-9724-e1f1e5831026
+    name: Availability Not Found In Schedule
+    success: false
+    message: 
+    returns: 
+  archived: false
+archived: false

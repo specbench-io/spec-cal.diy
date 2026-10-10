@@ -1,0 +1,29 @@
+spec-format: 1
+kind: use-case
+id: 01a125a3-63a7-7c23-a1a7-5819b4efa44e
+revision: 5
+name: List Connected Calendars
+bounded-context-id: 01a0f44a-2a06-7125-8fe2-659328d04ce1
+description: viewer.calendars.connectedCalendars. Despite being a query it also fixes up the Destination Calendar.
+use-case-kind: Query
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs: []
+steps:
+- id: 01a125a3-63a7-7992-b5dd-209938676183
+  text: List each connected calendar app's calendars
+  indent: 0
+- id: 01a125a3-63a7-7003-bdf9-20a90bdf1d29
+  text: If there are none, delete the Destination Calendar; if there is no Destination Calendar, or it is no longer there, set it to the first primary calendar
+  indent: 0
+- id: 01a125a3-63a7-769a-b919-18e91ddff1a6
+  text: 'Return the calendars and the Destination Calendar: {{outcome:Listed}}'
+  indent: 0
+outcomes:
+- id: 01a125a3-63a7-748b-91c1-9f6652dfef84
+  name: Listed
+  success: true
+  code: 
+  message: 
+  returns: 
+archived: false

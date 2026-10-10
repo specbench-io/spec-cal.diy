@@ -1,0 +1,17 @@
+spec-format: 1
+kind: event-handler
+id: 01a125a5-6c4a-701c-907e-614bd2e6acea
+revision: 5
+name: Schedule Meeting Triggers
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: scheduleTrigger - run when a Booking is confirmed (straight away or by the Organizer).
+trigger:
+  integration-event: Booking/Booking Created
+steps:
+- id: 01a125c4-e887-76fb-bdf9-95da0428d64c
+  text: For each Webhook listening for Meeting Started or Meeting Ended, store a Webhook Scheduled Trigger for {{field:Booking Uid}} to send at {{field:Start Time}} or {{field:End Time}}
+  indent: 0
+- id: 01a125c4-e887-7bed-98e8-3e5bb135b95b
+  text: If the location ({{field:Location}}) is Cal Video, add no-show check Tasks for hosts and guests at the start plus the Webhook's delay
+  indent: 0
+archived: false

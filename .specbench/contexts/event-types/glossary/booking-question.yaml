@@ -1,0 +1,11 @@
+spec-format: 1
+kind: term
+id: 01a1259e-ce32-7bfe-830b-65872760ecb1
+revision: 4
+name: Booking Question
+definition: A field the Booker fills in on the booking form. Some are always there (name, email, location); the Organizer adds their own.
+aka:
+- booking field
+avoid: []
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+archived: false

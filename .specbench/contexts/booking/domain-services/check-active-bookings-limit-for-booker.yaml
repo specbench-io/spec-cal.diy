@@ -1,0 +1,67 @@
+spec-format: 1
+kind: domain-service
+id: 01a12591-f0e2-7e25-81c9-906bbbf83aa9
+revision: 6
+name: Check Active Bookings Limit For Booker
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: 
+methods:
+- id: 01a12591-f0e3-7bcb-b033-17d4af9926b5
+  name: Check Active Bookings Limit For Booker
+  description: Stops one Booker holding too many upcoming Bookings of the same Event Type.
+  inputs:
+  - id: 01a12591-f0e5-74d1-979b-f534b00ce548
+    name: Event Type Id
+    type:
+      kind: Primitive
+      primitive: Id
+  - id: 01a12591-f0e5-792d-a569-57440d7338cf
+    name: Max Active Bookings Per Booker
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Number
+  - id: 01a12591-f0e5-75ae-8c38-cffa04163344
+    name: Booker Email
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a12591-f0e5-7cc3-90bc-549fb8822bbd
+    name: Offer To Reschedule Last Booking
+    type:
+      kind: Primitive
+      primitive: Bool
+  steps:
+  - id: 01a12591-f0e5-748d-9e20-995772f2bb07
+    text: 'If {{input:Max Active Bookings Per Booker}} is not set, there is no limit: {{outcome:Within Limit}}'
+    indent: 0
+  - id: 01a12591-f0e5-7048-826a-386049be17ab
+    text: Count the upcoming accepted Bookings of {{input:Event Type Id}} that have {{input:Booker Email}} as an Attendee
+    indent: 0
+  - id: 01a12591-f0e5-72b8-9c40-320dbdac36bd
+    text: "If the count has reached the limit and {{input:Offer To Reschedule Last Booking}} is on, refuse and offer to move the Booker's latest upcoming Booking to the new time instead: {{outcome:Booker Limit Exceeded Reschedule}}"
+    indent: 0
+  - id: 01a12591-f0e5-7824-875e-29cf307cc673
+    text: 'If the count has reached the limit, refuse: {{outcome:Booker Limit Exceeded}}'
+    indent: 0
+  - id: 01a12591-f0e5-7837-9bf2-e3722f9e7101
+    text: 'Otherwise the Booker is within the limit: {{outcome:Within Limit}}'
+    indent: 0
+  outcomes:
+  - id: 01a12591-f0e3-7b90-a7e5-60e673bc7e7a
+    name: Within Limit
+    success: true
+    message: 
+    returns: 
+  - id: 01a12591-f0e3-761a-b90b-e769b9bd6819
+    name: Booker Limit Exceeded
+    success: false
+    message: You've reached the limit of upcoming bookings for this event type.
+    returns: 
+  - id: 01a12591-f0e3-7d83-9bee-e721ce72ece5
+    name: Booker Limit Exceeded Reschedule
+    success: false
+    message: The limit is reached; the Booker is offered their latest upcoming Booking to reschedule.
+    returns: 
+  archived: false
+archived: false

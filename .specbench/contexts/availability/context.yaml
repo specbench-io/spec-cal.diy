@@ -1,0 +1,12 @@
+spec-format: 1
+kind: bounded-context
+id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+revision: 6
+name: Availability
+summary: Schedules, Date Overrides, Out of Office and Holidays, turned into Slots.
+description: 
+icon: navigation
+colour: emerald
+implements:
+- 01a0f447-05ad-7dd9-8b32-fce1e5b6e2c6
+archived: false

@@ -1,0 +1,36 @@
+spec-format: 1
+kind: value-object
+id: 01a1259b-eadc-74c3-a877-f965a51d2c8a
+revision: 6
+name: Working Hours
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+summary: Weekly hours as minutes since midnight in UTC, split across days when the time zone pushes them past midnight.
+description: 
+properties:
+- id: 01a1259b-eadc-7dd9-a907-7e3fc69792b7
+  name: Days
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Primitive
+      primitive: Number
+  archived: false
+- id: 01a1259b-eadc-72b0-94e5-a1e5af341338
+  name: Start Time
+  type:
+    kind: Primitive
+    primitive: Number
+  archived: false
+- id: 01a1259b-eadc-766a-abf5-cac41e3e9532
+  name: End Time
+  type:
+    kind: Primitive
+    primitive: Number
+  archived: false
+invariants:
+- id: 01a1259b-eadc-7d16-b325-32bddfea46bf
+  text: Start and end are between 0 and 1439 minutes.
+  archived: false
+methods: []
+archived: false

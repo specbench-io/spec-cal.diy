@@ -1,0 +1,26 @@
+spec-format: 1
+kind: event-handler
+id: 01a125f7-6d76-714f-af89-98473f1b6e1e
+revision: 4
+name: Check Cal Video Guest No Show
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: triggerGuestNoShowWebhook Task (packages/features/tasker/tasks/triggerNoShow/triggerGuestNoShow.ts). Queued and cancelled at the same moments as Check Cal Video Host No Show, for Webhooks with the guest no-show trigger.
+trigger:
+  integration-event: Booking/Booking Created
+steps:
+- id: 01a125f7-6d76-7fcb-b66e-1d31db744977
+  text: When the wait after the start has passed, load the Booking; do nothing unless it is still Accepted, and fail so the Task is retried if there is no Cal Video room
+  indent: 0
+- id: 01a125f7-6d76-7a86-acbd-3a66c29eb251
+  text: Ask Cal Video who joined and work out which hosts joined
+  indent: 0
+- id: 01a125f7-6d76-7ea0-8347-b44e5b090e37
+  text: If the Event Type requires guests to give their email, every Attendee whose email is not among the participants is a no-show guest
+  indent: 0
+- id: 01a125f7-6d76-7c51-8563-0ebdd39c0ee7
+  text: Otherwise the guests count as absent only if no meeting had more participants than the hosts who joined - then every Attendee except those hosts is a no-show guest
+  indent: 0
+- id: 01a125f7-6d76-7bc6-97a6-84c22c713fcb
+  text: If anyone is a no-show guest, mark them and send the "guests didn't join" Webhook
+  indent: 0
+archived: false

@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a1259c-42a8-771c-8e5a-70b1727f7cf7
+revision: 3
+name: Travel Schedule
+definition: A dated time zone change for the Organizer's Default Schedule while they travel.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+archived: false

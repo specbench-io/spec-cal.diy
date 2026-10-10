@@ -1,0 +1,86 @@
+spec-format: 1
+kind: enum
+id: 01a125a4-ce1c-71dc-a2b4-866962d0ded2
+revision: 21
+name: Webhook Trigger Events
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+summary: What a Webhook can listen for (Event triggers).
+description: 
+cases:
+- id: 01a125a4-ce1c-779c-97e9-8ad118cf9d97
+  name: Booking Created
+  description: 
+  archived: false
+- id: 01a125a4-ce1c-70cc-83e1-417365b57451
+  name: Booking Rescheduled
+  description: 
+  archived: false
+- id: 01a125a4-ce1c-703a-b74f-17bf2783397f
+  name: Booking Requested
+  description: 
+  archived: false
+- id: 01a125a4-ce1c-7454-8f2d-ff45675c6289
+  name: Booking Cancelled
+  description: Booking canceled
+  archived: false
+- id: 01a125a4-ce1c-792d-af38-121820dcb841
+  name: Booking Rejected
+  description: 
+  archived: false
+- id: 01a125a4-ce1c-7683-a110-467b1be78b17
+  name: Booking Payment Initiated
+  description: 
+  archived: false
+- id: 01a125a4-ce1c-7dbb-a127-3bbc986ad51c
+  name: Booking Paid
+  description: 
+  archived: false
+- id: 01a125a4-ce1c-79c9-bb82-1473da989d39
+  name: Booking No Show Updated
+  description: 
+  archived: false
+- id: 01a125a4-ce1c-790a-98e2-c1e17b52cf34
+  name: Meeting Started
+  description: 
+  archived: false
+- id: 01a125a4-ce1c-74b9-b8cb-fa27f9842c39
+  name: Meeting Ended
+  description: 
+  archived: false
+- id: 01a125a4-ce1c-7c24-afbf-ea5655a03318
+  name: Recording Ready
+  description: Recording download link ready
+  archived: false
+- id: 01a125a4-ce1c-7670-9c38-5556a8957664
+  name: Recording Transcription Generated
+  description: Transcript generated
+  archived: false
+- id: 01a125a4-ce1c-7241-a68a-7b87fc9e2d97
+  name: Ooo Created
+  description: Out of office created
+  archived: false
+- id: 01a125a4-ce1c-7b39-b3f2-ef61f4b7082f
+  name: After Hosts Cal Video No Show
+  description: After hosts didn't join cal video
+  archived: false
+- id: 01a125a4-ce1c-7932-a87a-306f1ccf009f
+  name: After Guests Cal Video No Show
+  description: 
+  archived: false
+- id: 01a125a4-ce1c-716e-8f81-b1918c8130a2
+  name: Delegation Credential Error
+  description: A stub in cal.diy - only logs.
+  archived: false
+- id: 01a125a4-ce1c-75aa-a929-2fd618202d1b
+  name: Wrong Assignment Report
+  description: Selectable but never fired in cal.diy.
+  archived: false
+- id: 01a125a4-ce1c-7af4-9548-eb0b9615b9ca
+  name: Form Submitted
+  description: Routing Forms leftover - never fired.
+  archived: false
+- id: 01a125a4-ce1c-7422-a599-8aa891788323
+  name: Form Submitted No Event
+  description: Routing Forms leftover - never fired.
+  archived: false
+archived: false

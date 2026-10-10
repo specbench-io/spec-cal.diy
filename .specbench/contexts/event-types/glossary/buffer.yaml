@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a1259e-ce49-7c4a-9bdc-c7b2878c596d
+revision: 3
+name: Buffer
+definition: Time kept free before or after a meeting.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+archived: false

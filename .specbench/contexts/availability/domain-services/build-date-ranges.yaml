@@ -1,0 +1,59 @@
+spec-format: 1
+kind: domain-service
+id: 01a1259c-c17a-788e-b735-212d07822f3d
+revision: 5
+name: Build Date Ranges
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: 
+methods:
+- id: 01a1259c-c17a-7a47-89a7-ca1dc6253d92
+  name: Build Date Ranges
+  description: Turns weekly hours, Date Overrides, Travel Schedules, Out Of Office days and Holidays into the ranges of time an Organizer is open (date-ranges.ts). The code takes weekly hours and Date Overrides in one mixed list.
+  inputs:
+  - id: 01a1259c-c17b-7a9c-a960-8b9a94c5e507
+    name: Time Zone
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a1259c-c17b-7bd7-9743-37873314f539
+    name: Date From
+    type:
+      kind: Primitive
+      primitive: Date
+  - id: 01a1259c-c17b-7b16-8449-0407aa37f988
+    name: Date To
+    type:
+      kind: Primitive
+      primitive: Date
+  - id: 01a1269f-591e-77aa-9dc2-c4e41c5546c2
+    name: Working Hours
+    type:
+      kind: Collection
+      shape: List
+      element:
+        kind: Ref
+        ref:
+          entity-type: ValueObject
+          entity-id: 01a1259b-eadc-74c3-a877-f965a51d2c8a
+        ref-name: Working Hours
+  steps:
+  - id: 01a1259c-c17b-74fb-b371-582bdd6cea30
+    text: Walk day by day through {{input:Date From}} to {{input:Date To}} in {{input:Time Zone}}, switching to a Travel Schedule's time zone on the days it covers
+    indent: 0
+  - id: 01a1259c-c17b-700f-8cb4-3cde949e6925
+    text: For each day, turn its {{input:Working Hours}} into ranges, correcting for daylight saving, treating 23:59 as midnight and joining ranges that touch
+    indent: 0
+  - id: 01a1259c-c17b-7497-9c2a-716f0290af36
+    text: Where a Date Override falls on a day, replace that day's ranges with the override's; a zero-length override removes the day
+    indent: 0
+  - id: 01a1259c-c17b-7234-a5d1-c39d396b0d28
+    text: 'Also return a second set where Out Of Office and Holiday days are removed entirely: {{outcome:Built}}'
+    indent: 0
+  outcomes:
+  - id: 01a1259c-c17a-7587-9764-4e75a053b4e0
+    name: Built
+    success: true
+    message: 
+    returns: 
+  archived: false
+archived: false

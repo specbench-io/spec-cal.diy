@@ -1,0 +1,201 @@
+spec-format: 1
+kind: feature
+id: 01a125e1-4774-70f9-b6f4-872bad8939e6
+revision: 51
+title: Connecting calendars
+intent: As an Organizer, I want to connect my calendars and choose which ones are checked for conflicts and where new events go, so that Bookers only see times I am really free and every Booking lands in my calendar.
+description: 'Use Cases: Install App, List Connected Calendars, Toggle Selected Calendar, Set Destination Calendar, Set Destination Reminder, Remove App, Receive Calendar Webhook.'
+scenarios:
+- id: 01a125e1-4774-762f-9d2a-dcfd3f44a3cb
+  title: Connecting Google Calendar checks the primary calendar for conflicts straight away
+  steps:
+  - id: 01a125e1-4774-719c-ac46-1825b9eb0fc9
+    keyword: Given
+    text: an Organizer with no calendars connected
+    archived: false
+  - id: 01a125e1-4774-7f1c-8d4f-1107c0800aa8
+    keyword: When
+    text: the Organizer connects Google Calendar and grants every requested permission
+    archived: false
+  - id: 01a125e1-4774-7142-8c3d-20dad193a142
+    keyword: Then
+    text: the Google primary calendar is switched on under "Check for conflicts"
+    archived: false
+  - id: 01a125e1-4774-7874-839b-f9e4c85e32f8
+    keyword: And
+    text: if the Organizer started from a flow that also asked for Google Meet, Google Meet is installed too unless it is already installed
+    archived: false
+  - id: 01a125e1-4774-7896-b558-80817a4c9d5c
+    keyword: And
+    text: if the Organizer refuses any of the requested permissions, the connection is not saved
+    archived: false
+  archived: false
+- id: 01a125e1-4774-7425-82ed-c7b961b55a7f
+  title: Connecting an Apple account that is already linked is refused
+  steps:
+  - id: 01a125e1-4774-792d-8141-38163bc6ca97
+    keyword: Given
+    text: an Organizer who has connected Apple Calendar with the Apple ID "ana@icloud.com" and an app-specific password
+    archived: false
+  - id: 01a125e1-4774-7662-9b36-c8fc86a4417a
+    keyword: When
+    text: the Organizer connects Apple Calendar again with the same Apple ID and the same password
+    archived: false
+  - id: 01a125e1-4774-7b01-a615-81b1d88e8c9f
+    keyword: Then
+    text: the Organizer sees "Account is already linked"
+    archived: false
+  - id: 01a125e1-4774-792f-a004-d95bdc84d351
+    keyword: And
+    text: when the Organizer enters the same Apple ID with a new password that Apple accepts, the existing connection is updated instead of a second one being added
+    archived: false
+  - id: 01a125e1-4774-74a1-90a8-d752e4bcb3ba
+    keyword: And
+    text: when Apple rejects the details, the Organizer sees "Unable to add this Apple Calendar account. Please ensure you're using an app-specific password rather than your account password."
+    archived: false
+  archived: false
+- id: 01a125e1-4774-7c39-9c4e-994a94a6c609
+  title: The first connected calendar becomes where new events are added
+  steps:
+  - id: 01a125e1-4774-797b-8205-676113b19e06
+    keyword: Given
+    text: an Organizer who has just connected their first calendar and has no Destination Calendar
+    archived: false
+  - id: 01a125e1-4774-735a-80a4-e0d2c8210def
+    keyword: When
+    text: the Organizer opens their calendar settings
+    archived: false
+  - id: 01a125e1-4774-7233-835b-c093fb5bd91d
+    keyword: Then
+    text: the primary calendar of the first connected calendar is chosen under "Add to calendar"
+    archived: false
+  - id: 01a125e1-4774-72df-953f-5289b77a5ba6
+    keyword: And
+    text: that calendar is marked "Adding events to"
+    archived: false
+  - id: 01a125e1-4774-7fa6-88fb-10e2a1734ce4
+    keyword: And
+    text: if the chosen calendar later disappears from the connected calendars, the primary calendar of the first connected calendar is chosen instead
+    archived: false
+  - id: 01a125e1-4774-7cf9-a4ce-b6dd83ab936f
+    keyword: And
+    text: if no calendars remain connected, no Destination Calendar is kept
+    archived: false
+  archived: false
+- id: 01a125e1-4774-7e02-bc2a-ab7d81f4a480
+  title: An Event Type can check its own set of calendars for conflicts
+  steps:
+  - id: 01a125e1-4774-7341-a2ad-c994e436aaf7
+    keyword: Given
+    text: an Organizer with Google Calendar connected and calendars "Work" and "Family" switched on under "Check for conflicts"
+    archived: false
+  - id: 01a125e1-4774-7d17-9cc8-a7700fb609c6
+    keyword: And
+    text: an Event Type "Intro call"
+    archived: false
+  - id: 01a125e1-4774-75cb-b21a-6a409b50a5e9
+    keyword: When
+    text: the Organizer opens the advanced settings of "Intro call" and changes "Using User settings" to "Using Event Type settings"
+    archived: false
+  - id: 01a125e1-4774-7aaf-a0be-92863d2378c3
+    keyword: And
+    text: switches on only "Work" for this Event Type and saves
+    archived: false
+  - id: 01a125e1-4774-7bde-ad02-45dd41255543
+    keyword: Then
+    text: availability for "Intro call" is checked against "Work" only
+    archived: false
+  - id: 01a125e1-4774-7433-b63f-a2cdd1491057
+    keyword: And
+    text: the Organizer's other Event Types still check both "Work" and "Family"
+    archived: false
+  - id: 01a125e1-4774-7567-934b-27b632826b25
+    keyword: And
+    text: while "User" settings are in use, the calendar switches on the Event Type page cannot be changed
+    archived: false
+  archived: false
+- id: 01a125e1-4774-7203-98a0-c4163c3aee2f
+  title: A default reminder can be set only when events go to Google Calendar
+  steps:
+  - id: 01a125e1-4774-72dc-a167-ec99d138fea7
+    keyword: Given
+    text: an Organizer whose Destination Calendar is a Google calendar
+    archived: false
+  - id: 01a125e1-4774-7889-8010-a70c5d6bd670
+    keyword: When
+    text: the Organizer sets "Default reminder" to "10 minutes before"
+    archived: false
+  - id: 01a125e1-4774-74fa-b4f1-571c75152fa7
+    keyword: Then
+    text: the Organizer sees "Reminder updated"
+    archived: false
+  - id: 01a125e1-4774-7260-bc84-357442d6c1be
+    keyword: And
+    text: every new Booking added to that Google calendar gets a pop-up reminder and an email reminder 10 minutes before
+    archived: false
+  - id: 01a125e1-4774-760e-ae92-d0776770f7fe
+    keyword: And
+    text: the choices are "Use default reminders", "Just in time", "10 minutes before", "30 minutes before" and "60 minutes before"
+    archived: false
+  - id: 01a125e1-4774-7d8e-868b-1f74c71d2cb6
+    keyword: And
+    text: when the Destination Calendar is not a Google calendar, "Default reminder" is not shown
+    archived: false
+  archived: false
+- id: 01a125e1-4774-789a-a79b-453b3022fdf6
+  title: Removing a calendar app clears what depended on it
+  steps:
+  - id: 01a125e1-4774-78ec-93bb-1eac68553ee0
+    keyword: Given
+    text: an Organizer with Google Calendar connected
+    archived: false
+  - id: 01a125e1-4774-7442-aae8-0063e2f49829
+    keyword: And
+    text: an Event Type whose own "Add to calendar" choice is a Google calendar
+    archived: false
+  - id: 01a125e1-4774-7ae4-9415-f80db11161bf
+    keyword: When
+    text: the Organizer removes the Google Calendar app
+    archived: false
+  - id: 01a125e1-4774-76fd-a290-70828484127c
+    keyword: Then
+    text: that Event Type no longer has its own Destination Calendar
+    archived: false
+  - id: 01a125e1-4774-72ad-8911-c8d4b25cb5b3
+    keyword: And
+    text: the Google calendars are no longer checked for conflicts
+    archived: false
+  - id: 01a125e1-4774-708f-ab70-834a93465b24
+    keyword: And
+    text: the Organizer sees "App removed successfully"
+    archived: false
+  archived: false
+- id: 01a125e1-4774-7d38-997e-4d962139124a
+  title: A Booking cancelled or moved in the Organizer's calendar is applied to the Booking
+  steps:
+  - id: 01a125e1-4774-7e1f-a865-e8a159120077
+    keyword: Given
+    text: calendar sync is turned on
+    archived: false
+  - id: 01a125e1-4774-7864-9479-bd741c4d0203
+    keyword: And
+    text: an Organizer whose Google calendar contains the event for their Booking "Intro call" from 10:00 to 10:30
+    archived: false
+  - id: 01a125e1-4774-720c-b51b-90c85f44ead9
+    keyword: When
+    text: the Organizer moves that event in Google Calendar to start at 14:00
+    archived: false
+  - id: 01a125e1-4774-7cdc-9eb8-5c8eb832d1ed
+    keyword: Then
+    text: the Booking is rescheduled to 14:00 to 14:30, keeping its original length
+    archived: false
+  - id: 01a125e1-4774-79de-8fc5-201067218b6c
+    keyword: And
+    text: when the Organizer deletes that event in Google Calendar, the Booking is cancelled with the reason "Cancelled on user's calendar"
+    archived: false
+  - id: 01a125e1-4774-7eb1-adfe-06987a9486b9
+    keyword: And
+    text: events that were not created for a Booking, or Bookings hosted by someone else, are left alone
+    archived: false
+  archived: false
+archived: false

@@ -1,0 +1,26 @@
+spec-format: 1
+kind: enum
+id: 01a1259e-cd47-742d-a384-7e7125c322f8
+revision: 6
+name: Cancellation Reason Requirement
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+summary: Who must give a reason when cancelling (Require cancellation reason).
+description: 
+cases:
+- id: 01a1259e-cd47-7105-b04c-93c6a23eedd9
+  name: Mandatory Both
+  description: Mandatory for both
+  archived: false
+- id: 01a1259e-cd47-77ce-8342-e2a8967905e2
+  name: Mandatory Host Only
+  description: Mandatory for host only (the default)
+  archived: false
+- id: 01a1259e-cd47-7077-bb26-72b7a54f74d6
+  name: Mandatory Attendee Only
+  description: Mandatory for attendee only
+  archived: false
+- id: 01a1259e-cd47-7e96-beb8-5c2de2dfd104
+  name: Optional Both
+  description: Optional for both
+  archived: false
+archived: false
