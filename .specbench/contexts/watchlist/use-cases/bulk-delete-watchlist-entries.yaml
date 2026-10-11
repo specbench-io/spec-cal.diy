@@ -1,0 +1,41 @@
+spec-format: 1
+kind: use-case
+id: 01a12596-ff66-793f-bc77-a38d64331363
+revision: 8
+name: Bulk Delete Watchlist Entries
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+description: 'Admin API: viewer.admin.watchlist.bulkDelete.'
+use-case-kind: Command
+roles:
+- 01a0f442-adc6-7410-af52-ea288a8ae9d1
+inputs:
+- id: 01a12596-ff66-7535-b1ed-bb87d1358af2
+  name: Entry Ids
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Primitive
+      primitive: Id
+  archived: false
+steps:
+- id: 01a12596-ff66-7679-8459-9252a8696d63
+  text: 'Remove the chosen entries from the Global Watchlist, using {{method:Watchlist/Admin Watchlist Operations Service.Bulk Delete Watchlist Entries}}: {{outcome:Entries Deleted}}'
+  indent: 0
+- id: 01a12596-ff66-7ac0-880c-0da7bff73715
+  text: 'If none could be deleted, refuse: {{outcome:Partial Failure}}'
+  indent: 1
+outcomes:
+- id: 01a12596-ff66-7722-ac9b-4eccab419494
+  name: Entries Deleted
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a12596-ff66-7897-a437-37509f25ef67
+  name: Partial Failure
+  success: false
+  code: 
+  message: 
+  returns: 
+archived: false

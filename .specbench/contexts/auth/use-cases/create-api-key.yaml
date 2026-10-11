@@ -1,0 +1,37 @@
+spec-format: 1
+kind: use-case
+id: 01a125a7-3bd5-7f0f-84f3-76014f4b3714
+revision: 7
+name: Create Api Key
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+description: viewer.apiKeys.create (Settings, Developer, API keys).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a7-3bd5-7f9a-8d16-a8e6748a53bf
+  name: Note
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a7-3bd5-7143-89b7-5fc269e65192
+  name: Expires At
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Date
+  archived: false
+steps:
+- id: 01a125a7-3bd5-7364-8613-fee1cca3f376
+  text: 'Make a random key, store only its hash, and show it once with the cal_ prefix: {{outcome:Key Created}}'
+  indent: 0
+outcomes:
+- id: 01a125a7-3bd5-7ae9-89f3-3a76d3754b52
+  name: Key Created
+  success: true
+  code: 
+  message: 
+  returns: 
+archived: false

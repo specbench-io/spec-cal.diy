@@ -1,0 +1,9 @@
+spec-format: 1
+kind: subdomain
+id: 01a0f447-0607-70ee-be69-d9b2af1f0696
+revision: 3
+name: Abuse Prevention
+summary: Stopping spam and unwanted bookings.
+description: 
+classification: Supporting
+archived: false

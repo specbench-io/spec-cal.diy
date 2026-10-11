@@ -1,0 +1,47 @@
+spec-format: 1
+kind: interface
+id: 01a125a3-d6d7-7815-82ba-b21c3e204ce8
+revision: 8
+name: Video Api Adapter
+bounded-context-id: 01a0f44a-2a22-7488-ae05-7c57eda180ac
+description: What every video app must do (packages/types/VideoApiAdapter.d.ts). Google Meet has none - its link comes from the Google Calendar event.
+methods:
+- id: 01a125a3-d6d7-7fe1-9488-8516ce094916
+  name: Create Meeting
+  description: 
+  inputs:
+  - id: 01a125a3-d6d7-7f9c-8e2f-8744e8ce49ec
+    name: Event
+    type:
+      kind: Primitive
+      primitive: Text
+  returns: 
+  archived: false
+- id: 01a125a3-d6d7-79f7-a868-e03fd9629b9c
+  name: Update Meeting
+  description: 
+  inputs:
+  - id: 01a125a3-d6d7-79c3-a53d-142ce16697c3
+    name: Booking Reference Uid
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a125a3-d6d7-7716-924c-de846c10f13e
+    name: Event
+    type:
+      kind: Primitive
+      primitive: Text
+  returns: 
+  archived: false
+- id: 01a125a3-d6d7-766c-8c69-1ddb700b10ea
+  name: Delete Meeting
+  description: 
+  inputs:
+  - id: 01a125a3-d6d7-7f5e-8782-e389d11794ee
+    name: Uid
+    type:
+      kind: Primitive
+      primitive: Text
+  returns: 
+  archived: false
+archived: false

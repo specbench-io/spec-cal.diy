@@ -1,0 +1,78 @@
+spec-format: 1
+kind: value-object
+id: 01a1269e-13d6-75f8-88ce-7ee0e2a0ee4c
+revision: 8
+name: User Availability
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+summary: What an Organizer has open and what blocks them over a period.
+description: GetUserAvailabilityResult in getUserAvailability.ts. The code also returns the seats already taken on seated Bookings and the Out Of Office days by date.
+properties:
+- id: 01a1269e-13d6-7a45-a550-ed86ec2cbe0d
+  name: Busy
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Ref
+      ref:
+        entity-type: ValueObject
+        entity-id: 01a1259b-eb1b-7769-94de-216a78b40338
+      ref-name: Busy Time
+  archived: false
+- id: 01a1269e-13d6-7e80-9b21-c60d20c3eec4
+  name: Time Zone
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a1269e-13d6-7344-a845-52acb2872927
+  name: Date Ranges
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Ref
+      ref:
+        entity-type: ValueObject
+        entity-id: 01a1259b-eafc-77de-bd76-831eab0551f6
+      ref-name: Date Range
+  archived: false
+- id: 01a1269e-13d6-722b-a18d-ffc823c5d778
+  name: Out Of Office Excluded Date Ranges
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Ref
+      ref:
+        entity-type: ValueObject
+        entity-id: 01a1259b-eafc-77de-bd76-831eab0551f6
+      ref-name: Date Range
+  archived: false
+- id: 01a1269e-13d6-731f-9a7f-e1656428b4e9
+  name: Working Hours
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Ref
+      ref:
+        entity-type: ValueObject
+        entity-id: 01a1259b-eadc-74c3-a877-f965a51d2c8a
+      ref-name: Working Hours
+  archived: false
+- id: 01a1269e-13d6-7178-b16d-e1569dc44d62
+  name: Date Overrides
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Ref
+      ref:
+        entity-type: ValueObject
+        entity-id: 01a1259b-eafc-77de-bd76-831eab0551f6
+      ref-name: Date Range
+  archived: false
+invariants: []
+methods: []
+archived: false

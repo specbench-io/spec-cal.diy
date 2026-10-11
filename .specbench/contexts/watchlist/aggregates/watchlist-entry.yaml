@@ -1,0 +1,81 @@
+spec-format: 1
+kind: aggregate
+id: 01a10ff1-1010-7d2d-9de2-ada8e6a07a95
+revision: 17
+name: Watchlist Entry
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+summary: One email or domain on the watchlist, and what to do when it matches.
+description: Organization Id is always empty in cal.diy, because organizations were removed. Booking reports and the entry's audit history refer to it but are not yet modelled.
+properties:
+- id: 01a10ff1-1015-7e34-93b9-b8193869b5ef
+  name: Value
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a12561-4705-7692-b2ae-01140bfbcd32
+  name: Type
+  type:
+    kind: Ref
+    ref:
+      entity-type: Enum
+      entity-id: 01a10ff1-0fa3-784b-bfc0-3a444eec4ab9
+    ref-name: Watchlist Type
+  archived: false
+- id: 01a12561-4705-7b90-b0bb-92439b8c7200
+  name: Action
+  type:
+    kind: Ref
+    ref:
+      entity-type: Enum
+      entity-id: 01a10ff1-0fda-7c0a-9b9c-ed84a73810b5
+    ref-name: Watchlist Action
+  archived: false
+- id: 01a1256a-c422-7b02-8328-ec4d34a11835
+  name: Source
+  type:
+    kind: Ref
+    ref:
+      entity-type: Enum
+      entity-id: 01a12569-8a6a-7c93-9576-532a3e6e94ff
+    ref-name: Watchlist Source
+  archived: false
+- id: 01a10ff1-1015-7a29-bc2d-486d3af61585
+  name: Description
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a10ff1-1015-702f-9465-6c87478646d1
+  name: Is Global
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a12569-b079-7720-b6df-f25d79d76237
+  name: Organization Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a12569-b079-767f-8661-6079e179ce17
+  name: Last Updated At
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+invariants:
+- id: 01a12569-b07b-74a7-a58a-1d09cc80167c
+  text: Only one entry may exist for the same type, value and organization.
+  archived: false
+domain-events:
+- id: c12b2f7c-7aa0-4b4e-84e1-2c7ec9cf3514
+  name: Booking Created event
+  summary: 
+  payload: []
+  archived: false
+entities: []
+methods: []
+archived: false

@@ -1,0 +1,13 @@
+spec-format: 1
+kind: bounded-context
+id: 01a0f44a-2a22-7488-ae05-7c57eda180ac
+revision: 8
+name: Apps
+summary: Connecting third-party calendars, video and payment providers.
+description: Calendar synchronisation itself belongs to Calendars.
+icon: network
+colour: violet
+implements:
+- 01a0f447-05cb-7fc2-8f62-d9bb15439ace
+- 01a0f447-05e9-7528-bca2-ecf7cb5dab49
+archived: false

@@ -1,0 +1,23 @@
+spec-format: 1
+kind: use-case
+id: 01a1259d-7f34-78b9-a598-947fab668b79
+revision: 5
+name: Check Holiday Conflicts
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: viewer.holidays.checkConflicts.
+use-case-kind: Query
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs: []
+steps:
+- id: 01a1259d-7f34-707a-b123-fe8902b7c5b1
+  text: 'Return the accepted or pending Bookings in the next three months that fall on enabled Holidays: {{outcome:Conflicts}}'
+  indent: 0
+outcomes:
+- id: 01a1259d-7f34-7a24-8dcb-5ff566d65279
+  name: Conflicts
+  success: true
+  code: 
+  message: You have {{count}} booking(s) on holidays
+  returns: 
+archived: false

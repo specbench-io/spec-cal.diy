@@ -1,0 +1,9 @@
+spec-format: 1
+kind: subdomain
+id: 01a0f447-05ad-7dd9-8b32-fce1e5b6e2c6
+revision: 3
+name: Availability
+summary: Working out when an Organizer is actually free.
+description: 
+classification: Core
+archived: false

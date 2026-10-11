@@ -1,0 +1,63 @@
+spec-format: 1
+kind: use-case
+id: 01a125a7-3ba6-72c1-9add-30fed76a431f
+revision: 10
+name: Delete Account
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+description: viewer.me.deleteMe (Delete account).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a7-3ba6-73cb-809f-3bd9a5b51823
+  name: Password
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a7-3ba6-71ea-967e-3897b3aad62f
+  name: Two Factor Code
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a7-3ba7-74dc-afb4-17d71f72200e
+  text: 'If the current password does not meet the password rule (strict for Admins), refuse: {{outcome:Password Policy Violation}}'
+  indent: 0
+- id: 01a125a7-3ba7-708c-a110-f5b90a09b6da
+  text: 'If {{input:Password}} is wrong, refuse: {{outcome:Incorrect Password}}'
+  indent: 0
+- id: 01a125a7-3ba7-735a-ab36-d6f395670d8d
+  text: 'If two-factor is on and the code is missing or wrong, refuse: {{outcome:Incorrect Two Factor Code}}'
+  indent: 0
+- id: 01a125a7-3ba7-7691-a1e1-9f8d6123712d
+  text: 'Delete the Stripe customer, then delete the user and everything that cascades from it: {{outcome:Account Deleted}}'
+  indent: 0
+outcomes:
+- id: 01a125a7-3ba6-7a96-8632-1d0d0f0f355d
+  name: Account Deleted
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a125a7-3ba7-7cf3-81f0-841a12998f7d
+  name: Password Policy Violation
+  success: false
+  code: 
+  message: 
+  returns: 
+- id: 01a125a7-3ba7-7004-974b-0aa0ac879587
+  name: Incorrect Password
+  success: false
+  code: 403
+  message: 
+  returns: 
+- id: 01a125a7-3ba7-7324-9e7e-d50ee869710b
+  name: Incorrect Two Factor Code
+  success: false
+  code: 
+  message: 
+  returns: 
+archived: false

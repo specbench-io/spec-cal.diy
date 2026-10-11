@@ -1,0 +1,17 @@
+spec-format: 1
+kind: event-handler
+id: 01a125a5-6bd6-7927-90c3-ab645c7364b8
+revision: 5
+name: Deliver Booking Cancelled Webhooks
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: handleWebhookTrigger for BOOKING_CANCELLED, called directly by Cancel Booking and Request Reschedule.
+trigger:
+  integration-event: Booking/Booking Cancelled
+steps:
+- id: 01a125a5-6bd6-7ec7-8687-fa4bba43eb9e
+  text: Find the active Webhooks listening for Booking Cancelled for the Organizer, the Event Type, or the platform
+  indent: 0
+- id: 01a125c4-e7e4-78d0-83ac-a8316d8e1410
+  text: POST the signed Webhook Payload for {{field:Booking Uid}} to each, with {{field:Cancellation Reason}}, {{field:Cancelled By}} and whether a reschedule was requested ({{field:Request Reschedule}})
+  indent: 0
+archived: false

@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a125a2-d62b-7505-8b47-6beee709155e
+revision: 3
+name: Calendar Subscription
+definition: A push channel from a provider that tells cal.diy when a calendar changes. Only Google is supported.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-2a06-7125-8fe2-659328d04ce1
+archived: false

@@ -1,0 +1,18 @@
+spec-format: 1
+kind: enum
+id: 01a125a6-32ce-71d4-a8ed-44e6293e5372
+revision: 4
+name: Access Scope
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+summary: What an OAuth token may read.
+description: 
+cases:
+- id: 01a125a6-32ce-797a-9685-457c93ccdb06
+  name: Read Booking
+  description: 
+  archived: false
+- id: 01a125a6-32ce-7ec4-95a1-541fab25483e
+  name: Read Profile
+  description: 
+  archived: false
+archived: false

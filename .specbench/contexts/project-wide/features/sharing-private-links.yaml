@@ -1,0 +1,201 @@
+spec-format: 1
+kind: feature
+id: 01a125e0-1a29-7463-9631-92a68f4e6021
+revision: 52
+title: Sharing Private Links
+intent: As an Organizer, I want to share Private Links to an Event Type that expire by date or by number of uses, so that only the people I choose can book me, and only for as long as I allow.
+description: 'Use Cases: Book Through Private Link, Update Event Type. Service: Hashed Link Service.'
+scenarios:
+- id: 01a125e0-1a29-7d96-9bae-5741c69c9849
+  title: A new Private Link is single use unless the Organizer changes it
+  steps:
+  - id: 01a125e0-1a29-72c1-b2e9-aebf43eba787
+    keyword: Given
+    text: the Organizer has switched on "Private links" for an Event Type
+    archived: false
+  - id: 01a125e0-1a29-7520-b9c0-8928f2cffef1
+    keyword: When
+    text: they choose "Add new link"
+    archived: false
+  - id: 01a125e0-1a29-77ce-916f-ecdb75fa0b1b
+    keyword: Then
+    text: a new Private Link is added that can be used for one booking
+    archived: false
+  - id: 01a125e0-1a29-77f9-8c91-027f3d7b73fc
+    keyword: And
+    text: the link shows "1 of 1 use left"
+    archived: false
+  - id: 01a125e0-1a29-71df-8739-2e7608cd22eb
+    keyword: When
+    text: the Organizer saves the Event Type
+    archived: false
+  - id: 01a125e0-1a29-731b-ae10-62bfaf9c3888
+    keyword: Then
+    text: the Event Types list shows a "Copy private link to event" button for that Event Type
+    archived: false
+  - id: 01a125e0-1a29-7d00-982c-6631addcd0ab
+    keyword: And
+    text: clicking it shows "Private link copied!"
+    archived: false
+  archived: false
+- id: 01a125e0-9ace-74cd-9b5a-bc3592f1444a
+  title: A new Private Link is single use unless the Organizer changes it
+  steps:
+  - id: 01a125e0-9ace-7eb2-9d1f-fcfff1c83b87
+    keyword: Given
+    text: the Organizer has switched on "Private links" for an Event Type
+    archived: false
+  - id: 01a125e0-9ace-7380-97e4-41a7dcbb75ea
+    keyword: When
+    text: they choose "Add new link"
+    archived: false
+  - id: 01a125e0-9ace-7779-bd68-9ba80688e438
+    keyword: Then
+    text: a new Private Link is added that can be used for one booking
+    archived: false
+  - id: 01a125e0-9ace-7a91-9042-aa5898815604
+    keyword: And
+    text: the link shows "1 of 1 use left"
+    archived: false
+  - id: 01a125e0-9ace-790f-b706-86561e4550fe
+    keyword: When
+    text: the Organizer saves the Event Type
+    archived: false
+  - id: 01a125e0-9ace-7f2d-90a5-9e0b5e409657
+    keyword: Then
+    text: the Event Types list shows a "Copy private link to event" button for that Event Type
+    archived: false
+  - id: 01a125e0-9ace-7af8-9475-ded8da71f3e5
+    keyword: And
+    text: clicking it shows "Private link copied!"
+    archived: false
+  archived: true
+- id: 01a125e0-9ace-795e-8475-734176d2980a
+  title: A Private Link stops working once its uses run out
+  steps:
+  - id: 01a125e0-9ace-7fa1-969a-837eedfad270
+    keyword: Given
+    text: a Private Link that can be used for 2 bookings and has been used once
+    archived: false
+  - id: 01a125e0-9ace-7520-aef4-2b0ed3f60fba
+    keyword: When
+    text: a Booker opens the Private Link and books a Slot
+    archived: false
+  - id: 01a125e0-9ace-7182-9a0f-a30208f411da
+    keyword: Then
+    text: the booking is made and the link's use is counted
+    archived: false
+  - id: 01a125e0-9ace-78ca-8ef3-5d1cb237f6e7
+    keyword: And
+    text: the Organizer sees "Usage limit reached" for that link
+    archived: false
+  - id: 01a125e0-9ace-7eb3-94bd-4803112c3c73
+    keyword: When
+    text: another Booker opens the same Private Link
+    archived: false
+  - id: 01a125e0-9ace-729b-b619-eb078aeed4bf
+    keyword: Then
+    text: they get a page-not-found instead of the booking page
+    archived: false
+  archived: false
+- id: 01a125e0-9ace-7426-8b1d-643038ff7ef1
+  title: A Private Link set to expire on a date stops working after that day
+  steps:
+  - id: 01a125e0-9ace-71cc-9e32-18580f1beeea
+    keyword: Given
+    text: the Organizer sets a Private Link to expire on March 10
+    archived: false
+  - id: 01a125e0-9ace-7baf-b037-ea5a4c0ac5d1
+    keyword: Then
+    text: the link shows "Expires on Mar 10, 2027, end of day"
+    archived: false
+  - id: 01a125e0-9ace-7e62-8c57-cc3c56a4e952
+    keyword: And
+    text: bookings made through it before then do not count against any number of uses
+    archived: false
+  - id: 01a125e0-9ace-7362-aa00-8703ade9b210
+    keyword: When
+    text: a Booker opens the Private Link after the end of March 10
+    archived: false
+  - id: 01a125e0-9ace-77c8-874c-2403cf522f94
+    keyword: Then
+    text: they get a page-not-found instead of the booking page
+    archived: false
+  - id: 01a125e0-9ace-771b-889f-564613370f32
+    keyword: And
+    text: the Organizer sees "This link expired on Mar 10, 2027, end of day" for that link
+    archived: false
+  archived: false
+- id: 01a125e0-9ace-78d1-b9b5-91b321759749
+  title: A Booker who already has the booking page open can still book after the link runs out
+  steps:
+  - id: 01a125e0-9ace-70fb-9943-4f8757cad70e
+    keyword: Given
+    text: a single-use Private Link
+    archived: false
+  - id: 01a125e0-9ace-7ad4-ba3e-ec7d2641d381
+    keyword: And
+    text: two Bookers open it before anyone has booked
+    archived: false
+  - id: 01a125e0-9ace-7438-861c-7d771b269c48
+    keyword: When
+    text: the first Booker books a Slot
+    archived: false
+  - id: 01a125e0-9ace-7850-9c46-74550ea5e60a
+    keyword: Then
+    text: the link's single use is counted
+    archived: false
+  - id: 01a125e0-9ace-796a-82f4-6013cf64684f
+    keyword: When
+    text: the second Booker books a different Slot from the page they already have open
+    archived: false
+  - id: 01a125e0-9ace-768c-a4e9-9d905de8886a
+    keyword: Then
+    text: the second booking is also made
+    archived: false
+  - id: 01a125e0-9ace-78bc-8e3b-6ea23bd55019
+    keyword: And
+    text: the link's use count stays at 1
+    archived: false
+  archived: false
+- id: 01a125e0-9ace-7776-9bc4-b810654c1b75
+  title: Booking a recurring series through a Private Link does not use it up
+  steps:
+  - id: 01a125e0-9ace-7991-bb85-3a1b2e0911a3
+    keyword: Given
+    text: a single-use Private Link to a recurring Event Type
+    archived: false
+  - id: 01a125e0-9ace-70c6-98e7-9a796547ac9a
+    keyword: When
+    text: a Booker books the recurring series through the Private Link
+    archived: false
+  - id: 01a125e0-9ace-7b2f-b47d-d97af484f82a
+    keyword: Then
+    text: all the occurrences are booked
+    archived: false
+  - id: 01a125e0-9ace-770f-908a-2066ea7023a8
+    keyword: And
+    text: the Private Link still has its one use left
+    archived: false
+  archived: false
+- id: 01a125e0-9ace-76a5-b2a9-3c3d2e551a01
+  title: Hiding an Event Type from the Event Types list removes its Private Links
+  steps:
+  - id: 01a125e0-9ace-7e72-8d6f-0e38f9d6e89a
+    keyword: Given
+    text: the Organizer's Event Type has two Private Links
+    archived: false
+  - id: 01a125e0-9ace-7c64-abac-415a94f4fcbb
+    keyword: When
+    text: the Organizer switches that Event Type off in their Event Types list (the switch reads "Hide from profile")
+    archived: false
+  - id: 01a125e0-9ace-7ed4-bafc-f11ba99576ce
+    keyword: Then
+    text: the Event Type is hidden
+    archived: false
+  - id: 01a125e0-9ace-7ecb-831a-f94dc8a7b8ba
+    keyword: And
+    text: both of its Private Links are deleted and stop working
+    archived: false
+  archived: false
+archived: false

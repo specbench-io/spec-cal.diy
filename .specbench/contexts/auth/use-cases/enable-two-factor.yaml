@@ -1,0 +1,74 @@
+spec-format: 1
+kind: use-case
+id: 01a125a7-3aee-71c6-baf9-b8bce2bca226
+revision: 11
+name: Enable Two Factor
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+description: /settings/security/two-factor-auth - the setup then enable routes.
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a7-3aee-7609-b5b2-dce09592c940
+  name: Password
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a7-3aee-7a08-85fb-ce903bb4aa02
+  name: Code
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a7-3aee-783c-b0c7-43634092dd83
+  text: 'If the account signs in with Google and has no password, refuse: {{outcome:Third Party Provider}}'
+  indent: 0
+- id: 01a125a7-3aee-77be-9f22-d734a63f0b0c
+  text: 'If two-factor is already on, refuse: {{outcome:Already Enabled}}'
+  indent: 0
+- id: 01a125a7-3aee-7376-b72d-ebb37802630c
+  text: 'If {{input:Password}} is wrong, refuse: {{outcome:Incorrect Password}}'
+  indent: 0
+- id: 01a125a7-3aee-793a-bdb7-bc74727fe759
+  text: Store an encrypted secret and ten backup codes, and show the QR code and codes
+  indent: 0
+- id: 01a125a7-3aee-702a-a464-f7b360ce90b5
+  text: 'If {{input:Code}} from the authenticator is wrong, refuse: {{outcome:Incorrect Code}}'
+  indent: 0
+- id: 01a125a7-3aee-7ca8-92cb-f2577630b18a
+  text: 'Switch two-factor on: {{outcome:Enabled}}'
+  indent: 0
+outcomes:
+- id: 01a125a7-3aee-7ef2-b949-6740d2c4e5cc
+  name: Enabled
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a125a7-3aee-76a0-a106-00872379565b
+  name: Third Party Provider
+  success: false
+  code: 
+  message: 
+  returns: 
+- id: 01a125a7-3aee-712e-b34b-a204522e537b
+  name: Already Enabled
+  success: false
+  code: 
+  message: 
+  returns: 
+- id: 01a125a7-3aee-7683-b672-dfaa7088d4f3
+  name: Incorrect Password
+  success: false
+  code: 
+  message: 
+  returns: 
+- id: 01a125a7-3aee-7df4-b015-3149198860ad
+  name: Incorrect Code
+  success: false
+  code: 
+  message: 
+  returns: 
+archived: false

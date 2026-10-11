@@ -1,0 +1,72 @@
+spec-format: 1
+kind: value-object
+id: 01a125af-f033-7461-9a30-84566603c772
+revision: 10
+name: Event Type Metadata
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+summary: Settings the code keeps together in the Event Type's metadata (EventTypeMetaDataSchema).
+description: 
+properties:
+- id: 01a125af-f033-7a74-b309-c617ddc45ff4
+  name: Multiple Duration
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Primitive
+      primitive: Number
+  archived: false
+- id: 01a125af-f033-737a-9eb7-35415dcb1d3f
+  name: Hide Duration Selector In Booking Page
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+- id: 01a125af-f033-707c-a054-ad81d6e0ff1c
+  name: Requires Confirmation Threshold Time
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Number
+  archived: false
+- id: 01a125af-f033-76ea-83ae-b42ef746ce15
+  name: Requires Confirmation Threshold Unit
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125af-f033-73fc-95c8-79455af67faa
+  name: Additional Notes Required
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+- id: 01a125af-f033-7bed-bf95-3da21a089a8a
+  name: Disable Success Page
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+- id: 01a125af-f033-7af0-b1b4-22135491b879
+  name: Enabled Booker Layouts
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Primitive
+      primitive: Text
+  archived: false
+- id: 01a125af-f033-7757-8022-e9d4d2aa6b05
+  name: Default Booker Layout
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+invariants: []
+methods: []
+archived: false

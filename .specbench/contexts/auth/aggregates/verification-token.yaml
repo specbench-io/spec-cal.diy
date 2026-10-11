@@ -1,0 +1,39 @@
+spec-format: 1
+kind: aggregate
+id: 01a125a6-3312-7a83-866b-d59c23382415
+revision: 6
+name: Verification Token
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+summary: A one-time link to verify an email address, valid for 24 hours.
+description: 
+properties:
+- id: 01a125a6-3312-7656-85e6-c8cac7b9083b
+  name: Identifier
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a6-3312-7c3d-ac55-14c81db88e82
+  name: Token
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a6-3312-795d-8117-bfe59c30a839
+  name: Expires
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a125a6-3312-7410-9216-318745b9bc41
+  name: Secondary Email Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+invariants: []
+domain-events: []
+entities: []
+methods: []
+archived: false

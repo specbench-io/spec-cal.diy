@@ -1,0 +1,26 @@
+spec-format: 1
+kind: enum
+id: 01a125a2-d5b8-71c0-a5c9-194a6ec21f85
+revision: 6
+name: Calendar Fetch Mode
+bounded-context-id: 01a0f44a-2a06-7125-8fe2-659328d04ce1
+summary: Why busy times are being read, which decides whether the cache may be used.
+description: 
+cases:
+- id: 01a125a2-d5b8-7fd3-b24d-cf1e57d2f752
+  name: Slots
+  description: Showing Slots - may use the calendar cache.
+  archived: false
+- id: 01a125a2-d5b8-773f-a1f2-fefe42ff6ca9
+  name: Overlay
+  description: 
+  archived: false
+- id: 01a125a2-d5b8-7faa-b9b8-53952de8e479
+  name: Booking
+  description: 
+  archived: false
+- id: 01a125a2-d5b8-74cb-bdac-53d06c2aa098
+  name: None
+  description: 
+  archived: false
+archived: false

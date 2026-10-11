@@ -1,0 +1,48 @@
+spec-format: 1
+kind: interface
+id: 01a125a2-d5fd-7fa5-80bf-5ec7efe26df1
+revision: 9
+name: Calendar Subscription Port
+bounded-context-id: 01a0f44a-2a06-7125-8fe2-659328d04ce1
+description: How a provider pushes calendar changes to cal.diy (ICalendarSubscriptionPort). Only Google is switched on; the Office 365 adapter exists but is not listed.
+methods:
+- id: 01a125a2-d5fd-7a30-ac73-9b120ff06e1e
+  name: Validate
+  description: 
+  inputs: []
+  returns: 
+  archived: false
+- id: 01a125a2-d5fd-7ee3-9c64-d8c5c7e2ca5e
+  name: Subscribe
+  description: 
+  inputs:
+  - id: 01a125a2-d5fd-7999-ae2d-28c51f1591f0
+    name: Selected Calendar Id
+    type:
+      kind: Primitive
+      primitive: Id
+  returns: 
+  archived: false
+- id: 01a125a2-d5fd-7471-b69c-fd56a258eff2
+  name: Unsubscribe
+  description: 
+  inputs:
+  - id: 01a125a2-d5fd-74c8-a4f0-5516efaddadb
+    name: Selected Calendar Id
+    type:
+      kind: Primitive
+      primitive: Id
+  returns: 
+  archived: false
+- id: 01a125a2-d5fd-7ec6-8cfb-c555c982a0c2
+  name: Fetch Events
+  description: 
+  inputs:
+  - id: 01a125a2-d5fd-7e2f-a9f2-dd2618833af8
+    name: Selected Calendar Id
+    type:
+      kind: Primitive
+      primitive: Id
+  returns: 
+  archived: false
+archived: false

@@ -1,0 +1,35 @@
+spec-format: 1
+kind: use-case
+id: 01a125a7-3cb2-7b06-9e5a-19b8fadb6a4e
+revision: 7
+name: Toggle Feature Flag
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+description: viewer.admin.toggleFeatureFlag (Settings, Admin, Feature flags).
+use-case-kind: Command
+roles:
+- 01a0f442-adc6-7410-af52-ea288a8ae9d1
+inputs:
+- id: 01a125a7-3cb2-7d47-b927-780d11262f2b
+  name: Slug
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a7-3cb2-7793-8b54-ee63ec9e46fc
+  name: Enabled
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+steps:
+- id: 01a125a7-3cb2-7463-a1b1-6b53c105eaee
+  text: 'Switch the flag, record who did it, and clear its cached value. Another in-process cache can stay stale for 5 minutes: {{outcome:Updated}}'
+  indent: 0
+outcomes:
+- id: 01a125a7-3cb2-7c38-ab69-da1564c5d315
+  name: Updated
+  success: true
+  code: 
+  message: Flags successfully updated
+  returns: 
+archived: false

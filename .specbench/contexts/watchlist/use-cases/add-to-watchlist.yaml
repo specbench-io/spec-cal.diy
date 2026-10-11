@@ -1,0 +1,38 @@
+spec-format: 1
+kind: use-case
+id: 01a12596-ff92-7e8b-bc2d-1a3d7edecad1
+revision: 8
+name: Add To Watchlist
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+description: 'Admin API: viewer.admin.watchlist.addToWatchlist. Used when reviewing Booking Reports.'
+use-case-kind: Command
+roles:
+- 01a0f442-adc6-7410-af52-ea288a8ae9d1
+inputs:
+- id: 01a12596-ff92-7274-9cd3-1c219f74a8f7
+  name: Email
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a12596-ff92-72ae-b047-9097e201e28e
+  name: Type
+  type:
+    kind: Ref
+    ref:
+      entity-type: Enum
+      entity-id: 01a10ff1-0fa3-784b-bfc0-3a444eec4ab9
+    ref-name: Watchlist Type
+  archived: false
+steps:
+- id: 01a12596-ff92-7cdf-80f8-47651c31d8b4
+  text: 'Block the reported email or its domain for everyone, and close the matching reports, using {{method:Watchlist/Admin Watchlist Operations Service.Add To Watchlist By Email}}: {{outcome:Added}}'
+  indent: 0
+outcomes:
+- id: 01a12596-ff92-73be-a4e4-4ec905c0efbb
+  name: Added
+  success: true
+  code: 
+  message: 
+  returns: 
+archived: false

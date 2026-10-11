@@ -1,0 +1,63 @@
+spec-format: 1
+kind: use-case
+id: 01a125a2-2f9f-7db0-82f4-61cc48cf1279
+revision: 10
+name: Request Reschedule
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: viewer.bookings.requestReschedule (Request reschedule dialog; hidden for seated Bookings).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a2-2f9f-701f-b2e6-b136b886b536
+  name: Booking Uid
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a2-2f9f-7c99-9893-ddfb13b7211b
+  name: Cancellation Reason
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a2-2f9f-748d-8618-e9b2064cd5b2
+  text: 'If the Booking is cancelled or rejected, refuse: {{outcome:Cannot Request}}'
+  indent: 0
+- id: 01a125a2-2f9f-750f-9fe6-159a094ff17a
+  text: 'If the Organizer does not own it, refuse: {{outcome:Not Owner}}'
+  indent: 0
+- id: 01a125a2-2f9f-7b15-a92c-c59b5078f35b
+  text: Mark it Cancelled and Rescheduled with the reason and the Organizer as canceller
+  indent: 0
+- id: 01a125a2-2f9f-74dd-8cc0-15b7da763700
+  text: Remove the stored meeting triggers and no-show checks, and delete the calendar events and video meeting
+  indent: 0
+- id: 01a125a2-2f9f-7438-986b-6792286ebbcf
+  text: Email the Attendees a link to pick a new time
+  indent: 0
+- id: 01a125a2-2f9f-7b3b-8269-491b40d97b7a
+  text: 'Publish {{integration-event:Booking/Booking Cancelled}} with a request to reschedule: {{outcome:Reschedule Requested}}'
+  indent: 0
+outcomes:
+- id: 01a125a2-2f9f-7f07-b6db-ad3ae9350300
+  name: Reschedule Requested
+  success: true
+  code: 
+  message: Reschedule request sent
+  returns: 
+- id: 01a125a2-2f9f-7eac-9e20-a28cec7a1ae6
+  name: Cannot Request
+  success: false
+  code: 400
+  message: Cannot request reschedule for cancelled or rejected booking
+  returns: 
+- id: 01a125a2-2f9f-7c96-b580-cb4d79843b75
+  name: Not Owner
+  success: false
+  code: 403
+  message: User isn't owner of the current booking
+  returns: 
+archived: false

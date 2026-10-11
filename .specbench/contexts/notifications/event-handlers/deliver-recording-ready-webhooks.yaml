@@ -1,0 +1,23 @@
+spec-format: 1
+kind: event-handler
+id: 01a125f7-6ce4-7133-bd69-ff65c2c0ed12
+revision: 4
+name: Deliver Recording Ready Webhooks
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: triggerRecordingReadyWebhook (apps/web/lib/daily-webhook/triggerWebhooks.ts:20-71), run by the Cal Video recording callback (/api/recorded-daily-video). Platform OAuth-client Webhooks are not matched.
+trigger:
+  integration-event: Apps/Recording Ready
+steps:
+- id: 01a125f7-6ce4-76e9-bbd6-45727eae0560
+  text: Find the active Webhooks listening for Recording ready that belong to the Organizer or the Event Type, or are platform-wide
+  indent: 0
+- id: 01a125f7-6ce4-7f6d-a2aa-4dcdd727da6c
+  text: POST the Booking details and {{field:Download Link}} - a private link through Cal.diy - to each Subscriber URL, signed with the Secret
+  indent: 0
+- id: 01a125f7-6ce4-77e3-a547-051fabfe1e22
+  text: The payload has no status and no Event Type details such as title or price
+  indent: 1
+- id: 01a125f7-6ce4-71f1-9e64-555ab7099fa5
+  text: At the same time transcription is started and the recording is emailed to the participants
+  indent: 0
+archived: false

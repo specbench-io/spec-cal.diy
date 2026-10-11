@@ -1,0 +1,12 @@
+spec-format: 1
+kind: bounded-context
+id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+revision: 4
+name: Notifications
+summary: Telling Attendees, Organizers and external systems what happened.
+description: 
+icon: bell
+colour: amber
+implements:
+- 01a0f447-0624-7ee0-8a63-e8a35b64b56e
+archived: false

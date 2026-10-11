@@ -1,0 +1,57 @@
+spec-format: 1
+kind: domain-service
+id: 01a12591-f146-7bf9-a8f8-1a5d67d06528
+revision: 5
+name: Check Booking Limits Service
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: 
+methods:
+- id: 01a12591-f146-7930-b701-6b8dbb58178c
+  name: Check Booking Limits
+  description: Limit booking frequency.
+  inputs:
+  - id: 01a12591-f146-74bc-aafc-2385b22ab4c2
+    name: Event Start Date
+    type:
+      kind: Primitive
+      primitive: Date
+  - id: 01a12591-f146-73fd-8599-e6611d51e575
+    name: Event Id
+    type:
+      kind: Primitive
+      primitive: Id
+  - id: 01a12591-f146-71d5-afee-3dbe8fc47441
+    name: Reschedule Uid
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Text
+  - id: 01a12591-f146-73d4-bc3d-a69d3a3347b1
+    name: Time Zone
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Text
+  steps:
+  - id: 01a12591-f146-7c32-badd-99163e41a471
+    text: For each period with a limit (day, week, month, year), count the accepted Bookings of {{input:Event Id}} that fall in the same period as {{input:Event Start Date}} in {{input:Time Zone}}, leaving out the Booking being rescheduled ({{input:Reschedule Uid}})
+    indent: 0
+  - id: 01a12591-f146-7617-97be-27fc39e442d3
+    text: 'If any count has reached its limit, refuse: {{outcome:Booking Limit Reached}}'
+    indent: 0
+  - id: 01a12591-f146-7869-8758-f173879eb8e7
+    text: 'Otherwise: {{outcome:Within Limits}}'
+    indent: 0
+  outcomes:
+  - id: 01a12591-f146-7f66-991a-8fcfec970ed1
+    name: Within Limits
+    success: true
+    message: 
+    returns: 
+  - id: 01a12591-f146-7039-ae8b-d855b2079d38
+    name: Booking Limit Reached
+    success: false
+    message: Booking Limit for this event type has been reached
+    returns: 
+  archived: false
+archived: false

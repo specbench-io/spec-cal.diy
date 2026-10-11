@@ -1,0 +1,35 @@
+spec-format: 1
+kind: use-case
+id: 01a125a7-3cdd-7d94-b0a0-8b0b57d81804
+revision: 7
+name: Add New User
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+description: viewer.users.add (Settings, Admin, Users, Add new user).
+use-case-kind: Command
+roles:
+- 01a0f442-adc6-7410-af52-ea288a8ae9d1
+inputs:
+- id: 01a125a7-3cdd-7a43-861d-d5537d5b9bfc
+  name: Email
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a7-3cdd-730c-947f-7b2ada8968d4
+  name: Username
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a7-3cdd-77fe-a684-865ba34e53d3
+  text: 'Create the user as entered - with no password, no Default Schedule and no Watchlist check: {{outcome:User Added}}'
+  indent: 0
+outcomes:
+- id: 01a125a7-3cdd-749d-ae59-b91b6eb80479
+  name: User Added
+  success: true
+  code: 
+  message: 
+  returns: 
+archived: false

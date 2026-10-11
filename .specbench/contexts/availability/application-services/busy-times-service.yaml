@@ -1,0 +1,84 @@
+spec-format: 1
+kind: application-service
+id: 01a1259c-c1ca-717c-b7ce-9236c33f7c0b
+revision: 9
+name: Busy Times Service
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: getBusyTimes.ts (DI container getBusyTimesService).
+implements: []
+methods:
+- id: 01a1259c-c1ca-7769-b3b6-ae59665d8d62
+  name: Get Busy Times
+  description: 
+  implements: 
+  inputs:
+  - id: 01a1259c-c1ca-72c0-9955-aaa811cc7fe2
+    name: User Id
+    type:
+      kind: Primitive
+      primitive: Id
+  - id: 01a1259c-c1ca-7814-b575-207afbdab430
+    name: Start Time
+    type:
+      kind: Primitive
+      primitive: Date
+  - id: 01a1259c-c1ca-7043-8c3f-015c0c1f9a80
+    name: End Time
+    type:
+      kind: Primitive
+      primitive: Date
+  - id: 01a1259c-c1ca-7cdd-a0f9-646269ccf60d
+    name: Reschedule Uid
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Text
+  - id: 01a1269f-589d-7988-bc79-07fcef9d8346
+    name: Mode
+    type:
+      kind: Ref
+      nullable: true
+      ref:
+        entity-type: Enum
+        entity-id: 01a125a2-d5b8-71c0-a5c9-194a6ec21f85
+      ref-name: Calendar Fetch Mode
+  steps:
+  - id: 01a1259c-c1ca-7ea8-9062-63833354e973
+    text: Block each of the Organizer's accepted Bookings from its start minus the buffers to its end plus the buffers (its own buffers plus this Event Type's)
+    indent: 0
+  - id: 01a1259c-c1ca-7bbc-aeca-4c500e75a42d
+    text: For seated Bookings of this Event Type that still have seats, block only the buffers
+    indent: 0
+  - id: 01a1259c-c1ca-741b-ad2c-04083f945e1e
+    text: Skip the Booking being rescheduled ({{input:Reschedule Uid}})
+    indent: 0
+  - id: 01a1259c-c1ca-7638-a8f3-c36e0faa3fe9
+    text: Add busy times from the Organizer's connected calendars ({{method:Calendars/Calendar.Get Availability}}), widened by this Event Type's buffers, minus open seats. The {{input:Mode}} decides whether the calendar cache may answer
+    indent: 0
+  - id: 01a1259c-c1ca-758f-af3a-fe92922d15f9
+    text: 'If a calendar cannot be read, fail unless calendar failures are set to be silent: {{outcome:Calendar Failure}}'
+    indent: 0
+  - id: 01a1259c-c1ca-7994-91b3-b70c1a8090c0
+    text: 'Return all the busy times: {{outcome:Busy Times}}'
+    indent: 0
+  outcomes:
+  - id: 01a1259c-c1ca-7ea3-8ee1-f39fb9258165
+    name: Busy Times
+    success: true
+    message: 
+    returns:
+      kind: Collection
+      shape: List
+      element:
+        kind: Ref
+        ref:
+          entity-type: ValueObject
+          entity-id: 01a1259b-eb1b-7769-94de-216a78b40338
+        ref-name: Busy Time
+  - id: 01a1259c-c1ca-761d-b068-1f00f9144b06
+    name: Calendar Failure
+    success: false
+    message: 
+    returns: 
+  archived: false
+archived: false

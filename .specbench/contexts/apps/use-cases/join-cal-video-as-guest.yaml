@@ -1,0 +1,68 @@
+spec-format: 1
+kind: use-case
+id: 01a125a4-4213-7865-8a62-9b2bfe676bf6
+revision: 11
+name: Join Cal Video As Guest
+bounded-context-id: 01a0f44a-2a22-7488-ae05-7c57eda180ac
+description: POST /api/video/guest-session.
+use-case-kind: Command
+roles:
+- 01a0f444-a88b-7305-b695-d9ce82d7f6cc
+inputs:
+- id: 01a125a4-4213-7a75-ae71-b6079b6e16be
+  name: Booking Uid
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a4-4213-73c4-8fe7-2e71dda17b92
+  name: Email
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a4-4213-7aa4-90e5-0f0909a7a194
+  name: Name
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a4-4213-7207-9566-c9e1ab313bab
+  text: 'If the Booking does not exist, refuse: {{outcome:Booking Not Found}}'
+  indent: 0
+- id: 01a125a4-4213-703e-b13c-4ddbde1c5c06
+  text: 'If {{input:Email}} belongs to a host, refuse: {{outcome:Hosts Must Log In}}'
+  indent: 0
+- id: 01a125a4-4213-7a61-bd39-648582da5307
+  text: "If {{input:Email}} is not one of the Booking's guests, refuse: {{outcome:Invalid Guest Email}}"
+  indent: 0
+- id: 01a125a4-4213-7747-8536-c9497fe9f396
+  text: 'Record the Video Call Guest and give them a meeting token: {{outcome:Joined}}'
+  indent: 0
+outcomes:
+- id: 01a125a4-4213-7001-8cdf-865aa30d6361
+  name: Joined
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a125a4-4213-7b6f-91b6-ec3f32e7c1e6
+  name: Booking Not Found
+  success: false
+  code: 404
+  message: 
+  returns: 
+- id: 01a125a4-4213-751b-8a91-811aae6f433b
+  name: Hosts Must Log In
+  success: false
+  code: 403
+  message: Hosts must login to cal.diy and then join this meeting
+  returns: 
+- id: 01a125a4-4213-72fe-9317-ac9ffa16ac49
+  name: Invalid Guest Email
+  success: false
+  code: 403
+  message: 
+  returns: 
+archived: false

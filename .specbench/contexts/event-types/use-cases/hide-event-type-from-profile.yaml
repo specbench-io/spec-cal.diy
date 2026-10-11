@@ -1,0 +1,38 @@
+spec-format: 1
+kind: use-case
+id: 01a1259f-6601-7351-b922-b8e255aab743
+revision: 7
+name: Hide Event Type From Profile
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+description: The Hide from profile switch on /event-types, which calls Update Event Type with only the hidden flag.
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a1259f-6601-7aee-a44f-d24c4718c3d6
+  name: Event Type Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a1259f-6601-7d33-9a19-a268861921f8
+  name: Hidden
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+steps:
+- id: 01a1259f-6601-788e-a8ec-b7eb1ae3f596
+  text: Set whether the Event Type is hidden from the Organizer's public profile; it can still be booked by link
+  indent: 0
+- id: 01a1259f-6601-7534-a565-43dd9eb9854b
+  text: 'Because no Private Links are sent, all of them are deleted (a code bug): {{outcome:Updated}}'
+  indent: 0
+outcomes:
+- id: 01a1259f-6601-7a7b-8524-8367d288abae
+  name: Updated
+  success: true
+  code: 
+  message: 
+  returns: 
+archived: false

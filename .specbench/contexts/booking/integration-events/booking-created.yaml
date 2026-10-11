@@ -1,0 +1,68 @@
+spec-format: 1
+kind: integration-event
+id: 01a125a0-e9f2-7222-8496-2817529b71dd
+revision: 3
+name: Booking Created
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: A Booking is confirmed - straight away, when the Organizer confirms it, or when a seat is taken (webhook BOOKING_CREATED). The status sent is always ACCEPTED.
+fields:
+- id: 01a125a0-e9f2-7104-a5c5-ae09acbc4e96
+  name: Booking Uid
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a125a0-e9f2-759b-9cc9-ebc86671382b
+  name: Event Type Id
+  description: 
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+- id: 01a125a0-e9f2-7cd6-b80d-4fd5a330b13d
+  name: Title
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a125a0-e9f2-7d06-b7e2-78547921d029
+  name: Start Time
+  description: 
+  type:
+    kind: Primitive
+    primitive: Date
+- id: 01a125a0-e9f2-7466-b899-723307b23d82
+  name: End Time
+  description: 
+  type:
+    kind: Primitive
+    primitive: Date
+- id: 01a125a0-e9f2-7708-82e0-885b7d3b7be8
+  name: Status
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a125a0-e9f2-77ba-9c70-dcc4910ffbdc
+  name: Organizer Email
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a125a0-e9f2-7d30-820d-737ba422820d
+  name: Attendee Emails
+  description: 
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Primitive
+      primitive: Text
+- id: 01a125a0-e9f2-7bcb-8a85-fdd4482a6116
+  name: Location
+  description: 
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+archived: false

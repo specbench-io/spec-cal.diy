@@ -1,0 +1,29 @@
+spec-format: 1
+kind: aggregate
+id: 01a125a4-cee0-7887-aaec-920aabda1978
+revision: 5
+name: Notifications Subscription
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+summary: A browser push subscription for an Organizer.
+description: 
+properties:
+- id: 01a125a4-cee0-7d9d-89e5-1a20ca06727f
+  name: User Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a125a4-cee0-71a8-ab78-c4f8340b84e6
+  name: Subscription
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+invariants:
+- id: 01a125a4-cee0-739b-9476-a42da931c293
+  text: One per user (enforced in code).
+  archived: false
+domain-events: []
+entities: []
+methods: []
+archived: false

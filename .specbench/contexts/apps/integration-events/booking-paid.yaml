@@ -1,0 +1,33 @@
+spec-format: 1
+kind: integration-event
+id: 01a125a3-d718-7a4f-9a04-c229cddce47d
+revision: 3
+name: Booking Paid
+bounded-context-id: 01a0f44a-2a22-7488-ae05-7c57eda180ac
+description: A payment app confirmed a Booking's payment (webhook BOOKING_PAID). Stripe never sends this in cal.diy - its webhook is a stub.
+fields:
+- id: 01a125a3-d718-7024-a0ec-e18d2ea300c4
+  name: Booking Uid
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a125a3-d718-75c7-a0e8-f043b5f4a810
+  name: Payment Id
+  description: 
+  type:
+    kind: Primitive
+    primitive: Id
+- id: 01a125a3-d718-7adf-be0d-0837e06e64d3
+  name: Amount
+  description: 
+  type:
+    kind: Primitive
+    primitive: Number
+- id: 01a125a3-d718-75e3-9ab3-2ba82c34eeb4
+  name: Currency
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+archived: false

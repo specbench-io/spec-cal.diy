@@ -1,0 +1,38 @@
+spec-format: 1
+kind: value-object
+id: 01a1259b-eb1b-7769-94de-216a78b40338
+revision: 6
+name: Busy Time
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+summary: A blocked stretch of time from a Booking, a buffer, a connected calendar or a reached limit.
+description: 
+properties:
+- id: 01a1259b-eb1b-7327-9c60-28207c775595
+  name: Start
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a1259b-eb1b-7685-8d15-4ffb4cfa5496
+  name: End
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a1259b-eb1b-75dc-a735-0d4b4752ddd6
+  name: Title
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259b-eb1b-7377-885d-59dd9d77c162
+  name: Source
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+invariants: []
+methods: []
+archived: false

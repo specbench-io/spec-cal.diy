@@ -1,0 +1,29 @@
+spec-format: 1
+kind: use-case
+id: 01a125a7-3c03-788f-a31f-9b1223c86aac
+revision: 6
+name: Revoke Api Key
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+description: viewer.apiKeys.delete.
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a7-3c03-7a23-9df9-2ca08f222785
+  name: Api Key Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+steps:
+- id: 01a125a7-3c03-74f9-b23c-89ff631bdf39
+  text: "Delete the key; for a Zapier key also delete the user's Zapier Webhooks: {{outcome:Key Deleted}}"
+  indent: 0
+outcomes:
+- id: 01a125a7-3c03-7093-9b1d-f9f361e613f6
+  name: Key Deleted
+  success: true
+  code: 
+  message: API key deleted
+  returns: 
+archived: false

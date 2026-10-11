@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a125a2-d631-770c-8139-3082ff0067e4
+revision: 3
+name: Calendar Cache
+definition: Busy events stored from a provider calendar, used for Slots instead of asking the provider each time. Switched on by a feature flag.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-2a06-7125-8fe2-659328d04ce1
+archived: false

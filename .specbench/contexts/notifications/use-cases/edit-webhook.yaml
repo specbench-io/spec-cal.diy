@@ -1,0 +1,51 @@
+spec-format: 1
+kind: use-case
+id: 01a125a5-6ca1-7610-80c3-aa14ea7a17b9
+revision: 8
+name: Edit Webhook
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: viewer.webhook.edit (edit page, or the on/off switch in the list).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a5-6ca1-788f-9f9b-d647855423c4
+  name: Webhook Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a125a5-6ca1-7315-b490-e9352c524254
+  name: Active
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+steps:
+- id: 01a125a5-6ca1-7e2a-a8a4-a7488c87e6ba
+  text: "If the Webhook is not the Organizer's (or their Event Type's), refuse: {{outcome:Forbidden}}"
+  indent: 0
+- id: 01a125a5-6ca1-7d4c-bfe9-ce5e2351066b
+  text: Check a changed URL against the request forgery check
+  indent: 0
+- id: 01a125a5-6ca1-7713-9d68-adfb0d8cee94
+  text: Save the changes. The no-show delay is cleared when not sent
+  indent: 0
+- id: 01a125a5-6ca1-7cda-a003-3115bc242135
+  text: 'If it is active, add or remove scheduled triggers for the triggers that changed; if it was just switched off, cancel all its scheduled work: {{outcome:Webhook Updated}}'
+  indent: 0
+outcomes:
+- id: 01a125a5-6ca1-716b-ab39-ac28df7dfca5
+  name: Webhook Updated
+  success: true
+  code: 
+  message: Webhook updated successfully
+  returns: 
+- id: 01a125a5-6ca1-7c01-8250-94799a61dd4f
+  name: Forbidden
+  success: false
+  code: 403
+  message: 
+  returns: 
+archived: false

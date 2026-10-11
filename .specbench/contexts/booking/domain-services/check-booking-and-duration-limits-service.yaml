@@ -1,0 +1,65 @@
+spec-format: 1
+kind: domain-service
+id: 01a12591-f195-783e-be20-11103e0e8cf1
+revision: 7
+name: Check Booking And Duration Limits Service
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: 
+methods:
+- id: 01a12591-f195-75b8-8ddf-4e6a61fab735
+  name: Check Booking And Duration Limits
+  description: 
+  inputs:
+  - id: 01a125b2-33db-7d78-82c5-5304cca93404
+    name: Event Type
+    type:
+      kind: Ref
+      ref:
+        entity-type: Aggregate
+        entity-id: 01a12591-8be1-7b7e-adf2-45a5e68d13d4
+      ref-name: Event Type
+  - id: 01a12591-f195-7726-981a-df02a72fe953
+    name: Start
+    type:
+      kind: Primitive
+      primitive: Date
+  - id: 01a12591-f195-7f64-96d3-64f9bda026f6
+    name: Reschedule Uid
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Text
+  steps:
+  - id: 01a12591-f195-78a1-8fd8-c722b922d88e
+    text: If {{input:Event Type}} has booking limits, check them with {{method:Booking/Check Booking Limits Service.Check Booking Limits}}, in the time zone of the Event Type's Schedule
+    indent: 0
+  - id: 01a12591-f195-748e-92f7-50a20a0676dc
+    text: 'If {{method-outcome:Booking/Check Booking Limits Service.Check Booking Limits.Booking Limit Reached}}, refuse: {{outcome:Booking Limit Reached}}'
+    indent: 1
+  - id: 01a12591-f195-7e43-b56a-0889a09331de
+    text: If it has duration limits, check them with {{method:Booking/Check Duration Limits.Check Duration Limits}}
+    indent: 0
+  - id: 01a12591-f195-7b56-acf1-7cababed2b64
+    text: 'If {{method-outcome:Booking/Check Duration Limits.Check Duration Limits.Duration Limit Reached}}, refuse: {{outcome:Duration Limit Reached}}'
+    indent: 1
+  - id: 01a12591-f195-76f3-ba39-76a65f307a8b
+    text: 'Otherwise: {{outcome:Within Limits}}'
+    indent: 0
+  outcomes:
+  - id: 01a12591-f195-72d5-a9b3-0b0711c97485
+    name: Within Limits
+    success: true
+    message: 
+    returns: 
+  - id: 01a12591-f195-782a-81b7-e554dc48d9d7
+    name: Booking Limit Reached
+    success: false
+    message: Booking Limit for this event type has been reached
+    returns: 
+  - id: 01a12591-f195-76bc-9cdf-ff550753aeed
+    name: Duration Limit Reached
+    success: false
+    message: Duration Limit for this event type has been reached
+    returns: 
+  archived: false
+archived: false

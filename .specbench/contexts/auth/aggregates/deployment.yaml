@@ -1,0 +1,31 @@
+spec-format: 1
+kind: aggregate
+id: 01a125a6-33d2-7951-a79a-6887464a6a64
+revision: 5
+name: Deployment
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+summary: The single record of the instance's license and branding.
+description: 
+properties:
+- id: 01a125a6-33d2-7be8-b0c2-67dac9d84ed7
+  name: License Key
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a6-33d2-78f6-8146-49547d5b01b4
+  name: Agreed License At
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Date
+  archived: false
+invariants:
+- id: 01a125a6-33d2-7ff0-9874-830ee28f112c
+  text: There is only ever one, with id 1.
+  archived: false
+domain-events: []
+entities: []
+methods: []
+archived: false

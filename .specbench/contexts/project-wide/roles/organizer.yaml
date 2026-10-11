@@ -1,0 +1,21 @@
+spec-format: 1
+kind: actor
+id: 01a0f442-adb2-70ac-8ad6-65442784e943
+revision: 6
+name: Organizer
+summary: A cal.diy user who publishes event types and owns the bookings made on them.
+description: Not called Host; in the code Host carries round-robin meaning, which is out of scope.
+responsibilities:
+- Publishes event types
+- Owns the bookings made on them
+- Sets their Schedules, Date Overrides and Out Of Office days
+- Connects calendars, video and payment apps
+- Confirms or rejects Unconfirmed Bookings
+needs:
+- Bookers only see times that really suit them
+- No double bookings with their own calendar
+- Control over who can book and how often
+pain-points:
+- Spam and unwanted bookings filling the calendar
+- Back-and-forth emails to find a time
+archived: false

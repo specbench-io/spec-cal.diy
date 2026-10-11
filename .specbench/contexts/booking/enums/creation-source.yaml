@@ -1,0 +1,22 @@
+spec-format: 1
+kind: enum
+id: 01a125a0-8b10-7507-a77c-ad4093a82b86
+revision: 5
+name: Creation Source
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+summary: Where a Booking was made from.
+description: 
+cases:
+- id: 01a125a0-8b10-7279-a9a7-247ebbd28bb2
+  name: Api V1
+  description: 
+  archived: false
+- id: 01a125a0-8b10-7872-b670-6cd1d05fca85
+  name: Api V2
+  description: 
+  archived: false
+- id: 01a125a0-8b10-7070-bb69-ba8302e8b901
+  name: Webapp
+  description: 
+  archived: false
+archived: false

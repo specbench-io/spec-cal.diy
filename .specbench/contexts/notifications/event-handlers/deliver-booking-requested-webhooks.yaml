@@ -1,0 +1,23 @@
+spec-format: 1
+kind: event-handler
+id: 01a125a5-6bfd-7d06-a2a8-9dfe876222a0
+revision: 5
+name: Deliver Booking Requested Webhooks
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: WebhookTaskerProducerService.queueBookingRequestedWebhook - the only event delivered through the newer queued pipeline.
+trigger:
+  integration-event: Booking/Booking Requested
+steps:
+- id: 01a125c4-e81b-72ca-b9a0-f4b65190601c
+  text: Queue a delivery job for {{field:Booking Uid}} (Trigger.dev when set up, otherwise run straight away)
+  indent: 0
+- id: 01a125a5-6bfd-7e6a-a8b0-50df9bb340cf
+  text: Find the subscribers in priority order - platform, user, Event Type - with duplicates removed
+  indent: 0
+- id: 01a125a5-6bfd-7aa2-8341-4945621fa233
+  text: Build the 2021-10-20 version of the payload and POST it, ignoring any payload template
+  indent: 0
+- id: 01a125a5-6bfd-7fee-9b75-e4bacae56623
+  text: Retry up to three times with growing waits
+  indent: 0
+archived: false

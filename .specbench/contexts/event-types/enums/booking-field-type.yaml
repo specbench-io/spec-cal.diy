@@ -1,0 +1,70 @@
+spec-format: 1
+kind: enum
+id: 01a1259e-cd8c-7ad6-8b53-d74db6eed46e
+revision: 17
+name: Booking Field Type
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+summary: The kind of answer a Booking Question asks for.
+description: 
+cases:
+- id: 01a1259e-cd8c-73b5-8bec-3e4c0cc29e8e
+  name: Name
+  description: 
+  archived: false
+- id: 01a1259e-cd8c-7585-b319-e4fbb1ff8db0
+  name: Text
+  description: 
+  archived: false
+- id: 01a1259e-cd8c-7497-a587-5c0106687945
+  name: Textarea
+  description: 
+  archived: false
+- id: 01a1259e-cd8c-72dd-84bb-d8a1d4645bc1
+  name: Number
+  description: 
+  archived: false
+- id: 01a1259e-cd8c-74df-a53a-26f8c933b429
+  name: Email
+  description: 
+  archived: false
+- id: 01a1259e-cd8c-764e-b732-c6faee6329e0
+  name: Phone
+  description: 
+  archived: false
+- id: 01a1259e-cd8c-789f-b559-16ed13d682e6
+  name: Address
+  description: 
+  archived: false
+- id: 01a1259e-cd8c-77f8-b5bc-971a593d7c2a
+  name: Multiemail
+  description: 
+  archived: false
+- id: 01a1259e-cd8c-77d5-97e4-aa053f5e9028
+  name: Select
+  description: 
+  archived: false
+- id: 01a1259e-cd8c-788e-a887-8c9510a7671e
+  name: Multiselect
+  description: 
+  archived: false
+- id: 01a1259e-cd8c-7300-8ab7-77d68433e66e
+  name: Checkbox
+  description: 
+  archived: false
+- id: 01a1259e-cd8c-75dd-a909-c4366223f7f7
+  name: Radio
+  description: 
+  archived: false
+- id: 01a1259e-cd8c-7003-b9bc-8cca925d7ac0
+  name: Radio Input
+  description: 
+  archived: false
+- id: 01a1259e-cd8c-7170-846e-73ce4679e57a
+  name: Boolean
+  description: 
+  archived: false
+- id: 01a1259e-cd8c-7a2b-867e-bd00132ae27d
+  name: Url
+  description: 
+  archived: false
+archived: false

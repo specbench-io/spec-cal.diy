@@ -1,0 +1,9 @@
+spec-format: 1
+kind: subdomain
+id: 01a0f447-0624-7ee0-8a63-e8a35b64b56e
+revision: 3
+name: Notifications
+summary: Telling people and systems what happened.
+description: 
+classification: Generic
+archived: false

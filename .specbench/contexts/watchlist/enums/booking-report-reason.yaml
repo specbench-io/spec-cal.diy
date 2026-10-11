@@ -1,0 +1,22 @@
+spec-format: 1
+kind: enum
+id: 01a12596-15d7-7e73-b57c-0bcdb40ccfd7
+revision: 5
+name: Booking Report Reason
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+summary: Why an Organizer reported a Booking.
+description: 
+cases:
+- id: 01a12596-15d7-7144-a14e-f92b44b4e785
+  name: Spam
+  description: Spam or unwanted booking
+  archived: false
+- id: 01a12596-15d7-7250-be86-5e25e83ba9ec
+  name: Dont Know Person
+  description: I don't know this person
+  archived: false
+- id: 01a12596-15d7-7670-a90d-aa43e5c0d219
+  name: Other
+  description: Other
+  archived: false
+archived: false

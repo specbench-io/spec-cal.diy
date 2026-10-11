@@ -1,0 +1,52 @@
+spec-format: 1
+kind: aggregate
+id: 01a125a4-ce81-7bdc-8be3-bf859f82271b
+revision: 8
+name: Webhook Scheduled Trigger
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+summary: A meeting started or ended delivery stored ahead of time and sent by a cron.
+description: 
+properties:
+- id: 01a125a4-ce81-7b7b-89b1-f531bb624525
+  name: Subscriber Url
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a4-ce81-765e-8fa2-946c966a88ab
+  name: Payload
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a4-ce81-7e9b-86a8-4bf44fcc057c
+  name: Start After
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a125a4-ce81-7447-b2f8-67990b3ac17b
+  name: Retry Count
+  type:
+    kind: Primitive
+    primitive: Number
+  archived: false
+- id: 01a125a4-ce81-7bb9-ba97-ea48684872bb
+  name: Webhook Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a125a4-ce81-7054-a61c-087328582aa7
+  name: Booking Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+invariants: []
+domain-events: []
+entities: []
+methods: []
+archived: false

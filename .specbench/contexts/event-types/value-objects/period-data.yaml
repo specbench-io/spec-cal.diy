@@ -1,0 +1,43 @@
+spec-format: 1
+kind: value-object
+id: 01a125af-f00c-7e3a-a9fc-7cb584dcab7c
+revision: 7
+name: Period Data
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+summary: How far ahead an Event Type can be booked (Limit future bookings). The code's PeriodData type (packages/types/Event.d.ts:9).
+description: 
+properties:
+- id: 01a125af-f00c-7ca7-bf0c-75542cbdbf6b
+  name: Period Days
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Number
+  archived: false
+- id: 01a125af-f00c-7778-8502-657f5abe1641
+  name: Period Count Calendar Days
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+- id: 01a125af-f00c-7aae-879b-dbf8d6fa8b82
+  name: Period Start Date
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Date
+  archived: false
+- id: 01a125af-f00c-7acb-9064-cee603ecf19f
+  name: Period End Date
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Date
+  archived: false
+invariants:
+- id: 01a125af-f00c-7dad-a09f-c101725a0703
+  text: A date range needs both a start and an end date; rolling periods count days from today.
+  archived: false
+methods: []
+archived: false

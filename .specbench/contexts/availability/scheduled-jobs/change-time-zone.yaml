@@ -1,0 +1,22 @@
+spec-format: 1
+kind: scheduled-job
+id: 01a1259c-42dd-7230-8fd0-39ae0c2d0eea
+revision: 3
+name: Change Time Zone
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: 
+schedule: every hour (POST /api/cron/changeTimeZone, run by a GitHub workflow)
+steps:
+- id: 01a1259c-42e0-7762-a8d5-758472af6f87
+  text: Delete Travel Schedules that ended more than two days ago, putting back the time zone the Organizer had before
+  indent: 0
+- id: 01a1259c-42e0-7094-a8f7-5a5cf28847f4
+  text: For each Travel Schedule starting within a day, set the Organizer's time zone and their Default Schedule's time zone to the travel time zone, remembering the previous one
+  indent: 0
+- id: 01a1259c-42e0-7d0e-b9a5-9e8e69f34c19
+  text: For each Travel Schedule ending within a day, put the previous time zone back and delete the Travel Schedule
+  indent: 0
+- id: 01a1259c-42e0-78e2-84bb-0e78de37e795
+  text: A Travel Schedule without an end date never switches the time zone and is deleted near its start (a code quirk)
+  indent: 0
+archived: false

@@ -1,0 +1,34 @@
+spec-format: 1
+kind: data-contract
+id: 01a125a4-ceff-776e-bc63-7302b49256bb
+revision: 6
+name: Webhook Payload
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+summary: The body POSTed to a subscriber, signed with the Webhook's secret in X-Cal-Signature-256.
+description: A payload template replaces this envelope; Zapier gets a flat body instead. Meeting started and ended send the raw Booking row.
+fields:
+- id: 01a125a4-ceff-75ea-a383-d3d7218f3d43
+  name: Trigger Event
+  description: 
+  type:
+    kind: Ref
+    ref:
+      entity-type: Enum
+      entity-id: 01a125a4-ce1c-71dc-a2b4-866962d0ded2
+    ref-name: Webhook Trigger Events
+  archived: false
+- id: 01a125a4-ceff-7239-82c1-3ae853bc62b8
+  name: Created At
+  description: 
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a125a4-ceff-729a-9365-f68cc4f38753
+  name: Payload
+  description: The event's data - the Booking details for booking events, the entry for Out Of Office Created.
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+archived: false

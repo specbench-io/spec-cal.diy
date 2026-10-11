@@ -1,0 +1,19 @@
+spec-format: 1
+kind: scheduled-job
+id: 01a125a3-63fd-7b20-91fa-4728f9cf1bde
+revision: 4
+name: Calendar Subscriptions
+bounded-context-id: 01a0f44a-2a06-7125-8fe2-659328d04ce1
+description: 
+schedule: every 5 minutes (/api/cron/calendar-subscriptions)
+steps:
+- id: 01a125a3-63fd-7f7f-aa10-3fcd5a1c1681
+  text: Do nothing unless the Calendar Cache is switched on
+  indent: 0
+- id: 01a125a3-63fd-78fe-8058-d034c8d7d928
+  text: Take up to 100 Google Selected Calendars that are not subscribed or whose channel has expired, and whose user belongs to a team with the feature - so, in cal.diy without teams, effectively none
+  indent: 0
+- id: 01a125a3-63fd-7f7d-b049-361f0ef95ace
+  text: Subscribe each one with {{method:Calendars/Calendar Subscription Service.Subscribe}}
+  indent: 0
+archived: false

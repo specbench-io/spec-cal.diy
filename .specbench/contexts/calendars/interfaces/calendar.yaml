@@ -1,0 +1,92 @@
+spec-format: 1
+kind: interface
+id: 01a125a2-d5da-7811-9055-f1242f84d3f5
+revision: 11
+name: Calendar
+bounded-context-id: 01a0f44a-2a06-7125-8fe2-659328d04ce1
+description: What every calendar app must do (packages/types/Calendar.d.ts). Each provider in the App Store implements it.
+methods:
+- id: 01a125a2-d5da-7766-b9f1-b36e81f43cbb
+  name: Create Event
+  description: 
+  inputs:
+  - id: 01a125a2-d5da-7d74-b6e4-2f198cefa777
+    name: Event
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a125a2-d5da-7c57-9738-2eb950b08b24
+    name: Credential Id
+    type:
+      kind: Primitive
+      primitive: Id
+  - id: 01a125a2-d5da-7662-a792-408c11f79668
+    name: External Calendar Id
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Text
+  returns: 
+  archived: false
+- id: 01a125a2-d5da-7b04-972d-21a7eb0a2c1c
+  name: Update Event
+  description: 
+  inputs:
+  - id: 01a125a2-d5da-7d14-8f33-ede036240a0f
+    name: Uid
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a125a2-d5da-7fb8-9674-90448f6bb420
+    name: Event
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a125a2-d5da-747c-bbf4-268e8d3dc82b
+    name: External Calendar Id
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Text
+  returns: 
+  archived: false
+- id: 01a125a2-d5da-78f2-ada3-4eaf42cfb0c1
+  name: Delete Event
+  description: 
+  inputs:
+  - id: 01a125a2-d5da-70e6-a391-f18ae168f55b
+    name: Uid
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a125a2-d5da-7473-a45f-9e89e15c4796
+    name: External Calendar Id
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Text
+  returns: 
+  archived: false
+- id: 01a125a2-d5da-74ed-8f38-55e25f901ba1
+  name: Get Availability
+  description: 
+  inputs:
+  - id: 01a125a2-d5da-789a-a2db-b4e85b724abe
+    name: Date From
+    type:
+      kind: Primitive
+      primitive: Date
+  - id: 01a125a2-d5da-75ad-a5d2-f0f1bfa2af0a
+    name: Date To
+    type:
+      kind: Primitive
+      primitive: Date
+  returns: 
+  archived: false
+- id: 01a125a2-d5da-7279-afa7-4b03b0d3970c
+  name: List Calendars
+  description: 
+  inputs: []
+  returns: 
+  archived: false
+archived: false

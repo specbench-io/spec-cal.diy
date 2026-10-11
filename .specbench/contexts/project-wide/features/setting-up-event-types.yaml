@@ -1,0 +1,205 @@
+spec-format: 1
+kind: feature
+id: 01a125df-ff20-74d0-a352-b1d92c209f52
+revision: 52
+title: Setting up Event Types
+intent: As an Organizer, I want to create and tune my Event Types, so that Bookers can only book me in the ways and at the times I allow.
+description: 'Use Cases: Create Event Type, Update Event Type, Duplicate Event Type, Delete Event Type, Hide Event Type From Profile, Reorder Event Types.'
+scenarios:
+- id: ab74bb7c-b1f0-4660-b8f7-99a8e26e5b34
+  title: A new Event Type starts at 15 minutes with a URL taken from its title
+  steps:
+  - id: 883d08ea-77c7-4603-92cf-1348d87bebef
+    keyword: Given
+    text: the Organizer opens the dialog to add a new Event Type
+    archived: false
+  - id: cfc3a9de-b967-4fe8-b519-6707b9889684
+    keyword: When
+    text: they type "Quick Chat" as the Title
+    archived: false
+  - id: 44fa7e08-0c26-42ed-99ed-654232997cea
+    keyword: Then
+    text: the URL is filled in as "quick-chat"
+    archived: false
+  - id: 6e0c2003-3724-4713-95a2-d011defe5bb8
+    keyword: And
+    text: the Duration is already set to 15 minutes
+    archived: false
+  - id: faeac601-2ad6-4876-a491-52007e8bb7a6
+    keyword: When
+    text: they continue
+    archived: false
+  - id: dffaaab5-6486-4a1e-8711-be5d1561b91c
+    keyword: Then
+    text: the Event Type is created
+    archived: false
+  - id: f3eafbf3-bb3e-4018-9c9f-a44c105f0bdf
+    keyword: And
+    text: the Organizer sees "Quick Chat event type created successfully"
+    archived: false
+  archived: false
+- id: 27a100bf-84ed-4f4e-8cd0-b217242bdd8c
+  title: An Event Type URL can only be used once per Organizer
+  steps:
+  - id: 550b29e6-9b04-482b-ac08-cca35e85b04b
+    keyword: Given
+    text: the Organizer already has an Event Type at the URL "quick-chat"
+    archived: false
+  - id: 1e44f155-aa26-4cf6-badd-60c2c4649e4d
+    keyword: When
+    text: they add a new Event Type with the URL "quick-chat"
+    archived: false
+  - id: 6bf171cc-c5ca-4500-bf99-426db426e189
+    keyword: Then
+    text: the Event Type is not created
+    archived: false
+  - id: 49aca964-b12c-4d79-844c-a1cccf5e2ea4
+    keyword: And
+    text: 'the Organizer sees "BAD_REQUEST: An event type with this URL already exists."'
+    archived: false
+  archived: false
+- id: 5784c9b3-0709-459e-9bd7-168b369e82a5
+  title: A hidden Event Type is left off the public profile but can still be booked by its link
+  steps:
+  - id: 2dc803fb-7858-459b-9f45-2b00753121fc
+    keyword: Given
+    text: the Organizer has the Event Types "Intro Call" and "Board Review"
+    archived: false
+  - id: 453086ac-238d-491e-8c21-0b7e0e4ef249
+    keyword: When
+    text: the Organizer switches "Board Review" off in their Event Types list (the switch reads "Hide from profile")
+    archived: false
+  - id: 37213af7-1496-4178-9314-29849cec346f
+    keyword: Then
+    text: '"Board Review" is marked "Hidden" in the list'
+    archived: false
+  - id: 63f7ad21-5507-4a74-ab8e-68e1122a1847
+    keyword: And
+    text: a Booker visiting the Organizer's public profile only sees "Intro Call"
+    archived: false
+  - id: 328184b7-8924-42d4-b6df-871408e92528
+    keyword: And
+    text: a Booker who opens the direct link to "Board Review" can still pick a Slot and book it
+    archived: false
+  - id: b458cb0b-875b-44f2-bd2d-f4f39aa29405
+    keyword: And
+    text: the "Board Review" booking page asks search engines not to index it
+    archived: false
+  archived: false
+- id: 550e608f-dd60-402d-b7f1-47fdc081fec8
+  title: Duplicating an Event Type copies its settings under a new URL
+  steps:
+  - id: e6a90de4-7f6b-4e7e-a376-d526a9707721
+    keyword: Given
+    text: the Organizer has an Event Type at the URL "intro-call" with booking limits and two Private Links
+    archived: false
+  - id: 521d7cb2-0129-4bf4-a36c-7234b464ff59
+    keyword: When
+    text: the Organizer chooses "Duplicate" on it
+    archived: false
+  - id: b45554d4-3e16-4e26-a82f-f17eee66801d
+    keyword: Then
+    text: the "Duplicate event type" dialog suggests the URL "intro-call-copy"
+    archived: false
+  - id: f5630785-686d-414b-bfac-5545ae8e9983
+    keyword: When
+    text: they continue
+    archived: false
+  - id: a721dff6-25b9-41bb-9db3-582936cac7b3
+    keyword: Then
+    text: a new Event Type is created with the same settings and limits
+    archived: false
+  - id: d7854bb9-6f32-46ff-8d4e-ff8854c7839b
+    keyword: And
+    text: it gets two brand new Private Links with the same expiry settings and no uses counted yet
+    archived: false
+  - id: 355dd6bd-5262-4c98-8f6d-51272873e7a5
+    keyword: When
+    text: the Organizer tries to duplicate it again with a URL that is already taken
+    archived: false
+  - id: d76bc67a-cc20-40fc-af67-1483d7851058
+    keyword: Then
+    text: they see "An event type with this URL already exists. Please try a different URL."
+    archived: false
+  archived: false
+- id: f3bd81ab-2db0-4524-9cca-4502b9d0994c
+  title: Minimum Notice stops last-minute bookings
+  steps:
+  - id: 78bd7869-3692-4de3-8891-804eef237fb2
+    keyword: Given
+    text: the Organizer's Event Type has a Minimum Notice of 120 minutes
+    archived: false
+  - id: 649b1bbb-c68d-4a78-9f05-d84bcfc99ad1
+    keyword: When
+    text: a Booker tries to book a Slot that starts 60 minutes from now
+    archived: false
+  - id: 4df3d3fc-c84d-4dbe-91bd-41e91f1dd35a
+    keyword: Then
+    text: the booking is refused
+    archived: false
+  - id: f433ceb1-6e51-40df-af63-99200097eda3
+    keyword: And
+    text: the Booker sees "Could not book the meeting." with "The event type cannot be booked at this time. Could you try another time slot?"
+    archived: false
+  archived: false
+- id: 1132388d-046b-4559-87bf-bee8608b7747
+  title: Only confirmed bookings use up a booking frequency limit
+  steps:
+  - id: 59c069ea-99c6-40d4-990d-48b043dd642f
+    keyword: Given
+    text: the Organizer's Event Type limits booking frequency to 1 per day
+    archived: false
+  - id: a70a281a-13ad-4409-b2bf-400bb362f4bc
+    keyword: And
+    text: it Requires Confirmation
+    archived: false
+  - id: 740aa315-7f1c-4282-8b97-33e415ce7bbc
+    keyword: And
+    text: a Booker has already booked a Slot on Monday that is still waiting for confirmation
+    archived: false
+  - id: 69ae58fe-5e56-433d-a614-f2f7828562cf
+    keyword: When
+    text: another Booker books a different Slot on Monday
+    archived: false
+  - id: e3953efe-01ea-41e3-bbd9-d69cca712e9e
+    keyword: Then
+    text: that booking goes through too, because unconfirmed bookings are not counted
+    archived: false
+  - id: 90a7d132-64a4-400a-aceb-c80c97313969
+    keyword: When
+    text: the Organizer confirms one Monday booking and a third Booker tries to book Monday
+    archived: false
+  - id: a03fd48d-2d7b-4dd2-ba8b-442241c79610
+    keyword: Then
+    text: the third booking is refused with "Booking Limit for this event type has been reached"
+    archived: false
+  archived: false
+- id: 6ce3fe00-8137-404f-97bc-f998616ef35d
+  title: Offering seats switches off settings that do not work with seats
+  steps:
+  - id: 81c663da-7379-4a47-9ddf-6ea938697a1b
+    keyword: Given
+    text: the Organizer's Event Type Requires Confirmation, allows guests and allows multiple durations
+    archived: false
+  - id: ae1c9921-3a75-434c-b767-b828130fe158
+    keyword: When
+    text: the Organizer switches on "Offer seats"
+    archived: false
+  - id: c3cc444e-4849-4362-8314-5271960887a0
+    keyword: Then
+    text: the Number of seats per booking is set to 2
+    archived: false
+  - id: f4d1d100-2233-436a-b15b-18a4255b02e0
+    keyword: And
+    text: Requires Confirmation is switched off
+    archived: false
+  - id: 2173bb2c-f4c3-4c67-91ba-b436f0ca8e6f
+    keyword: And
+    text: guests are no longer allowed
+    archived: false
+  - id: 7b66162e-ea8c-442f-ae48-9368c6e3c96c
+    keyword: And
+    text: the multiple durations are removed
+    archived: false
+  archived: false
+archived: false

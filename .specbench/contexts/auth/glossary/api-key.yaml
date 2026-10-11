@@ -1,0 +1,11 @@
+spec-format: 1
+kind: term
+id: 01a125a7-3d6b-739d-ad22-42e687260e40
+revision: 4
+name: Api Key
+definition: A secret for using the public API as yourself, shown once.
+aka:
+- API key
+avoid: []
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+archived: false

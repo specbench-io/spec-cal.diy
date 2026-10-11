@@ -1,0 +1,96 @@
+spec-format: 1
+kind: use-case
+id: 01a1259d-7d7d-714b-8f60-8d994060aaf3
+revision: 15
+name: Create Or Update Out Of Office Entry
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: viewer.ooo.outOfOfficeCreateOrUpdate (Go Out of Office dialog).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a1259d-7d7d-75f0-9a44-5f8d9c51709f
+  name: Start Date
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a1259d-7d7d-791e-a9b1-3e0ed3af07a3
+  name: End Date
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a1259d-7d7d-7c95-82fd-6729d04a8d5e
+  name: Reason Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a1259d-7d7d-7f16-ae67-eebaf3a87a8a
+  name: Notes
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a1259d-7d7d-773a-b0d0-1e42f4d8d577
+  name: Show Note Publicly
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+steps:
+- id: 01a1259d-7d7d-75ea-a63c-00c613acc705
+  text: 'If either date is missing, refuse: {{outcome:Dates Required}}'
+  indent: 0
+- id: 01a1259d-7d7d-73b9-90c7-14d20bbca403
+  text: 'Stretch the dates to whole days; if the start is after the end, refuse: {{outcome:Start After End}}'
+  indent: 0
+- id: 01a1259d-7d7d-7dca-8452-f3666cf92a85
+  text: 'If the entry would redirect to the Organizer themselves or to someone they share no team with, refuse: {{outcome:Invalid Redirect}}'
+  indent: 0
+- id: 01a1259d-7d7d-7933-8a42-c74777a80eda
+  text: 'If another entry already has exactly the same start and end, refuse: {{outcome:Already Exists}}'
+  indent: 0
+- id: 01a1259d-7d7d-75ad-9d10-4a9e2363b86e
+  text: Save the entry, creating a new id if it is new
+  indent: 0
+- id: 01a1259d-7d7d-7e40-b6b8-ef20f499a2b0
+  text: Email the redirect target about the redirect being added, changed or cancelled
+  indent: 0
+- id: 01a1259d-7d7d-7afc-8f9a-7d69da30eebf
+  text: 'Publish {{integration-event:Availability/Out Of Office Created}} (also on update): {{outcome:Entry Saved}}'
+  indent: 0
+outcomes:
+- id: 01a1259d-7d7d-759d-b066-b299b5262507
+  name: Entry Saved
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a1259d-7d7d-77c0-a8a7-7cf2fdca827f
+  name: Dates Required
+  success: false
+  code: 400
+  message: start_date_and_end_date_required
+  returns: 
+- id: 01a1259d-7d7d-7a32-9ca5-446e96a39033
+  name: Start After End
+  success: false
+  code: 400
+  message: start_date_must_be_before_end_date
+  returns: 
+- id: 01a1259d-7d7d-7077-9e79-ea2c24ce6e17
+  name: Invalid Redirect
+  success: false
+  code: 400
+  message: 
+  returns: 
+- id: 01a1259d-7d7d-7e9d-9e44-a7eaf3ecdd1d
+  name: Already Exists
+  success: false
+  code: 409
+  message: out_of_office_entry_already_exists
+  returns: 
+archived: false

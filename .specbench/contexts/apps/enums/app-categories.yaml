@@ -1,0 +1,50 @@
+spec-format: 1
+kind: enum
+id: 01a125a3-d698-74c7-8994-066bbbc50efb
+revision: 12
+name: App Categories
+bounded-context-id: 01a0f44a-2a22-7488-ae05-7c57eda180ac
+summary: The App Store categories.
+description: 
+cases:
+- id: 01a125a3-d698-7c51-a65f-dad5ba728200
+  name: Calendar
+  description: 
+  archived: false
+- id: 01a125a3-d698-7d0b-b541-2da2c541ae89
+  name: Messaging
+  description: 
+  archived: false
+- id: 01a125a3-d698-7b58-b69c-5e0997543cb5
+  name: Other
+  description: 
+  archived: false
+- id: 01a125a3-d698-7a1b-a50e-117d52d648f6
+  name: Payment
+  description: 
+  archived: false
+- id: 01a125a3-d698-73e4-afad-b2139bc41c3a
+  name: Video
+  description: Deprecated - use Conferencing.
+  archived: false
+- id: 01a125a3-d698-7e6d-a765-1821d16b7a4e
+  name: Web3
+  description: Deprecated.
+  archived: false
+- id: 01a125a3-d698-79d0-bc0b-225166589d6e
+  name: Automation
+  description: 
+  archived: false
+- id: 01a125a3-d698-7586-85c8-a84e9c55d146
+  name: Analytics
+  description: 
+  archived: false
+- id: 01a125a3-d698-7960-9b3f-24254afc28c4
+  name: Conferencing
+  description: 
+  archived: false
+- id: 01a125a3-d698-7d4f-b3a4-2ec8ae5b436d
+  name: Crm
+  description: 
+  archived: false
+archived: false

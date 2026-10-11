@@ -1,0 +1,23 @@
+spec-format: 1
+kind: event-handler
+id: 01a125f7-6bf9-7e92-819e-b0f2d4c48be6
+revision: 4
+name: Deliver Booking Rescheduled Webhooks
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: handleWebhookTrigger, called directly and awaited inside Create Booking (RegularBookingService.ts:2364, 2433) only when the rescheduled Booking is confirmed straight away. A reschedule that needs confirmation or payment never sends this - it ends in Booking Created. Sent before the new Booking's location and references are saved.
+trigger:
+  integration-event: Booking/Booking Rescheduled
+steps:
+- id: 01a125f7-6bf9-73b3-bc8a-add7e3810938
+  text: Find the active Webhooks listening for Booking rescheduled that belong to the Organizer, the Event Type, the platform OAuth client, or are platform-wide
+  indent: 0
+- id: 01a125f7-6bf9-7c65-b533-3bfe081fd5fa
+  text: Build the Booking payload with status Accepted, plus the original Booking's id, uid, start and end time and who rescheduled it
+  indent: 0
+- id: 01a125f7-6bf9-7023-8f5a-e27d7d009efb
+  text: For each, POST the payload to the Subscriber URL signed with the Webhook's Secret, using its payload template if it has one - or queue a send Task when TASKER_ENABLE_WEBHOOKS is on
+  indent: 0
+- id: 01a125f7-6bf9-73a0-8c72-03742257e2b2
+  text: Errors are logged and never stop the reschedule. There is no retry unless the send was queued
+  indent: 0
+archived: false

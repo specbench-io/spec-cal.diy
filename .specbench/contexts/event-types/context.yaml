@@ -1,0 +1,12 @@
+spec-format: 1
+kind: bounded-context
+id: 01a0f44a-299f-735f-971c-99d5a8815da7
+revision: 5
+name: Event Types
+summary: Defining what an Organizer offers for booking.
+description: 
+icon: zap
+colour: indigo
+implements:
+- 01a0f447-0583-798c-a841-70a943b29d1a
+archived: false

@@ -1,0 +1,88 @@
+spec-format: 1
+kind: application-service
+id: 01a10ff1-109a-7034-852d-49fc2a9bcfb2
+revision: 22
+name: Global Blocking Service
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+description: Checks emails against the Global Watchlist only. The organization watchlist is out of scope because organizations were removed.
+implements:
+- Watchlist/Blocking Service
+methods:
+- id: 01a10ff1-109a-7f67-9fd5-d901416f1459
+  name: Is Blocked
+  description: 
+  implements: Watchlist/Blocking Service.Is Blocked
+  inputs:
+  - id: 01a10ff1-109a-70f3-b85e-e220af93dae2
+    name: Email
+    type:
+      kind: Primitive
+      primitive: Text
+  steps:
+  - id: 01a10ff1-109a-74d3-bc9a-d9d98444ebff
+    text: 'If {{input:Email}} is in the Global Watchlist with the Block action, it is blocked: {{outcome:Blocked}}'
+    indent: 0
+  - id: 01a10ff1-109a-7a93-9499-53cdb5927f46
+    text: "If the email's domain, or a wildcard covering that domain, is in the Global Watchlist with the Block action, it is blocked: {{outcome:Blocked}}"
+    indent: 0
+  - id: 01a10ff1-109a-70e9-b7c7-73a9e5e9894f
+    text: 'Otherwise it is not blocked: {{outcome:Not Blocked}}'
+    indent: 0
+  outcomes:
+  - id: 01a10ff1-109a-7a92-9376-41b65b347dcc
+    name: Blocked
+    success: true
+    message: The email, or its domain, is in the Global Watchlist.
+    returns:
+      kind: Ref
+      ref:
+        entity-type: ValueObject
+        entity-id: 01a12570-86e7-7e59-bd70-b4fac36d3a24
+      ref-name: Blocking Result
+  - id: 01a10ff1-109a-73b3-b066-046bf2f211d9
+    name: Not Blocked
+    success: true
+    message: Nothing in the Global Watchlist matches the email.
+    returns:
+      kind: Ref
+      ref:
+        entity-type: ValueObject
+        entity-id: 01a12570-86e7-7e59-bd70-b4fac36d3a24
+      ref-name: Blocking Result
+  archived: false
+- id: 01a10ff1-109a-72aa-8479-008030f7e2f4
+  name: Are Blocked
+  description: 
+  implements: Watchlist/Blocking Service.Are Blocked
+  inputs:
+  - id: 01a10ff1-109a-7c43-acc2-4e271c76a69e
+    name: Emails
+    type:
+      kind: Collection
+      shape: List
+      element:
+        kind: Primitive
+        primitive: Text
+  steps:
+  - id: 01a10ff1-109a-7046-8524-ee15e309f972
+    text: 'Check every address in {{input:Emails}} the same way as Is Blocked, in a single look-up: {{outcome:Checked}}'
+    indent: 0
+  outcomes:
+  - id: 01a10ff1-109a-7454-b3c2-3dc80f6c874f
+    name: Checked
+    success: true
+    message: Each email has its own blocking result.
+    returns:
+      kind: Collection
+      shape: Map
+      key:
+        kind: Primitive
+        primitive: Text
+      element:
+        kind: Ref
+        ref:
+          entity-type: ValueObject
+          entity-id: 01a12570-86e7-7e59-bd70-b4fac36d3a24
+        ref-name: Blocking Result
+  archived: false
+archived: false

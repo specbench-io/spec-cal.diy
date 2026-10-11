@@ -1,0 +1,18 @@
+spec-format: 1
+kind: enum
+id: 01a125a6-3244-74a4-bc8b-c7ca46ed8a73
+revision: 4
+name: User Permission Role
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+summary: Whether a user is an Admin of the instance.
+description: 
+cases:
+- id: 01a125a6-3244-7032-8e1e-01624b22811d
+  name: User
+  description: 
+  archived: false
+- id: 01a125a6-3244-7f01-a75d-be17576acfc4
+  name: Admin
+  description: 
+  archived: false
+archived: false

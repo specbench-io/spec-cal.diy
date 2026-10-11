@@ -1,0 +1,17 @@
+spec-format: 1
+kind: event-handler
+id: 01a125a5-6c23-76e1-ad40-8bc73a53ce93
+revision: 5
+name: Deliver Out Of Office Created Webhooks
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: Called directly by Create Or Update Out Of Office Entry, without waiting for the results.
+trigger:
+  integration-event: Availability/Out Of Office Created
+steps:
+- id: 01a125c4-e84f-758b-8b2f-9734db892e32
+  text: Find the active Webhooks of the Organizer ({{field:User Id}}) listening for Out of office created
+  indent: 0
+- id: 01a125c4-e84f-7025-8b52-02d0e84d1580
+  text: POST each the entry {{field:Uuid}} with its dates ({{field:Start}} to {{field:End}}), {{field:Reason}}, {{field:Notes}} and redirect target ({{field:To User Id}}), without waiting for the results
+  indent: 0
+archived: false

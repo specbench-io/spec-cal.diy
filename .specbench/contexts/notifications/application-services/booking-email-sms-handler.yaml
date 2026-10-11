@@ -1,0 +1,94 @@
+spec-format: 1
+kind: application-service
+id: 01a125a5-6b66-7df0-aeac-2ed822cfeff9
+revision: 14
+name: Booking Email Sms Handler
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: BookingEmailSmsHandler.ts, created fresh per Booking. SMS is wired in but never actually sent in cal.diy. Event Types can switch standard emails off for the host or Attendees.
+implements: []
+methods:
+- id: 01a125a5-6b66-721d-b685-9547e0ce0c7b
+  name: Send Confirmed
+  description: 
+  implements: 
+  inputs:
+  - id: 01a125a5-6b66-78cc-9619-2bed1f50a6a5
+    name: Booking Uid
+    type:
+      kind: Primitive
+      primitive: Text
+  steps:
+  - id: 01a125a5-6b67-772b-babe-8a14f70e3c29
+    text: 'Email the Organizer and each Attendee that the meeting is scheduled, with a calendar invite: {{outcome:Sent}}'
+    indent: 0
+  outcomes:
+  - id: 01a125a5-6b66-7785-8ba5-5633f4ae31f6
+    name: Sent
+    success: true
+    message: 
+    returns: 
+  archived: false
+- id: 01a125a5-6b66-794e-b5db-aac2c76f42dc
+  name: Send Rescheduled
+  description: 
+  implements: 
+  inputs:
+  - id: 01a125a5-6b67-7872-bb1f-3262c6f830ad
+    name: Booking Uid
+    type:
+      kind: Primitive
+      primitive: Text
+  steps:
+  - id: 01a125a5-6b67-7126-8489-52185cd13ec7
+    text: 'Email the Organizer and Attendees that the event has been rescheduled: {{outcome:Sent}}'
+    indent: 0
+  outcomes:
+  - id: 01a125a5-6b67-78a1-982a-d4c29e068ac9
+    name: Sent
+    success: true
+    message: 
+    returns: 
+  archived: false
+- id: 01a125a5-6b66-7dc1-a2c5-83424201ccf8
+  name: Send Requested
+  description: 
+  implements: 
+  inputs:
+  - id: 01a125a5-6b67-7d3d-854f-51944e15f9c6
+    name: Booking Uid
+    type:
+      kind: Primitive
+      primitive: Text
+  steps:
+  - id: 01a125a5-6b67-78c0-b76b-c8ac5a12d412
+    text: 'Email the Organizer that a Booking awaits approval, and send all Attendees one email that their booking was submitted: {{outcome:Sent}}'
+    indent: 0
+  outcomes:
+  - id: 01a125a5-6b67-70bc-87e4-7f0e1aaa2147
+    name: Sent
+    success: true
+    message: 
+    returns: 
+  archived: false
+- id: 01a125a5-6b66-7c28-929f-c2ea97a5755d
+  name: Send Add Guests
+  description: 
+  implements: 
+  inputs:
+  - id: 01a125a5-6b67-7c55-be57-189911275666
+    name: Booking Uid
+    type:
+      kind: Primitive
+      primitive: Text
+  steps:
+  - id: 01a125a5-6b67-7488-bf69-c243111a9a8d
+    text: 'Email the Organizer and existing Attendees that guests were added, and send the new Guests the scheduled email: {{outcome:Sent}}'
+    indent: 0
+  outcomes:
+  - id: 01a125a5-6b67-7323-99aa-09503ddbe6bc
+    name: Sent
+    success: true
+    message: 
+    returns: 
+  archived: false
+archived: false

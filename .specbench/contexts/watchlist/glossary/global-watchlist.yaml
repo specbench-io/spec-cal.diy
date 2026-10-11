@@ -1,0 +1,11 @@
+spec-format: 1
+kind: term
+id: 01a10ff1-1043-7b95-9f13-4c35c035496c
+revision: 7
+name: Global Watchlist
+definition: Emails and domains blocked from booking anyone on the platform, not just one Organizer.
+aka:
+- System Blocklist
+avoid: []
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+archived: false

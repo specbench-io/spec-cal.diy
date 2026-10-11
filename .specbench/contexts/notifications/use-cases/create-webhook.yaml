@@ -1,0 +1,80 @@
+spec-format: 1
+kind: use-case
+id: 01a125a5-6c76-7441-86d4-08d7cc978a96
+revision: 12
+name: Create Webhook
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: viewer.webhook.create (Settings, Developer, Webhooks, New; or an Event Type's Webhooks tab).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a5-6c76-7056-a0bc-41286034d429
+  name: Subscriber Url
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a5-6c76-7318-8aa5-1248a4cecea3
+  name: Event Triggers
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Primitive
+      primitive: Text
+  archived: false
+- id: 01a125a5-6c76-7e5a-bb71-6971ca01d0b8
+  name: Payload Template
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a5-6c76-7114-a0f2-e6d0cfadb4c7
+  name: Secret
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a5-6c76-7469-9868-5d69a7ae5941
+  name: Event Type Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+steps:
+- id: 01a125a5-6c76-7c6c-a42b-ccddb3c53946
+  text: 'If {{input:Subscriber Url}} is not allowed by the request forgery check, refuse: {{outcome:Url Not Allowed}}'
+  indent: 0
+- id: 01a125a5-6c76-7eae-9701-f836f4e23ca8
+  text: 'If it is a platform Webhook and the user is not an Admin, refuse: {{outcome:Unauthorized}}'
+  indent: 0
+- id: 01a125a5-6c76-750b-b6ed-59b19ae15b53
+  text: Save the Webhook for the Event Type, or for the Organizer
+  indent: 0
+- id: 01a125a5-6c76-73b4-b645-2d9c9473edbe
+  text: 'Back-fill meeting started and ended triggers and no-show checks for upcoming accepted Bookings: {{outcome:Webhook Created}}'
+  indent: 0
+outcomes:
+- id: 01a125a5-6c76-7f11-a045-007c803e8c04
+  name: Webhook Created
+  success: true
+  code: 
+  message: Webhook created successfully!
+  returns: 
+- id: 01a125a5-6c76-7df6-ae7c-191a58a2b8fe
+  name: Url Not Allowed
+  success: false
+  code: 400
+  message: 
+  returns: 
+- id: 01a125a5-6c76-7e10-9f22-85cd47c79289
+  name: Unauthorized
+  success: false
+  code: 401
+  message: 
+  returns: 
+archived: false

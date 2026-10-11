@@ -1,0 +1,121 @@
+spec-format: 1
+kind: use-case
+id: 01a12661-9310-7b75-b69c-1b8abdde1cdc
+revision: 14
+name: Receive Video Webhook
+bounded-context-id: 01a0f44a-2a22-7488-ae05-7c57eda180ac
+description: POST /api/recorded-daily-video (apps/web/app/api/recorded-daily-video/route.ts), called by Cal Video (Daily) for recordings, meeting ends and finished transcription jobs.
+use-case-kind: Command
+roles: []
+inputs:
+- id: 01a12661-9310-7244-868f-9d7a60146147
+  name: Type
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+steps:
+- id: 01a12661-9310-70a2-8eaa-3800f3a327e5
+  text: "If it is Daily's test request, reply straight away: {{outcome:Test Request Successful}}"
+  indent: 0
+- id: 01a12661-9310-7186-9b05-4bb0912f4f07
+  text: 'Unless running in test mode, refuse if the instance has no Daily webhook secret: {{outcome:No Webhook Secret}}'
+  indent: 0
+- id: 01a12661-9310-7049-bda6-d8618f9d278a
+  text: 'If the signature does not match, refuse: {{outcome:Signature Mismatch}}'
+  indent: 1
+- id: 01a12661-9310-7750-a037-d48862b8324d
+  text: 'For a recording ready to download: if the payload is invalid, refuse: {{outcome:Invalid Payload}}'
+  indent: 0
+- id: 01a12661-9310-7089-a9ed-1d6de8243058
+  text: 'If the recording is not finished, refuse: {{outcome:Recording Not Finished}}'
+  indent: 1
+- id: 01a12661-9310-75f9-817a-fb1b7854ebfe
+  text: 'Find the Booking for the room; if there is no reference for the room, stop: {{outcome:Booking Reference Not Found}}'
+  indent: 1
+- id: 01a12661-9310-7fec-8fc8-7877a6c2a61f
+  text: 'If the Booking does not exist or has no Cal Video location, refuse: {{outcome:Booking Not Found}}'
+  indent: 1
+- id: 01a12661-9310-797b-8aeb-93357f50a4bc
+  text: Mark the Booking as recorded and make a private download link through Cal.diy
+  indent: 1
+- id: 01a12661-9310-753f-8a67-70d6c395d9d6
+  text: Publish {{integration-event:Apps/Recording Ready}}, start a transcription job and email the recording to the participants. A failure in any of these is logged and the rest still happen
+  indent: 1
+- id: 01a12661-9310-7869-927c-b7b1e2be149d
+  text: 'For a meeting that ended: stop unless the Event Type sends transcription emails and Daily has transcripts for it; otherwise email the transcripts to the participants: {{outcome:Success}}'
+  indent: 0
+- id: 01a12661-9310-7814-87b4-32110919ac93
+  text: For a finished transcription job, find the Booking for the recording's room and get links to the transcript and the recording
+  indent: 0
+- id: 01a12661-9310-782d-b828-2139c50682eb
+  text: 'Publish {{integration-event:Apps/Recording Transcription Generated}}: {{outcome:Success}}'
+  indent: 1
+- id: 01a12661-9310-7cce-9d24-cf2940f3f049
+  text: 'Any other type is logged and answered with a 200: {{outcome:Invalid Type}}'
+  indent: 0
+- id: 01a12661-9310-72ce-90bf-30fa8a084bd1
+  text: 'Any other error is refused: {{outcome:Failed}}'
+  indent: 0
+outcomes:
+- id: 01a12661-9310-7762-bd9f-04c2dbb01e55
+  name: Success
+  success: true
+  code: 
+  message: Success
+  returns: 
+- id: 01a12661-9310-756c-8088-776a3eb46940
+  name: Test Request Successful
+  success: true
+  code: 
+  message: Test request successful
+  returns: 
+- id: 01a12661-9310-766b-ac9d-22736894950e
+  name: Invalid Type
+  success: true
+  code: 
+  message: Invalid type in /recorded-daily-video
+  returns: 
+- id: 01a12661-9310-7802-b4e3-ab8eba4206c7
+  name: Booking Reference Not Found
+  success: true
+  code: 200
+  message: Booking reference not found
+  returns: 
+- id: 01a12661-9310-7898-8fd2-5e0f5b2e532d
+  name: No Webhook Secret
+  success: false
+  code: 405
+  message: No Daily Webhook Secret
+  returns: 
+- id: 01a12661-9310-78b8-82b4-61e7fe466b2b
+  name: Signature Mismatch
+  success: false
+  code: 403
+  message: Signature does not match
+  returns: 
+- id: 01a12661-9310-773b-ba79-9fae3383ce55
+  name: Invalid Payload
+  success: false
+  code: 400
+  message: Invalid Payload
+  returns: 
+- id: 01a12661-9310-7f56-9826-be3805883ba3
+  name: Recording Not Finished
+  success: false
+  code: 400
+  message: Recording not finished
+  returns: 
+- id: 01a12661-9310-780e-879f-af389ea6ec9b
+  name: Booking Not Found
+  success: false
+  code: 404
+  message: Booking does not exist or does not contain daily video as location
+  returns: 
+- id: 01a12661-9310-7cfa-ba37-670504b57269
+  name: Failed
+  success: false
+  code: 500
+  message: something went wrong
+  returns: 
+archived: false

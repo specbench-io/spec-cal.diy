@@ -1,0 +1,16 @@
+spec-format: 1
+kind: scheduled-job
+id: 01a125a5-6da6-7ab6-8e8a-564f25144478
+revision: 5
+name: Send Scheduled Webhook Triggers
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: 
+schedule: every minute (/api/cron/webhookTriggers, run by a GitHub workflow)
+steps:
+- id: 01a125a5-6da6-7d25-b776-6b614da27ed4
+  text: Delete Webhook Scheduled Triggers more than a day old
+  indent: 0
+- id: 01a125a5-6da6-7460-a722-65af2e9d5c2d
+  text: POST every trigger that is due - the {{integration-event:Booking/Meeting Started}} or {{integration-event:Booking/Meeting Ended}} payload stored for it when the Booking was confirmed - signed with the Webhook's Secret, then delete it whether or not the send worked. There is no retry
+  indent: 0
+archived: false

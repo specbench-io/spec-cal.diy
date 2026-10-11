@@ -1,0 +1,47 @@
+spec-format: 1
+kind: value-object
+id: 01a1259e-cdec-7e2e-8cc5-3d5db630e326
+revision: 7
+name: Recurring Event
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+summary: Lets the Booker book a series - repeats every interval for a maximum number of times.
+description: 
+properties:
+- id: 01a1259e-cdec-72de-94ab-2ef8bb5af244
+  name: Interval
+  type:
+    kind: Primitive
+    primitive: Number
+  archived: false
+- id: 01a1259e-cdec-7c02-9416-0a41548fc9c8
+  name: Count
+  type:
+    kind: Primitive
+    primitive: Number
+  archived: false
+- id: 01a1259e-cdec-77b8-9505-4717801ff900
+  name: Until
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Date
+  archived: false
+- id: 01a1259e-cdec-759e-8d48-245252c6078e
+  name: Tzid
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125b2-333f-7a62-8556-663f6b56d19c
+  name: Freq
+  type:
+    kind: Ref
+    ref:
+      entity-type: Enum
+      entity-id: 01a1259e-cd6b-7bb9-bf4a-50845deb4a22
+    ref-name: Frequency
+  archived: false
+invariants: []
+methods: []
+archived: false

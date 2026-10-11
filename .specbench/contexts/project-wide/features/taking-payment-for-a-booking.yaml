@@ -1,0 +1,173 @@
+spec-format: 1
+kind: feature
+id: 01a125e2-63e7-7595-8e64-c2d15e66a6aa
+revision: 44
+title: Taking payment for a Booking
+intent: As an Organizer, I want Bookers to pay for my paid Event Types, so that I only hold time for people who have paid.
+description: 'Use Cases: Create Booking, Receive Payment Webhook, Charge No Show Fee, Cancel Booking.'
+scenarios:
+- id: 01a125e2-63e7-7009-80c6-240b5367142d
+  title: Booking a paid Event Type leaves the Booking unconfirmed until it is paid
+  steps:
+  - id: 01a125e2-63e7-72dc-a19d-5113a37cf864
+    keyword: Given
+    text: an Organizer has an Event Type priced at $50 with Stripe or PayPal connected
+    archived: false
+  - id: 01a125e2-63e7-7625-b795-515ec13990ad
+    keyword: When
+    text: a Booker books a time
+    archived: false
+  - id: 01a125e2-63e7-7e27-b830-d120458624b2
+    keyword: Then
+    text: the Booking is created as Unconfirmed and no calendar event is created yet
+    archived: false
+  - id: 01a125e2-63e7-7b60-804d-e796c057a787
+    keyword: And
+    text: no booking request emails are sent
+    archived: false
+  - id: 01a125e2-63e7-77fa-96f0-28905fa7d00f
+    keyword: And
+    text: the Booker is taken to the Payment page instead of the booking confirmation page
+    archived: false
+  - id: 01a125e2-63e7-75d0-80af-1fcebc61912c
+    keyword: And
+    text: the Organizer sees the Booking under the Unconfirmed tab marked "Pending payment"
+    archived: false
+  archived: false
+- id: 01a125e2-63e7-728b-92a3-29e7c3bf59cd
+  title: The Payment page offers no way to pay
+  steps:
+  - id: 01a125e2-63e7-7966-b4c7-0c42c0c48d95
+    keyword: Given
+    text: a Booker has just booked a paid Event Type
+    archived: false
+  - id: 01a125e2-63e7-7c4b-a1bf-cfe51d2cd4c4
+    keyword: When
+    text: the Booker arrives on the Payment page
+    archived: false
+  - id: 01a125e2-63e7-747f-97a2-dac194a93501
+    keyword: Then
+    text: the page shows the heading "Payment" but none of the Booking's details and no price
+    archived: false
+  - id: 01a125e2-63e7-7afd-917a-3a283c7c36b1
+    keyword: And
+    text: no Stripe or PayPal payment button is shown, so the Booker cannot pay there
+    archived: false
+  archived: false
+- id: 01a125e2-63e7-7960-8c2a-3a1cc80ac9e3
+  title: Unpaid Stripe Bookings are chased but never confirmed
+  steps:
+  - id: 01a125e2-63e7-792b-b72b-ec81f06421be
+    keyword: Given
+    text: a Booker has booked an Event Type that takes payment through Stripe
+    archived: false
+  - id: 01a125e2-63e7-71d5-9361-998701776d19
+    keyword: When
+    text: 15 minutes pass and the Booking has still not been paid
+    archived: false
+  - id: 01a125e2-63e7-7968-b94a-909db626dc80
+    keyword: Then
+    text: 'the Booker receives an email titled "Complete your booking: <title> on <date>" saying "Your meeting is awaiting payment"'
+    archived: false
+  - id: 01a125e2-63e7-72e8-928e-4379adf46029
+    keyword: And
+    text: any payment notification from Stripe is answered with "Payment webhooks are not available in community edition"
+    archived: false
+  - id: 01a125e2-63e7-77b1-bf25-3d7faaebb8c9
+    keyword: And
+    text: the Booking is never marked as paid
+    archived: false
+  archived: false
+- id: 01a125e2-63e7-7d3e-b0e6-34ea488b1f25
+  title: PayPal confirms a paid Booking
+  steps:
+  - id: 01a125e2-63e7-7a39-b914-1e2587466e33
+    keyword: Given
+    text: a Booker has an unpaid Booking for an Event Type that takes payment through PayPal
+    archived: false
+  - id: 01a125e2-63e7-7384-b993-998a4e0e7963
+    keyword: When
+    text: PayPal reports that the order for that Booking was approved
+    archived: false
+  - id: 01a125e2-63e7-7c35-902e-5c853c9c2537
+    keyword: Then
+    text: the Payment is recorded as paid and the Booking is accepted
+    archived: false
+  - id: 01a125e2-63e7-7a5f-9f1f-307588c7726b
+    keyword: And
+    text: the calendar event is created and the Booker and Organizer receive the booking confirmation emails
+    archived: false
+  - id: 01a125e2-63e7-7eb3-a6b7-cbaaf54da1e0
+    keyword: And
+    text: any pending reminder to complete payment is cancelled
+    archived: false
+  - id: 01a125e2-63e7-7c94-a9ff-edce93b11424
+    keyword: And
+    text: if the Event Type requires confirmation, the Booking stays Unconfirmed and the Organizer is asked to confirm it instead
+    archived: false
+  archived: false
+- id: 01a125e2-63e7-7bae-b21a-069b1cb6b9da
+  title: Confirming a Booking that has not been paid
+  steps:
+  - id: 01a125e2-63e7-79fa-a2ed-49079612b2b3
+    keyword: Given
+    text: an Organizer has an Unconfirmed Booking marked "Pending payment"
+    archived: false
+  - id: 01a125e2-63e7-77e8-911e-2cad6bfeb70b
+    keyword: When
+    text: the Organizer chooses "Confirm" on it in the Bookings list
+    archived: false
+  - id: 01a125e2-63e7-7fb2-8b8c-8f548947ad37
+    keyword: Then
+    text: the Booking becomes accepted while still unpaid
+    archived: false
+  - id: 01a125e2-63e7-7cf6-a015-9a1194b36d3a
+    keyword: And
+    text: no calendar event is created and no confirmation emails are sent
+    archived: false
+  - id: 01a125e2-63e7-7d10-b7be-e068433d17e0
+    keyword: And
+    text: the Organizer sees "Booking confirmation succeeded"
+    archived: false
+  archived: false
+- id: 01a125e2-63e7-70bb-a8a5-462ab94492ab
+  title: Collecting a No Show fee does not charge the card
+  steps:
+  - id: 01a125e2-63e7-726e-b453-6cf9382479b5
+    keyword: Given
+    text: an Organizer has an accepted Booking where the Booker's card is held for a No Show fee of $20
+    archived: false
+  - id: 01a125e2-63e7-7b83-8f0c-9e56352a9e99
+    keyword: When
+    text: the Organizer chooses "Collect no-show fee" and then "Charge attendee $20.00"
+    archived: false
+  - id: 01a125e2-63e7-766c-b216-aee760dfc354
+    keyword: Then
+    text: the Organizer sees "Charge successful"
+    archived: false
+  - id: 01a125e2-63e7-7a64-b7b9-3e6dffb19482
+    keyword: And
+    text: the Booker's card is not charged
+    archived: false
+  archived: false
+- id: 01a125e2-63e7-79b0-916c-d3b53d01fa91
+  title: Cancelling a paid PayPal Booking does not refund it
+  steps:
+  - id: 01a125e2-63e7-7a24-bd46-abcf2e543517
+    keyword: Given
+    text: a Booker has a Booking paid through PayPal
+    archived: false
+  - id: 01a125e2-63e7-7136-80b6-9ac52206e4ea
+    keyword: When
+    text: the Booking is cancelled
+    archived: false
+  - id: 01a125e2-63e7-71ed-8aee-0bb58211d2ee
+    keyword: Then
+    text: no refund is made, because PayPal Event Types have no refund policy
+    archived: false
+  - id: 01a125e2-63e7-757d-9245-a1c1d20dd949
+    keyword: And
+    text: the Booker's booking page still says "A refund for this booking payment is on its way."
+    archived: false
+  archived: false
+archived: false

@@ -1,0 +1,41 @@
+spec-format: 1
+kind: use-case
+id: 01a1259f-66b6-7ee4-af97-c54fadcfb747
+revision: 7
+name: Bulk Update To Default Location
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+description: viewer.eventTypes.bulkUpdateToDefaultLocation (Bulk update existing event types, from the conferencing apps page).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a1259f-66b6-7e90-826a-45abeb2f9bed
+  name: Event Type Ids
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Primitive
+      primitive: Id
+  archived: false
+steps:
+- id: 01a1259f-66b6-730c-8d4a-d90f08f95331
+  text: 'If the Organizer has no default conferencing app, refuse: {{outcome:Default App Not Set}}'
+  indent: 0
+- id: 01a1259f-66b6-79e8-a782-fed8f1d17d97
+  text: 'Set the location of each chosen Event Type to the default conferencing app: {{outcome:Updated}}'
+  indent: 0
+outcomes:
+- id: 01a1259f-66b6-7667-85d7-de20cf7e9846
+  name: Updated
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a1259f-66b6-7f75-a8b7-b3209e3e3947
+  name: Default App Not Set
+  success: false
+  code: 400
+  message: Default conferencing app not set
+  returns: 
+archived: false

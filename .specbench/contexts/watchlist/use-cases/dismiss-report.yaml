@@ -1,0 +1,38 @@
+spec-format: 1
+kind: use-case
+id: 01a12596-ffba-766a-93f8-da3f0aaf45b8
+revision: 8
+name: Dismiss Report
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+description: 'Admin API: viewer.admin.watchlist.dismissReport.'
+use-case-kind: Command
+roles:
+- 01a0f442-adc6-7410-af52-ea288a8ae9d1
+inputs:
+- id: 01a12596-ffba-7d6d-8f75-638281fe5610
+  name: Email
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+steps:
+- id: 01a12596-ffba-72f9-9ba1-12eb0ac01f7b
+  text: 'Dismiss the unreviewed reports from {{input:Email}}, using {{method:Watchlist/Admin Watchlist Operations Service.Dismiss Report By Email}}: {{outcome:Dismissed}}'
+  indent: 0
+- id: 01a12596-ffba-7f94-8eb9-171e4f93b4d6
+  text: 'If there are none, refuse: {{outcome:No Pending Reports}}'
+  indent: 1
+outcomes:
+- id: 01a12596-ffba-7f0e-bf50-895aa84dab51
+  name: Dismissed
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a12596-ffba-7d9b-a271-bcf3eebb0dce
+  name: No Pending Reports
+  success: false
+  code: 
+  message: No pending reports found for this email
+  returns: 
+archived: false

@@ -1,0 +1,74 @@
+spec-format: 1
+kind: use-case
+id: 01a125a4-4138-726e-be10-aa3e4a32bd05
+revision: 10
+name: Install App
+bounded-context-id: 01a0f44a-2a22-7488-ae05-7c57eda180ac
+description: /api/integrations/app/add then the app's callback. Google Calendar, Apple Calendar, Stripe and simple video apps each have their own handler.
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a4-4138-7e77-919b-7b3fafcedf51
+  name: App Slug
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a4-4138-7d27-bab3-62ee566df5d8
+  text: 'If the Organizer is not logged in, refuse: {{outcome:Not Logged In}}'
+  indent: 0
+- id: 01a125a4-4138-77be-b1b8-759df94a86d2
+  text: 'If the app allows one install and is already installed, refuse: {{outcome:Already Installed}}'
+  indent: 0
+- id: 01a125a4-4138-7928-a328-a5a84ac8966c
+  text: For OAuth apps (Google Calendar, Stripe), send the Organizer to the provider to approve access and come back
+  indent: 0
+- id: 01a125a4-4138-7343-8423-7040fedfe42f
+  text: 'For Google Calendar, if not every permission was granted, refuse: {{outcome:Permissions Not Granted}}'
+  indent: 0
+- id: 01a125a4-4138-7933-949d-64e0f11adddd
+  text: Save a Credential with the app's keys
+  indent: 0
+- id: 01a125a4-4138-7c8b-95e3-521eac4bd4b0
+  text: For Google Calendar, add the primary calendar as a Selected Calendar, and also install Google Meet if asked
+  indent: 0
+- id: 01a125a4-4138-75f8-8027-c2a1882f1fd2
+  text: 'If the calendar account is already linked to another Credential, undo and refuse: {{outcome:Account Already Linked}}'
+  indent: 0
+- id: 01a125a4-4138-7c7d-aa76-01ed7642c671
+  text: 'Done: {{outcome:Installed}}'
+  indent: 0
+outcomes:
+- id: 01a125a4-4138-7259-bbac-a8f456c470a3
+  name: Installed
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a125a4-4138-76de-b320-aaa30aac1c7b
+  name: Not Logged In
+  success: false
+  code: 401
+  message: You must be logged in to do this
+  returns: 
+- id: 01a125a4-4138-779d-9eed-d75c6652b147
+  name: Already Installed
+  success: false
+  code: 
+  message: App is already installed
+  returns: 
+- id: 01a125a4-4138-7adc-a6ee-5e4b74d70b3c
+  name: Permissions Not Granted
+  success: false
+  code: 400
+  message: You must grant all permissions to use this integration
+  returns: 
+- id: 01a125a4-4138-7987-86d2-833365153e07
+  name: Account Already Linked
+  success: false
+  code: 409
+  message: Account is already linked
+  returns: 
+archived: false

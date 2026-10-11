@@ -1,0 +1,68 @@
+spec-format: 1
+kind: use-case
+id: 01a125a7-3b79-700a-b181-ce27f068ee4f
+revision: 10
+name: Update Profile
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+description: viewer.me.updateProfile (Settings, My account; also onboarding).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a7-3b79-748c-9062-1f2060ae7a49
+  name: Username
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a7-3b79-73eb-af3c-7bfe5f0ff040
+  name: Email
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a7-3b79-79f5-96d1-ab624d53644e
+  name: Time Zone
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a7-3b79-7870-a425-069292c3aaef
+  text: 'If the new username is not available, refuse: {{outcome:Username Taken}}'
+  indent: 0
+- id: 01a125a7-3b79-7685-a545-c5d6430f84a6
+  text: If email verification is on and the new email is not a verified secondary email, keep the old email until the change is confirmed by link; otherwise switch now
+  indent: 0
+- id: 01a125a7-3b79-7e28-8118-97a942658949
+  text: Save an uploaded avatar, and replace the Travel Schedules
+  indent: 0
+- id: 01a125a7-3b79-750e-ab23-153650917aef
+  text: 'If the new email is used by someone else, refuse: {{outcome:Email Already Used}}'
+  indent: 0
+- id: 01a125a7-3b79-7cf8-a2a9-2d4ec9fc42d1
+  text: "On a time zone change, update the Default Schedule's time zone too: {{outcome:Settings Updated}}"
+  indent: 0
+outcomes:
+- id: 01a125a7-3b79-7057-9952-312aec66905a
+  name: Settings Updated
+  success: true
+  code: 
+  message: Settings updated successfully
+  returns: 
+- id: 01a125a7-3b79-73f6-baba-df0fb6fa229c
+  name: Username Taken
+  success: false
+  code: 400
+  message: 
+  returns: 
+- id: 01a125a7-3b79-7b96-b820-0a607963d3c2
+  name: Email Already Used
+  success: false
+  code: 409
+  message: 
+  returns: 
+archived: false

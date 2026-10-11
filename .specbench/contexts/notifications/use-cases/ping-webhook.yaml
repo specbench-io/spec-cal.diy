@@ -1,0 +1,45 @@
+spec-format: 1
+kind: use-case
+id: 01a125a5-6cf6-7058-a8de-2718dd728dd9
+revision: 8
+name: Ping Webhook
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: viewer.webhook.testTrigger (Ping test).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a5-6cf6-7460-b04c-dccf92acd42b
+  name: Url
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a5-6cf6-7c5a-9cd8-8240d7d5820b
+  name: Payload Template
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a5-6cf6-7ace-b6ae-a24dd70af678
+  text: 'If {{input:Url}} is not allowed, answer with status 400: {{outcome:Failed}}'
+  indent: 0
+- id: 01a125a5-6cf6-7f05-9727-2a5917c1ad7d
+  text: 'Send a made-up "Test trigger event" Booking and show the response: {{outcome:Responded}}'
+  indent: 0
+outcomes:
+- id: 01a125a5-6cf6-71dc-ac01-aa63957dcb7d
+  name: Responded
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a125a5-6cf6-708d-8d20-85db02a8c121
+  name: Failed
+  success: false
+  code: 
+  message: 
+  returns: 
+archived: false

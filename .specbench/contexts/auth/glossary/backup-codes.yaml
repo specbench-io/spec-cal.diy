@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a125a7-3d61-7aad-99d2-60b9ebc78515
+revision: 3
+name: Backup Codes
+definition: Ten single-use codes to sign in when the authenticator app is not to hand.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+archived: false

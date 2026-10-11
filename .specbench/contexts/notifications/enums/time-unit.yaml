@@ -1,0 +1,22 @@
+spec-format: 1
+kind: enum
+id: 01a125a4-ce40-74d0-8090-066b1bc60d1c
+revision: 5
+name: Time Unit
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+summary: The unit of a Webhook's no-show delay.
+description: 
+cases:
+- id: 01a125a4-ce41-7371-9b20-e3dd57ec5552
+  name: Day
+  description: 
+  archived: false
+- id: 01a125a4-ce41-77ff-895d-bf48b699d905
+  name: Hour
+  description: 
+  archived: false
+- id: 01a125a4-ce41-7d32-9bd8-5a2354cd946d
+  name: Minute
+  description: 
+  archived: false
+archived: false

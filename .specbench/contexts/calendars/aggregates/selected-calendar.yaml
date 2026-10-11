@@ -1,0 +1,96 @@
+spec-format: 1
+kind: aggregate
+id: 01a125a2-d530-7bab-a650-b0a397e09513
+revision: 15
+name: Selected Calendar
+bounded-context-id: 01a0f44a-2a06-7125-8fe2-659328d04ce1
+summary: A connected calendar the Organizer checks for conflicts, for all Event Types or for one.
+description: 
+properties:
+- id: 01a125a2-d530-7a42-98f3-c86e88103eaa
+  name: User Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a125a2-d530-7bd6-8781-b7de21f39c52
+  name: Integration
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a2-d530-7b47-bfe7-8e000044545d
+  name: External Id
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a2-d530-75bb-bb5e-80d5f4f01706
+  name: Credential Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a125a2-d530-7fb7-9d68-f46c082192f9
+  name: Event Type Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a125a2-d530-7231-9f9e-47db25ab45b1
+  name: Channel Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a2-d530-7a86-b119-221cbb44afda
+  name: Channel Expiration
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Date
+  archived: false
+- id: 01a125a2-d530-7a09-aa89-eec70725e213
+  name: Sync Token
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a2-d530-75b2-9121-680e2aaa3031
+  name: Synced At
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Date
+  archived: false
+- id: 01a125a2-d530-77b7-b6ff-cded509a07ee
+  name: Sync Subscribed At
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Date
+  archived: false
+- id: 01a125a2-d530-7810-87a5-37c34f4570cc
+  name: Sync Subscribed Error Count
+  type:
+    kind: Primitive
+    primitive: Number
+  archived: false
+- id: 01a125a2-d530-7912-a7f2-318fab72d2a3
+  name: Sync Error Count
+  type:
+    kind: Primitive
+    primitive: Number
+  archived: false
+invariants:
+- id: 01a125a2-d530-760d-ae7b-87a5d8323597
+  text: One per user, integration, calendar and Event Type. The database cannot enforce it when Event Type is empty, so the code checks before saving.
+  archived: false
+domain-events: []
+entities: []
+methods: []
+archived: false

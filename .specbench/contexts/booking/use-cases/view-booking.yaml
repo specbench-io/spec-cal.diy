@@ -1,0 +1,33 @@
+spec-format: 1
+kind: use-case
+id: 01a125a2-30e3-7b44-87da-718461a12cb9
+revision: 6
+name: View Booking
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: The /booking/uid success page.
+use-case-kind: Query
+roles:
+- 01a0f444-a88b-7305-b695-d9ce82d7f6cc
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a2-30e3-7292-adf5-9f01996175b5
+  name: Uid
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a2-30e3-7540-89aa-eee74d90d6a1
+  text: Find the Booking (a seat uid leads to its Booking), with the Booking it replaced or was replaced by
+  indent: 0
+- id: 01a125a2-30e3-7352-82c0-20e62c2a7eb3
+  text: 'Show the headline that fits first: awaiting payment, submitted for confirmation, no longer attending, rescheduled, canceled, in the past, or scheduled: {{outcome:Shown}}'
+  indent: 0
+outcomes:
+- id: 01a125a2-30e3-7a00-bbae-01596f4bc243
+  name: Shown
+  success: true
+  code: 
+  message: This meeting is scheduled
+  returns: 
+archived: false

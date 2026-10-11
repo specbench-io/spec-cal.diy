@@ -1,0 +1,114 @@
+spec-format: 1
+kind: aggregate
+id: 01a125a4-ce60-7162-9fdb-33647df01ec7
+revision: 18
+name: Webhook
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+summary: An address that receives a signed POST when chosen events happen, for an Organizer or one Event Type.
+description: 
+properties:
+- id: 01a125a4-ce60-7c9e-b441-e9229af05899
+  name: Subscriber Url
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a4-ce60-746c-8714-9a1d5bf6d1a6
+  name: Payload Template
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a4-ce60-73ac-a376-2badba6f4c28
+  name: Active
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a125a4-ce60-7a6f-b7cd-152c57d47951
+  name: User Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a125a4-ce60-7784-9d7d-4cec87294b8b
+  name: Event Type Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a125a4-ce60-772e-9663-f58efccd9214
+  name: App Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a4-ce60-74d9-845e-32e6406bbd2a
+  name: Secret
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a4-ce60-7317-b683-d90e08bd114a
+  name: Platform
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a125a4-ce60-7791-a6fc-b8e53152d060
+  name: Time
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Number
+  archived: false
+- id: 01a125a4-ce60-79d2-aae3-15b4c2e09e85
+  name: Version
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a4-ce60-790a-941f-97dc70152391
+  name: Created At
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a12661-3575-74d0-8c2c-7a34b9260441
+  name: Event Triggers
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Primitive
+      primitive: Text
+  archived: false
+- id: 01a12661-3575-77ba-9fd3-560968efed5a
+  name: Time Unit
+  type:
+    kind: Ref
+    nullable: true
+    ref:
+      entity-type: Enum
+      entity-id: 01a125a4-ce40-74d0-8090-066b1bc60d1c
+    ref-name: Time Unit
+  archived: false
+invariants:
+- id: 01a125a4-ce61-7594-bc2e-1da9d78702bb
+  text: A user cannot have two Webhooks with the same subscriber URL.
+  archived: false
+- id: 01a125a4-ce61-79b0-b9fb-1799fac0dd02
+  text: The subscriber URL must pass the server-side request forgery check.
+  archived: false
+- id: 01a125a4-ce61-7e2e-8b0d-0db079b7bc18
+  text: Only an Admin can create or edit a platform Webhook.
+  archived: false
+domain-events: []
+entities: []
+methods: []
+archived: false

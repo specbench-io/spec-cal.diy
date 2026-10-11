@@ -1,0 +1,35 @@
+spec-format: 1
+kind: aggregate
+id: 01a125a3-d678-7398-911e-f75a787e733c
+revision: 6
+name: Video Call Guest
+bounded-context-id: 01a0f44a-2a22-7488-ae05-7c57eda180ac
+summary: Someone who joined a Cal Video meeting without logging in.
+description: 
+properties:
+- id: 01a125a3-d678-7bc7-a5ca-db8d623fe8d0
+  name: Booking Uid
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a3-d678-76e4-b798-87628bb21733
+  name: Email
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a3-d678-7a8b-90c3-412d4d11762c
+  name: Name
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+invariants:
+- id: 01a125a3-d678-7d72-8b5b-f22f1d5fef08
+  text: One per Booking and email.
+  archived: false
+domain-events: []
+entities: []
+methods: []
+archived: false

@@ -1,0 +1,32 @@
+spec-format: 1
+kind: aggregate
+id: 01a125a4-cec1-74cf-920b-b860e16a77b2
+revision: 5
+name: Reminder Mail
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+summary: A record that the Organizer was reminded about an Unconfirmed Booking after a given time.
+description: 
+properties:
+- id: 01a125a4-cec1-7fc3-8cea-72856420f8d5
+  name: Reference Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a125a4-cec1-7141-8696-058c3882062c
+  name: Elapsed Minutes
+  type:
+    kind: Primitive
+    primitive: Number
+  archived: false
+- id: 01a125a4-cec1-74da-927a-e452393be931
+  name: Created At
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+invariants: []
+domain-events: []
+entities: []
+methods: []
+archived: false

@@ -1,0 +1,74 @@
+spec-format: 1
+kind: aggregate
+id: 01a125a6-3372-7144-aef4-55e462fb1457
+revision: 11
+name: OAuth Client
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+summary: A third-party app allowed to act for users once the Admin approves it.
+description: 
+properties:
+- id: 01a125a6-3372-76c0-8186-24d232a5131d
+  name: Client Id
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a6-3372-7347-939a-b2ba749de478
+  name: Redirect Uri
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a6-3372-718b-958b-f5dffdf7a8fd
+  name: Name
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a6-3372-78f0-af7e-bc072b9316b4
+  name: Purpose
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a6-3372-757d-bb73-42cc8318eccf
+  name: Rejection Reason
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a6-3372-7e82-b6f9-b3c1f06f7159
+  name: User Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a12661-34e4-7788-8898-f0f8423a4280
+  name: Client Type
+  type:
+    kind: Ref
+    ref:
+      entity-type: Enum
+      entity-id: 01a125a6-32ad-73c3-8603-95fb76983ab8
+    ref-name: OAuth Client Type
+  archived: false
+- id: 01a12661-34e4-7213-b9a6-7372c766b1d8
+  name: Status
+  type:
+    kind: Ref
+    ref:
+      entity-type: Enum
+      entity-id: 01a125a6-328b-706f-af18-1c2dec241364
+    ref-name: OAuth Client Status
+  archived: false
+invariants:
+- id: 01a125a6-3372-7d71-9c56-a79b28a25de5
+  text: Changing the redirect address of an approved client sends it back for review.
+  archived: false
+domain-events: []
+entities: []
+methods: []
+archived: false

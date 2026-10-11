@@ -1,0 +1,60 @@
+spec-format: 1
+kind: use-case
+id: 01a125a2-2ff9-734d-8a6e-73a091e37c5d
+revision: 10
+name: Edit Location
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: viewer.bookings.editLocation (Edit location).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a2-2ff9-71e6-b011-d884d2769e2b
+  name: Booking Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a125a2-2ff9-7dcb-b123-c2f0488ebafd
+  name: New Location
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a2-2ff9-759f-b84b-6accbce966ed
+  text: An empty {{input:New Location}} means Cal Video
+  indent: 0
+- id: 01a125a2-2ff9-76ea-aaec-24d4467698b7
+  text: "If the location is the Organizer's default app and they have none, refuse: {{outcome:No Default App}}"
+  indent: 0
+- id: 01a125a2-2ff9-785c-9b1d-62d9be79a8c4
+  text: 'Update the calendar event and video meeting with {{method:Calendars/Event Manager.Update Location}}; if {{method-outcome:Calendars/Event Manager.Update Location.Update Failed}}, refuse: {{outcome:Update Failed}}'
+  indent: 0
+- id: 01a125a2-2ff9-7b42-a248-9730653e72d0
+  text: Save the new location and the new Booking References (old ones are kept)
+  indent: 0
+- id: 01a125a2-2ff9-78d0-be52-3036c86ad972
+  text: 'Email everyone about the change: {{outcome:Location Updated}}'
+  indent: 0
+outcomes:
+- id: 01a125a2-2ff9-7645-a3c9-0764da7be1a3
+  name: Location Updated
+  success: true
+  code: 
+  message: Location updated
+  returns: 
+- id: 01a125a2-2ff9-7244-a59b-5d966e430383
+  name: No Default App
+  success: false
+  code: 400
+  message: '{{organizer}} has no default conferencing app'
+  returns: 
+- id: 01a125a2-2ff9-71e8-af75-10b14891d493
+  name: Update Failed
+  success: false
+  code: 
+  message: Updating location failed
+  returns: 
+archived: false

@@ -1,0 +1,23 @@
+spec-format: 1
+kind: event-handler
+id: 01a125f7-6c2a-7ffb-910b-3f6c80057bde
+revision: 4
+name: Deliver Booking Rejected Webhooks
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: handleWebhookTrigger, called directly by Reject Booking (confirm.handler.ts:446-479) after the Booking is saved and the decline emails are sent.
+trigger:
+  integration-event: Booking/Booking Rejected
+steps:
+- id: 01a125f7-6c2a-7319-8edf-92236db578d7
+  text: Find the active Webhooks listening for Booking rejected that belong to the Organizer, the Event Type, the platform OAuth client, or are platform-wide
+  indent: 0
+- id: 01a125f7-6c2a-791d-9e65-66a9093939bc
+  text: POST the Booking payload with status Rejected and the rejection reason to each Subscriber URL, signed with the Secret - or queue a send Task when TASKER_ENABLE_WEBHOOKS is on
+  indent: 0
+- id: 01a125f7-6c2a-7cab-b865-52e7a8bbce03
+  text: For a recurring series, only one Webhook is sent, for the occurrence the Organizer clicked, although every pending occurrence was rejected
+  indent: 0
+- id: 01a125f7-6c2a-7ff4-9f49-91b0cab61698
+  text: Errors are logged and never stop the rejection
+  indent: 0
+archived: false

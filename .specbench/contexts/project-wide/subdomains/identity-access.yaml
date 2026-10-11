@@ -1,0 +1,9 @@
+spec-format: 1
+kind: subdomain
+id: 01a0f447-0641-7595-abb3-c69ff9b13751
+revision: 3
+name: Identity & Access
+summary: Accounts, login, OAuth clients and API keys.
+description: 
+classification: Generic
+archived: false

@@ -1,0 +1,41 @@
+spec-format: 1
+kind: adapter
+id: 01a125c0-cc3c-7f4c-bec8-fa068f1fb738
+revision: 7
+name: Stripe
+interface: Apps/Payment Service
+description: 
+target:
+  infrastructure: Stripe Connect (packages/app-store/stripepayment/lib/PaymentService.ts)
+methods:
+- implements: Create
+  steps:
+  - id: 01a125c0-cc3c-7148-ab07-f70c23273b2e
+    text: Create a payment intent for {{input:Amount}} {{input:Currency}} on the Organizer's connected account and save a Payment
+    indent: 0
+  note: 
+- implements: Collect Card
+  steps:
+  - id: 01a125c0-cc3c-791e-bc93-3525de9c5b8c
+    text: Create a setup intent to hold the card for a later no-show fee
+    indent: 0
+  note: 
+- implements: Charge Card
+  steps:
+  - id: 01a125c0-cc3c-79a2-9d81-941911ec3ab6
+    text: Charge the held card off-session for {{input:Payment Id}}
+    indent: 0
+  note: 
+- implements: Refund
+  steps:
+  - id: 01a125c0-cc3d-713c-97d9-41e1c29bd2c7
+    text: Refund the successful payment {{input:Payment Id}}; a failed payment cannot be refunded
+    indent: 0
+  note: 
+- implements: After Payment
+  steps:
+  - id: 01a125c0-cc3d-7c8d-ab21-b05597b07afc
+    text: Queue the awaiting-payment email for 15 minutes later
+    indent: 0
+  note: Stripe's payment webhook is a stub in cal.diy, so Stripe payments never become paid automatically.
+archived: false

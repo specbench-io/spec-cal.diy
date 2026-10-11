@@ -1,0 +1,44 @@
+spec-format: 1
+kind: use-case
+id: 01a125a7-3ac1-79d2-bf89-d3193184aa12
+revision: 6
+name: Log In With Google
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+description: NextAuth Google provider (Continue with Google).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs: []
+steps:
+- id: 01a125a7-3ac1-7313-b706-7e322d05c39b
+  text: 'If Google has not verified the email, refuse: {{outcome:Unverified Email}}'
+  indent: 0
+- id: 01a125a7-3ac1-73b4-a38e-afceb6d2f1a1
+  text: Find the user by their Google id; if found, link the account and continue (asking for the two-factor code if on)
+  indent: 0
+- id: 01a125a7-3ac1-7a1d-b25a-321e14d52fb8
+  text: 'If an email-and-password account has this email but it is unverified, refuse to take it over: {{outcome:Unverified Email}}'
+  indent: 0
+- id: 01a125a7-3ac1-7053-b1dc-c499c7f20b62
+  text: Otherwise switch that account to Google
+  indent: 0
+- id: 01a125a7-3ac1-79a7-923a-fe041c3fae23
+  text: If there is no account, create one with a generated username and a verified email
+  indent: 0
+- id: 01a125a7-3ac1-7409-a263-a03a9da53e6a
+  text: 'On first sign-in with calendar access, install Google Calendar and Google Meet and check the primary calendar for conflicts: {{outcome:Logged In}}'
+  indent: 0
+outcomes:
+- id: 01a125a7-3ac1-7eae-85df-a614026c8270
+  name: Logged In
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a125a7-3ac1-7f14-a9d3-ad0f47d33bff
+  name: Unverified Email
+  success: false
+  code: 
+  message: 
+  returns: 
+archived: false

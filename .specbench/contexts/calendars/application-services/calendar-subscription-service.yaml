@@ -1,0 +1,91 @@
+spec-format: 1
+kind: application-service
+id: 01a125a3-62dd-785f-b4d7-e39f7338a4f0
+revision: 11
+name: Calendar Subscription Service
+bounded-context-id: 01a0f44a-2a06-7125-8fe2-659328d04ce1
+description: CalendarSubscriptionService.ts - keeps the Calendar Cache and Calendar Sync up to date from provider pushes.
+implements: []
+methods:
+- id: 01a125a3-62dd-78d8-b53c-5c6d880cb572
+  name: Process Webhook
+  description: 
+  implements: 
+  inputs:
+  - id: 01a125a3-62dd-7690-9716-8e2c4d0e922a
+    name: Provider
+    type:
+      kind: Primitive
+      primitive: Text
+  steps:
+  - id: 01a125a3-62dd-77ec-bd09-bb5862147e59
+    text: 'If the push does not carry the right channel token, refuse: {{outcome:Invalid}}'
+    indent: 0
+  - id: 01a125a3-62dd-7c00-818d-df7b2e44eeb2
+    text: Find the Selected Calendar by its channel id
+    indent: 0
+  - id: 01a125a3-62dd-763e-92fc-82c747f96500
+    text: Fetch the changed events - incrementally with the stored sync token, else from today to three months ahead. A failure is counted on the Selected Calendar
+    indent: 0
+  - id: 01a125a3-62dd-72a2-a04c-a6c875710b05
+    text: If the Calendar Cache is on, save busy events and remove the rest
+    indent: 0
+  - id: 01a125a3-62dd-773a-b964-eb76289eaf11
+    text: If Calendar Sync is on, for events cal.diy created where the calendar owner is the host, cancel the Booking when the event was cancelled, or reschedule it with Create Booking when its start moved
+    indent: 0
+  - id: 01a125a3-62dd-77b3-a9a7-912a6f61275a
+    text: 'Done: {{outcome:Processed}}'
+    indent: 0
+  outcomes:
+  - id: 01a125a3-62dd-72ba-91fa-55834b25484e
+    name: Processed
+    success: true
+    message: 
+    returns: 
+  - id: 01a125a3-62dd-7e41-a095-676b99a1cb07
+    name: Invalid
+    success: false
+    message: 
+    returns: 
+  archived: false
+- id: 01a125a3-62dd-737e-86e4-90ea84a3a5b4
+  name: Subscribe
+  description: 
+  implements: 
+  inputs:
+  - id: 01a125a3-62de-76f7-afb3-5570f202b2e6
+    name: Selected Calendar Id
+    type:
+      kind: Primitive
+      primitive: Id
+  steps:
+  - id: 01a125a3-62de-7658-95e3-2945397a72c1
+    text: 'Skip calendars with no Credential or three failed attempts: {{outcome:Skipped}}'
+    indent: 0
+  - id: 01a125a3-62de-7f6c-acbf-ce4c988c09d3
+    text: Ask the provider to push changes for 30 days, and store the channel
+    indent: 0
+  - id: 01a125a3-62de-7402-b873-c552970eb3cc
+    text: "Fill the cache with the calendar's events: {{outcome:Subscribed}}"
+    indent: 0
+  - id: 01a125a3-62de-746f-9163-719709694da9
+    text: 'If it fails, count the failure: {{outcome:Failed}}'
+    indent: 0
+  outcomes:
+  - id: 01a125a3-62de-7d51-a309-35cdb02f3058
+    name: Subscribed
+    success: true
+    message: 
+    returns: 
+  - id: 01a125a3-62de-7fef-83f4-ccb4b4b50650
+    name: Skipped
+    success: true
+    message: 
+    returns: 
+  - id: 01a125a3-62de-7267-8947-995f4afd0d67
+    name: Failed
+    success: false
+    message: 
+    returns: 
+  archived: false
+archived: false

@@ -1,0 +1,42 @@
+spec-format: 1
+kind: use-case
+id: 01a125a2-2f16-7b62-9c02-ec6de9de759b
+revision: 8
+name: Reject Booking
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: viewer.bookings.confirm with confirmed off (Reject the booking request? dialog).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a2-2f16-71ee-a3b4-b72a30e642f8
+  name: Booking Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a125a2-2f16-7c61-bb60-1ac5f26ff73d
+  name: Reason
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a2-2f16-7a1c-873e-563a7b69a585
+  text: For a series, mark every pending Booking Rejected with {{input:Reason}}, without refunds
+  indent: 0
+- id: 01a125a2-2f16-724b-b58f-ca5d1910755c
+  text: For a single Booking, refund any payment, then mark it Rejected with {{input:Reason}}
+  indent: 0
+- id: 01a125a2-2f16-7a84-9fb5-915ad47f4ead
+  text: 'Send the declined emails and publish {{integration-event:Booking/Booking Rejected}}: {{outcome:Rejected}}'
+  indent: 0
+outcomes:
+- id: 01a125a2-2f16-7800-9275-2fa3a51bf57e
+  name: Rejected
+  success: true
+  code: 
+  message: Booking rejection succeeded
+  returns: 
+archived: false

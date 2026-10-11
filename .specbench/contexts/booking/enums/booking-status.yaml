@@ -1,0 +1,30 @@
+spec-format: 1
+kind: enum
+id: 01a125a0-8aed-7213-93f0-1f1896ed0130
+revision: 7
+name: Booking Status
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+summary: Where a Booking stands.
+description: 
+cases:
+- id: 01a125a0-8aed-7a11-bf9d-fe6bbffabb9c
+  name: Accepted
+  description: 
+  archived: false
+- id: 01a125a0-8aed-7b8e-bd74-78df3e7010c0
+  name: Pending
+  description: Unconfirmed - waiting for the Organizer to confirm, or for payment.
+  archived: false
+- id: 01a125a0-8aed-7e61-ab47-cf15a2ee5ebd
+  name: Rejected
+  description: 
+  archived: false
+- id: 01a125a0-8aed-7941-bd65-92ea0625b39d
+  name: Cancelled
+  description: Canceled. A rescheduled original is Cancelled with Rescheduled set.
+  archived: false
+- id: 01a125a0-8aed-7249-b586-e60fe7789171
+  name: Awaiting Host
+  description: Never set in cal.diy (only instant meetings, which were removed, used it).
+  archived: false
+archived: false

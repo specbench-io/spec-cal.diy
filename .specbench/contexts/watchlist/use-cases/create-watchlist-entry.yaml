@@ -1,0 +1,54 @@
+spec-format: 1
+kind: use-case
+id: 01a12596-ff02-79bc-bbf1-c317c1a58802
+revision: 10
+name: Create Watchlist Entry
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+description: 'Admin API: viewer.admin.watchlist.create.'
+use-case-kind: Command
+roles:
+- 01a0f442-adc6-7410-af52-ea288a8ae9d1
+inputs:
+- id: 01a12596-ff03-7bf3-bb4e-0050f059062f
+  name: Type
+  type:
+    kind: Ref
+    ref:
+      entity-type: Enum
+      entity-id: 01a10ff1-0fa3-784b-bfc0-3a444eec4ab9
+    ref-name: Watchlist Type
+  archived: false
+- id: 01a12596-ff05-7324-b8d3-12a2d2c5471d
+  name: Value
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a12596-ff06-79b8-a145-50b3cb948947
+  name: Description
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+steps:
+- id: 01a12596-ff07-774d-9a4f-2d747727a0a8
+  text: 'Add {{input:Value}} to the Global Watchlist as a {{input:Type}} entry, using {{method:Watchlist/Admin Watchlist Operations Service.Create Watchlist Entry}}: {{outcome:Entry Created}}'
+  indent: 0
+- id: 01a12596-ff07-7f31-b534-97a7b59b8759
+  text: 'If the value is not a valid email or domain, refuse: {{outcome:Invalid Value}}'
+  indent: 1
+outcomes:
+- id: 01a12596-ff06-7f1d-ae26-e8e990409da8
+  name: Entry Created
+  success: true
+  code: 
+  message: System blocklist entry created successfully
+  returns: 
+- id: 01a12596-ff06-7488-ae4b-547ca164eb23
+  name: Invalid Value
+  success: false
+  code: 
+  message: 
+  returns: 
+archived: false

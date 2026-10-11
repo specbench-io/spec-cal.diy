@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a125a7-3d81-73f9-b636-3411685ca95f
+revision: 3
+name: Onboarding
+definition: The getting-started steps after signup - profile, calendar, video and availability.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+archived: false

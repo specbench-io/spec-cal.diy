@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a125a7-3d7b-7383-9e96-081cd81ccf16
+revision: 3
+name: Inactive Admin
+definition: An Admin who signed in without a password of 15 or more characters and two-factor. They are warned, but keep their access.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+archived: false

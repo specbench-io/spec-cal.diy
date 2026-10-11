@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a0f445-522b-743e-b21c-cf7829f7a71c
+revision: 3
+name: Schedule
+definition: A named, reusable set of an Organizer's working hours in a time zone, which Event Types use.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+archived: false

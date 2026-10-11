@@ -1,0 +1,23 @@
+spec-format: 1
+kind: event-handler
+id: 01a125f7-6da6-7ee9-b079-360d73152751
+revision: 4
+name: Send Awaiting Payment Email
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: sendAwaitingPaymentEmail Task (packages/features/tasker/tasks/sendAwaitingPaymentEmail.ts). Queued directly by the Stripe adapter's After Payment, 15 minutes ahead (AWAITING_PAYMENT_EMAIL_DELAY_MINUTES); no other payment app queues it. Cancelled when a payment succeeds.
+trigger:
+  integration-event: Booking/Booking Payment Initiated
+steps:
+- id: 01a125f7-6da6-7fc7-9d03-abf2a53e0a06
+  text: About 15 minutes after the Booking was made, load the Booking and its Payment
+  indent: 0
+- id: 01a125f7-6da6-7b4e-8000-c44d82e169c2
+  text: Stop if the Payment is gone, has succeeded, or the Booking is already paid - the Booking's status is not checked, so a cancelled Booking still gets the email
+  indent: 0
+- id: 01a125f7-6da6-7734-a7aa-63e531123b5e
+  text: For a single seat, only the Attendees holding that seat are emailed; stop if there are none
+  indent: 0
+- id: 01a125f7-6da6-773a-901b-8a8222397e76
+  text: Build a payment link and send the "awaiting payment" email and SMS with the amount and currency
+  indent: 0
+archived: false

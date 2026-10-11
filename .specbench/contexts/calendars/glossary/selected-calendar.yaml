@@ -1,0 +1,11 @@
+spec-format: 1
+kind: term
+id: 01a125a2-d61e-7bc5-9e32-5a4a911a0097
+revision: 4
+name: Selected Calendar
+definition: A connected calendar the Organizer checks for conflicts, so its events block their Slots.
+aka:
+- Check for conflicts
+avoid: []
+bounded-context-id: 01a0f44a-2a06-7125-8fe2-659328d04ce1
+archived: false

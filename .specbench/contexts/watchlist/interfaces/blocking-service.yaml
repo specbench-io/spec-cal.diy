@@ -1,0 +1,50 @@
+spec-format: 1
+kind: interface
+id: 01a10ff1-1062-76d7-99ca-9741fb091187
+revision: 10
+name: Blocking Service
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+description: The way the rest of the system asks whether an email is blocked.
+methods:
+- id: 01a10ff1-1065-70c2-90ae-7c399cf51754
+  name: Is Blocked
+  description: 
+  inputs:
+  - id: 01a10ff1-1065-7d5b-909e-d9e564d88edb
+    name: Email
+    type:
+      kind: Primitive
+      primitive: Text
+  returns:
+    kind: Ref
+    ref:
+      entity-type: ValueObject
+      entity-id: 01a12570-86e7-7e59-bd70-b4fac36d3a24
+    ref-name: Blocking Result
+  archived: false
+- id: 01a10ff1-1065-7e8d-83b1-482a3e4a3623
+  name: Are Blocked
+  description: 
+  inputs:
+  - id: 01a10ff1-1068-7a85-a5b9-ed2e4d6b6959
+    name: Emails
+    type:
+      kind: Collection
+      shape: List
+      element:
+        kind: Primitive
+        primitive: Text
+  returns:
+    kind: Collection
+    shape: Map
+    key:
+      kind: Primitive
+      primitive: Text
+    element:
+      kind: Ref
+      ref:
+        entity-type: ValueObject
+        entity-id: 01a12570-86e7-7e59-bd70-b4fac36d3a24
+      ref-name: Blocking Result
+  archived: false
+archived: false

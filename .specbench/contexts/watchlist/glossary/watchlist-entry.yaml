@@ -1,0 +1,11 @@
+spec-format: 1
+kind: term
+id: 01a10ff1-104b-7343-b0c8-772c11cedd2c
+revision: 7
+name: Watchlist Entry
+definition: One email or domain on the watchlist, and what to do when it matches.
+aka:
+- Blocklist Entry
+avoid: []
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+archived: false

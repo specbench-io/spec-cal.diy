@@ -1,0 +1,23 @@
+spec-format: 1
+kind: use-case
+id: 01a12597-0037-7725-b5b4-349b4ab2ce75
+revision: 5
+name: List Reports
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+description: 'Admin API: viewer.admin.watchlist.listReports and pendingReportsCount.'
+use-case-kind: Query
+roles:
+- 01a0f442-adc6-7410-af52-ea288a8ae9d1
+inputs: []
+steps:
+- id: 01a12597-0037-7c47-af25-a5b50ca9a1dc
+  text: "Return the Booking Reports awaiting the Admin's review, grouped by booker email, with a count of how many are pending: {{outcome:Listed}}"
+  indent: 0
+outcomes:
+- id: 01a12597-0037-7704-80b7-abb8e469d5b6
+  name: Listed
+  success: true
+  code: 
+  message: 
+  returns: 
+archived: false

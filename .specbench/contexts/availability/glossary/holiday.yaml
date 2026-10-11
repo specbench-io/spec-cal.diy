@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a1259c-42a3-7557-b611-46d4084b95e4
+revision: 3
+name: Holiday
+definition: A public holiday of the Organizer's chosen country that automatically marks them unavailable, unless they switch it off.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+archived: false

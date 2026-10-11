@@ -1,0 +1,22 @@
+spec-format: 1
+kind: integration-event
+id: 01a125a0-ea75-70f8-9dfa-3746d9964dba
+revision: 3
+name: Booking Rejected
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: The Organizer rejected an Unconfirmed Booking (webhook BOOKING_REJECTED).
+fields:
+- id: 01a125a0-ea75-77c3-a79e-63f613a26097
+  name: Booking Uid
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a125a0-ea75-74ff-84e0-fe95c0131e66
+  name: Rejection Reason
+  description: 
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+archived: false

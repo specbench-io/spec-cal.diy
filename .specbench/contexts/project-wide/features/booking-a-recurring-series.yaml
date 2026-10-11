@@ -1,0 +1,185 @@
+spec-format: 1
+kind: feature
+id: 01a125e0-9af2-7546-9050-9cc236a3f841
+revision: 47
+title: Booking a recurring series
+intent: As a Booker, I want to book a series of repeating meetings in one go, so that I do not have to book every occurrence one by one.
+description: 'Use Cases: Create Recurring Booking, Confirm Booking, Cancel Booking.'
+scenarios:
+- id: 01a125e0-9af2-7c53-a4ec-b65c0795688e
+  title: Turning on Recurring event starts with 12 weekly events
+  steps:
+  - id: 01a125e0-9af2-72bb-9f87-4dabe6193a67
+    keyword: Given
+    text: the Organizer has an Event Type that is not recurring
+    archived: false
+  - id: 01a125e0-9af2-7a55-995b-96b647f64771
+    keyword: When
+    text: the Organizer switches on "Recurring event"
+    archived: false
+  - id: 01a125e0-9af2-7ca0-a3f5-6015eadecf3e
+    keyword: Then
+    text: it is set to repeat every 1 week for a maximum of 12 events
+    archived: false
+  - id: 01a125e0-9af2-70f3-9f76-a2e870db155b
+    keyword: And
+    text: the Organizer can only choose between weekly, monthly and yearly repeats
+    archived: false
+  archived: false
+- id: 01a125e0-9af2-75cd-a983-7a5fe9d7da3a
+  title: Seats and Recurring event cannot be switched on together
+  steps:
+  - id: 01a125e0-9af2-77f1-a9d3-330ab8420e76
+    keyword: Given
+    text: the Organizer's Event Type offers seats
+    archived: false
+  - id: 01a125e0-9af2-7bc6-9310-9cd90e402726
+    keyword: Then
+    text: the "Recurring event" switch cannot be turned on
+    archived: false
+  - id: 01a125e0-9af2-72c6-8359-2fccc7f9dc36
+    keyword: And
+    text: it explains "Seats feature doesn't support recurring event. Disable seats feature to make it recurring."
+    archived: false
+  - id: 01a125e0-9af2-7d26-9f35-f614c96127ad
+    keyword: Given
+    text: instead the Organizer's Event Type is recurring
+    archived: false
+  - id: 01a125e0-9af2-7224-b10d-1101d07ac42c
+    keyword: Then
+    text: the "Offer seats" switch cannot be turned on
+    archived: false
+  - id: 01a125e0-9af2-71db-9ed9-b33ff197ca34
+    keyword: And
+    text: it explains "Recurring event doesn't support seats feature. Make it non-recurring to enable seats."
+    archived: false
+  archived: false
+- id: 01a125e0-9af2-79da-9606-97ba1ffae7df
+  title: A recurring Event Type that also has seats cannot be booked
+  steps:
+  - id: 01a125e0-9af2-74e1-b172-6303c75e42c3
+    keyword: Given
+    text: the Organizer's Event Type has both seats and a recurring schedule saved on it
+    archived: false
+  - id: 01a125e0-9af2-7247-a90f-eb9d326e4b93
+    keyword: When
+    text: a Booker tries to book it
+    archived: false
+  - id: 01a125e0-9af2-7da6-aa29-fa5a88728016
+    keyword: Then
+    text: the booking is refused
+    archived: false
+  - id: 01a125e0-9af2-72dd-8d09-89338a4b3009
+    keyword: And
+    text: the Booker sees "Could not book the meeting." with "Recurring event doesn't support seats feature. Disable seats feature or make the event non-recurring."
+    archived: false
+  archived: false
+- id: 01a125e0-9af2-7c1e-9d54-f0f41e7c4099
+  title: The Booker can book fewer occurrences than the maximum
+  steps:
+  - id: 01a125e0-9af2-7901-9cd2-34d956142fce
+    keyword: Given
+    text: an Event Type that repeats weekly for a maximum of 12 events
+    archived: false
+  - id: 01a125e0-9af2-7b04-98c9-fa777ae2522e
+    keyword: When
+    text: the Booker sets the number of occurrences to 4 and books a Slot
+    archived: false
+  - id: 01a125e0-9af2-783c-a4e0-ba6f878f17d5
+    keyword: Then
+    text: 4 weekly bookings are made in one series
+    archived: false
+  - id: 01a125e0-9af2-7d5c-bb88-14028b9b53ea
+    keyword: And
+    text: the Booker sees "Your recurring meeting has been submitted" if the Event Type Requires Confirmation, otherwise "The recurring events are scheduled"
+    archived: false
+  - id: 01a125e0-9af2-757b-bf2b-63ae1370dc83
+    keyword: When
+    text: a Booker enters 20 occurrences instead
+    archived: false
+  - id: 01a125e0-9af2-702f-bf99-984424537e56
+    keyword: Then
+    text: they see "Please enter a number between 1 and 12"
+    archived: false
+  - id: 01a125e0-9af2-7dc1-a83f-964b1257a5ae
+    keyword: And
+    text: the number of occurrences goes back to 12
+    archived: false
+  archived: false
+- id: 01a125e0-9af2-71dc-b4d6-6ba8afc19eee
+  title: Only the first occurrence is checked against the Organizer's availability
+  steps:
+  - id: 01a125e0-9af2-7727-abe8-44c3fdd9cc59
+    keyword: Given
+    text: an Event Type that repeats weekly for a maximum of 4 events
+    archived: false
+  - id: 01a125e0-9af2-701f-ae9f-c6295d64616e
+    keyword: And
+    text: the Organizer is free at the chosen time in week 1 but busy at that time in week 3
+    archived: false
+  - id: 01a125e0-9af2-7925-9122-7793dbbbf042
+    keyword: When
+    text: a Booker books the series starting in week 1
+    archived: false
+  - id: 01a125e0-9af2-7598-9dfd-d5ec629d0852
+    keyword: Then
+    text: all 4 occurrences are booked, including the one in week 3
+    archived: false
+  archived: false
+- id: 01a125e0-9af2-78a2-82e6-4a3cb7a41a3d
+  title: Confirming or rejecting one occurrence applies to the whole series
+  steps:
+  - id: 01a125e0-9af2-74a5-9028-e021e5829ac8
+    keyword: Given
+    text: a Booker has booked a 4-occurrence series on an Event Type that Requires Confirmation
+    archived: false
+  - id: 01a125e0-9af2-7826-b41f-6f486d4ff2d3
+    keyword: And
+    text: all 4 occurrences are waiting for confirmation
+    archived: false
+  - id: 01a125e0-9af2-7e1e-97fe-afb1482fcf12
+    keyword: When
+    text: the Organizer chooses "Confirm all" on the series in their Unconfirmed bookings
+    archived: false
+  - id: 01a125e0-9af2-7238-bdb3-b68a9a7677b4
+    keyword: Then
+    text: all 4 occurrences become confirmed
+    archived: false
+  - id: 01a125e0-9af2-721c-95ae-95a086ac22b9
+    keyword: And
+    text: the Organizer sees "Booking confirmation succeeded"
+    archived: false
+  - id: 01a125e0-9af2-7925-9464-20d8b581331e
+    keyword: When
+    text: instead the Organizer chooses "Reject all"
+    archived: false
+  - id: 01a125e0-9af2-7cf1-b667-fbf48eb3ffe8
+    keyword: Then
+    text: every occurrence still waiting for confirmation is rejected
+    archived: false
+  archived: false
+- id: 01a125e0-9af2-7be5-9139-aae0d9652066
+  title: Cancelling all remaining occurrences leaves past ones alone
+  steps:
+  - id: 01a125e0-9af2-73aa-9a79-31ab04d4d373
+    keyword: Given
+    text: a weekly series of 6 occurrences where the first 2 have already happened
+    archived: false
+  - id: 01a125e0-9af2-7a9f-9aff-81e8c98340aa
+    keyword: When
+    text: the Organizer chooses "Cancel all remaining" on the series in their Recurring bookings
+    archived: false
+  - id: 01a125e0-9af2-73bb-a4c0-9888065afd76
+    keyword: Then
+    text: the 4 occurrences from now on are cancelled
+    archived: false
+  - id: 01a125e0-9af2-72f7-80b8-8281801e64a8
+    keyword: And
+    text: the 2 past occurrences are left as they were
+    archived: false
+  - id: 01a125e0-9af2-7aa5-bb43-1f30cf359d2a
+    keyword: And
+    text: the Organizer sees "Booking canceled"
+    archived: false
+  archived: false
+archived: false

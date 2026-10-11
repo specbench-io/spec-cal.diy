@@ -1,0 +1,38 @@
+spec-format: 1
+kind: use-case
+id: 01a125a7-3c86-740d-bbcd-40f2893e8846
+revision: 7
+name: Lock User Account
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+description: viewer.admin.lockUserAccount (Settings, Admin, Users).
+use-case-kind: Command
+roles:
+- 01a0f442-adc6-7410-af52-ea288a8ae9d1
+inputs:
+- id: 01a125a7-3c86-7c6d-8285-e69360e1e3fd
+  name: User Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a125a7-3c86-79f8-a194-0d6c33987775
+  name: Locked
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+steps:
+- id: 01a125a7-3c86-7f48-97f3-ffc409f4862a
+  text: Lock or unlock the account
+  indent: 0
+- id: 01a125a7-3c86-7be8-8ce5-852c2bce5676
+  text: 'On unlock, remove the email from the Global Watchlist and send a verification email: {{outcome:Done}}'
+  indent: 0
+outcomes:
+- id: 01a125a7-3c86-785b-b040-437094fa2429
+  name: Done
+  success: true
+  code: 
+  message: User locked (or unlocked)
+  returns: 
+archived: false

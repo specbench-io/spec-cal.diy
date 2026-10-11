@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a125a4-cf28-7fb0-8176-d2e5724c64fc
+revision: 3
+name: Ping Test
+definition: Sending a made-up event to a Webhook to check it answers.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+archived: false

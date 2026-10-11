@@ -1,0 +1,23 @@
+spec-format: 1
+kind: adapter
+id: 01a125c0-c55a-7e8d-8301-2f6b3faf8b7d
+revision: 4
+name: Ics Feed Calendar
+interface: Calendars/Calendar
+description: 
+target:
+  infrastructure: Read-only ICS feed URLs (packages/app-store/ics-feedcalendar)
+methods:
+- implements: Create Event
+  steps:
+  - id: 01a125c0-c55a-7439-9327-20c7b64e30f7
+    text: Do nothing but log a warning - an ICS feed is read-only
+    indent: 0
+  note: Only busy times are read from feeds.
+- implements: Get Availability
+  steps:
+  - id: 01a125c0-c55a-7a86-8e55-81a9878849f8
+    text: Download the feeds and return their events between {{input:Date From}} and {{input:Date To}} as busy times
+    indent: 0
+  note: 
+archived: false

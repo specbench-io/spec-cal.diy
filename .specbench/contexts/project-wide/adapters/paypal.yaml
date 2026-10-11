@@ -1,0 +1,17 @@
+spec-format: 1
+kind: adapter
+id: 01a125c0-ce56-7304-867f-30389d629edd
+revision: 3
+name: PayPal
+interface: Apps/Payment Service
+description: 
+target:
+  infrastructure: PayPal Orders API (packages/app-store/paypal)
+methods:
+- implements: Create
+  steps:
+  - id: 01a125c0-ce57-782c-ae70-27c1ac82a58b
+    text: Create a PayPal order for {{input:Amount}} {{input:Currency}} and save a Payment
+    indent: 0
+  note: 
+archived: false

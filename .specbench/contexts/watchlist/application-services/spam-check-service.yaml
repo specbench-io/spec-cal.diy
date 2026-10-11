@@ -1,0 +1,117 @@
+spec-format: 1
+kind: application-service
+id: 01a10d66-4d2c-7ff2-89f6-227c6e6e87b5
+revision: 23
+name: Spam Check Service
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+description: Lets a caller start the spam check early and collect the answer later. Organization-specific watchlist checks also exist in the code; they are out of scope because organizations were removed.
+implements: []
+methods:
+- id: 01a10d66-4d38-79c8-9a66-de1db1c7e350
+  name: Is Blocked
+  description: Tells the caller whether an email address should be treated as spam.
+  implements: 
+  inputs:
+  - id: 01a10d66-4d4d-7dd2-b3ca-bb6df4695e3c
+    name: Email
+    type:
+      kind: Primitive
+      primitive: Text
+  steps:
+  - id: 01a10ff1-10cb-7b90-a9bf-c8facbd6a9a1
+    text: Ask Global Blocking Service.Is Blocked whether {{input:Email}} is in the System Blocklist
+    indent: 0
+  - id: 01a10ff1-10cb-70f5-a984-d79ad9d4fa2b
+    text: 'If it is, the email is blocked: {{outcome:Blocked}}'
+    indent: 1
+  - id: 01a10d66-4d57-792c-bdb4-d6dbc27407dc
+    text: 'If the check cannot be completed, let the email through: {{outcome:Not Blocked}}'
+    indent: 0
+  - id: 01a10d66-4d57-7497-b6b8-b6a2a6311f7f
+    text: 'Otherwise the email is not blocked: {{outcome:Not Blocked}}'
+    indent: 0
+  outcomes:
+  - id: 01a10d66-4d3d-770e-b29c-7b950df8740d
+    name: Blocked
+    success: true
+    message: The email, or its domain, is in the System Blocklist.
+    returns: 
+  - id: 01a10d66-4d3d-71db-b61d-21a372da81c6
+    name: Not Blocked
+    success: true
+    message: Nothing in the System Blocklist matches the email.
+    returns: 
+  archived: true
+- id: 01a12561-47dc-7031-9606-563605569ef1
+  name: Start Check
+  description: Starts checking an email without waiting for the answer.
+  implements: 
+  inputs:
+  - id: 01a12561-47dc-72fd-8450-24d6357e6700
+    name: Email
+    type:
+      kind: Primitive
+      primitive: Text
+  steps:
+  - id: 01a12561-47dc-71a2-9e27-132bff53216a
+    text: Start asking {{method:Watchlist/Global Blocking Service.Is Blocked}} whether {{input:Email}} is in the Global Watchlist, without waiting for the answer
+    indent: 0
+  - id: 01a12561-47dc-7efa-84f2-137e932d5bf9
+    text: If the check cannot be completed, it will count the email as not blocked, so the booking is let through
+    indent: 0
+  - id: 01a12561-47dc-7339-a1a9-30b7ba74b189
+    text: 'Return straight away: {{outcome:Check Started}}'
+    indent: 0
+  outcomes:
+  - id: 01a12561-47dc-7e24-83b1-bb75fc1d6b22
+    name: Check Started
+    success: true
+    message: The check is running.
+    returns: 
+  archived: false
+- id: 01a12561-47dc-792c-b6f5-601c5b5a6f95
+  name: Wait For Check
+  description: Collects the answer to the check started by Start Check.
+  implements: 
+  inputs: []
+  steps:
+  - id: 01a12561-47df-7cb6-a98b-9acf9d1a598d
+    text: 'If Start Check has not been called first, stop: {{outcome:Check Not Started}}'
+    indent: 0
+  - id: 01a12561-47df-7ba3-a784-ea93e553946b
+    text: Wait for the check to finish
+    indent: 0
+  - id: 01a12561-47df-7c54-b2ec-9f55593b6f53
+    text: 'If the email is in the Global Watchlist, it is blocked: {{outcome:Blocked}}'
+    indent: 0
+  - id: 01a12561-47df-7361-a111-721e9466a149
+    text: 'Otherwise, including when the check could not be completed, it is not blocked: {{outcome:Not Blocked}}'
+    indent: 0
+  outcomes:
+  - id: 01a12561-47df-76e7-a0f4-bc0a603f57d2
+    name: Blocked
+    success: true
+    message: The email, or its domain, is in the Global Watchlist.
+    returns:
+      kind: Ref
+      ref:
+        entity-type: ValueObject
+        entity-id: 01a12570-86e7-7e59-bd70-b4fac36d3a24
+      ref-name: Blocking Result
+  - id: 01a12561-47df-725b-9ceb-f2dbde698670
+    name: Not Blocked
+    success: true
+    message: Nothing in the Global Watchlist matches the email, or the check could not be completed.
+    returns:
+      kind: Ref
+      ref:
+        entity-type: ValueObject
+        entity-id: 01a12570-86e7-7e59-bd70-b4fac36d3a24
+      ref-name: Blocking Result
+  - id: 01a12561-47df-7007-be71-f6f262710b0d
+    name: Check Not Started
+    success: false
+    message: Wait For Check was called before Start Check.
+    returns: 
+  archived: false
+archived: false

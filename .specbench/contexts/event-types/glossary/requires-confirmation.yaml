@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a1259e-ce3d-74c7-ae1a-447aefd8eeae
+revision: 3
+name: Requires Confirmation
+definition: Bookings of the Event Type wait for the Organizer to accept them, always or only when booked at short notice.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+archived: false

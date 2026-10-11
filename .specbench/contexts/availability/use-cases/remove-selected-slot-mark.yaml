@@ -1,0 +1,23 @@
+spec-format: 1
+kind: use-case
+id: 01a1259d-7e5c-7cba-b8a1-2c789403c638
+revision: 5
+name: Remove Selected Slot Mark
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: viewer.slots.removeSelectedSlotMark (when the Booker leaves the form).
+use-case-kind: Command
+roles:
+- 01a0f442-adc1-7f74-9a7a-6b7f3cc9be7d
+inputs: []
+steps:
+- id: 01a1259d-7e5c-799d-b88c-c597a7781617
+  text: "Release every Slot held by this Booker's cookie: {{outcome:Released}}"
+  indent: 0
+outcomes:
+- id: 01a1259d-7e5c-7b21-987e-04719fe185d9
+  name: Released
+  success: true
+  code: 
+  message: 
+  returns: 
+archived: false

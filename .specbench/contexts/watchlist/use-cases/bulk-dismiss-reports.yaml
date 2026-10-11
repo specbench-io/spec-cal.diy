@@ -1,0 +1,32 @@
+spec-format: 1
+kind: use-case
+id: 01a12596-ffe5-7857-8a24-283c7a2d6019
+revision: 7
+name: Bulk Dismiss Reports
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+description: 'Admin API: viewer.admin.watchlist.bulkDismiss.'
+use-case-kind: Command
+roles:
+- 01a0f442-adc6-7410-af52-ea288a8ae9d1
+inputs:
+- id: 01a12596-ffe5-7197-9d61-b09d72de0614
+  name: Emails
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Primitive
+      primitive: Text
+  archived: false
+steps:
+- id: 01a12596-ffe5-77b2-992e-c11c4087ee63
+  text: 'Dismiss the unreviewed reports from every one of {{input:Emails}}, using {{method:Watchlist/Admin Watchlist Operations Service.Bulk Dismiss Reports By Email}}: {{outcome:Dismissed}}'
+  indent: 0
+outcomes:
+- id: 01a12596-ffe5-784d-a2ae-c9c69854c4d5
+  name: Dismissed
+  success: true
+  code: 
+  message: 
+  returns: 
+archived: false

@@ -1,0 +1,59 @@
+spec-format: 1
+kind: integration-event
+id: 01a1259c-c13f-7936-b5cb-666007222565
+revision: 3
+name: Out Of Office Created
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: An Out Of Office Entry was created or changed (webhook OOO_CREATED; it also fires on update).
+fields:
+- id: 01a1259c-c146-7e92-9a8e-a74e32fbdd36
+  name: Uuid
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a1259c-c146-7f3c-8026-fc35065e98b8
+  name: Start
+  description: 
+  type:
+    kind: Primitive
+    primitive: Date
+- id: 01a1259c-c146-7831-99a8-1e6e323f01dd
+  name: End
+  description: 
+  type:
+    kind: Primitive
+    primitive: Date
+- id: 01a1259c-c146-74ca-b598-f646fa5b62a2
+  name: Notes
+  description: 
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+- id: 01a1259c-c146-752b-881f-2e20b1c86b12
+  name: Reason
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a1259c-c146-7135-a89f-3e93c9bbd7cf
+  name: Emoji
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a1259c-c146-790f-8b37-2c0ca7569004
+  name: User Id
+  description: 
+  type:
+    kind: Primitive
+    primitive: Id
+- id: 01a1259c-c146-742b-8bae-f573369e5272
+  name: To User Id
+  description: 
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+archived: false

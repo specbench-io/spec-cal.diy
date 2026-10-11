@@ -1,0 +1,77 @@
+spec-format: 1
+kind: aggregate
+id: 01a125a2-d577-7a5c-a0a7-42039211534e
+revision: 12
+name: Calendar Cache Event
+bounded-context-id: 01a0f44a-2a06-7125-8fe2-659328d04ce1
+summary: A busy event copied from a provider calendar, used instead of asking the provider when the calendar cache is on.
+description: 
+properties:
+- id: 01a125a2-d577-7356-857f-7d12e230d7ca
+  name: Selected Calendar Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a125a2-d577-7128-8419-1ac463f7f143
+  name: External Id
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a2-d577-72d1-98af-5c4a6aed1151
+  name: I Cal Uid
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a2-d577-7a58-9624-ead9b8a4ba0a
+  name: Summary
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a2-d577-76b9-8dac-961e9f286430
+  name: Start
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a125a2-d577-7e91-a7ec-c6563fe6b977
+  name: End
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a125a2-d577-7192-b6af-f3040f47d0f0
+  name: Is All Day
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a125a2-d577-7924-819a-92c0d79b1677
+  name: Time Zone
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a12661-3551-7184-aebc-504d8aee50cb
+  name: Status
+  type:
+    kind: Ref
+    ref:
+      entity-type: Enum
+      entity-id: 01a125a2-d597-77bf-8a50-31478407fe75
+    ref-name: Calendar Cache Event Status
+  archived: false
+invariants:
+- id: 01a125a2-d577-73fa-be06-8934b9977e58
+  text: One per Selected Calendar and provider event.
+  archived: false
+domain-events: []
+entities: []
+methods: []
+archived: false

@@ -1,0 +1,317 @@
+spec-format: 1
+kind: aggregate
+id: 01a125a0-8b50-7a55-92bc-ce5663602d4a
+revision: 41
+name: Booking
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+summary: An agreed meeting between an Organizer and Attendees at a set time for one Event Type.
+description: The code changes Bookings directly in its handlers and repositories rather than through methods on the Booking, so no methods are modelled. Round-robin reassignment columns are left out.
+properties:
+- id: 01a125a0-8b50-7897-a5f2-6f3429519f95
+  name: Uid
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a0-8b50-7dcb-ab1e-090405cc79dc
+  name: Idempotency Key
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a0-8b50-76d6-8df6-b388c51fd130
+  name: User Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a125a0-8b50-79e2-a95e-b2b0d30d48d0
+  name: User Primary Email
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a0-8b50-72cd-abf2-ed2ee1578645
+  name: Event Type Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+- id: 01a125a0-8b50-76dd-b386-5b0345f8c9d8
+  name: Title
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a0-8b50-7204-bbee-07d72600d269
+  name: Description
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a0-8b50-7cfe-a314-71c9ffa23e79
+  name: Start Time
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a125a0-8b50-77f9-8a71-2acaa192d0ea
+  name: End Time
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a125a0-8b50-7d20-a8cd-614037955356
+  name: Location
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a0-8b50-7789-bb9c-7f9bc454b954
+  name: Paid
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a125a0-8b50-707a-81a9-4702ce579feb
+  name: Cancellation Reason
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a0-8b50-7a6d-a643-87229ffed6b0
+  name: Rejection Reason
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a0-8b50-7a2c-8ed9-8a2fe9335836
+  name: Rescheduled
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+- id: 01a125a0-8b50-7fe5-bb52-39b5a1bdad1a
+  name: From Reschedule
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a0-8b50-7d21-88b4-d2d9e7712feb
+  name: Recurring Event Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a0-8b50-758c-847e-1f42135303c5
+  name: I Cal Uid
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a0-8b50-70ff-adf1-94ca6024f12e
+  name: I Cal Sequence
+  type:
+    kind: Primitive
+    primitive: Number
+  archived: false
+- id: 01a125a0-8b50-76bd-a052-b7b139ceef1e
+  name: No Show Host
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Bool
+  archived: false
+- id: 01a125a0-8b50-7b02-b4cf-0b34f6855c11
+  name: Cancelled By
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a0-8b50-7a85-aca2-72555058cf54
+  name: Rescheduled By
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a0-8b50-7777-b8e6-2e7ed77415f6
+  name: Rating
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Number
+  archived: false
+- id: 01a125a0-8b50-7c3c-a35f-5ee512438801
+  name: Is Recorded
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a125a0-8b50-72b7-b13d-52712006439e
+  name: Created At
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a125b2-336b-73f7-9f71-70432693db27
+  name: Status
+  type:
+    kind: Ref
+    ref:
+      entity-type: Enum
+      entity-id: 01a125a0-8aed-7213-93f0-1f1896ed0130
+    ref-name: Booking Status
+  archived: false
+- id: 01a125b2-336b-7094-a13e-c39b9c19cfaf
+  name: Creation Source
+  type:
+    kind: Ref
+    nullable: true
+    ref:
+      entity-type: Enum
+      entity-id: 01a125a0-8b10-7507-a77c-ad4093a82b86
+    ref-name: Creation Source
+  archived: false
+- id: 01a125b2-336b-7e56-8f74-c9cecade6338
+  name: Responses
+  type:
+    kind: Ref
+    nullable: true
+    ref:
+      entity-type: ValueObject
+      entity-id: 01a125a0-8b75-7c0c-953f-55922629b7ac
+    ref-name: Booking Responses
+  archived: false
+invariants:
+- id: 01a125a0-8b50-74c5-a9e0-40927abedc5d
+  text: The uid is unique.
+  archived: false
+- id: 01a125a0-8b50-75ac-b304-c08319f3157b
+  text: Two accepted Bookings cannot share the same Organizer, start and end (the idempotency key, cleared when a Booking is cancelled or rejected).
+  archived: false
+- id: 01a125a0-8b50-7cf8-86ab-f843ac62d276
+  text: A rescheduled Booking is Cancelled with Rescheduled set, and its replacement points back to it.
+  archived: false
+domain-events: []
+entities:
+- id: 01a125a0-8b50-7ba1-b3bb-e93aebb382ef
+  name: Attendee
+  summary: A person taking part in the Booking - the Booker and any Guests.
+  properties:
+  - id: 01a125a0-8b50-7398-9dae-35513e542dcc
+    name: Email
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a125a0-8b50-70f4-9fc8-9aee1895613f
+    name: Name
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a125a0-8b50-7244-b25a-b377004a9ecf
+    name: Time Zone
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a125a0-8b50-7a2d-9e15-65865e4c1d1c
+    name: Phone Number
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Text
+  - id: 01a125a0-8b50-7896-bd4e-10b8d0d95575
+    name: Locale
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Text
+  - id: 01a125a0-8b50-754e-804a-4a8cd83c3433
+    name: No Show
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Bool
+  invariants:
+  - Duplicate emails are prevented in code, not by the database.
+  archived: false
+- id: 01a125a0-8b50-7c0d-9e49-f862dd03682a
+  name: Booking Seat
+  summary: One Attendee's place in a seated time slot.
+  properties:
+  - id: 01a125a0-8b50-708a-878f-834b95e9197e
+    name: Reference Uid
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a125a0-8b50-7e2b-85d5-03018a930701
+    name: Attendee Id
+    type:
+      kind: Primitive
+      primitive: Id
+  invariants:
+  - One seat per Attendee, and the reference uid is unique.
+  - Seats never exceed the Event Type's seats per time slot (checked with a row lock when adding).
+  archived: false
+- id: 01a125a0-8b50-7c20-83f3-8e1b554679ab
+  name: Booking Reference
+  summary: A link to the calendar event or video meeting made for the Booking.
+  properties:
+  - id: 01a125a0-8b50-73d6-a916-f7afe08f87f2
+    name: Type
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a125a0-8b50-71ee-a313-6930c81a616f
+    name: Uid
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a125a0-8b50-7800-be76-69f90ed8f4c0
+    name: Meeting Id
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Text
+  - id: 01a125a0-8b50-7d3a-93f4-8bfb3a3abc45
+    name: Meeting Url
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Text
+  - id: 01a125a0-8b50-7d2f-9b20-420d0f83a542
+    name: External Calendar Id
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Text
+  - id: 01a125a0-8b50-7491-ba27-7bcecdd85fc6
+    name: Credential Id
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Id
+  - id: 01a125a0-8b50-7d48-9f1a-4a40baf4b8b6
+    name: Deleted
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Bool
+  invariants:
+  - Cancelling a Booking marks its references deleted rather than removing them.
+  archived: false
+methods: []
+archived: false

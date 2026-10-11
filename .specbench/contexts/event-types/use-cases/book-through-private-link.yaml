@@ -1,0 +1,38 @@
+spec-format: 1
+kind: use-case
+id: 01a1259f-673c-7bd4-812d-fab1469c1bb1
+revision: 7
+name: Book Through Private Link
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+description: The /d/link/slug page.
+use-case-kind: Query
+roles:
+- 01a0f442-adc1-7f74-9a7a-6b7f3cc9be7d
+inputs:
+- id: 01a1259f-673c-7658-9c68-c7f1185aeb8e
+  name: Link
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+steps:
+- id: 01a1259f-673c-7dcd-abf1-5f43764f956b
+  text: "If the link does not exist, has passed its date (in the Organizer's time zone) or has reached its usage limit, show a not-found page: {{outcome:Link Expired}}"
+  indent: 0
+- id: 01a1259f-673c-7204-bb5a-fd66c4f1db6a
+  text: 'Otherwise show the booking page for the Event Type, even if it is hidden: {{outcome:Booking Page Shown}}'
+  indent: 0
+outcomes:
+- id: 01a1259f-673c-7f95-9e5d-749ce843137c
+  name: Booking Page Shown
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a1259f-673c-7730-a75a-a62f23ae8523
+  name: Link Expired
+  success: false
+  code: 404
+  message: This link has expired
+  returns: 
+archived: false

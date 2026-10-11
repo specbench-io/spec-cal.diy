@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a125a7-3d53-7097-b6ee-8be32125d6d3
+revision: 3
+name: Locked Account
+definition: An account the Admin has locked. It cannot sign in and is hidden from almost every lookup.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+archived: false

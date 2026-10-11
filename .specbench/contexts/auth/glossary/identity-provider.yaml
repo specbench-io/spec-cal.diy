@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a125a7-3d59-76fe-9692-b449211057c5
+revision: 3
+name: Identity Provider
+definition: How an account signs in - email and password, or Google.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+archived: false

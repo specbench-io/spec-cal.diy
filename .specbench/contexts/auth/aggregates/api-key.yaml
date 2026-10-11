@@ -1,0 +1,57 @@
+spec-format: 1
+kind: aggregate
+id: 01a125a6-3352-79d2-b05f-ace70e92de70
+revision: 9
+name: Api Key
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+summary: A secret for the public API, shown once and stored only as a hash.
+description: 
+properties:
+- id: 01a125a6-3352-7caa-aedd-25f8fc8ce4b8
+  name: User Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a125a6-3352-7b9d-8964-4820ce6bc1ac
+  name: Note
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a6-3352-75a9-803e-c580ed42d34b
+  name: Expires At
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Date
+  archived: false
+- id: 01a125a6-3352-79dc-9fea-ac772ed98bbd
+  name: Last Used At
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Date
+  archived: false
+- id: 01a125a6-3352-7caf-96e8-8734427b0ae8
+  name: Hashed Key
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a6-3352-7b39-b1e1-ba3ee731ebf5
+  name: App Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+invariants:
+- id: 01a125a6-3352-78c6-a492-5a2d9c4d3d0e
+  text: The hashed key is unique.
+  archived: false
+domain-events: []
+entities: []
+methods: []
+archived: false

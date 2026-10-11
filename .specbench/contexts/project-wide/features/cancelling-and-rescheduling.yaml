@@ -1,0 +1,113 @@
+spec-format: 1
+kind: feature
+id: 01a125a8-6719-79bd-b4de-7028906e8b5b
+revision: 29
+title: Cancelling and rescheduling
+intent: As an Attendee or Organizer, I want to cancel or move a Booking, so that plans can change without starting over.
+description: 'Use Cases: Cancel Booking, Reschedule Booking, Request Reschedule, Create Booking.'
+scenarios:
+- id: c088226e-d9d5-4786-ba2b-8657637082ce
+  title: An Attendee cancels from the booking link
+  steps:
+  - id: 0ede933c-7b75-4a1f-8c15-386b949daae1
+    keyword: Given
+    text: an upcoming accepted Booking
+    archived: false
+  - id: 54186a8c-d242-4ca3-83f4-9dcfa501dc28
+    keyword: When
+    text: the Attendee cancels it from the booking link with a reason
+    archived: false
+  - id: 0fa70764-34f1-4523-94e3-e24a677482e1
+    keyword: Then
+    text: the Booking is Cancelled
+    archived: false
+  - id: 4eaf1568-786b-4990-a505-58f93a7cb028
+    keyword: And
+    text: the calendar event is deleted and everyone receives the cancelled email
+    archived: false
+  archived: false
+- id: d024fb00-bdbe-4169-9663-b8a76e10fc09
+  title: A reason is required from the host by default
+  steps:
+  - id: 8fccae53-855e-43d0-8ade-8aad25226389
+    keyword: Given
+    text: an Event Type requires a cancellation reason from the host only
+    archived: false
+  - id: 12b60eac-60ab-4c56-a371-0ec91ec5a08b
+    keyword: When
+    text: the Organizer cancels without a reason
+    archived: false
+  - id: e1cd4206-6f8d-43a1-9e0b-872dedc9f081
+    keyword: Then
+    text: they are told "Cancellation reason is required"
+    archived: false
+  archived: false
+- id: 3c89f4f9-3aae-4bf2-84e2-7d6e36e69456
+  title: A past Booking cannot be cancelled
+  steps:
+  - id: e6d2b862-3951-47c0-afc3-8e754d24dd05
+    keyword: Given
+    text: a Booking that has already ended
+    archived: false
+  - id: 621c1c16-aeb4-46be-a8da-86f20262b0d6
+    keyword: When
+    text: someone tries to cancel it
+    archived: false
+  - id: 2fc365a7-4a59-430e-8bd6-a85cddc313f4
+    keyword: Then
+    text: they are told "Cannot cancel a booking that has already ended"
+    archived: false
+  archived: false
+- id: b1d1e740-8290-4df3-9a35-b598d09d61bb
+  title: Rescheduling replaces the Booking
+  steps:
+  - id: 745452f6-cbca-4dbf-8eb7-19a5f41a8170
+    keyword: Given
+    text: an upcoming accepted Booking
+    archived: false
+  - id: fbfd69cf-f01c-4af2-8154-8fbcb937e3d7
+    keyword: When
+    text: the Attendee reschedules it to Tuesday at 14:00
+    archived: false
+  - id: de90bc5c-b280-43ec-a470-3efae0db925f
+    keyword: Then
+    text: a new Booking is made for Tuesday at 14:00
+    archived: false
+  - id: 5d52840d-cedf-4755-be3b-e310b6d9ab2a
+    keyword: And
+    text: the original Booking is Cancelled and marked rescheduled
+    archived: false
+  archived: false
+- id: 3be7478a-0063-46ae-a615-344e9859f615
+  title: The Organizer asks the Booker to pick a new time
+  steps:
+  - id: 0b450bce-e263-451f-a1d9-90dc420ac50d
+    keyword: Given
+    text: an upcoming accepted Booking
+    archived: false
+  - id: e725cf08-9067-4ba0-a41e-9be33a7f3f8c
+    keyword: When
+    text: the Organizer requests a reschedule
+    archived: false
+  - id: b23a3a74-9e48-4bfc-b723-ab7eff33c0ca
+    keyword: Then
+    text: the Booking is Cancelled and the Attendee is emailed a link to choose a new time
+    archived: false
+  archived: false
+- id: ad53e2b4-480b-447e-8996-fe2acc9fbc9e
+  title: Rescheduling is blocked inside the minimum reschedule notice
+  steps:
+  - id: 3996c83e-31cc-478c-831d-f9155a665551
+    keyword: Given
+    text: an Event Type has a minimum reschedule notice of 60 minutes
+    archived: false
+  - id: 669d6cb1-e510-472f-b697-d3dfe9e21cf1
+    keyword: When
+    text: the Attendee tries to reschedule 30 minutes before the start
+    archived: false
+  - id: e5770107-5c30-45f8-a81d-d4231aba98ab
+    keyword: Then
+    text: they are sent back to the Booking instead
+    archived: false
+  archived: false
+archived: false

@@ -1,0 +1,273 @@
+spec-format: 1
+kind: application-service
+id: 01a12596-6fb7-7c73-8ced-5f038b58a7fe
+revision: 26
+name: Admin Watchlist Operations Service
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+description: How the Admin manages the Global Watchlist and reviews Booking Reports. The admin API exists, but no page in cal.diy shows it (the System Blocklist screens are not mounted).
+implements: []
+methods:
+- id: 01a12596-6fb7-7a96-889e-756f3589d524
+  name: Create Watchlist Entry
+  description: 
+  implements: 
+  inputs:
+  - id: 01a12596-6fb7-745c-b2b5-ded858bdf688
+    name: Type
+    type:
+      kind: Ref
+      ref:
+        entity-type: Enum
+        entity-id: 01a10ff1-0fa3-784b-bfc0-3a444eec4ab9
+      ref-name: Watchlist Type
+  - id: 01a12596-6fb7-7d12-998f-2648465fbab4
+    name: Value
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a12596-6fb7-7c0d-9905-51df90fb5781
+    name: Description
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Text
+  - id: 01a12596-6fb7-7ade-87f1-86ca82839e48
+    name: User Id
+    type:
+      kind: Primitive
+      primitive: Id
+  steps:
+  - id: 01a12596-6fb7-70fc-8422-85c2c050f344
+    text: 'If {{input:Type}} is Email and {{input:Value}} is not a valid email address, refuse: {{outcome:Invalid Email}}'
+    indent: 0
+  - id: 01a12596-6fb7-7ec4-b990-5ba3df50573a
+    text: 'If {{input:Type}} is Domain and {{input:Value}}, ignoring a leading "*.", is not a valid domain, refuse: {{outcome:Invalid Domain}}'
+    indent: 0
+  - id: 01a12596-6fb7-76d9-b280-4db8560520a5
+    text: 'If the Global Watchlist already has an entry with this type and value, return it unchanged: {{outcome:Created}}'
+    indent: 0
+  - id: 01a12596-6fb7-7774-b253-07ca0ba88acc
+    text: 'Otherwise add the lower-cased value to the Global Watchlist with the Block action and the Manual source, and record the change in its audit history: {{outcome:Created}}'
+    indent: 0
+  outcomes:
+  - id: 01a12596-6fb7-77bd-985f-6e16f4034efb
+    name: Created
+    success: true
+    message: 
+    returns:
+      kind: Ref
+      ref:
+        entity-type: Aggregate
+        entity-id: 01a10ff1-1010-7d2d-9de2-ada8e6a07a95
+      ref-name: Watchlist Entry
+  - id: 01a12596-6fb7-749c-8a40-cdc4eb3aac02
+    name: Invalid Email
+    success: false
+    message: Invalid email address format
+    returns: 
+  - id: 01a12596-6fb7-7eea-9fee-11212442faf7
+    name: Invalid Domain
+    success: false
+    message: Invalid domain format (e.g., example.com or *.example.com)
+    returns: 
+  archived: false
+- id: 01a12596-6fb7-7f96-a492-867e35c3e38d
+  name: Delete Watchlist Entry
+  description: 
+  implements: 
+  inputs:
+  - id: 01a12596-6fb7-77d5-99d6-9e32504217ce
+    name: Entry Id
+    type:
+      kind: Primitive
+      primitive: Id
+  - id: 01a12596-6fb7-7748-9fef-bd4228c8848d
+    name: User Id
+    type:
+      kind: Primitive
+      primitive: Id
+  steps:
+  - id: 01a12596-6fb7-7dd7-8ea3-35f532b24e8e
+    text: 'If there is no entry {{input:Entry Id}}, refuse: {{outcome:Not Found}}'
+    indent: 0
+  - id: 01a12596-6fb7-76e7-980f-7968934c30b8
+    text: 'If the entry is not in the Global Watchlist, refuse: {{outcome:Permission Denied}}'
+    indent: 0
+  - id: 01a12596-6fb7-70be-b9e9-b90467ef479f
+    text: Delete the entry and record who deleted it in its audit history
+    indent: 0
+  - id: 01a12596-6fb7-7fec-98d0-13892caeb8fa
+    text: If the entry was an email added at signup, unlock the account with that email and send it an email verification. A failure here is only logged
+    indent: 0
+  - id: 01a12596-6fb7-7458-91a2-edaa2c5169b6
+    text: 'The entry is gone: {{outcome:Deleted}}'
+    indent: 0
+  outcomes:
+  - id: 01a12596-6fb7-7b54-9bec-fff76d847841
+    name: Deleted
+    success: true
+    message: Entry deleted successfully
+    returns: 
+  - id: 01a12596-6fb7-7e06-a5f6-b9befaa2ffad
+    name: Not Found
+    success: false
+    message: Blocklist entry not found
+    returns: 
+  - id: 01a12596-6fb7-79e0-b512-1216819db617
+    name: Permission Denied
+    success: false
+    message: You can only delete system blocklist entries
+    returns: 
+  archived: false
+- id: 01a12596-6fb7-7246-b2eb-d1cdd98f35ed
+  name: Bulk Delete Watchlist Entries
+  description: 
+  implements: 
+  inputs:
+  - id: 01a12596-6fb7-75f8-8253-49b96b7036e8
+    name: Entry Ids
+    type:
+      kind: Collection
+      shape: List
+      element:
+        kind: Primitive
+        primitive: Id
+  - id: 01a12596-6fb7-7afa-9385-92bc200d7a09
+    name: User Id
+    type:
+      kind: Primitive
+      primitive: Id
+  steps:
+  - id: 01a12596-6fb7-7b0d-878f-91e3f71a201e
+    text: Set aside every id in {{input:Entry Ids}} that is missing or not in the Global Watchlist as failed
+    indent: 0
+  - id: 01a12596-6fb7-79cc-be48-df21cee72031
+    text: Delete the rest in one go, recording the changes in their audit history
+    indent: 0
+  - id: 01a12596-6fb7-77f6-8ad5-658325ec477f
+    text: Unlock the accounts of any emails that were added at signup
+    indent: 0
+  - id: 01a12596-6fb7-7dcb-a932-b5ae96678b86
+    text: 'If nothing was deleted and something failed, refuse with the first reason: {{outcome:Partial Failure}}'
+    indent: 0
+  - id: 01a12596-6fb7-7896-9658-15d378cac33e
+    text: 'Otherwise report how many were deleted and how many failed: {{outcome:Deleted}}'
+    indent: 0
+  outcomes:
+  - id: 01a12596-6fb7-7752-8705-dd4c22b28e06
+    name: Deleted
+    success: true
+    message: All entries deleted successfully, or Deleted N entries, M failed
+    returns: 
+  - id: 01a12596-6fb7-7918-b9a4-93e10ec65779
+    name: Partial Failure
+    success: false
+    message: 'Failed to delete all entries: (reason)'
+    returns: 
+  archived: false
+- id: 01a12596-6fb7-7b47-b70f-5e6b014aa00e
+  name: Add To Watchlist By Email
+  description: Blocks the email, or its domain, from the Booking Reports awaiting the Admin's review.
+  implements: 
+  inputs:
+  - id: 01a12596-6fb8-7ded-9d2e-448368c9b13e
+    name: Email
+    type:
+      kind: Primitive
+      primitive: Text
+  - id: 01a12596-6fb8-79c4-b465-1bca5171ead5
+    name: Type
+    type:
+      kind: Ref
+      ref:
+        entity-type: Enum
+        entity-id: 01a10ff1-0fa3-784b-bfc0-3a444eec4ab9
+      ref-name: Watchlist Type
+  - id: 01a12596-6fb8-767b-a732-31fb5f92a284
+    name: Description
+    type:
+      kind: Primitive
+      nullable: true
+      primitive: Text
+  - id: 01a12596-6fb8-76d8-88c8-c5705ade173c
+    name: User Id
+    type:
+      kind: Primitive
+      primitive: Id
+  steps:
+  - id: 01a12596-6fb8-740a-a021-cae80bd44f7a
+    text: If {{input:Type}} is Email, use the normalised {{input:Email}}; if it is Domain, use the email's domain
+    indent: 0
+  - id: 01a12596-6fb8-7ede-a291-f9a6bc49bbc2
+    text: Find the Booking Reports from that email or domain that the Admin has not reviewed yet
+    indent: 0
+  - id: 01a12596-6fb8-7dd6-8185-49642ecd10a2
+    text: Add the value to the Global Watchlist with the Block action, unless it is already there
+    indent: 0
+  - id: 01a12596-6fb8-7f1e-aef4-0148be58baf9
+    text: 'Link those reports to the entry and mark them Blocked for the Admin: {{outcome:Added}}'
+    indent: 0
+  outcomes:
+  - id: 01a12596-6fb8-7f8b-9562-cb7b65eae310
+    name: Added
+    success: true
+    message: Successfully added email (or domain) to global blocklist
+    returns: 
+  archived: false
+- id: 01a12596-6fb7-72ca-8518-dad8d442ab6f
+  name: Dismiss Report By Email
+  description: 
+  implements: 
+  inputs:
+  - id: 01a12596-6fb8-7900-9428-9329d8218b3d
+    name: Email
+    type:
+      kind: Primitive
+      primitive: Text
+  steps:
+  - id: 01a12596-6fb8-7e0c-880d-268eb66ecde0
+    text: Mark every Booking Report from {{input:Email}} that the Admin has not reviewed yet as Dismissed
+    indent: 0
+  - id: 01a12596-6fb8-7434-bd5e-1ec281d79f0c
+    text: 'If there were none, refuse: {{outcome:Not Found}}'
+    indent: 0
+  - id: 01a12596-6fb8-73e6-a6d0-67973bda1d1f
+    text: 'Otherwise: {{outcome:Dismissed}}'
+    indent: 0
+  outcomes:
+  - id: 01a12596-6fb8-79d7-9c98-1c1df5e003be
+    name: Dismissed
+    success: true
+    message: 
+    returns: 
+  - id: 01a12596-6fb8-7bdd-a85d-6d29a5582124
+    name: Not Found
+    success: false
+    message: No pending reports found for this email
+    returns: 
+  archived: false
+- id: 01a12596-6fb7-7a08-beb6-077d0617c9a8
+  name: Bulk Dismiss Reports By Email
+  description: 
+  implements: 
+  inputs:
+  - id: 01a12596-6fb8-767f-8909-4c06a4793bdc
+    name: Emails
+    type:
+      kind: Collection
+      shape: List
+      element:
+        kind: Primitive
+        primitive: Text
+  steps:
+  - id: 01a12596-6fb8-780a-9707-289ce891c8c3
+    text: 'Mark every unreviewed Booking Report from each of {{input:Emails}} as Dismissed and report the total: {{outcome:Dismissed}}'
+    indent: 0
+  outcomes:
+  - id: 01a12596-6fb8-7696-ac0b-44c449fbe18b
+    name: Dismissed
+    success: true
+    message: 
+    returns: 
+  archived: false
+archived: false

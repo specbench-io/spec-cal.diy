@@ -1,0 +1,22 @@
+spec-format: 1
+kind: enum
+id: 01a10ff1-0fa3-784b-bfc0-3a444eec4ab9
+revision: 6
+name: Watchlist Type
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+summary: What a Watchlist Entry matches on.
+description: 
+cases:
+- id: 01a10ff1-0fa7-782f-9d66-a0c07314b18c
+  name: Email
+  description: 
+  archived: false
+- id: 01a10ff1-0fa7-78e1-9590-67a350b92b59
+  name: Domain
+  description: 
+  archived: false
+- id: 01a10ff1-0fa7-7c3b-8786-434e46c8a093
+  name: Username
+  description: 
+  archived: false
+archived: false

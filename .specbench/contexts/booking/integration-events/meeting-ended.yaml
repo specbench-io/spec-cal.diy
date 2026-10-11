@@ -1,0 +1,21 @@
+spec-format: 1
+kind: integration-event
+id: 01a125a0-eaf5-70f2-9328-bc697b9940ae
+revision: 3
+name: Meeting Ended
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: A confirmed Booking's end time arrived (webhook MEETING_ENDED, stored ahead and sent by a cron).
+fields:
+- id: 01a125a0-eaf5-7dbb-9604-c66682572f6c
+  name: Booking Uid
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a125a0-eaf5-7995-bf60-410162bfb49e
+  name: End Time
+  description: 
+  type:
+    kind: Primitive
+    primitive: Date
+archived: false

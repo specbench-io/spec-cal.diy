@@ -1,0 +1,12 @@
+spec-format: 1
+kind: bounded-context
+id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+revision: 6
+name: Watchlist
+summary: Blocking and reporting unwanted Bookings.
+description: 
+icon: list
+colour: red
+implements:
+- 01a0f447-0607-70ee-be69-d9b2af1f0696
+archived: false

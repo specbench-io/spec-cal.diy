@@ -1,0 +1,30 @@
+spec-format: 1
+kind: use-case
+id: 01a125a7-3d35-7d4d-9db6-ca94333a144c
+revision: 6
+name: List Users
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+description: viewer.admin.listPaginated.
+use-case-kind: Query
+roles:
+- 01a0f442-adc6-7410-af52-ea288a8ae9d1
+inputs:
+- id: 01a125a7-3d35-7f81-b55f-e896316fc8e7
+  name: Search Term
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a7-3d35-712f-b1d0-073af2b38f5a
+  text: 'Return a page of users matching email or username, including locked users: {{outcome:Listed}}'
+  indent: 0
+outcomes:
+- id: 01a125a7-3d35-7e31-a47a-84cd0c95dca0
+  name: Listed
+  success: true
+  code: 
+  message: 
+  returns: 
+archived: false

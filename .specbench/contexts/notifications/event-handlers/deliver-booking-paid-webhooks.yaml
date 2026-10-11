@@ -1,0 +1,23 @@
+spec-format: 1
+kind: event-handler
+id: 01a125f7-6c58-71fc-8e37-9844280acd85
+revision: 4
+name: Deliver Booking Paid Webhooks
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: handlePaymentSuccess (packages/app-store/_utils/payments/handlePaymentSuccess.ts:130-186), run by the PayPal, Alby, BTCPay Server and HitPay payment webhooks. Never runs for Stripe - its webhook route is a stub.
+trigger:
+  integration-event: Apps/Booking Paid
+steps:
+- id: 01a125f7-6c58-7a21-bbd0-f283301c3c1b
+  text: Find the active Webhooks listening for Booking paid that belong to the Organizer, the Event Type, the platform OAuth client, or are platform-wide
+  indent: 0
+- id: 01a125f7-6c58-7722-88da-e2b4d6a15b55
+  text: POST the Booking payload with its current status, the Payment id and the payment details to each Subscriber URL, signed with the Secret - or queue a send Task when TASKER_ENABLE_WEBHOOKS is on
+  indent: 0
+- id: 01a125f7-6c58-7db5-abaf-a61bacd022ee
+  text: The payload's metadata is replaced by the payment details, so the Booking's own metadata such as the video call link is left out
+  indent: 1
+- id: 01a125f7-6c58-766f-a3e6-dccc48020ee5
+  text: Afterwards, if the Booking needs no confirmation, it is confirmed, which sends Booking created separately
+  indent: 0
+archived: false

@@ -1,0 +1,213 @@
+spec-format: 1
+kind: feature
+id: 01a125e2-63c1-7dba-a80a-60aefb99739c
+revision: 54
+title: Managing a Booking
+intent: As an Organizer, I want to see my Bookings and act on them after they are made, so that every meeting reflects who is coming, where it happens and whether it took place.
+description: 'Use Cases: List Bookings, View Booking, Add Guests, Edit Location, Mark No Show, Mark Host As No Show, Reject Booking.'
+scenarios:
+- id: 01a125e2-63c1-73e9-8acf-0d51c50fd03d
+  title: Bookings are sorted into tabs by their state
+  steps:
+  - id: 01a125e2-63c1-7b09-94e0-6a92fb02fb4a
+    keyword: Given
+    text: an Organizer has an accepted Booking later today, an accepted Booking next week, a Booking waiting for confirmation, a Booking that has already ended and a rejected Booking
+    archived: false
+  - id: 01a125e2-63c1-7a41-a65c-902b146a25f6
+    keyword: When
+    text: the Organizer opens Bookings
+    archived: false
+  - id: 01a125e2-63c1-70f0-8e8b-d22fb3d063a9
+    keyword: Then
+    text: the tabs "Upcoming", "Unconfirmed", "Recurring", "Past" and "Canceled" are shown
+    archived: false
+  - id: 01a125e2-63c1-7032-9ad8-8a775e3e1baf
+    keyword: And
+    text: the Upcoming tab lists today's Booking under "Today" and the rest under "Next"
+    archived: false
+  - id: 01a125e2-63c1-7ae5-a44a-2c55de15327b
+    keyword: And
+    text: the Booking waiting for confirmation is listed under both Upcoming and Unconfirmed
+    archived: false
+  - id: 01a125e2-63c1-7a16-b315-82933a7ce85d
+    keyword: And
+    text: the Booking that has ended is listed under Past
+    archived: false
+  - id: 01a125e2-63c1-7944-b982-afe76045dcc7
+    keyword: And
+    text: the rejected Booking is listed under Canceled
+    archived: false
+  - id: 01a125e2-63c1-7a14-b442-07119ddef381
+    keyword: And
+    text: a tab with no Bookings says "No unconfirmed bookings" (using that tab's name)
+    archived: false
+  archived: false
+- id: 01a125e2-63c1-7751-94d5-0733939cfd0a
+  title: Adding Guests to an upcoming Booking
+  steps:
+  - id: 01a125e2-63c1-7b79-9904-687f93c42978
+    keyword: Given
+    text: an Organizer has an upcoming Booking with the Attendee "ana@example.com"
+    archived: false
+  - id: 01a125e2-63c1-7b75-be6b-2261291bab8e
+    keyword: And
+    text: the Event Type allows Guests
+    archived: false
+  - id: 01a125e2-63c1-76c4-b660-058391e6e208
+    keyword: When
+    text: the Organizer chooses "Add guests" and adds "ben@example.com" and "ana+work@example.com"
+    archived: false
+  - id: 01a125e2-63c1-74d2-8936-01b8b5a7045e
+    keyword: Then
+    text: '"ben@example.com" is added to the Booking as a Guest'
+    archived: false
+  - id: 01a125e2-63c1-7f03-8920-1a115de5b8bf
+    keyword: And
+    text: '"ana+work@example.com" is skipped because it is the same inbox as an existing Attendee'
+    archived: false
+  - id: 01a125e2-63c1-76a6-b631-529361e8395a
+    keyword: And
+    text: the calendar event is updated to include the new Guest
+    archived: false
+  - id: 01a125e2-63c2-77bd-92e8-34cf46de8ea5
+    keyword: And
+    text: the new Guest receives the booking confirmation email, while the Organizer and the existing Attendees are told that Guests were added
+    archived: false
+  - id: 01a125e2-63c2-7921-85c9-3be69bc8eb66
+    keyword: And
+    text: the Organizer sees "Guests added"
+    archived: false
+  archived: false
+- id: 01a125e2-63c1-70b7-9d61-2efcb4e0cd48
+  title: Adding only Guests who cannot be added is refused
+  steps:
+  - id: 01a125e2-63c2-7d8c-9dc1-59f1b3782612
+    keyword: Given
+    text: an Organizer has an upcoming Booking with the Attendee "ana@example.com"
+    archived: false
+  - id: 01a125e2-63c2-7498-9f11-64cf266a1fc2
+    keyword: When
+    text: the Organizer adds only "ANA@example.com", or only an address on the blocked guest list
+    archived: false
+  - id: 01a125e2-63c2-74d7-b177-7e0d62fbdd1d
+    keyword: Then
+    text: 'the Organizer sees "BAD_REQUEST: Emails must be unique and valid"'
+    archived: false
+  - id: 01a125e2-63c2-74f8-902c-87aa2e844d8f
+    keyword: And
+    text: no Guests are added to the Booking
+    archived: false
+  - id: 01a125e2-63c2-7764-8729-0a61bd5f4b9f
+    keyword: And
+    text: '"Add guests" is greyed out for Bookings that have ended, been cancelled or been rejected'
+    archived: false
+  archived: false
+- id: 01a125e2-63c1-7a4e-bdf7-26762ab9ab54
+  title: Changing where a Booking takes place
+  steps:
+  - id: 01a125e2-63c2-7d32-9828-2f73a2b5451c
+    keyword: Given
+    text: an Organizer has an upcoming Booking with a connected calendar event
+    archived: false
+  - id: 01a125e2-63c2-7d55-8dc7-ac695eddd1fc
+    keyword: When
+    text: the Organizer chooses "Edit location" and picks a new location
+    archived: false
+  - id: 01a125e2-63c2-7d5f-96e3-3eebbc18377c
+    keyword: Then
+    text: the calendar event is updated with the new location before the Booking is changed
+    archived: false
+  - id: 01a125e2-63c2-75d3-8e7b-c83b359d9fd5
+    keyword: And
+    text: 'the Organizer and every Attendee receive an email titled "Location Changed: <Event Type> with <name> at <date>"'
+    archived: false
+  - id: 01a125e2-63c2-72f7-814d-66d8f99c74c1
+    keyword: And
+    text: the Organizer sees "Location updated"
+    archived: false
+  - id: 01a125e2-63c2-7870-9612-aa566ca0378d
+    keyword: And
+    text: if the Organizer picks "Organizer's default app" without having one, they see "<Organizer> has no default conferencing app" and nothing changes
+    archived: false
+  archived: false
+- id: 01a125e2-63c1-7dd2-b743-353b4fffb9c4
+  title: Marking an Attendee as a No Show
+  steps:
+  - id: 01a125e2-63c2-73fd-9f63-04ed3e5b0425
+    keyword: Given
+    text: an Organizer has a Booking with the single Attendee "ana@example.com" that started 10 minutes ago
+    archived: false
+  - id: 01a125e2-63c2-7a23-8955-3317b6651442
+    keyword: When
+    text: the Organizer chooses "Mark as no-show"
+    archived: false
+  - id: 01a125e2-63c2-7f0a-a358-19da42dcca63
+    keyword: Then
+    text: the Attendee is recorded as a No Show
+    archived: false
+  - id: 01a125e2-63c2-7da3-9ee6-5f5839497393
+    keyword: And
+    text: the Organizer sees "ana@example.com marked as no-show"
+    archived: false
+  - id: 01a125e2-63c2-7d55-980e-d1d6e16d6d94
+    keyword: And
+    text: the action changes to "Unmark no-show"
+    archived: false
+  - id: 01a125e2-63c2-789c-8437-24a599d86171
+    keyword: And
+    text: '"Mark as no-show" stays unavailable for Bookings that have not started yet'
+    archived: false
+  archived: false
+- id: 01a125e2-63c1-7c5e-9fe9-f1a5ee262ed6
+  title: An Attendee reports that the Host did not show up
+  steps:
+  - id: 01a125e2-63c2-756b-8866-5ca4a14e386a
+    keyword: Given
+    text: an Attendee has the link to their Booking page that reports a Host No Show
+    archived: false
+  - id: 01a125e2-63c2-7af4-bde2-8f6e2c5c4484
+    keyword: When
+    text: the Attendee opens that link
+    archived: false
+  - id: 01a125e2-63c2-7620-9503-28b14fea5cec
+    keyword: Then
+    text: the Booking is recorded as a Host No Show, without checking who opened the link or whether the meeting has started
+    archived: false
+  - id: 01a125e2-63c2-703a-99e7-504d34a7e049
+    keyword: And
+    text: the Attendee sees "Your host didn't show up" and "You can reschedule another meeting with them" with a "Reschedule" button
+    archived: false
+  - id: 01a125e2-63c2-7618-8f12-7e72373ac451
+    keyword: And
+    text: the Attendee sees "Thank you, feedback submitted"
+    archived: false
+  archived: false
+- id: 01a125e2-63c1-79d3-8abc-e6a1da2dc997
+  title: Rejecting a Booking that needs confirmation
+  steps:
+  - id: 01a125e2-63c2-7b45-9b11-5ab0b54fc7f2
+    keyword: Given
+    text: an Organizer has an Unconfirmed Booking from a Booker
+    archived: false
+  - id: 01a125e2-63c2-78f3-9ed4-191d8f8dd457
+    keyword: When
+    text: the Organizer chooses "Reject", enters "Fully booked that day" under "Reason for rejecting (Optional)" and chooses "Reject the booking"
+    archived: false
+  - id: 01a125e2-63c2-7475-9684-776bfa2b09fa
+    keyword: Then
+    text: the Booking is rejected and moves to the Canceled tab
+    archived: false
+  - id: 01a125e2-63c2-70ea-a711-14eee6855ef8
+    keyword: And
+    text: 'the Booker receives an email titled "Declined: <title> at <date>" that shows "Reason for rejecting" as "Fully booked that day"'
+    archived: false
+  - id: 01a125e2-63c2-713d-955a-7ce6bea0a72c
+    keyword: And
+    text: any successful payment is refunded according to the Event Type's refund policy
+    archived: false
+  - id: 01a125e2-63c2-7e29-aab5-10187937ce81
+    keyword: And
+    text: the Organizer sees "Booking rejection succeeded"
+    archived: false
+  archived: false
+archived: false

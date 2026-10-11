@@ -1,0 +1,41 @@
+spec-format: 1
+kind: adapter
+id: 01a125c0-b947-77f4-97e6-9782bd7e1bda
+revision: 7
+name: Google Calendar
+interface: Calendars/Calendar
+description: 
+target:
+  infrastructure: Google Calendar API (packages/app-store/googlecalendar/lib/CalendarService.ts)
+methods:
+- implements: Create Event
+  steps:
+  - id: 01a125c0-b94d-79ce-ad14-8b71a86a7a3e
+    text: Insert the event in the Destination Calendar ({{input:External Calendar Id}}) using {{input:Credential Id}}, adding a Google Meet link when Meet is the location and the Organizer's default reminder
+    indent: 0
+  note: 
+- implements: Update Event
+  steps:
+  - id: 01a125c0-b951-7190-a76c-8232ff2b4c3d
+    text: Update the event {{input:Uid}} in its calendar
+    indent: 0
+  note: 
+- implements: Delete Event
+  steps:
+  - id: 01a125c0-b951-7999-8f82-6c5ca61dd36d
+    text: Delete the event {{input:Uid}}; a missing event is ignored
+    indent: 0
+  note: 
+- implements: Get Availability
+  steps:
+  - id: 01a125c0-b952-74d5-9f14-260975e33f2f
+    text: Ask Google's free/busy API for the Selected Calendars between {{input:Date From}} and {{input:Date To}}, or read the Calendar Cache when it is on
+    indent: 0
+  note: 
+- implements: List Calendars
+  steps:
+  - id: 01a125c0-b952-7199-aa46-6007e279baff
+    text: List the account's calendars and mark the primary one
+    indent: 0
+  note: 
+archived: false

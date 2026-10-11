@@ -1,0 +1,85 @@
+spec-format: 1
+kind: aggregate
+id: 01a125a3-d658-7382-aa53-131e2b5e6413
+revision: 14
+name: Payment
+bounded-context-id: 01a0f44a-2a22-7488-ae05-7c57eda180ac
+summary: A charge, or a held card, for a Booking of a paid Event Type.
+description: 
+properties:
+- id: 01a125a3-d658-773c-9e33-6df7015266ac
+  name: Uid
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a3-d658-7346-a78f-6ec55a92ce8f
+  name: App Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a3-d658-7d62-b1c7-64ec3eefd46e
+  name: Booking Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a125a3-d658-7278-a681-b1a1a8504012
+  name: Amount
+  type:
+    kind: Primitive
+    primitive: Number
+  archived: false
+- id: 01a125a3-d658-76b6-b506-0491fb11b977
+  name: Fee
+  type:
+    kind: Primitive
+    primitive: Number
+  archived: false
+- id: 01a125a3-d658-7372-9862-a7a62369e228
+  name: Currency
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a3-d658-7281-bd3e-958af2daddf1
+  name: Success
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a125a3-d658-7b9a-a166-56bfdb5f742d
+  name: Refunded
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a125a3-d658-7d46-b2a2-ea0368a8d472
+  name: External Id
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a12661-352e-7860-9fb2-e8941b9736c6
+  name: Payment Option
+  type:
+    kind: Ref
+    nullable: true
+    ref:
+      entity-type: Enum
+      entity-id: 01a125a3-d6b7-70de-adba-78be15365ef3
+    ref-name: Payment Option
+  archived: false
+invariants:
+- id: 01a125a3-d658-7915-9df3-03aa4a0fa44b
+  text: The amount is in the smallest unit of the currency.
+  archived: false
+- id: 01a125a3-d658-758c-86e4-0773c21590b9
+  text: Only a successful payment can be refunded.
+  archived: false
+domain-events: []
+entities: []
+methods: []
+archived: false

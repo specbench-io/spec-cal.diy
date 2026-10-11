@@ -1,0 +1,47 @@
+spec-format: 1
+kind: use-case
+id: 01a125a4-41be-7394-a3a7-5582f10c430d
+revision: 8
+name: Charge No Show Fee
+bounded-context-id: 01a0f44a-2a22-7488-ae05-7c57eda180ac
+description: viewer.payments.chargeCard (Collect no-show fee). The handler does not check that the caller owns the Booking.
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a4-41be-7dea-b8e9-de615d8fe285
+  name: Booking Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+steps:
+- id: 01a125a4-41be-7bfe-9c40-c3907b7a3058
+  text: 'If the fee was already charged, refuse: {{outcome:Already Charged}}'
+  indent: 0
+- id: 01a125a4-41be-70e4-a2c1-3ae75f4b86f0
+  text: 'Charge the held card through the payment app: {{outcome:Charged}}'
+  indent: 0
+- id: 01a125a4-41be-7d93-bcc0-ad9ca97b43a4
+  text: 'If the card is declined, refuse: {{outcome:Card Declined}}'
+  indent: 1
+outcomes:
+- id: 01a125a4-41be-7947-bf03-63def8cdc8d7
+  name: Charged
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a125a4-41be-790e-8b1d-2aaaba20fc96
+  name: Already Charged
+  success: false
+  code: 
+  message: 
+  returns: 
+- id: 01a125a4-41be-7ae4-ac22-b90d5c4ce57f
+  name: Card Declined
+  success: false
+  code: 
+  message: Your card was declined
+  returns: 
+archived: false

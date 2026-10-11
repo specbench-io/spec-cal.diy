@@ -1,0 +1,17 @@
+spec-format: 1
+kind: adapter
+id: 01a125c0-cb24-71b6-84e9-427b447895dc
+revision: 3
+name: MS Teams
+interface: Apps/Video Api Adapter
+description: 
+target:
+  infrastructure: Microsoft Graph online meetings (packages/app-store/office365video)
+methods:
+- implements: Create Meeting
+  steps:
+  - id: 01a125c0-cb24-7c20-bd76-dc07d2e292f4
+    text: Create a Teams meeting; skipped when the Destination Calendar is Outlook, which makes the link itself
+    indent: 0
+  note: 
+archived: false

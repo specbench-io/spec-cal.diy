@@ -1,0 +1,38 @@
+spec-format: 1
+kind: enum
+id: 01a1259e-cd6b-7bb9-bf4a-50845deb4a22
+revision: 9
+name: Frequency
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+summary: How often a recurring event repeats. The UI offers only Yearly, Monthly and Weekly.
+description: 
+cases:
+- id: 01a1259e-cd6c-70ce-bb75-f8100b1bfa4e
+  name: Yearly
+  description: 
+  archived: false
+- id: 01a1259e-cd6c-7f01-babb-1bff86a2790a
+  name: Monthly
+  description: 
+  archived: false
+- id: 01a1259e-cd6c-7727-8ac5-4e389ee179d4
+  name: Weekly
+  description: 
+  archived: false
+- id: 01a1259e-cd6c-7e2a-87e6-e894a87ad0d5
+  name: Daily
+  description: 
+  archived: false
+- id: 01a1259e-cd6c-7689-8484-27794e9719c7
+  name: Hourly
+  description: 
+  archived: false
+- id: 01a1259e-cd6c-7513-8c85-5105ad51360f
+  name: Minutely
+  description: 
+  archived: false
+- id: 01a1259e-cd6c-71d1-8427-572fba4b5a25
+  name: Secondly
+  description: 
+  archived: false
+archived: false

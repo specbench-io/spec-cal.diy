@@ -1,0 +1,22 @@
+spec-format: 1
+kind: enum
+id: 01a10ff1-0fda-7c0a-9b9c-ed84a73810b5
+revision: 6
+name: Watchlist Action
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+summary: What happens when a Watchlist Entry matches.
+description: 
+cases:
+- id: 01a10ff1-0fda-760d-bbeb-536a8c2a0b29
+  name: Report
+  description: 
+  archived: false
+- id: 01a10ff1-0fda-708a-a28d-b1cf0d518740
+  name: Block
+  description: Stops bookings from the matching email or domain.
+  archived: false
+- id: 01a10ff1-0fda-7f76-93d7-e19ba5388b9c
+  name: Alert
+  description: 
+  archived: false
+archived: false

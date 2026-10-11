@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a1259c-429e-7fee-9ee0-c1e5b889e191
+revision: 3
+name: Booking Redirect
+definition: Sending Bookers to another user while an Organizer is Out Of Office. Needs a shared team, so it cannot be set up in cal.diy.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+archived: false

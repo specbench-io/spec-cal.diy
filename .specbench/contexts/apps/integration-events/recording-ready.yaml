@@ -1,0 +1,21 @@
+spec-format: 1
+kind: integration-event
+id: 01a125a3-d738-7d67-b548-ab80a52d4d22
+revision: 3
+name: Recording Ready
+bounded-context-id: 01a0f44a-2a22-7488-ae05-7c57eda180ac
+description: A Cal Video recording can be downloaded (webhook RECORDING_READY, from Daily's recording.ready-to-download).
+fields:
+- id: 01a125a3-d738-7079-9a00-d87441adcf5e
+  name: Booking Uid
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a125a3-d738-71d6-9bb4-f760865637db
+  name: Download Link
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+archived: false

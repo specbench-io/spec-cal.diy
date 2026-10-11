@@ -1,0 +1,44 @@
+spec-format: 1
+kind: use-case
+id: 01a1259d-7e04-7eed-be19-07faeaf9f23f
+revision: 8
+name: Toggle Holiday
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: viewer.holidays.toggleHoliday.
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a1259d-7e04-7b73-a8e1-02e57ecfe5d3
+  name: Holiday Id
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a1259d-7e04-71f9-bbf8-e8ecb40a796d
+  name: Enabled
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+steps:
+- id: 01a1259d-7e04-724c-b796-86f22154ceba
+  text: 'If no country is chosen or the Holiday is not in that country, refuse: {{outcome:Holiday Not Found}}'
+  indent: 0
+- id: 01a1259d-7e04-7351-a9f6-8c03dac99167
+  text: 'Switch the Holiday on or off for the Organizer: {{outcome:Toggled}}'
+  indent: 0
+outcomes:
+- id: 01a1259d-7e04-7eb9-9e36-bd4bf2cf317a
+  name: Toggled
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a1259d-7e04-7091-a277-0801bd27c9ba
+  name: Holiday Not Found
+  success: false
+  code: 500
+  message: 
+  returns: 
+archived: false

@@ -1,0 +1,157 @@
+spec-format: 1
+kind: feature
+id: 01a125e1-47bf-7666-9989-7d4fe45cf869
+revision: 40
+title: Installing apps
+intent: As an Organizer, I want to install and remove apps from the App Store, and as an admin I want to control which apps are available, so that only working, approved integrations are used on Event Types.
+description: 'Use Cases: Install App, List Installed Apps, Remove App.'
+scenarios:
+- id: 01a125e1-47bf-712d-9cad-d057b828a850
+  title: An admin must enter an app's keys before enabling it
+  steps:
+  - id: 01a125e1-47bf-7a65-a063-d75d7eff4de6
+    keyword: Given
+    text: an admin viewing the apps in admin settings
+    archived: false
+  - id: 01a125e1-47bf-755e-9131-3598e25a33df
+    keyword: And
+    text: Zoom, which needs keys and is currently disabled
+    archived: false
+  - id: 01a125e1-47bf-7121-91ea-f0f9a3f554da
+    keyword: When
+    text: the admin switches Zoom on
+    archived: false
+  - id: 01a125e1-47bf-7663-88c7-9d2481b4f51b
+    keyword: Then
+    text: the admin is asked for the Zoom keys first
+    archived: false
+  - id: 01a125e1-47bf-721e-8cd8-352bf5463afb
+    keyword: And
+    text: after saving the keys the admin sees "Zoom is enabled"
+    archived: false
+  - id: 01a125e1-47bf-77fd-a1e7-83185ae540cf
+    keyword: And
+    text: an app that needs no keys is enabled straight away
+    archived: false
+  archived: false
+- id: 01a125e1-47bf-7b5f-b296-99771b596f9e
+  title: Disabling a calendar or video app warns everyone who installed it
+  steps:
+  - id: 01a125e1-47bf-787e-b823-f4d7b9666293
+    keyword: Given
+    text: an admin viewing the apps in admin settings
+    archived: false
+  - id: 01a125e1-47bf-7bb0-81c8-b761ed1c8829
+    keyword: And
+    text: Organizers who have installed Zoom
+    archived: false
+  - id: 01a125e1-47bf-7012-8c1b-2e5011a7f68d
+    keyword: When
+    text: the admin switches Zoom off and confirms "Disable app"
+    archived: false
+  - id: 01a125e1-47bf-7e31-ac78-55b2ab710dd0
+    keyword: Then
+    text: the admin sees "Zoom is disabled"
+    archived: false
+  - id: 01a125e1-47bf-7553-b753-887bba3a1708
+    keyword: And
+    text: each of those Organizers is emailed "An admin has disabled Zoom"
+    archived: false
+  - id: 01a125e1-47bf-7ebc-8277-6eaf92cea5b6
+    keyword: And
+    text: Zoom no longer appears in the App Store
+    archived: false
+  archived: false
+- id: 01a125e1-47bf-7f72-b19b-3be24e4cd0de
+  title: Disabling any other app turns it off on every Event Type using it
+  steps:
+  - id: 01a125e1-47bf-7698-af3a-2494216c2fc3
+    keyword: Given
+    text: an admin viewing the apps in admin settings
+    archived: false
+  - id: 01a125e1-47bf-7fce-a154-03a346d71629
+    keyword: And
+    text: an Organizer's Event Type "Intro call" with Google Analytics switched on
+    archived: false
+  - id: 01a125e1-47bf-781b-a113-bcb98c91a8c5
+    keyword: When
+    text: the admin switches Google Analytics off and confirms "Disable app"
+    archived: false
+  - id: 01a125e1-47bf-7e31-abae-d0259ce3a2de
+    keyword: Then
+    text: Google Analytics is switched off on "Intro call"
+    archived: false
+  - id: 01a125e1-47bf-7e25-b5c5-e38209d7861c
+    keyword: And
+    text: the Organizer is emailed "An admin has disabled Google Analytics which affects your event type Intro call"
+    archived: false
+  archived: false
+- id: 01a125e1-47bf-7d5d-a4f8-00c3fa3c54fe
+  title: An app that allows one installation cannot be installed twice
+  steps:
+  - id: 01a125e1-47bf-71ac-815b-59fa705be2f1
+    keyword: Given
+    text: an Organizer who has already installed an app that allows only one installation
+    archived: false
+  - id: 01a125e1-47bf-7da2-ac1b-d85d3132c13b
+    keyword: When
+    text: the Organizer tries to install it again
+    archived: false
+  - id: 01a125e1-47bf-7256-80bf-015d486ad978
+    keyword: Then
+    text: the Organizer sees "App is already installed"
+    archived: false
+  archived: false
+- id: 01a125e1-47bf-7882-b563-61d788206bef
+  title: Removing a payment app hides the Organizer's Event Types and cancels unpaid Bookings
+  steps:
+  - id: 01a125e1-47bf-72d8-a142-6f33e899ac65
+    keyword: Given
+    text: an Organizer with a payment app installed
+    archived: false
+  - id: 01a125e1-47bf-7fee-bb74-05e5aa7d4a4a
+    keyword: And
+    text: a future Booking still waiting for a failed payment through that app
+    archived: false
+  - id: 01a125e1-47bf-78a5-8c4e-0701fd0e6275
+    keyword: When
+    text: the Organizer removes the payment app
+    archived: false
+  - id: 01a125e1-47bf-77b9-96cd-d0ff0b7027ab
+    keyword: Then
+    text: every Event Type of the Organizer is hidden
+    archived: false
+  - id: 01a125e1-47bf-7786-b416-550b8cb6656d
+    keyword: And
+    text: the waiting Booking is cancelled with the reason "Payment method removed"
+    archived: false
+  - id: 01a125e1-47bf-794f-857d-1d153cfeae1a
+    keyword: And
+    text: the Attendees are emailed that the Booking was cancelled
+    archived: false
+  - id: 01a125e1-47bf-7a0b-b553-e9951e81402e
+    keyword: And
+    text: Bookings in the past are left alone
+    archived: false
+  archived: false
+- id: 01a125e1-47bf-7b99-9c4f-78bf75cd3d17
+  title: Removing an app that adds options to Event Types hides the Organizer's Event Types
+  steps:
+  - id: 01a125e1-47bf-7a8b-85be-d079136c4b11
+    keyword: Given
+    text: an Organizer with a CRM app installed
+    archived: false
+  - id: 01a125e1-47bf-7d10-9e7c-20def4dbd0c1
+    keyword: When
+    text: the Organizer removes the CRM app
+    archived: false
+  - id: 01a125e1-47bf-74e9-bc58-bfb9c7f9582b
+    keyword: Then
+    text: the app's settings are removed from the Organizer's Event Types
+    archived: false
+  - id: 01a125e1-47bf-78fa-9b7f-0c5194fed518
+    keyword: And
+    text: every Event Type of the Organizer is hidden, whether or not it used the app
+    archived: false
+  archived: false
+archived: false

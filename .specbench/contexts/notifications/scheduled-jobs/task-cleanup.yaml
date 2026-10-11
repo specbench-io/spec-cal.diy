@@ -1,0 +1,13 @@
+spec-format: 1
+kind: scheduled-job
+id: 01a125a5-6df4-7967-bbe1-aaf6a6b34f29
+revision: 3
+name: Task Cleanup
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: 
+schedule: every day at midnight (/api/tasks/cleanup)
+steps:
+- id: 01a125a5-6df4-777f-b31d-07f7588be341
+  text: Does nothing - the cleanup code is commented out
+  indent: 0
+archived: false

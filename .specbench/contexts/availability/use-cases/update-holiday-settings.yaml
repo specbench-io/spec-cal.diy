@@ -1,0 +1,39 @@
+spec-format: 1
+kind: use-case
+id: 01a1259d-7dd9-7d69-a84d-fa638f87c3d6
+revision: 7
+name: Update Holiday Settings
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: viewer.holidays.updateSettings.
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a1259d-7dd9-7b6e-abe3-a36ae829a96a
+  name: Country Code
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+steps:
+- id: 01a1259d-7dd9-7a3d-ab86-97d67b27d936
+  text: 'If {{input:Country Code}} is not a supported country, refuse: {{outcome:Invalid Country Code}}'
+  indent: 0
+- id: 01a1259d-7dd9-7ef3-9ecd-7c1adeffaaba
+  text: 'Save the country and switch every Holiday back on: {{outcome:Settings Updated}}'
+  indent: 0
+outcomes:
+- id: 01a1259d-7dd9-7d8c-b5b6-585d08299564
+  name: Settings Updated
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a1259d-7dd9-79fd-bd2e-3c27cf9fed19
+  name: Invalid Country Code
+  success: false
+  code: 400
+  message: Invalid country code
+  returns: 
+archived: false

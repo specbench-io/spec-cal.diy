@@ -1,0 +1,60 @@
+spec-format: 1
+kind: use-case
+id: 01a125a3-633e-7377-ac2a-3dd843c6cab4
+revision: 10
+name: Set Destination Calendar
+bounded-context-id: 01a0f44a-2a06-7125-8fe2-659328d04ce1
+description: viewer.calendars.setDestinationCalendar (Add events to). Also called by Update Event Type.
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a3-633f-75ea-a471-1c00fa5a154c
+  name: Integration
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a3-633f-7541-9c6c-cd99bc8a5c29
+  name: External Id
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a3-633f-7d89-bcef-ce894b568b24
+  name: Event Type Id
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Id
+  archived: false
+steps:
+- id: 01a125a3-633f-7e9f-a65b-5e162edcf164
+  text: 'If no writable connected calendar matches, refuse: {{outcome:Calendar Not Found}}'
+  indent: 0
+- id: 01a125a3-633f-7d73-a31a-abe6b53821f6
+  text: "If {{input:Event Type Id}} is not the Organizer's, refuse: {{outcome:No Access}}"
+  indent: 0
+- id: 01a125a3-633f-79f1-9a6b-3889ea718634
+  text: 'Save it as the Destination Calendar for the Event Type or the Organizer: {{outcome:Saved}}'
+  indent: 0
+outcomes:
+- id: 01a125a3-633f-7d6d-af3b-2385c0679d45
+  name: Saved
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a125a3-633f-7d59-bfd2-5b46670305de
+  name: Calendar Not Found
+  success: false
+  code: 400
+  message: 
+  returns: 
+- id: 01a125a3-633f-73e2-8685-1dec5bd401e9
+  name: No Access
+  success: false
+  code: 401
+  message: 
+  returns: 
+archived: false

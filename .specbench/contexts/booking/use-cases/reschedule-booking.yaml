@@ -1,0 +1,45 @@
+spec-format: 1
+kind: use-case
+id: 01a125a2-2f72-7ed4-b63d-2f0655e258e4
+revision: 7
+name: Reschedule Booking
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: The /reschedule/uid page. It sends the Booker to the booking page, which then runs Create Booking with the reschedule uid.
+use-case-kind: Command
+roles:
+- 01a0f444-a88b-7305-b695-d9ce82d7f6cc
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a2-2f72-74ed-8d70-63a75e599aaa
+  name: Uid
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a2-2f72-7241-9359-4311a6d7b843
+  text: 'If the Event Type disables rescheduling, or the Booking is cancelled or rejected, send them back to the Booking: {{outcome:Rescheduling Not Allowed}}'
+  indent: 0
+- id: 01a125a2-2f72-7233-96af-9e1f2dd88e06
+  text: 'If someone other than the Organizer is inside the minimum reschedule notice, send them back too: {{outcome:Rescheduling Not Allowed}}'
+  indent: 0
+- id: 01a125a2-2f72-78f1-9234-22889caa991f
+  text: If the Booking is in the past and the Event Type does not allow rescheduling past events, start a new booking instead, with name and email filled in
+  indent: 0
+- id: 01a125a2-2f72-7507-83ea-d7f98c863196
+  text: 'Otherwise open the booking page for a new time, which books it with Create Booking: {{outcome:Rescheduled}}'
+  indent: 0
+outcomes:
+- id: 01a125a2-2f72-7c49-93ad-7e725d0b4064
+  name: Rescheduled
+  success: true
+  code: 
+  message: Your event has been rescheduled
+  returns: 
+- id: 01a125a2-2f72-7d80-b3d9-dc28901843f8
+  name: Rescheduling Not Allowed
+  success: false
+  code: 
+  message: 
+  returns: 
+archived: false

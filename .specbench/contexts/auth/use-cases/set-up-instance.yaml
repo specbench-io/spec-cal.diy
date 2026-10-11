@@ -1,0 +1,47 @@
+spec-format: 1
+kind: use-case
+id: 01a125a7-3c59-7a59-83cb-af1619f34621
+revision: 8
+name: Set Up Instance
+bounded-context-id: 01a0f44a-2a5f-7042-8b97-02046e8bb55c
+description: /auth/setup and POST /api/auth/setup - the first-run wizard.
+use-case-kind: Command
+roles:
+- 01a0f442-adc6-7410-af52-ea288a8ae9d1
+inputs:
+- id: 01a125a7-3c59-7cb9-aeda-1102e092794f
+  name: Email
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a7-3c59-71c6-baad-3009729880fc
+  name: Password
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+steps:
+- id: 01a125a7-3c59-74e3-a2ca-284fe7f58a34
+  text: 'If any user already exists, refuse: {{outcome:No Setup Needed}}'
+  indent: 0
+- id: 01a125a7-3c59-7595-a2a6-ee6eeef33262
+  text: The password must pass the strict password rule
+  indent: 0
+- id: 01a125a7-3c59-7c02-8664-55339a898023
+  text: 'Create the first Admin with a verified email, then let them enable apps: {{outcome:Admin Created}}'
+  indent: 0
+outcomes:
+- id: 01a125a7-3c59-72c6-8583-b8e5e1de3be0
+  name: Admin Created
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a125a7-3c59-7100-bdb9-863ca46c7048
+  name: No Setup Needed
+  success: false
+  code: 400
+  message: No setup needed.
+  returns: 
+archived: false

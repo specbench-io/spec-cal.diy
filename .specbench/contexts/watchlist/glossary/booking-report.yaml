@@ -1,0 +1,11 @@
+spec-format: 1
+kind: term
+id: 01a12596-167c-7c44-8351-22a8accd6ad8
+revision: 4
+name: Booking Report
+definition: An Organizer's report that a Booking looked like spam or came from someone they don't know. Reporting an upcoming Booking also cancels it.
+aka:
+- Report booking
+avoid: []
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+archived: false

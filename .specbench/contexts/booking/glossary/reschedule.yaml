@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a125a0-8ba5-7ae5-9f0a-4ad34e7dbebc
+revision: 3
+name: Reschedule
+definition: Moving a Booking to a new time. A new Booking replaces the original, which is cancelled and marked rescheduled.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+archived: false

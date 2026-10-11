@@ -1,0 +1,29 @@
+spec-format: 1
+kind: use-case
+id: 01a1259f-665d-78c8-a7e3-47926a394620
+revision: 6
+name: Delete Event Type
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+description: viewer.eventTypes.delete (Delete event type? dialog).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a1259f-665d-7051-aa6d-fedb629891fe
+  name: Event Type Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+steps:
+- id: 01a1259f-665d-7f4b-9ec7-1cef712bc90d
+  text: 'Delete the Event Type with its Private Links, Cal Video settings, destination calendar and webhooks. Its Bookings stay, no longer linked to an Event Type: {{outcome:Event Type Deleted}}'
+  indent: 0
+outcomes:
+- id: 01a1259f-665d-7a61-84e6-7ab7cb0daf20
+  name: Event Type Deleted
+  success: true
+  code: 
+  message: Event type deleted successfully
+  returns: 
+archived: false

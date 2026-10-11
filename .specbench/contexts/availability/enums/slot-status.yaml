@@ -1,0 +1,26 @@
+spec-format: 1
+kind: enum
+id: 01a1259b-eb58-79dc-ba87-7a52db1fd1a7
+revision: 6
+name: Slot Status
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+summary: The answer to a quick check of one Slot.
+description: 
+cases:
+- id: 01a1259b-eb58-7773-b557-81311884e3ab
+  name: Available
+  description: 
+  archived: false
+- id: 01a1259b-eb58-7bf0-b0ab-9fa6707189d2
+  name: Reserved
+  description: Held by another Booker. Reported to the caller as available.
+  archived: false
+- id: 01a1259b-eb58-7741-a198-f214261bb5de
+  name: Min Book Notice Violation
+  description: 
+  archived: false
+- id: 01a1259b-eb58-7d4d-be29-6b936931a52f
+  name: Slot In Past
+  description: 
+  archived: false
+archived: false

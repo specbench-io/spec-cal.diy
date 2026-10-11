@@ -1,0 +1,38 @@
+spec-format: 1
+kind: use-case
+id: 01a12597-000f-740c-aa9d-83df6a4d1b75
+revision: 6
+name: List Watchlist Entries
+bounded-context-id: 01a0f44a-2a82-7205-895b-24cdaae11df2
+description: 'Admin API: viewer.admin.watchlist.list.'
+use-case-kind: Query
+roles:
+- 01a0f442-adc6-7410-af52-ea288a8ae9d1
+inputs:
+- id: 01a12597-000f-750c-83a2-bd7cf81a89a2
+  name: Search Term
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+steps:
+- id: 01a12597-000f-7aba-b549-a4cdf654a2bd
+  text: 'Return a page of Global Watchlist entries matching {{input:Search Term}}: {{outcome:Listed}}'
+  indent: 0
+outcomes:
+- id: 01a12597-000f-7102-b5db-70468610c0aa
+  name: Listed
+  success: true
+  code: 
+  message: 
+  returns:
+    kind: Collection
+    shape: List
+    element:
+      kind: Ref
+      ref:
+        entity-type: Aggregate
+        entity-id: 01a10ff1-1010-7d2d-9de2-ada8e6a07a95
+      ref-name: Watchlist Entry
+archived: false

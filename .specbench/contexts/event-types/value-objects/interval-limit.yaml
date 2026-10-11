@@ -1,0 +1,40 @@
+spec-format: 1
+kind: value-object
+id: 01a12591-8bc0-7138-b639-a4a7353f8bff
+revision: 6
+name: Interval Limit
+bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
+summary: A limit per day, week, month and year. Each one is optional.
+description: 
+properties:
+- id: 01a12591-8bc0-7b8f-9c25-54dbca035225
+  name: Per Day
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Number
+  archived: false
+- id: 01a12591-8bc0-7656-962a-ce8ce3b0c5b5
+  name: Per Week
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Number
+  archived: false
+- id: 01a12591-8bc0-77b0-8f05-6fc5c7cfbdef
+  name: Per Month
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Number
+  archived: false
+- id: 01a12591-8bc0-7763-8f35-62ae40eaaf51
+  name: Per Year
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Number
+  archived: false
+invariants: []
+methods: []
+archived: false

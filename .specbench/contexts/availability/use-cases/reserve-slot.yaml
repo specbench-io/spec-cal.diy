@@ -1,0 +1,59 @@
+spec-format: 1
+kind: use-case
+id: 01a1259d-7e2f-7219-b873-b878167ff0b7
+revision: 9
+name: Reserve Slot
+bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
+description: viewer.slots.reserveSlot. The booking page repeats it every few minutes while the form is open.
+use-case-kind: Command
+roles:
+- 01a0f442-adc1-7f74-9a7a-6b7f3cc9be7d
+inputs:
+- id: 01a1259d-7e2f-7571-a869-e06520c80a12
+  name: Event Type Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a1259d-7e2f-7718-8b8c-42039b66dd1a
+  name: Slot Utc Start Date
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a1259d-7e2f-7536-b506-787553bc327d
+  name: Slot Utc End Date
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+steps:
+- id: 01a1259d-7e2f-7a71-b1f1-b439394093eb
+  text: Identify the Booker by their browser cookie, or give them a new one
+  indent: 0
+- id: 01a1259d-7e2f-7de3-8b1a-ef20ec005a9e
+  text: 'If the Event Type does not exist, refuse: {{outcome:Event Type Not Found}}'
+  indent: 0
+- id: 01a1259d-7e2f-7775-81d6-0df34fdbc74b
+  text: For a seated Event Type, only hold the Slot when a Booking already exists there with seats left
+  indent: 0
+- id: 01a1259d-7e2f-747d-8982-5655400a331c
+  text: 'If another Booker already holds the Slot, do nothing: {{outcome:Reserved}}'
+  indent: 0
+- id: 01a1259d-7e2f-7db5-a8f2-338a0813efe5
+  text: 'Otherwise hold the Slot for each Organizer of the Event Type until now plus five minutes (MINUTES_TO_BOOK): {{outcome:Reserved}}'
+  indent: 0
+outcomes:
+- id: 01a1259d-7e2f-76ca-a78d-0f7137429953
+  name: Reserved
+  success: true
+  code: 
+  message: 
+  returns: 
+- id: 01a1259d-7e2f-75e3-9c92-c6e93a321843
+  name: Event Type Not Found
+  success: false
+  code: 404
+  message: Event type not found
+  returns: 
+archived: false

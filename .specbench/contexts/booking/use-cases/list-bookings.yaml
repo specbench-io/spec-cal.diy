@@ -1,0 +1,39 @@
+spec-format: 1
+kind: use-case
+id: 01a125a2-30a0-7126-a451-d904c1275d72
+revision: 8
+name: List Bookings
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: viewer.bookings.get (the /bookings tabs). The page can also send several tabs at once; with none it shows Upcoming.
+use-case-kind: Query
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a2-30a0-70b2-9235-20639f927b31
+  name: Tab
+  type:
+    kind: Ref
+    nullable: true
+    ref:
+      entity-type: Enum
+      entity-id: 01a125a0-8b30-7f16-9c4a-ac53ed58d816
+    ref-name: Bookings Tab
+  archived: false
+steps:
+- id: 01a125a2-30a0-7d02-949a-a10eb4c2cf9c
+  text: Take the Bookings the person organises, attends, or holds a seat in
+  indent: 0
+- id: 01a125a2-30a0-7bac-9bc7-3cf712d50afd
+  text: 'Filter by {{input:Tab}}: Upcoming (not ended, not cancelled or rejected), Unconfirmed (not ended, pending), Recurring, Past (ended), Cancelled (cancelled or rejected)'
+  indent: 0
+- id: 01a125a2-30a0-7e95-ad7b-4036e4147c82
+  text: 'Sort upcoming tabs soonest first and the others latest first, grouping recurring series: {{outcome:Listed}}'
+  indent: 0
+outcomes:
+- id: 01a125a2-30a0-7c18-a990-158e6a65c33a
+  name: Listed
+  success: true
+  code: 
+  message: 
+  returns: 
+archived: false

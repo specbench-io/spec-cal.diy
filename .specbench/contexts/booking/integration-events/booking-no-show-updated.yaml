@@ -1,0 +1,30 @@
+spec-format: 1
+kind: integration-event
+id: 01a125a0-eab3-78d6-ada9-ffd0432312ce
+revision: 3
+name: Booking No Show Updated
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: The Organizer marked or unmarked Attendees as no-shows (webhook BOOKING_NO_SHOW_UPDATED).
+fields:
+- id: 01a125a0-eab3-71aa-8bba-5866fb29d224
+  name: Booking Uid
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a125a0-eab3-70d3-96f3-a527349f1151
+  name: Message
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a125a0-eab3-75bb-8b07-f89eb0ac1d28
+  name: Attendee Emails
+  description: 
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Primitive
+      primitive: Text
+archived: false

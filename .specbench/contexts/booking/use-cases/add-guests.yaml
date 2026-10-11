@@ -1,0 +1,69 @@
+spec-format: 1
+kind: use-case
+id: 01a125a2-2fce-797e-9439-6c917a94c7bd
+revision: 11
+name: Add Guests
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: viewer.bookings.addGuests (Add guests dialog). The action is hidden when guests are disabled, but the server does not check that.
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+- 01a0f444-a88b-7305-b695-d9ce82d7f6cc
+inputs:
+- id: 01a125a2-2fce-7f6e-af92-0d9c009d39f1
+  name: Booking Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a125a2-2fce-766f-98a8-d5d098131e29
+  name: Guests
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Primitive
+      primitive: Text
+  archived: false
+steps:
+- id: 01a125a2-2fce-71de-8670-f9e335f5eb59
+  text: 'If the Booking does not exist, refuse: {{outcome:Booking Not Found}}'
+  indent: 0
+- id: 01a125a2-2fce-7041-b5d4-3bb1ce8fa90d
+  text: 'If the person is neither the Organizer nor an Attendee, refuse: {{outcome:No Permission}}'
+  indent: 0
+- id: 01a125a2-2fce-7f84-9db0-b5156912fdfb
+  text: 'Remove duplicates, existing Attendees, blocked emails and accounts that need booker email verification; if no one is left, refuse: {{outcome:Emails Must Be Unique}}'
+  indent: 0
+- id: 01a125a2-2fce-7a31-9d4b-0b10a09e2f4a
+  text: Add the Guests as Attendees and to the booking answers
+  indent: 0
+- id: 01a125a2-2fce-7652-be2e-0bc34fbfc204
+  text: 'Add them to the calendar event with {{method:Calendars/Event Manager.Update Calendar Attendees}} and email everyone with {{method:Notifications/Booking Email Sms Handler.Send Add Guests}}: {{outcome:Guests Added}}'
+  indent: 0
+outcomes:
+- id: 01a125a2-2fce-746d-b471-e76dfd34f635
+  name: Guests Added
+  success: true
+  code: 
+  message: Guests added
+  returns: 
+- id: 01a125a2-2fce-768d-808e-c65e3e99112c
+  name: Booking Not Found
+  success: false
+  code: 404
+  message: 
+  returns: 
+- id: 01a125a2-2fce-711f-8922-ed2bd4ff1c52
+  name: No Permission
+  success: false
+  code: 403
+  message: 
+  returns: 
+- id: 01a125a2-2fce-78c7-afc3-120e7e5fef88
+  name: Emails Must Be Unique
+  success: false
+  code: 400
+  message: Emails must be unique and valid
+  returns: 
+archived: false

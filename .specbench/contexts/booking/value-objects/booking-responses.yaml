@@ -1,0 +1,61 @@
+spec-format: 1
+kind: value-object
+id: 01a125a0-8b75-7c0c-953f-55922629b7ac
+revision: 9
+name: Booking Responses
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+summary: The Booker's answers to the Booking Questions.
+description: 
+properties:
+- id: 01a125a0-8b75-7298-82d6-f85802231321
+  name: Email
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a0-8b75-72cc-b63e-9bd785caad9c
+  name: Name
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a125a0-8b75-7239-a11e-3da60a405f0e
+  name: Attendee Phone Number
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a0-8b75-7d70-a86a-87eed1257700
+  name: Guests
+  type:
+    kind: Collection
+    shape: List
+    element:
+      kind: Primitive
+      primitive: Text
+  archived: false
+- id: 01a125a0-8b75-77b6-ac7d-72fa2b15e87a
+  name: Notes
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a0-8b75-72bf-b276-d90e1cc9b371
+  name: Location
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+- id: 01a125a0-8b75-71ff-9ab3-4da7ea852aa9
+  name: Reschedule Reason
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Text
+  archived: false
+invariants: []
+methods: []
+archived: false

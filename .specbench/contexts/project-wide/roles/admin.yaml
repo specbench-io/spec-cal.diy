@@ -1,0 +1,16 @@
+spec-format: 1
+kind: actor
+id: 01a0f442-adc6-7410-af52-ea288a8ae9d1
+revision: 6
+name: Admin
+summary: The person who runs the self-hosted cal.diy instance.
+description: 
+responsibilities:
+- Runs the self-hosted instance
+- Manages users, feature flags and the Global Watchlist
+- Enables apps and approves OAuth Clients
+needs:
+- Stop spam across the whole instance
+pain-points:
+- The System Blocklist screens are not shown in cal.diy, only the API exists
+archived: false

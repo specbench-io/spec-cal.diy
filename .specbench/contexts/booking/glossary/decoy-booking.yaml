@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a10d66-4e12-786b-a9a2-d33faf157d9d
+revision: 3
+name: Decoy Booking
+definition: A fake confirmation shown to a blocked Booker so they cannot tell they were turned away. Nothing is saved.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+archived: false

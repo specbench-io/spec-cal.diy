@@ -1,0 +1,30 @@
+spec-format: 1
+kind: use-case
+id: 01a125a3-636f-7fe8-bda5-42c34000dca5
+revision: 6
+name: Set Destination Reminder
+bounded-context-id: 01a0f44a-2a06-7125-8fe2-659328d04ce1
+description: viewer.calendars.setDestinationReminder (Default reminder - Google only).
+use-case-kind: Command
+roles:
+- 01a0f442-adb2-70ac-8ad6-65442784e943
+inputs:
+- id: 01a125a3-636f-7f93-902e-481ceb09677d
+  name: Reminder
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Number
+  archived: false
+steps:
+- id: 01a125a3-636f-7a26-8b3f-9105c96cf7ea
+  text: 'Save {{input:Reminder}} (default, 0, 10, 30 or 60 minutes) on the Destination Calendar: {{outcome:Reminder Updated}}'
+  indent: 0
+outcomes:
+- id: 01a125a3-636f-7e0a-b5c5-c5a19dabec8d
+  name: Reminder Updated
+  success: true
+  code: 
+  message: Reminder updated
+  returns: 
+archived: false
