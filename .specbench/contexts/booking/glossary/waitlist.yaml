@@ -1,0 +1,12 @@
+spec-format: 1
+kind: term
+id: 01a12c39-6af2-7867-8f0e-2318401ddfdd
+revision: 4
+name: Waitlist
+definition: The line of Bookers waiting for a time that is already booked. When the time frees up, the first person in line is offered it.
+aka: []
+avoid:
+- term: Watchlist
+  reason: The Watchlist is the spam blocklist. It has nothing to do with waiting for a time.
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+archived: false

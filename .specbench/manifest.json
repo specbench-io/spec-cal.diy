@@ -3,6 +3,36 @@
   "specFormat": 1,
   "artefacts": [
     {
+      "kind": "adapter",
+      "id": "01a125c0-c771-7ef0-b96d-3c9fb7bda74d",
+      "name": "Cal Video",
+      "path": "contexts/apps/adapters/cal-video.yaml"
+    },
+    {
+      "kind": "adapter",
+      "id": "01a125c0-cb24-71b6-84e9-427b447895dc",
+      "name": "MS Teams",
+      "path": "contexts/apps/adapters/ms-teams.yaml"
+    },
+    {
+      "kind": "adapter",
+      "id": "01a125c0-ce56-7304-867f-30389d629edd",
+      "name": "PayPal",
+      "path": "contexts/apps/adapters/paypal.yaml"
+    },
+    {
+      "kind": "adapter",
+      "id": "01a125c0-cc3c-7f4c-bec8-fa068f1fb738",
+      "name": "Stripe",
+      "path": "contexts/apps/adapters/stripe.yaml"
+    },
+    {
+      "kind": "adapter",
+      "id": "01a125c0-c95d-7599-a018-2df23cc628ae",
+      "name": "Zoom",
+      "path": "contexts/apps/adapters/zoom.yaml"
+    },
+    {
       "kind": "aggregate",
       "id": "01a125a3-d636-7bec-b1d3-61e2d38ee12d",
       "name": "App",
@@ -729,6 +759,18 @@
       "path": "contexts/booking/aggregates/booking.yaml"
     },
     {
+      "kind": "aggregate",
+      "id": "01a12c39-6a1e-7e4a-8bb9-748ce5f8c4f5",
+      "name": "Waitlist Entry",
+      "path": "contexts/booking/aggregates/waitlist-entry.yaml"
+    },
+    {
+      "kind": "application-service",
+      "id": "01a12c3a-917a-79b9-ada3-e49ba48dab67",
+      "name": "Waitlist Offers",
+      "path": "contexts/booking/application-services/waitlist-offers.yaml"
+    },
+    {
       "kind": "bounded-context",
       "id": "01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573",
       "name": "Booking",
@@ -775,6 +817,24 @@
       "id": "01a125a0-8b10-7507-a77c-ad4093a82b86",
       "name": "Creation Source",
       "path": "contexts/booking/enums/creation-source.yaml"
+    },
+    {
+      "kind": "enum",
+      "id": "01a12c39-699d-7bf3-9b12-18f4ac596894",
+      "name": "Waitlist Entry Status",
+      "path": "contexts/booking/enums/waitlist-entry-status.yaml"
+    },
+    {
+      "kind": "event-handler",
+      "id": "01a12c3a-91e4-7fb3-8990-9fcb7ca859f9",
+      "name": "Offer Time After Cancellation",
+      "path": "contexts/booking/event-handlers/offer-time-after-cancellation.yaml"
+    },
+    {
+      "kind": "event-handler",
+      "id": "01a12c3a-9223-757f-b3ae-2b5a49934859",
+      "name": "Offer Time After Reschedule",
+      "path": "contexts/booking/event-handlers/offer-time-after-reschedule.yaml"
     },
     {
       "kind": "term",
@@ -831,6 +891,18 @@
       "path": "contexts/booking/glossary/unconfirmed.yaml"
     },
     {
+      "kind": "term",
+      "id": "01a12c39-6b1e-7da8-89e5-e63887d14645",
+      "name": "Waitlist Offer",
+      "path": "contexts/booking/glossary/waitlist-offer.yaml"
+    },
+    {
+      "kind": "term",
+      "id": "01a12c39-6af2-7867-8f0e-2318401ddfdd",
+      "name": "Waitlist",
+      "path": "contexts/booking/glossary/waitlist.yaml"
+    },
+    {
       "kind": "integration-event",
       "id": "01a125a0-ea56-7ecb-900a-a3df0938fb48",
       "name": "Booking Cancelled",
@@ -885,6 +957,24 @@
       "path": "contexts/booking/integration-events/meeting-started.yaml"
     },
     {
+      "kind": "integration-event",
+      "id": "01a12c39-6a94-79cc-ba51-f49360859668",
+      "name": "Waitlist Joined",
+      "path": "contexts/booking/integration-events/waitlist-joined.yaml"
+    },
+    {
+      "kind": "integration-event",
+      "id": "01a12c39-6ac3-7ce9-a127-85a7cebf2df0",
+      "name": "Waitlist Slot Offered",
+      "path": "contexts/booking/integration-events/waitlist-slot-offered.yaml"
+    },
+    {
+      "kind": "scheduled-job",
+      "id": "01a12c3a-9260-7f3e-a1af-d28a76ce22f6",
+      "name": "Expire Waitlist Offers",
+      "path": "contexts/booking/scheduled-jobs/expire-waitlist-offers.yaml"
+    },
+    {
       "kind": "use-case",
       "id": "01a125a2-2fce-797e-9439-6c917a94c7bd",
       "name": "Add Guests",
@@ -895,6 +985,12 @@
       "id": "01a125a2-2f45-7c27-a662-7b22f229c2d8",
       "name": "Cancel Booking",
       "path": "contexts/booking/use-cases/cancel-booking.yaml"
+    },
+    {
+      "kind": "use-case",
+      "id": "01a12c3a-9133-70ec-a8e3-a02d772cda31",
+      "name": "Claim Waitlist Offer",
+      "path": "contexts/booking/use-cases/claim-waitlist-offer.yaml"
     },
     {
       "kind": "use-case",
@@ -919,6 +1015,18 @@
       "id": "01a125a2-2ff9-734d-8a6e-73a091e37c5d",
       "name": "Edit Location",
       "path": "contexts/booking/use-cases/edit-location.yaml"
+    },
+    {
+      "kind": "use-case",
+      "id": "01a12c3a-90a4-7687-a9e0-d45f4804bdb7",
+      "name": "Join Waitlist",
+      "path": "contexts/booking/use-cases/join-waitlist.yaml"
+    },
+    {
+      "kind": "use-case",
+      "id": "01a12c3a-90fc-7861-8e97-52204d56fe79",
+      "name": "Leave Waitlist",
+      "path": "contexts/booking/use-cases/leave-waitlist.yaml"
     },
     {
       "kind": "use-case",
@@ -973,6 +1081,42 @@
       "id": "01a125a0-8b75-7c0c-953f-55922629b7ac",
       "name": "Booking Responses",
       "path": "contexts/booking/value-objects/booking-responses.yaml"
+    },
+    {
+      "kind": "adapter",
+      "id": "01a125c0-bf39-72d0-a6c5-5c659847cd7d",
+      "name": "Apple Calendar",
+      "path": "contexts/calendars/adapters/apple-calendar.yaml"
+    },
+    {
+      "kind": "adapter",
+      "id": "01a125c0-c298-752a-afda-6ed6f34a172d",
+      "name": "CalDav Calendar",
+      "path": "contexts/calendars/adapters/caldav-calendar.yaml"
+    },
+    {
+      "kind": "adapter",
+      "id": "01a125c0-cf8a-7b51-8148-a9294b4ef3db",
+      "name": "Google Calendar Subscription",
+      "path": "contexts/calendars/adapters/google-calendar-subscription.yaml"
+    },
+    {
+      "kind": "adapter",
+      "id": "01a125c0-b947-77f4-97e6-9782bd7e1bda",
+      "name": "Google Calendar",
+      "path": "contexts/calendars/adapters/google-calendar.yaml"
+    },
+    {
+      "kind": "adapter",
+      "id": "01a125c0-c55a-7e8d-8301-2f6b3faf8b7d",
+      "name": "Ics Feed Calendar",
+      "path": "contexts/calendars/adapters/ics-feed-calendar.yaml"
+    },
+    {
+      "kind": "adapter",
+      "id": "01a125c0-bc8b-713e-81db-880e433f5845",
+      "name": "Office 365 Calendar",
+      "path": "contexts/calendars/adapters/office-365-calendar.yaml"
     },
     {
       "kind": "aggregate",
@@ -1461,6 +1605,18 @@
       "path": "contexts/notifications/event-handlers/send-awaiting-payment-email.yaml"
     },
     {
+      "kind": "event-handler",
+      "id": "01a12c3a-9296-7b8f-8a26-7b4a735d3252",
+      "name": "Send Waitlist Joined Email",
+      "path": "contexts/notifications/event-handlers/send-waitlist-joined-email.yaml"
+    },
+    {
+      "kind": "event-handler",
+      "id": "01a12c3a-92c6-7318-a679-734049b08f26",
+      "name": "Send Waitlist Offer Email",
+      "path": "contexts/notifications/event-handlers/send-waitlist-offer-email.yaml"
+    },
+    {
       "kind": "term",
       "id": "01a125a4-cf23-784d-8412-01ff793a3ba5",
       "name": "Payload Template",
@@ -1551,72 +1707,6 @@
       "path": "contexts/notifications/use-cases/ping-webhook.yaml"
     },
     {
-      "kind": "adapter",
-      "id": "01a125c0-bf39-72d0-a6c5-5c659847cd7d",
-      "name": "Apple Calendar",
-      "path": "contexts/project-wide/adapters/apple-calendar.yaml"
-    },
-    {
-      "kind": "adapter",
-      "id": "01a125c0-c771-7ef0-b96d-3c9fb7bda74d",
-      "name": "Cal Video",
-      "path": "contexts/project-wide/adapters/cal-video.yaml"
-    },
-    {
-      "kind": "adapter",
-      "id": "01a125c0-c298-752a-afda-6ed6f34a172d",
-      "name": "CalDav Calendar",
-      "path": "contexts/project-wide/adapters/caldav-calendar.yaml"
-    },
-    {
-      "kind": "adapter",
-      "id": "01a125c0-cf8a-7b51-8148-a9294b4ef3db",
-      "name": "Google Calendar Subscription",
-      "path": "contexts/project-wide/adapters/google-calendar-subscription.yaml"
-    },
-    {
-      "kind": "adapter",
-      "id": "01a125c0-b947-77f4-97e6-9782bd7e1bda",
-      "name": "Google Calendar",
-      "path": "contexts/project-wide/adapters/google-calendar.yaml"
-    },
-    {
-      "kind": "adapter",
-      "id": "01a125c0-c55a-7e8d-8301-2f6b3faf8b7d",
-      "name": "Ics Feed Calendar",
-      "path": "contexts/project-wide/adapters/ics-feed-calendar.yaml"
-    },
-    {
-      "kind": "adapter",
-      "id": "01a125c0-cb24-71b6-84e9-427b447895dc",
-      "name": "MS Teams",
-      "path": "contexts/project-wide/adapters/ms-teams.yaml"
-    },
-    {
-      "kind": "adapter",
-      "id": "01a125c0-bc8b-713e-81db-880e433f5845",
-      "name": "Office 365 Calendar",
-      "path": "contexts/project-wide/adapters/office-365-calendar.yaml"
-    },
-    {
-      "kind": "adapter",
-      "id": "01a125c0-ce56-7304-867f-30389d629edd",
-      "name": "PayPal",
-      "path": "contexts/project-wide/adapters/paypal.yaml"
-    },
-    {
-      "kind": "adapter",
-      "id": "01a125c0-cc3c-7f4c-bec8-fa068f1fb738",
-      "name": "Stripe",
-      "path": "contexts/project-wide/adapters/stripe.yaml"
-    },
-    {
-      "kind": "adapter",
-      "id": "01a125c0-c95d-7599-a018-2df23cc628ae",
-      "name": "Zoom",
-      "path": "contexts/project-wide/adapters/zoom.yaml"
-    },
-    {
       "kind": "feature",
       "id": "01a12597-f919-7a75-80c7-08575fe5b221",
       "name": "Blocking spam bookings",
@@ -1651,6 +1741,12 @@
       "id": "01a125e1-47bf-7666-9989-7d4fe45cf869",
       "name": "Installing apps",
       "path": "contexts/project-wide/features/installing-apps.yaml"
+    },
+    {
+      "kind": "feature",
+      "id": "01a12c39-6941-720e-a8e0-a475fc6de7ac",
+      "name": "Joining a waitlist",
+      "path": "contexts/project-wide/features/joining-a-waitlist.yaml"
     },
     {
       "kind": "feature",
@@ -1936,6 +2032,13 @@
       "title": "Onboard cal.diy codebase",
       "state": "Active",
       "path": "workstreams/1-onboard-cal-diy-codebase.md"
+    },
+    {
+      "id": "01a12c36-52a8-78f4-b0ca-36d5a5f268aa",
+      "number": 2,
+      "title": "Join a waitlist",
+      "state": "Active",
+      "path": "workstreams/2-join-a-waitlist.md"
     }
   ],
   "tasks": [
@@ -1943,7 +2046,7 @@
       "id": "01a126a1-bfb8-7010-8d91-9f028a84bb56",
       "number": 1,
       "name": "Initial onboarding",
-      "state": "Ready",
+      "state": "Done",
       "workstreamId": "01a0f43c-6dde-7205-9054-210e36b12341",
       "path": "tasks/initial-onboarding.md",
       "scope": [
@@ -2268,6 +2371,39 @@
         "01a0f447-05cb-7fc2-8f62-d9bb15439ace",
         "01a0f447-05ad-7dd9-8b32-fce1e5b6e2c6",
         "01a0f447-0583-798c-a841-70a943b29d1a"
+      ]
+    },
+    {
+      "id": "01a12c71-b684-7852-bb5f-e0b9a3dd8917",
+      "number": 2,
+      "name": "Join waitlist feature",
+      "state": "Ready",
+      "workstreamId": "01a12c36-52a8-78f4-b0ca-36d5a5f268aa",
+      "path": "tasks/join-waitlist-feature.md",
+      "scope": [
+        "01a12c3a-90fc-7861-8e97-52204d56fe79",
+        "01a125a8-6719-79bd-b4de-7028906e8b5b",
+        "01a125df-ff20-74d0-a352-b1d92c209f52",
+        "01a1259c-c21a-7daa-8f16-283a9ce0e2fd",
+        "01a1259f-9648-72c1-aff5-223cf8bc34e8",
+        "01a12591-8be1-7b7e-adf2-45a5e68d13d4",
+        "01a12c3a-92c6-7318-a679-734049b08f26",
+        "01a12c3a-9296-7b8f-8a26-7b4a735d3252",
+        "01a12c3a-9260-7f3e-a1af-d28a76ce22f6",
+        "01a12c3a-9223-757f-b3ae-2b5a49934859",
+        "01a12c3a-91e4-7fb3-8990-9fcb7ca859f9",
+        "01a12c3a-917a-79b9-ada3-e49ba48dab67",
+        "01a12c3a-9133-70ec-a8e3-a02d772cda31",
+        "01a12c3a-90a4-7687-a9e0-d45f4804bdb7",
+        "01a0f442-adc1-7f74-9a7a-6b7f3cc9be7d",
+        "01a10ff1-104b-7343-b0c8-772c11cedd2c",
+        "01a12c39-6b1e-7da8-89e5-e63887d14645",
+        "01a12c39-6af2-7867-8f0e-2318401ddfdd",
+        "01a12c39-6ac3-7ce9-a127-85a7cebf2df0",
+        "01a12c39-6a94-79cc-ba51-f49360859668",
+        "01a12c39-6a1e-7e4a-8bb9-748ce5f8c4f5",
+        "01a12c39-699d-7bf3-9b12-18f4ac596894",
+        "01a12c39-6941-720e-a8e0-a475fc6de7ac"
       ]
     }
   ]

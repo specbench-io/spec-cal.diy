@@ -1,7 +1,7 @@
 spec-format: 1
 kind: application-service
 id: 01a1259c-c21a-7daa-8f16-283a9ce0e2fd
-revision: 7
+revision: 8
 name: Available Slots Service
 bounded-context-id: 01a0f44a-29cd-7382-996c-0eab13d0b76c
 description: slots/util.ts (DI container getAvailableSlotsService). The core query behind the booking page.
@@ -68,6 +68,9 @@ methods:
     indent: 0
   - id: 01a1259c-c21a-7fc2-8c7a-6daad2c05637
     text: Remove Slots held by other Bookers (Selected Slots), and delete expired holds for this Event Type
+    indent: 0
+  - id: f03836fa-317c-48ba-97c8-afcaf6bb82e2
+    text: If the Event Type has the waitlist switched on, add back the times that are full because of its own Bookings, marked as full, so the Booker can join the waitlist
     indent: 0
   - id: 01a1259c-c21a-7600-a112-ef916997c578
     text: Group the Slots by date in the Booker's {{input:Time Zone}}, keeping only the first Slot of each day when the Event Type asks for that

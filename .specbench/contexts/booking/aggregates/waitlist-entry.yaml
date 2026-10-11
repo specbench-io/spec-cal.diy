@@ -1,0 +1,187 @@
+spec-format: 1
+kind: aggregate
+id: 01a12c39-6a1e-7e4a-8bb9-748ce5f8c4f5
+revision: 29
+name: Waitlist Entry
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+summary: One Booker's place in line for a time that is already booked.
+description: 
+properties:
+- id: 01a12c39-6a1f-7410-987c-84454e164137
+  name: Event Type
+  type:
+    kind: Ref
+    ref:
+      entity-type: Aggregate
+      entity-id: 01a12591-8be1-7b7e-adf2-45a5e68d13d4
+    ref-name: Event Type
+  archived: false
+- id: 01a12c39-6a1f-7007-8de1-10b70619126f
+  name: Slot Start
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a12c39-6a1f-76d6-a126-4be38268a3b3
+  name: Booker Name
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a12c39-6a1f-7630-8d04-8bf410028ddf
+  name: Booker Email
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a12c39-6a1f-70aa-9dbc-53f1ef0408e4
+  name: Booker Time Zone
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a12c39-6a1f-708f-9105-c25944529b5b
+  name: Joined At
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a12c39-6a1f-780f-aab1-0e0da4fde599
+  name: Offer Ends At
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Date
+  archived: false
+invariants:
+- id: 01a12c39-6a24-7488-9b36-32fccef686f3
+  text: A Booker can only be on the waitlist once for the same time.
+  archived: false
+- id: 01a12c39-6a24-7355-b155-9acd8db5f9d2
+  text: People are offered a time in the order they joined.
+  archived: false
+- id: 01a12c39-6a24-708b-af78-7adb4620b295
+  text: Only one person holds an offer for a time at once.
+  archived: false
+domain-events: []
+entities: []
+methods:
+- id: 01a12c39-6a2b-77fa-bbfb-469ecd58e37a
+  name: Offer
+  description: 
+  declared-on: 
+  inputs:
+  - id: 01a12c39-6a3c-7245-bdc5-d66806b0ae90
+    name: Offer Window
+    type:
+      kind: Primitive
+      primitive: Number
+  steps:
+  - id: 01a12c39-6a44-790e-a215-d6b8f56154ad
+    text: 'If the entry is not Waiting, refuse: {{outcome:Not Waiting}}'
+    indent: 0
+  - id: 01a12c39-6a44-7cfb-bb8f-44b54d58b38b
+    text: 'Mark it Offered, ending {{input:Offer Window}} minutes from now: {{outcome:Offered}}'
+    indent: 0
+  outcomes:
+  - id: 01a12c39-6a2f-72b1-8401-6ed6220924cb
+    name: Offered
+    success: true
+    message: 
+    returns: 
+    raises: 
+  - id: 01a12c39-6a2f-7712-8f33-24cd516cfd17
+    name: Not Waiting
+    success: false
+    message: This person is no longer waiting.
+    returns: 
+    raises: 
+  archived: false
+- id: 01a12c39-6a2b-7564-bcb5-118e7fd22409
+  name: Claim
+  description: 
+  declared-on: 
+  inputs: []
+  steps:
+  - id: 01a12c39-6a51-78e0-842e-9e113ec76834
+    text: 'If the entry has not been offered the time, refuse: {{outcome:Not Offered}}'
+    indent: 0
+  - id: 01a12c39-6a51-7333-9189-d44969dd70dc
+    text: 'If the offer has ended, refuse: {{outcome:Offer Ended}}'
+    indent: 0
+  - id: 01a12c39-6a51-7aa1-8c49-91fd8aee5f10
+    text: 'Mark it Claimed: {{outcome:Claimed}}'
+    indent: 0
+  outcomes:
+  - id: 01a12c39-6a51-7003-91e1-bb5e6e39abe0
+    name: Claimed
+    success: true
+    message: 
+    returns: 
+    raises: 
+  - id: 01a12c39-6a51-7532-9add-35475a0bb747
+    name: Not Offered
+    success: false
+    message: This time hasn't been offered to you.
+    returns: 
+    raises: 
+  - id: 01a12c39-6a51-7612-97ea-7b48f8ed85e8
+    name: Offer Ended
+    success: false
+    message: This offer has ended.
+    returns: 
+    raises: 
+  archived: false
+- id: 01a12c39-6a2b-77b1-92a5-a58bdc9ac96a
+  name: Expire
+  description: 
+  declared-on: 
+  inputs: []
+  steps:
+  - id: 01a12c39-6a51-7b3c-806f-5bd57cf9f5db
+    text: 'If the entry is not Offered, refuse: {{outcome:Not Offered}}'
+    indent: 0
+  - id: 01a12c39-6a51-787b-8d96-368d97afd72a
+    text: 'Mark it Expired: {{outcome:Expired}}'
+    indent: 0
+  outcomes:
+  - id: 01a12c39-6a51-75c4-aa29-d7e691602339
+    name: Expired
+    success: true
+    message: 
+    returns: 
+    raises: 
+  - id: 01a12c39-6a51-7228-814f-bcfef5ab438c
+    name: Not Offered
+    success: false
+    message: 
+    returns: 
+    raises: 
+  archived: false
+- id: 01a12c39-6a2b-7e50-81d3-a2372f5f4f4b
+  name: Leave
+  description: 
+  declared-on: 
+  inputs: []
+  steps:
+  - id: 01a12c39-6a51-7403-935d-92826518a28e
+    text: 'If the entry is not Waiting or Offered, refuse: {{outcome:Already Closed}}'
+    indent: 0
+  - id: 01a12c39-6a51-7814-866b-182dd39b3315
+    text: 'Mark it Left: {{outcome:Left}}'
+    indent: 0
+  outcomes:
+  - id: 01a12c39-6a51-74a8-9c2d-c81b27819c50
+    name: Left
+    success: true
+    message: 
+    returns: 
+    raises: 
+  - id: 01a12c39-6a51-7099-96da-9f21e501e353
+    name: Already Closed
+    success: false
+    message: You're no longer on this waitlist.
+    returns: 
+    raises: 
+  archived: false
+archived: false

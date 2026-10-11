@@ -1,16 +1,18 @@
 spec-format: 1
 kind: actor
 id: 01a0f442-adc1-7f74-9a7a-6b7f3cc9be7d
-revision: 6
+revision: 8
 name: Booker
 summary: Someone who books an Organizer's event type through a public booking page, without needing an account.
 description: 
 responsibilities:
 - Books an Organizer's event type through a public booking page
 - Answers the Booking Questions
+- Joins the waitlist for a time that is already booked
 needs:
 - Book quickly without an account
 - See times in their own time zone
+- Still get a popular time if it frees up
 pain-points:
 - Slots that vanish while filling in the form
 archived: false

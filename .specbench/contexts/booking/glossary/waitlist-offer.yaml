@@ -1,0 +1,10 @@
+spec-format: 1
+kind: term
+id: 01a12c39-6b1e-7da8-89e5-e63887d14645
+revision: 3
+name: Waitlist Offer
+definition: The first person in line's chance to book a freed time before the offer window ends.
+aka: []
+avoid: []
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+archived: false

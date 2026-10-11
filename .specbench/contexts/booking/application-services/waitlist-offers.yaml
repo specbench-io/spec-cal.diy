@@ -1,0 +1,58 @@
+spec-format: 1
+kind: application-service
+id: 01a12c3a-917a-79b9-ada3-e49ba48dab67
+revision: 7
+name: Waitlist Offers
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: Offers a freed time to the next person in line. Used when a Booking is cancelled or moved, when an offer runs out, and when someone holding an offer leaves.
+implements: []
+methods:
+- id: 01a12c3a-917c-7db7-ab7b-65b0f4d006d0
+  name: Offer Next In Line
+  description: 
+  implements: 
+  inputs:
+  - id: 01a12c3a-917d-7e86-b767-2bafc3bb85a5
+    name: Event Type Id
+    type:
+      kind: Primitive
+      primitive: Id
+  - id: 01a12c3a-917d-7a8f-bda7-b31000d4d575
+    name: Slot Start
+    type:
+      kind: Primitive
+      primitive: Date
+  steps:
+  - id: 01a12c3a-917d-795b-9d99-8d8ccd20338c
+    text: 'If the Event Type does not have the waitlist switched on, stop: {{outcome:No Waitlist}}'
+    indent: 0
+  - id: 01a12c3a-917d-72a5-a953-900a516e3dc0
+    text: Find the first Waiting entry for {{input:Slot Start}}, in the order people joined
+    indent: 0
+  - id: 01a12c3a-917d-764a-bf05-7cc01878b116
+    text: 'If there is none, stop: {{outcome:Nobody Waiting}}'
+    indent: 1
+  - id: 01a12c3a-917d-721b-9fc1-ee045953a1ea
+    text: Call Waitlist Entry.Offer with the Event Type's offer window
+    indent: 0
+  - id: 01a12c3a-917d-79d1-afad-f01a48a636b6
+    text: 'Publish Waitlist Slot Offered: {{outcome:Offered}}'
+    indent: 0
+  outcomes:
+  - id: 01a12c3a-917c-7935-a061-a38c57e7aad9
+    name: No Waitlist
+    success: true
+    message: 
+    returns: 
+  - id: 01a12c3a-917c-73f0-b6e8-cc44648851fe
+    name: Nobody Waiting
+    success: true
+    message: 
+    returns: 
+  - id: 01a12c3a-917c-7286-a805-53ee4330d905
+    name: Offered
+    success: true
+    message: 
+    returns: 
+  archived: false
+archived: false

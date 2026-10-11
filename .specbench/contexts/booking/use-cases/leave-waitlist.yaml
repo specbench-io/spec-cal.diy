@@ -1,0 +1,53 @@
+spec-format: 1
+kind: use-case
+id: 01a12c3a-90fc-7861-8e97-52204d56fe79
+revision: 9
+name: Leave Waitlist
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: The leave link in the "You're on the waitlist" and offer emails. No account needed.
+use-case-kind: Command
+roles:
+- 01a0f442-adc1-7f74-9a7a-6b7f3cc9be7d
+inputs:
+- id: 01a12c3a-90fc-7396-b875-1357becd38a0
+  name: Waitlist Entry Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+steps:
+- id: 01a12c3a-90fc-78c8-ac80-8d3c6328512b
+  text: 'If the Waitlist Entry does not exist, refuse: {{outcome:Not Found}}'
+  indent: 0
+- id: 01a12c3a-90fc-77bd-a1cf-387611e9cc4f
+  text: Call Waitlist Entry.Leave
+  indent: 0
+- id: 01a12c3a-90fc-7a2f-b0d7-37d4aac04a0b
+  text: 'If it is already closed, refuse: {{outcome:Already Closed}}'
+  indent: 1
+- id: 01a12c3a-90fc-78e0-9a2f-fe6a7c791c7c
+  text: If the entry was holding an offer, offer the time to the next in line with Waitlist Offers.Offer Next In Line
+  indent: 0
+- id: 01a12c3a-90fc-7129-98a8-82c2ab4e422f
+  text: 'Confirm they have left: {{outcome:Left Waitlist}}'
+  indent: 0
+outcomes:
+- id: 01a12c3a-90fc-74a1-853e-02cca29ada4d
+  name: Left Waitlist
+  success: true
+  code: 
+  message: You've left the waitlist.
+  returns: 
+- id: 01a12c3a-90fc-7670-94df-918d03658d57
+  name: Not Found
+  success: false
+  code: 404
+  message: We couldn't find this place on the waitlist.
+  returns: 
+- id: 01a12c3a-90fc-7306-9c07-137d15a2d2ae
+  name: Already Closed
+  success: false
+  code: 400
+  message: You're no longer on this waitlist.
+  returns: 
+archived: false

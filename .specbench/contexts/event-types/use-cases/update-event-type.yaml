@@ -1,7 +1,7 @@
 spec-format: 1
 kind: use-case
 id: 01a1259f-9648-72c1-aff5-223cf8bc34e8
-revision: 15
+revision: 17
 name: Update Event Type
 bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
 description: viewer.eventTypesHeavy.update (Save on the Event Type edit page). Only changed fields are sent, plus the Private Links.
@@ -39,6 +39,9 @@ steps:
   indent: 0
 - id: 01a1259f-9648-797d-9048-906814cb0a40
   text: 'If the offset start is below zero, refuse: {{outcome:Invalid Offset}}'
+  indent: 0
+- id: 64488e7c-3b64-4a7d-bbb5-d2b36ef9d5dc
+  text: 'If the waitlist offer window is under 15 minutes or over 24 hours, refuse: {{outcome:Invalid Offer Window}}'
   indent: 0
 - id: 01a1259f-9648-7b61-851c-82f597ac4e8c
   text: Use the chosen Schedule only if it is the Organizer's; quietly ignore one that is not
@@ -112,5 +115,11 @@ outcomes:
   success: false
   code: 400
   message: An event type with this URL already exists.
+  returns: 
+- id: a75ea34b-0c14-40dd-8638-679cee764e4d
+  name: Invalid Offer Window
+  success: false
+  code: 400
+  message: The offer window must be between 15 minutes and 24 hours.
   returns: 
 archived: false

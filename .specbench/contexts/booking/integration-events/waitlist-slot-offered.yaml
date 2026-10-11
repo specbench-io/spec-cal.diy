@@ -1,0 +1,51 @@
+spec-format: 1
+kind: integration-event
+id: 01a12c39-6ac3-7ce9-a127-85a7cebf2df0
+revision: 3
+name: Waitlist Slot Offered
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: A freed time was offered to the next Booker in line.
+fields:
+- id: 01a12c39-6ac3-7347-89e6-34bef977552f
+  name: Waitlist Entry Id
+  description: 
+  type:
+    kind: Primitive
+    primitive: Id
+- id: 01a12c39-6ac3-7346-9016-da648bf70d02
+  name: Event Type Id
+  description: 
+  type:
+    kind: Primitive
+    primitive: Id
+- id: 01a12c39-6ac3-7d86-936c-6be367a1bec9
+  name: Slot Start
+  description: 
+  type:
+    kind: Primitive
+    primitive: Date
+- id: 01a12c39-6ac3-7771-8b83-1be4f27f84d9
+  name: Booker Name
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a12c39-6ac3-7ff8-8c25-c8a11acaf46f
+  name: Booker Email
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a12c39-6ac3-7b05-985f-f11f889d3a01
+  name: Booker Time Zone
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a12c39-6ac3-78be-b217-d7fb1c9f0559
+  name: Offer Ends At
+  description: 
+  type:
+    kind: Primitive
+    primitive: Date
+archived: false

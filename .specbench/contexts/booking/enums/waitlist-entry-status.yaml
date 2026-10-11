@@ -1,0 +1,30 @@
+spec-format: 1
+kind: enum
+id: 01a12c39-699d-7bf3-9b12-18f4ac596894
+revision: 7
+name: Waitlist Entry Status
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+summary: Where a Booker's place on a waitlist has got to.
+description: 
+cases:
+- id: 01a12c39-69a4-7582-9f67-1360572c4ff2
+  name: Waiting
+  description: In line for the time.
+  archived: false
+- id: 01a12c39-69a4-7015-8d76-b4680679142e
+  name: Offered
+  description: Emailed that the time is free, and can claim it until the offer ends.
+  archived: false
+- id: 01a12c39-69a4-7252-8a42-9366c2fa7632
+  name: Claimed
+  description: Booked the time.
+  archived: false
+- id: 01a12c39-69a4-7ace-a816-2da54609e012
+  name: Expired
+  description: Did not claim the time before the offer ended.
+  archived: false
+- id: 01a12c39-69a4-7c86-89ce-704cfc5d8ddd
+  name: Left
+  description: Took themselves off the waitlist.
+  archived: false
+archived: false

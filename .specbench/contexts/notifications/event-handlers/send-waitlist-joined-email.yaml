@@ -1,0 +1,15 @@
+spec-format: 1
+kind: event-handler
+id: 01a12c3a-9296-7b8f-8a26-7b4a735d3252
+revision: 2
+name: Send Waitlist Joined Email
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: 
+steps:
+- id: 01a12c3a-9296-7a89-8ab7-d7c6d4f415b8
+  text: Email the Booker that they are on the waitlist for the time, shown in their own time zone
+  indent: 0
+- id: 01a12c3a-9296-75b3-b231-2e21fdac383b
+  text: Include a link to leave the waitlist
+  indent: 0
+archived: false
