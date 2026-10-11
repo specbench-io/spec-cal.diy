@@ -1,0 +1,45 @@
+spec-format: 1
+kind: integration-event
+id: 01a12c39-6a94-79cc-ba51-f49360859668
+revision: 3
+name: Waitlist Joined
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: A Booker joined the waitlist for a time.
+fields:
+- id: 01a12c39-6a9b-7e45-99ae-7cc07bb0d04a
+  name: Waitlist Entry Id
+  description: 
+  type:
+    kind: Primitive
+    primitive: Id
+- id: 01a12c39-6a9c-7081-9ec5-d1a3a4f8aa88
+  name: Event Type Id
+  description: 
+  type:
+    kind: Primitive
+    primitive: Id
+- id: 01a12c39-6a9c-72da-8fc5-9bcb33bfd9f4
+  name: Slot Start
+  description: 
+  type:
+    kind: Primitive
+    primitive: Date
+- id: 01a12c39-6a9c-7e5e-bfca-9f234cd66b0c
+  name: Booker Name
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a12c39-6a9c-7894-ab66-25e6854b8a4c
+  name: Booker Email
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+- id: 01a12c39-6a9c-78d1-b9a5-c1c777b2d06d
+  name: Booker Time Zone
+  description: 
+  type:
+    kind: Primitive
+    primitive: Text
+archived: false

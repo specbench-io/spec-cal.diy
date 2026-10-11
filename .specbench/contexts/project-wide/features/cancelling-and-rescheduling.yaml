@@ -1,10 +1,10 @@
 spec-format: 1
 kind: feature
 id: 01a125a8-6719-79bd-b4de-7028906e8b5b
-revision: 29
+revision: 30
 title: Cancelling and rescheduling
 intent: As an Attendee or Organizer, I want to cancel or move a Booking, so that plans can change without starting over.
-description: 'Use Cases: Cancel Booking, Reschedule Booking, Request Reschedule, Create Booking.'
+description: 'Use Cases: Cancel Booking, Reschedule Booking, Request Reschedule, Create Booking. When a cancelled or moved time has a waitlist, it is offered to the first person in line (see Joining a waitlist).'
 scenarios:
 - id: c088226e-d9d5-4786-ba2b-8657637082ce
   title: An Attendee cancels from the booking link

@@ -1,0 +1,18 @@
+spec-format: 1
+kind: event-handler
+id: 01a12c3a-92c6-7318-a679-734049b08f26
+revision: 2
+name: Send Waitlist Offer Email
+bounded-context-id: 01a0f44a-2a3e-7a9f-bb01-ea1e695d1fc3
+description: 
+steps:
+- id: 01a12c3a-92c6-7b69-b562-d62bea33113c
+  text: Email the Booker that the time is free, shown in their own time zone
+  indent: 0
+- id: 01a12c3a-92c6-7247-88bf-5615307ed5cf
+  text: Include a link to claim it and say when the offer ends
+  indent: 0
+- id: 01a12c3a-92c6-7297-ba82-92bc33fe0a7e
+  text: Include a link to leave the waitlist
+  indent: 0
+archived: false

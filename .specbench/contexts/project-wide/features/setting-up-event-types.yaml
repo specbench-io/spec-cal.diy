@@ -1,7 +1,7 @@
 spec-format: 1
 kind: feature
 id: 01a125df-ff20-74d0-a352-b1d92c209f52
-revision: 52
+revision: 60
 title: Setting up Event Types
 intent: As an Organizer, I want to create and tune my Event Types, so that Bookers can only book me in the ways and at the times I allow.
 description: 'Use Cases: Create Event Type, Update Event Type, Duplicate Event Type, Delete Event Type, Hide Event Type From Profile, Reorder Event Types.'
@@ -200,6 +200,38 @@ scenarios:
   - id: 7b66162e-ea8c-442f-ae48-9368c6e3c96c
     keyword: And
     text: the multiple durations are removed
+    archived: false
+  archived: false
+- id: 1d2e9096-4110-42ea-b6b2-50210b9907df
+  title: Switching on the waitlist
+  steps:
+  - id: 0224036d-2b05-4d99-8fbe-751a07437901
+    keyword: Given
+    text: Dana's "Intro Call" has no waitlist
+    archived: false
+  - id: 0e5e91ff-4be5-41c5-87ca-c0a17e1e549c
+    keyword: When
+    text: she switches on "Enable waitlist" with an offer window of 60 minutes
+    archived: false
+  - id: 5270ff3e-c866-468f-a249-762de854dea7
+    keyword: Then
+    text: Bookers can join a waitlist for any full time of "Intro Call"
+    archived: false
+  archived: false
+- id: 090028d7-d569-4a57-8c1b-a8d150e77026
+  title: The waitlist offer window has limits
+  steps:
+  - id: 9b141fd1-f135-4063-b454-2b49f2e534a6
+    keyword: Given
+    text: Dana is switching on the waitlist for "Intro Call"
+    archived: false
+  - id: d08d4ff4-be47-40b8-86f0-02c11746c3e9
+    keyword: When
+    text: she sets the offer window to 5 minutes
+    archived: false
+  - id: 31674594-34fe-4e65-96fa-e7dadb912a2e
+    keyword: Then
+    text: she sees "The offer window must be between 15 minutes and 24 hours."
     archived: false
   archived: false
 archived: false

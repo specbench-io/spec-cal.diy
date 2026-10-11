@@ -1,0 +1,101 @@
+spec-format: 1
+kind: use-case
+id: 01a12c3a-90a4-7687-a9e0-d45f4804bdb7
+revision: 15
+name: Join Waitlist
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: The "Join waitlist" button on a full time on the booking page. No account needed.
+use-case-kind: Command
+roles:
+- 01a0f442-adc1-7f74-9a7a-6b7f3cc9be7d
+inputs:
+- id: 01a12c3a-90a9-7649-9fdc-5ad6854bba7f
+  name: Event Type Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+- id: 01a12c3a-90ab-78ed-a0c7-59458db404ed
+  name: Slot Start
+  type:
+    kind: Primitive
+    primitive: Date
+  archived: false
+- id: 01a12c3a-90ab-7ae3-a792-e2ea0cdd53e9
+  name: Name
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a12c3a-90ab-71ed-872d-28807fe856ae
+  name: Email
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+- id: 01a12c3a-90ab-7cbd-96c3-f3350e63ca79
+  name: Time Zone
+  type:
+    kind: Primitive
+    primitive: Text
+  archived: false
+steps:
+- id: 01a12c3a-90b4-7c53-99f3-ef8494b58269
+  text: 'If the Event Type does not have the waitlist switched on, refuse: {{outcome:No Waitlist}}'
+  indent: 0
+- id: 01a12c3a-90b6-7ed6-8d01-7202995595d5
+  text: 'If {{input:Slot Start}} has already passed, refuse: {{outcome:Time In Past}}'
+  indent: 0
+- id: 01a12c3a-90b6-7ba2-afc8-aaccb5b568de
+  text: 'If the time still has room, refuse: {{outcome:Time Still Free}}'
+  indent: 0
+- id: 01a12c3a-90b6-7874-913e-90eeb149809f
+  text: "If {{input:Email}} is on the instance's blocked list, refuse the same way Create Booking does: {{outcome:Email Blocked}}"
+  indent: 0
+- id: 01a12c3a-90b6-7e53-a7ca-209f585eb801
+  text: 'If {{input:Email}} is already on the waitlist for this time, refuse: {{outcome:Already On Waitlist}}'
+  indent: 0
+- id: 01a12c3a-90b6-716f-935d-bc272ff45b84
+  text: Add a Waitlist Entry for the time, marked Waiting
+  indent: 0
+- id: 01a12c3a-90b6-76ca-a77a-e6eea2222cd6
+  text: 'Publish Waitlist Joined: {{outcome:Joined}}'
+  indent: 0
+outcomes:
+- id: 01a12c3a-90ae-7911-9bd7-b755e0980fe2
+  name: Joined
+  success: true
+  code: 201
+  message: You're on the waitlist. We'll email you if this time opens up.
+  returns: 
+- id: 01a12c3a-90ae-79a6-8b86-e6b8007d5190
+  name: No Waitlist
+  success: false
+  code: 400
+  message: This event type doesn't have a waitlist.
+  returns: 
+- id: 01a12c3a-90ae-71b0-a403-2766fc301367
+  name: Time In Past
+  success: false
+  code: 400
+  message: This time has already passed.
+  returns: 
+- id: 01a12c3a-90ae-79f7-a88b-06d9238c340d
+  name: Time Still Free
+  success: false
+  code: 400
+  message: This time is still free. Book it instead.
+  returns: 
+- id: 01a12c3a-90ae-7495-8f21-b547a587c2b8
+  name: Email Blocked
+  success: false
+  code: 403
+  message: 
+  returns: 
+- id: 01a12c3a-90ae-729f-91b7-e892b1a06f80
+  name: Already On Waitlist
+  success: false
+  code: 409
+  message: You're already on the waitlist for this time.
+  returns: 
+archived: false

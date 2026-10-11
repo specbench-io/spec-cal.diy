@@ -1,0 +1,17 @@
+spec-format: 1
+kind: event-handler
+id: 01a12c3a-91e4-7fb3-8990-9fcb7ca859f9
+revision: 3
+name: Offer Time After Cancellation
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: 
+trigger:
+  integration-event: Booking/Booking Cancelled
+steps:
+- id: 01a12c3a-91e8-7303-91d8-9a266ba35627
+  text: Find the cancelled Booking from its Booking Uid
+  indent: 0
+- id: 01a12c3a-91e8-7dce-b6ea-9922ac467b95
+  text: Offer its time to the next in line with Waitlist Offers.Offer Next In Line
+  indent: 0
+archived: false

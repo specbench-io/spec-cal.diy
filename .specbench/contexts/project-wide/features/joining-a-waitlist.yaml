@@ -1,0 +1,185 @@
+spec-format: 1
+kind: feature
+id: 01a12c39-6941-720e-a8e0-a475fc6de7ac
+revision: 47
+title: Joining a waitlist
+intent: As a Booker, I want to join a waitlist for a time that is already booked, so that I can still get that time if it frees up.
+description: Organizers get cancelled times filled again without doing anything. When a time frees up, the first person in line is emailed and has a set time to claim it. If they don't, the next person gets the offer. The Organizer switches the waitlist on for each Event Type.
+scenarios:
+- id: 03bf9558-55cb-4828-beff-ea654bb34b27
+  title: Joining the waitlist for a full time
+  steps:
+  - id: a92d4bef-a870-4dea-aa7d-9f241ad102ee
+    keyword: Given
+    text: Dana's "Intro Call" has the waitlist switched on
+    archived: false
+  - id: 9b5a10da-27b6-4787-82ac-1c7359a1a67a
+    keyword: And
+    text: Tuesday at 10:00 is already booked
+    archived: false
+  - id: 6f322f9d-524c-4db8-8bdd-265d0d0ad1a0
+    keyword: When
+    text: Priya joins the waitlist for Tuesday at 10:00
+    archived: false
+  - id: fc01758a-0622-4d18-9cd2-88db1a7e389e
+    keyword: Then
+    text: she sees "You're on the waitlist. We'll email you if this time opens up."
+    archived: false
+  archived: false
+- id: 05d51898-628c-46d2-8e60-d40df6d2ce93
+  title: Joining the same waitlist twice
+  steps:
+  - id: 83c265a8-3cf9-4922-9e93-28177cc255bd
+    keyword: Given
+    text: Priya is already on the waitlist for Tuesday at 10:00
+    archived: false
+  - id: d6ab7255-dcbc-4ea5-afee-53f0d00409bc
+    keyword: When
+    text: she joins it again with the same email
+    archived: false
+  - id: cd2b598b-c34b-4676-b89a-5760b711007d
+    keyword: Then
+    text: she sees "You're already on the waitlist for this time."
+    archived: false
+  archived: false
+- id: 05227a12-6c41-4a14-b9b8-13f0b5faf617
+  title: A free time has no waitlist
+  steps:
+  - id: 667d826e-b9c8-4b98-988d-14fcb2c4fa4f
+    keyword: Given
+    text: Tuesday at 11:00 is still free
+    archived: false
+  - id: 5d08350c-9c24-4d0d-bf50-0fad4ed8f19f
+    keyword: When
+    text: Priya tries to join the waitlist for Tuesday at 11:00
+    archived: false
+  - id: 37582770-50c9-4bd9-b892-3062726d3de2
+    keyword: Then
+    text: she sees "This time is still free. Book it instead."
+    archived: false
+  archived: false
+- id: 84b22c02-7aad-4c3e-b94d-5eb057cddd69
+  title: A cancellation offers the time to the first in line
+  steps:
+  - id: 6af45315-0401-4e2e-987a-53658b366472
+    keyword: Given
+    text: Priya joined the waitlist for Tuesday at 10:00 before Sam
+    archived: false
+  - id: fcfb37d7-a732-4c22-8e44-8f2f79cf29f1
+    keyword: And
+    text: Dana's offer window is 60 minutes
+    archived: false
+  - id: ad581ae6-bae2-4a88-bc7c-4d48affd53af
+    keyword: When
+    text: the Booking for Tuesday at 10:00 is cancelled
+    archived: false
+  - id: 73706672-4ab9-47de-8e62-8a2b428b2d1f
+    keyword: Then
+    text: Priya is emailed that the time is free, with a link to claim it within 60 minutes
+    archived: false
+  - id: a40d92e1-127f-4f45-8707-8eb06350d5d7
+    keyword: And
+    text: Sam is not emailed yet
+    archived: false
+  archived: false
+- id: 3b38fa1d-a17f-4112-bb41-26f43c3a25c7
+  title: Claiming an offer in time
+  steps:
+  - id: 0c1ac962-373a-4556-b83c-b20f592e5d29
+    keyword: Given
+    text: Priya was offered Tuesday at 10:00 twenty minutes ago
+    archived: false
+  - id: d82edcba-0db1-4373-9da8-16295c1b346d
+    keyword: When
+    text: she claims it
+    archived: false
+  - id: 8c4457da-b567-4729-bff3-7adca0e63bad
+    keyword: Then
+    text: she has a Booking with Dana for Tuesday at 10:00 and gets the usual confirmation email
+    archived: false
+  archived: false
+- id: f07f4c40-157c-4a3a-a545-ab4ca3772c8b
+  title: An offer runs out and passes to the next in line
+  steps:
+  - id: 14a8facc-5dbd-4cbd-a123-9bc2deeb650d
+    keyword: Given
+    text: Priya was offered Tuesday at 10:00
+    archived: false
+  - id: d4fda18c-85c1-44d3-a445-bc868c9e8162
+    keyword: And
+    text: Sam is next in line
+    archived: false
+  - id: afcef1ed-33bd-44c8-a745-bbf37298d3fd
+    keyword: When
+    text: 60 minutes pass and Priya has not claimed it
+    archived: false
+  - id: db550d2c-0073-4da0-8774-7b5d3602c319
+    keyword: Then
+    text: Sam is emailed the offer
+    archived: false
+  archived: false
+- id: aee98f03-3421-4ad4-a6e3-cf7d998ecd25
+  title: Claiming an offer too late
+  steps:
+  - id: 4b368c7b-030b-418f-99ce-a12a6aea4cc9
+    keyword: Given
+    text: Priya's offer for Tuesday at 10:00 has ended
+    archived: false
+  - id: 67350921-7bc5-4d54-8cd8-7331a40b75ef
+    keyword: When
+    text: she opens the claim link
+    archived: false
+  - id: f849e550-6e8a-45a1-afd1-aa0525476943
+    keyword: Then
+    text: she sees "This offer has ended."
+    archived: false
+  archived: false
+- id: c584991a-fd2d-47f7-aec2-a18e6aff85a8
+  title: Leaving the waitlist
+  steps:
+  - id: bf50c10c-6ee5-4c17-a18c-420742f8a03f
+    keyword: Given
+    text: Sam is on the waitlist for Tuesday at 10:00
+    archived: false
+  - id: 904a7d88-ccad-41f2-a8e8-824f0a93bd72
+    keyword: When
+    text: he leaves it from the link in his "You're on the waitlist" email
+    archived: false
+  - id: 6fdfb7fb-1fe7-45dd-a0b9-f03c91f20855
+    keyword: Then
+    text: he is not emailed if Tuesday at 10:00 frees up
+    archived: false
+  archived: false
+- id: 4714b22b-d934-4ccb-bb67-00c370c010fc
+  title: No waitlist when the Organizer has not switched it on
+  steps:
+  - id: 14d70b7a-705b-4693-bf48-c822153e46c1
+    keyword: Given
+    text: Dana's "Board Review" does not have the waitlist switched on
+    archived: false
+  - id: 881437c5-131b-45ea-a6ee-068b96890679
+    keyword: When
+    text: Priya looks at a Tuesday that is fully booked
+    archived: false
+  - id: d858f5df-90ec-4f3b-b991-1bff384d53d1
+    keyword: Then
+    text: she cannot join a waitlist for any of its times
+    archived: false
+  archived: false
+- id: 343a6aed-e80e-4552-9589-e80524c69aea
+  title: Moving a Booking frees its old time
+  steps:
+  - id: e81f0ef8-640f-4bcd-b0f0-27804b07b35a
+    keyword: Given
+    text: Priya is first on the waitlist for Tuesday at 10:00
+    archived: false
+  - id: 2c72657e-3af2-463d-8245-5700148132dc
+    keyword: When
+    text: the Attendee moves their Booking from Tuesday at 10:00 to Thursday
+    archived: false
+  - id: a4988966-e7b5-4f0a-8cb2-b06e61e052d6
+    keyword: Then
+    text: Priya is offered Tuesday at 10:00
+    archived: false
+  archived: false
+archived: false

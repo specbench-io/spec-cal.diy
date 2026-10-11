@@ -1,10 +1,10 @@
 spec-format: 1
 kind: use-case
 id: 01a125a4-41be-7394-a3a7-5582f10c430d
-revision: 8
+revision: 9
 name: Charge No Show Fee
 bounded-context-id: 01a0f44a-2a22-7488-ae05-7c57eda180ac
-description: viewer.payments.chargeCard (Collect no-show fee). The handler does not check that the caller owns the Booking.
+description: viewer.payments.chargeCard (Collect no-show fee). The handler does not check that the caller owns the Booking
 use-case-kind: Command
 roles:
 - 01a0f442-adb2-70ac-8ad6-65442784e943

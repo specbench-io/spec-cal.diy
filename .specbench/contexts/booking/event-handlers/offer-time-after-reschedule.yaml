@@ -1,0 +1,17 @@
+spec-format: 1
+kind: event-handler
+id: 01a12c3a-9223-757f-b3ae-2b5a49934859
+revision: 3
+name: Offer Time After Reschedule
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: 
+trigger:
+  integration-event: Booking/Booking Rescheduled
+steps:
+- id: 01a12c3a-9223-7972-846c-39e175673f77
+  text: Find the original Booking from the Reschedule Uid. Its old time is now free
+  indent: 0
+- id: 01a12c3a-9223-75c4-85b1-5d0b41486045
+  text: Offer the old time to the next in line with Waitlist Offers.Offer Next In Line
+  indent: 0
+archived: false

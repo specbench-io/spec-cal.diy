@@ -1,7 +1,7 @@
 spec-format: 1
 kind: aggregate
 id: 01a12591-8be1-7b7e-adf2-45a5e68d13d4
-revision: 81
+revision: 84
 name: Event Type
 bounded-context-id: 01a0f44a-299f-735f-971c-99d5a8815da7
 summary: A kind of meeting an Organizer offers for booking, with its own length, locations and booking rules.
@@ -424,6 +424,19 @@ properties:
       entity-id: 01a1259e-ce0c-7e47-ab23-d86dd0d5e118
     ref-name: Event Type Color
   archived: false
+- id: 01a12c3a-92eb-7f0b-93f7-ac00ee92f6bd
+  name: Waitlist Enabled
+  type:
+    kind: Primitive
+    primitive: Bool
+  archived: false
+- id: 01a12c3a-92eb-74bb-b7c2-4f4881cb0469
+  name: Waitlist Offer Window
+  type:
+    kind: Primitive
+    nullable: true
+    primitive: Number
+  archived: false
 invariants:
 - id: 01a1259e-72d9-7951-b5e6-bb6a7de7101f
   text: The slug is unique per owner.
@@ -445,6 +458,9 @@ invariants:
   archived: false
 - id: 01a1259e-72d9-771d-b925-a9127fada449
   text: Booking question names are unique, and email or phone is always shown and required.
+  archived: false
+- id: 01a12c3a-92eb-7618-9172-7461733b81fc
+  text: The waitlist offer window is between 15 minutes and 24 hours.
   archived: false
 domain-events: []
 entities:

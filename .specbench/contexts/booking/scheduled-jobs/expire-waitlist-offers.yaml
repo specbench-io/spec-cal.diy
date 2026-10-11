@@ -1,0 +1,19 @@
+spec-format: 1
+kind: scheduled-job
+id: 01a12c3a-9260-7f3e-a1af-d28a76ce22f6
+revision: 3
+name: Expire Waitlist Offers
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: 
+schedule: Every minute
+steps:
+- id: 01a12c3a-9260-70c4-9a11-6b3768b2bff2
+  text: 'For each Offered Waitlist Entry whose offer has ended:'
+  indent: 0
+- id: 01a12c3a-9260-7305-b0f4-18d443469831
+  text: Call Waitlist Entry.Expire
+  indent: 1
+- id: 01a12c3a-9260-7daf-9044-90d0a4dd88fe
+  text: Offer the time to the next in line with Waitlist Offers.Offer Next In Line
+  indent: 1
+archived: false

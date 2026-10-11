@@ -1,0 +1,71 @@
+spec-format: 1
+kind: use-case
+id: 01a12c3a-9133-70ec-a8e3-a02d772cda31
+revision: 10
+name: Claim Waitlist Offer
+bounded-context-id: 01a0f44a-29ea-7c49-b4aa-b9c9fc1f7573
+description: The claim link in the offer email. No account needed.
+use-case-kind: Command
+roles:
+- 01a0f442-adc1-7f74-9a7a-6b7f3cc9be7d
+inputs:
+- id: 01a12c3a-9133-7cc0-9f65-5588fca5f6a5
+  name: Waitlist Entry Id
+  type:
+    kind: Primitive
+    primitive: Id
+  archived: false
+steps:
+- id: 01a12c3a-9133-7170-bbdd-f655d77196d0
+  text: 'If the Waitlist Entry does not exist, refuse: {{outcome:Not Found}}'
+  indent: 0
+- id: 01a12c3a-9133-7f75-86f3-3269b3e9bd23
+  text: Call Waitlist Entry.Claim
+  indent: 0
+- id: 01a12c3a-9133-721a-857f-169a5597f8d2
+  text: 'If the time was not offered to them, refuse: {{outcome:Not Offered}}'
+  indent: 1
+- id: 01a12c3a-9133-7a51-9b51-a810412dc005
+  text: 'If the offer has ended, refuse: {{outcome:Offer Ended}}'
+  indent: 1
+- id: 01a12c3a-9133-74d3-837d-9236cead3225
+  text: Book the time for the Booker, the same way as Create Booking
+  indent: 0
+- id: 01a12c3a-9133-7fa2-a298-a547fde902e9
+  text: 'If the time can no longer be booked, refuse: {{outcome:Time Taken}}'
+  indent: 1
+- id: 01a12c3a-9133-7e02-b63d-513fbdc2d732
+  text: 'Show the booking confirmation: {{outcome:Booked}}'
+  indent: 0
+outcomes:
+- id: 01a12c3a-9133-70dd-a6a6-b71cdced828d
+  name: Booked
+  success: true
+  code: 201
+  message: 
+  returns: 
+- id: 01a12c3a-9133-787b-9806-6ce8555012f4
+  name: Not Found
+  success: false
+  code: 404
+  message: We couldn't find this place on the waitlist.
+  returns: 
+- id: 01a12c3a-9133-7efe-8518-c031cd55196b
+  name: Not Offered
+  success: false
+  code: 400
+  message: This time hasn't been offered to you.
+  returns: 
+- id: 01a12c3a-9133-7db6-a94b-77ac06d6e927
+  name: Offer Ended
+  success: false
+  code: 410
+  message: This offer has ended.
+  returns: 
+- id: 01a12c3a-9133-764f-8128-62bdde05b691
+  name: Time Taken
+  success: false
+  code: 409
+  message: Sorry, this time is no longer free.
+  returns: 
+archived: false
